@@ -284,6 +284,76 @@ ${avaliacao.observacao}
 
 
 }
+
+
+    async function adicionarAvaliacao(){
+
+
+const observacao =
+document.querySelector("#observacao").value;
+
+
+
+if(!observacao){
+
+alert("Digite uma avaliação!");
+
+return;
+
+}
+
+
+
+const usuario =
+await supabaseClient.auth.getUser();
+
+
+
+const avaliador =
+usuario.data.user.email;
+
+
+
+const {error} = await supabaseClient
+.from("avaliacoes")
+.insert([{
+
+
+candidato_id: id,
+
+avaliador: avaliador,
+
+observacao: observacao
+
+
+}]);
+
+
+
+if(error){
+
+console.error(error);
+
+alert("Erro ao adicionar avaliação");
+
+return;
+
+}
+
+
+
+alert("Avaliação adicionada!");
+
+
+
+document.querySelector("#observacao").value = "";
+
+
+
+carregarAvaliacoes();
+
+
+}
     
     carregarCandidato();
 
