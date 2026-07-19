@@ -2,12 +2,15 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Painel Staff - FuturyCraft</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel Staff - FuturyCraft</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 
@@ -16,21 +19,82 @@
 
 <h1>FuturyCraft</h1>
 
-<h2>Painel de Candidaturas</h2>
+<h2>Painel Staff</h2>
+
 
 <button onclick="logout()">
 Sair
 </button>
 
+
+<div id="dashboard">
+
+
+<div class="status-card">
+<h3>🟡 Pendentes</h3>
+<p id="pendentes">0</p>
+</div>
+
+
+<div class="status-card">
+<h3>🟢 Aprovados</h3>
+<p id="aprovados">0</p>
+</div>
+
+
+<div class="status-card">
+<h3>🔴 Recusados</h3>
+<p id="recusados">0</p>
+</div>
+
+
+</div>
+
+
+
+<h3>Filtrar candidaturas</h3>
+
+
+<div>
+
+
+<button onclick="filtrar('Todos')">
+Todos
+</button>
+
+
+<button onclick="filtrar('Pendente')">
+Pendentes
+</button>
+
+
+<button onclick="filtrar('Aprovado')">
+Aprovados
+</button>
+
+
+<button onclick="filtrar('Recusado')">
+Recusados
+</button>
+
+
+</div>
+
+
+
+<br>
+
+
 <div id="lista-candidatos">
 
-    Carregando candidaturas...
+Carregando...
 
 </div>
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="admin.js"></script>
 
 
