@@ -360,7 +360,6 @@ carregarAvaliacoes();
 
 }
 
-
 // Voltar
 
 function voltar() {
@@ -373,3 +372,5 @@ function voltar() {
 // Iniciar
 
 carregarCandidato();
+
+carregarAvaliacoes();
