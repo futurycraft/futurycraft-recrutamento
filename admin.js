@@ -51,7 +51,9 @@ async function carregarCandidatos(){
 
         lista.innerHTML += `
 
+
         <div class="card-candidato">
+
 
             <h3>${candidato.nick}</h3>
 
@@ -80,6 +82,13 @@ async function carregarCandidatos(){
             </p>
 
 
+            <p>
+            <b>Status:</b>
+            ${candidato.status || "Pendente"}
+            </p>
+
+
+
             <hr>
 
 
@@ -90,7 +99,7 @@ async function carregarCandidatos(){
 
 
             <p>
-            <b>Ajuda:</b><br>
+            <b>Como ajudaria:</b><br>
             ${candidato.ajuda}
             </p>
 
@@ -100,13 +109,24 @@ async function carregarCandidatos(){
             ${candidato.hack}
             </p>
 
-            <p>
-            <b>Status:</b> 
-            ${candidato.status}
-            </p>
+
+
+            <br>
+
+
+            <button onclick="alterarStatus(${candidato.id}, 'Aprovado')">
+                ✅ Aprovar
+            </button>
+
+
+            <button onclick="alterarStatus(${candidato.id}, 'Recusado')">
+                ❌ Recusar
+            </button>
+
 
 
         </div>
+
 
         `;
 
@@ -115,6 +135,43 @@ async function carregarCandidatos(){
 
 
 }
+
+
+
+async function alterarStatus(id, status){
+
+
+    const { error } = await supabaseClient
+        .from("candidatos")
+        .update({
+            status: status
+        })
+        .eq("id", id);
+
+
+
+    if(error){
+
+        console.error(error);
+
+        alert("Erro ao atualizar status");
+
+        return;
+
+    }
+
+
+
+    alert(
+        "Candidatura atualizada para: " + status
+    );
+
+
+    carregarCandidatos();
+
+
+}
+
 
 
 carregarCandidatos();
