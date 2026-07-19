@@ -12,8 +12,6 @@ const supabaseClient = window.supabase.createClient(
 
 
 
-// Verificar login Staff
-
 async function verificarLogin(){
 
     const { data } = await supabaseClient.auth.getSession();
@@ -31,163 +29,191 @@ async function verificarLogin(){
 verificarLogin();
 
 
-console.log("Painel FuturyCraft conectado");
+
+let candidatos = [];
+
+let filtroAtual = "Todos";
 
 
 
 async function carregarCandidatos(){
 
 
-    const { data, error } = await supabaseClient
-        .from("candidatos")
-        .select("*")
-        .order("id", { ascending:false });
+const { data, error } = await supabaseClient
+.from("candidatos")
+.select("*")
+.order("id",{ascending:false});
 
 
 
-    if(error){
+if(error){
 
-        console.error(error);
+console.error(error);
 
-        document.querySelector("#lista-candidatos").innerHTML =
-        "Erro ao carregar candidatos";
+return;
 
-        return;
-
-    }
+}
 
 
 
-    const lista = document.querySelector("#lista-candidatos");
-
-
-    lista.innerHTML = "";
+candidatos = data;
 
 
 
-    data.forEach((candidato)=>{
+atualizarDashboard();
 
-
-        lista.innerHTML += `
-
-
-        <div class="card-candidato">
-
-
-            <h3>${candidato.nick}</h3>
-
-
-            <p>
-            Discord:
-            ${candidato.discord}
-            </p>
-
-
-            <p>
-            Idade:
-            ${candidato.idade}
-            </p>
-
-
-            <p>
-            Tempo:
-            ${candidato.tempo}
-            </p>
-
-
-            <p>
-            Disponibilidade:
-            ${candidato.disponibilidade}
-            </p>
-
-
-            <p>
-            <b>Status:</b>
-            ${candidato.status || "Pendente"}
-            </p>
-
-
-
-            <hr>
-
-
-            <p>
-            <b>Motivo:</b><br>
-            ${candidato.motivo}
-            </p>
-
-
-            <p>
-            <b>Como ajudaria:</b><br>
-            ${candidato.ajuda}
-            </p>
-
-
-            <p>
-            <b>Hack:</b><br>
-            ${candidato.hack}
-            </p>
-
-
-
-            <br>
-
-
-            <button onclick="alterarStatus(${candidato.id}, 'Aprovado')">
-                ✅ Aprovar
-            </button>
-
-
-            <button onclick="alterarStatus(${candidato.id}, 'Recusado')">
-                ❌ Recusar
-            </button>
-
-
-
-        </div>
-
-
-        `;
-
-
-    });
+mostrarCandidatos();
 
 
 }
 
 
 
-async function alterarStatus(id, status){
+
+function atualizarDashboard(){
 
 
-    const { error } = await supabaseClient
-        .from("candidatos")
-        .update({
-            status: status
-        })
-        .eq("id", id);
-
-
-
-    if(error){
-
-        console.error(error);
-
-        alert("Erro ao atualizar status");
-
-        return;
-
-    }
+let pendentes = candidatos.filter(
+c=>c.status === "Pendente"
+).length;
 
 
 
-    alert(
-        "Candidatura atualizada para: " + status
-    );
+let aprovados = candidatos.filter(
+c=>c.status === "Aprovado"
+).length;
 
 
-    carregarCandidatos();
 
+let recusados = candidatos.filter(
+c=>c.status === "Recusado"
+).length;
+
+
+
+document.querySelector("#pendentes").innerHTML = pendentes;
+
+document.querySelector("#aprovados").innerHTML = aprovados;
+
+document.querySelector("#recusados").innerHTML = recusados;
+
+
+}
+
+
+
+
+function filtrar(status){
+
+filtroAtual = status;
+
+mostrarCandidatos();
+
+}
+
+
+
+
+function mostrarCandidatos(){
+
+
+const lista = document.querySelector("#lista-candidatos");
+
+
+lista.innerHTML = "";
+
+
+
+let listaFiltrada = candidatos;
+
+
+
+if(filtroAtual !== "Todos"){
+
+listaFiltrada = candidatos.filter(
+c=>c.status === filtroAtual
+);
+
+}
+
+
+
+listaFiltrada.forEach(candidato=>{
+
+
+lista.innerHTML += `
+
+
+<div class="card-candidato">
+
+
+<h3>
+${candidato.nick}
+</h3>
+
+
+<p>
+Discord:
+${candidato.discord}
+</p>
+
+
+<p>
+Status:
+${candidato.status}
+</p>
+
+
+<button onclick="alterarStatus(${candidato.id}, 'Aprovado')">
+✅ Aprovar
+</button>
+
+
+<button onclick="alterarStatus(${candidato.id}, 'Recusado')">
+❌ Recusar
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+async function alterarStatus(id,status){
+
+
+await supabaseClient
+.from("candidatos")
+.update({
+status:status
+})
+.eq("id",id);
+
+
+
+carregarCandidatos();
+
+
+}
+
+
+
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+window.location.href="login.html";
 
 }
 
