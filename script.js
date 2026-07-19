@@ -79,3 +79,5 @@ if (formulario) {
     });
 
 }
+
+console.log("Supabase FuturyCraft conectado!");
