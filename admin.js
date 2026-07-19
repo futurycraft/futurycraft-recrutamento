@@ -73,20 +73,20 @@ mostrarCandidatos();
 function atualizarDashboard(){
 
 
-let pendentes = candidatos.filter(
-c=>c.status === "Pendente"
+let pendentes = candidatos.filter(c =>
+    !c.status || c.status.toLowerCase().trim() === "pendente"
 ).length;
 
 
 
-let aprovados = candidatos.filter(
-c=>c.status === "Aprovado"
+let aprovados = candidatos.filter(c =>
+    c.status && c.status.toLowerCase().trim() === "aprovado"
 ).length;
 
 
 
-let recusados = candidatos.filter(
-c=>c.status === "Recusado"
+let recusados = candidatos.filter(c =>
+    c.status && c.status.toLowerCase().trim() === "recusado"
 ).length;
 
 
