@@ -11,209 +11,34 @@ const supabaseClient = window.supabase.createClient(
 
 
 
-// Pegar ID da candidatura
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-const parametros = new URLSearchParams(window.location.search);
+
+
+const parametros = new URLSearchParams(
+    window.location.search
+);
+
 
 const id = parametros.get("id");
 
 
-// Carregar candidatura
 
-async function carregarCandidato() {
+// ===============================
+// CARREGAR CANDIDATO
+// ===============================
 
-    const { data, error } = await supabaseClient
-        .from("candidatos")
-        .select("*")
-        .eq("id", id)
-        .single();
-
-
-    if (error) {
-
-        console.error(error);
-
-        return;
-
-    }
-
-
-    document.querySelector("#candidato").innerHTML = `
-
-        <div class="card-candidato">
-
-            <h2>${data.nick}</h2>
-
-            <p>
-                <b>Discord:</b>
-                ${data.discord}
-            </p>
-
-            <p>
-                <b>Idade:</b>
-                ${data.idade}
-            </p>
-
-            <p>
-                <b>Tempo:</b>
-                ${data.tempo}
-            </p>
-
-            <p>
-                <b>Disponibilidade:</b>
-                ${data.disponibilidade}
-            </p>
-
-            <hr>
-
-            <h3>Respostas</h3>
-
-            <p>
-                <b>Motivo:</b><br>
-                ${data.motivo}
-            </p>
-
-            <p>
-                <b>Como ajudaria:</b><br>
-                ${data.ajuda}
-            </p>
-
-            <p>
-                <b>Hack:</b><br>
-                ${data.hack}
-            </p>
-
-            <hr>
-
-            <h3>
-                Status: ${data.status || "Pendente"}
-            </h3>
-
-            <p>
-                <b>Avaliador:</b>
-                ${data.avaliador || "Ainda não analisado"}
-            </p>
-
-            <p>
-                <b>Data da análise:</b>
-                ${data.data_analise || "Não analisado"}
-            </p>
-
-            <br>
-
-            <button onclick="alterarStatus('Aprovado')">
-                ✅ Aprovar
-            </button>
-
-            <button onclick="alterarStatus('Recusado')">
-                ❌ Recusar
-            </button>
-
-        </div>
-
-    `;
-
-
-    // Carrega observação existente
-
-    document.querySelector("#observacao").value =
-        data.observacao || "";
-
-}
-
-
-// Alterar status
-
-async function alterarStatus(status) {
-
-    const usuario = await supabaseClient.auth.getUser();
-
-    const avaliador = usuario.data.user.email;
-
-
-    const { error } = await supabaseClient
-        .from("candidatos")
-        .update({
-
-            status: status,
-
-            avaliador: avaliador,
-
-            data_analise: new Date()
-
-        })
-        .eq("id", id);
-
-
-    if (error) {
-
-        console.error(error);
-
-        alert("Erro ao alterar status");
-
-        return;
-
-    }
-
-
-    alert("Status atualizado!");
-
-    carregarCandidato();
-
-}
-
-
-// Salvar observação
-
-async function salvarAnalise() {
-
-    const observacao =
-        document.querySelector("#observacao").value;
-
-
-    const usuario =
-        await supabaseClient.auth.getUser();
-
-
-    const avaliador =
-        usuario.data.user.email;
-
-
-    const { error } = await supabaseClient
-        .from("candidatos")
-        .update({
-
-            observacao: observacao,
-
-            avaliador: avaliador,
-
-            data_analise: new Date()
-
-        })
-        .eq("id", id);
-
-
-    if (error) {
-
-        console.error(error);
-
-        alert("Erro ao salvar análise");
-
-        return;
-
-    }
-
-
-    alert("Análise salva com sucesso!");
-    
-    async function carregarAvaliacoes(){
+async function carregarCandidato(){
 
 
 const {data,error} = await supabaseClient
-.from("avaliacoes")
+.from("candidatos")
 .select("*")
-.eq("candidato_id", id)
-.order("created_at",{ascending:false});
+.eq("id",id)
+.single();
 
 
 
@@ -227,7 +52,119 @@ return;
 
 
 
-const area = document.querySelector("#avaliacoes");
+document.querySelector("#candidato").innerHTML = `
+
+
+<div class="card-candidato">
+
+
+<h2>${data.nick}</h2>
+
+
+<p>
+<b>Discord:</b>
+${data.discord}
+</p>
+
+
+<p>
+<b>Idade:</b>
+${data.idade}
+</p>
+
+
+<p>
+<b>Tempo:</b>
+${data.tempo}
+</p>
+
+
+<p>
+<b>Disponibilidade:</b>
+${data.disponibilidade}
+</p>
+
+
+<hr>
+
+
+<h3>Respostas</h3>
+
+
+<p>
+<b>Motivo:</b><br>
+${data.motivo}
+</p>
+
+
+<p>
+<b>Como ajudaria:</b><br>
+${data.ajuda}
+</p>
+
+
+<p>
+<b>Hack:</b><br>
+${data.hack}
+</p>
+
+
+<hr>
+
+
+<h3>
+Status: ${data.status}
+</h3>
+
+
+<button onclick="alterarStatus('Aprovado')">
+✅ Aprovar
+</button>
+
+
+<button onclick="alterarStatus('Recusado')">
+❌ Recusar
+</button>
+
+
+</div>
+
+
+`;
+
+
+}
+
+
+
+// ===============================
+// CARREGAR AVALIAÇÕES
+// ===============================
+
+
+async function carregarAvaliacoes(){
+
+
+const {data,error} = await supabaseClient
+.from("avaliacoes")
+.select("*")
+.eq("candidato_id",id)
+.order("created_at",{ascending:false});
+
+
+
+if(error){
+
+console.error("Erro avaliações:",error);
+
+return;
+
+}
+
+
+
+const area =
+document.querySelector("#avaliacoes");
 
 
 
@@ -246,10 +183,11 @@ return;
 
 
 
-data.forEach(avaliacao => {
+data.forEach(avaliacao=>{
 
 
 area.innerHTML += `
+
 
 <div class="card-candidato">
 
@@ -274,6 +212,7 @@ ${avaliacao.observacao}
 
 </div>
 
+
 <hr>
 
 
@@ -284,12 +223,13 @@ ${avaliacao.observacao}
 
 
 }
-    
-    carregarCandidato();
 
-}
 
-//novo
+
+// ===============================
+// ADICIONAR AVALIAÇÃO
+// ===============================
+
 
 async function adicionarAvaliacao(){
 
@@ -319,17 +259,15 @@ usuario.data.user.email;
 
 
 
-const {error} = await supabaseClient
+const {error}=await supabaseClient
 .from("avaliacoes")
 .insert([{
 
+candidato_id:id,
 
-candidato_id: id,
+avaliador:avaliador,
 
-avaliador: avaliador,
-
-observacao: observacao
-
+observacao:observacao
 
 }]);
 
@@ -339,7 +277,7 @@ if(error){
 
 console.error(error);
 
-alert("Erro ao adicionar avaliação");
+alert("Erro ao salvar avaliação");
 
 return;
 
@@ -351,8 +289,7 @@ alert("Avaliação adicionada!");
 
 
 
-document.querySelector("#observacao").value = "";
-
+document.querySelector("#observacao").value="";
 
 
 carregarAvaliacoes();
@@ -360,16 +297,57 @@ carregarAvaliacoes();
 
 }
 
-// Voltar
 
-function voltar() {
 
-    window.location.href = "admin.html";
+
+// ===============================
+// ALTERAR STATUS
+// ===============================
+
+
+async function alterarStatus(status){
+
+
+const {error}=await supabaseClient
+.from("candidatos")
+.update({
+
+status:status
+
+})
+.eq("id",id);
+
+
+
+if(error){
+
+console.error(error);
+
+return;
 
 }
 
 
-// Iniciar
+
+alert("Status alterado!");
+
+carregarCandidato();
+
+
+}
+
+
+
+
+function voltar(){
+
+window.location.href="admin.html";
+
+}
+
+
+
+// iniciar
 
 carregarCandidato();
 
