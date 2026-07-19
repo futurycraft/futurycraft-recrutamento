@@ -73,29 +73,58 @@ mostrarCandidatos();
 function atualizarDashboard(){
 
 
-let pendentes = candidatos.filter(c =>
-    !c.status || c.status.toLowerCase().trim() === "pendente"
-).length;
+    console.log("Candidatos para contar:", candidatos);
+
+
+    let pendentes = 0;
+    let aprovados = 0;
+    let recusados = 0;
 
 
 
-let aprovados = candidatos.filter(c =>
-    c.status && c.status.toLowerCase().trim() === "aprovado"
-).length;
+    candidatos.forEach((candidato)=>{
+
+
+        let status = candidato.status;
+
+
+        if(!status){
+
+            pendentes++;
+
+        }
+
+
+        else if(status.toLowerCase().trim() === "pendente"){
+
+            pendentes++;
+
+        }
+
+
+        else if(status.toLowerCase().trim() === "aprovado"){
+
+            aprovados++;
+
+        }
+
+
+        else if(status.toLowerCase().trim() === "recusado"){
+
+            recusados++;
+
+        }
+
+
+    });
 
 
 
-let recusados = candidatos.filter(c =>
-    c.status && c.status.toLowerCase().trim() === "recusado"
-).length;
+    document.querySelector("#pendentes").innerHTML = pendentes;
 
+    document.querySelector("#aprovados").innerHTML = aprovados;
 
-
-document.querySelector("#pendentes").innerHTML = pendentes;
-
-document.querySelector("#aprovados").innerHTML = aprovados;
-
-document.querySelector("#recusados").innerHTML = recusados;
+    document.querySelector("#recusados").innerHTML = recusados;
 
 
 }
