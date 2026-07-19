@@ -386,6 +386,81 @@ carregarAvaliacoes();
 
 }
 
+async function descurtirAvaliacao(idAvaliacao){
+
+
+const {data} = await supabaseClient
+.from("avaliacoes")
+.select("dislikes")
+.eq("id",idAvaliacao)
+.single();
+
+
+
+await supabaseClient
+.from("avaliacoes")
+.update({
+
+dislikes:(data.dislikes || 0) + 1
+
+})
+.eq("id",idAvaliacao);
+
+
+
+carregarAvaliacoes();
+
+
+}
+
+
+async function excluirAvaliacao(idAvaliacao){
+
+
+const confirmar = confirm(
+"Tem certeza que deseja excluir esta avaliação?"
+);
+
+
+
+if(!confirmar){
+
+return;
+
+}
+
+
+
+const {error}=await supabaseClient
+.from("avaliacoes")
+.delete()
+.eq("id",idAvaliacao);
+
+
+
+if(error){
+
+console.error(error);
+
+alert("Erro ao excluir avaliação");
+
+return;
+
+}
+
+
+
+alert("Avaliação excluída!");
+
+
+
+carregarAvaliacoes();
+
+
+}
+
+
+
 function voltar(){
 
 window.location.href="admin.html";
