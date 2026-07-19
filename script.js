@@ -49,6 +49,8 @@ formulario.addEventListener("submit", async (e) => {
 
         hack: document.querySelector("#hack").value
 
+        status: "Pendente"
+
     };
 
 
