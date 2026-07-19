@@ -1,3 +1,5 @@
+alert("SCRIPT FUTURYCRAFT CARREGADO");
+
 // ==========================================
 // FUTURYCRAFT - SISTEMA DE CANDIDATURA STAFF
 // Conexão Supabase
