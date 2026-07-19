@@ -221,7 +221,6 @@ ${avaliacao.observacao}
 </button>
 
 
-
 <button onclick="excluirAvaliacao(${avaliacao.id})">
 
 🗑️ Excluir
