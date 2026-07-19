@@ -25,59 +25,71 @@ console.log("Supabase FuturyCraft conectado!");
 const formulario = document.querySelector("#form-candidatos");
 
 
-formulario.addEventListener("submit", async (e) => {
+if (formulario) {
 
 
-    e.preventDefault();
+    formulario.addEventListener("submit", async (e) => {
 
 
-    const dados = {
-
-        nick: document.querySelector("#nick").value,
-
-        discord: document.querySelector("#discord").value,
-
-        idade: document.querySelector("#idade").value,
-
-        tempo: document.querySelector("#tempo").value,
-
-        disponibilidade: document.querySelector("#disponibilidade").value,
-
-        motivo: document.querySelector("#motivo").value,
-
-        ajuda: document.querySelector("#ajuda").value,
-
-        hack: document.querySelector("#hack").value
-
-    };
+        e.preventDefault();
 
 
-    console.log("Enviando candidatura:", dados);
+        const dados = {
+
+            nick: document.querySelector("#nick").value,
+
+            discord: document.querySelector("#discord").value,
+
+            idade: document.querySelector("#idade").value,
+
+            tempo: document.querySelector("#tempo").value,
+
+            disponibilidade: document.querySelector("#disponibilidade").value,
+
+            motivo: document.querySelector("#motivo").value,
+
+            ajuda: document.querySelector("#ajuda").value,
+
+            hack: document.querySelector("#hack").value,
+
+            status: "Pendente"
+
+        };
 
 
-
-    const { data, error } = await supabaseClient
-        .from("candidatos")
-        .insert([dados]);
-
-
-
-    if(error){
-
-        console.error("Erro Supabase:", error);
-
-        alert("Erro ao enviar candidatura!");
-
-        return;
-
-    }
+        console.log("Enviando candidatura:", dados);
 
 
 
-    alert("Candidatura enviada com sucesso!");
+        const { data, error } = await supabaseClient
+            .from("candidatos")
+            .insert([dados]);
 
 
-    formulario.reset();
+
+        if(error){
 
 
-});
+            console.error("Erro Supabase:", error);
+
+            alert("Erro ao enviar candidatura!");
+
+            return;
+
+
+        }
+
+
+
+        alert("Candidatura enviada com sucesso!");
+
+
+
+        formulario.reset();
+
+
+
+    });
+
+
+}
