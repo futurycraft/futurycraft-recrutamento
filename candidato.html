@@ -28,14 +28,29 @@
 
 <br><br>
 
-<label>
-Observação da Staff:
-</label>
+<h3>
+Histórico de Avaliações
+</h3>
+
+
+<div id="avaliacoes">
+
+Carregando avaliações...
+
+</div>
+
 
 <br>
 
-<textarea id="observacao" 
-placeholder="Digite uma observação sobre o candidato..."
+
+<h3>
+Nova Avaliação
+</h3>
+
+
+<textarea 
+id="observacao"
+placeholder="Digite sua avaliação..."
 rows="5"
 cols="50"></textarea>
 
@@ -43,8 +58,8 @@ cols="50"></textarea>
 <br><br>
 
 
-<button onclick="salvarAnalise()">
-💾 Salvar análise
+<button onclick="adicionarAvaliacao()">
+💾 Adicionar avaliação
 </button>
   
 <div id="candidato">
