@@ -284,9 +284,14 @@ ${avaliacao.observacao}
 
 
 }
+    
+    carregarCandidato();
 
+}
 
-    async function adicionarAvaliacao(){
+//novo
+
+async function adicionarAvaliacao(){
 
 
 const observacao =
@@ -352,10 +357,6 @@ document.querySelector("#observacao").value = "";
 
 carregarAvaliacoes();
 
-
-}
-    
-    carregarCandidato();
 
 }
 
