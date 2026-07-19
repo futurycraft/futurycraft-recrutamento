@@ -37,3 +37,17 @@ input{
 form{
     margin-top:30px;
 }
+textarea{
+    width:300px;
+    height:120px;
+    padding:12px;
+    border-radius:8px;
+    border:none;
+    resize:vertical;
+    margin-bottom:15px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+}
