@@ -11,13 +11,6 @@ const supabaseClient = window.supabase.createClient(
 
 
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
-
 const parametros = new URLSearchParams(
     window.location.search
 );
