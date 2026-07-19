@@ -193,15 +193,9 @@ ${candidato.status}
 </p>
 
 
-<button onclick="alterarStatus(${candidato.id}, 'Aprovado')">
-✅ Aprovar
+<button onclick="verCandidato(${candidato.id})">
+🔎 Ver candidatura
 </button>
-
-
-<button onclick="alterarStatus(${candidato.id}, 'Recusado')">
-❌ Recusar
-</button>
-
 
 
 </div>
@@ -255,5 +249,12 @@ async function logout(){
     await supabaseClient.auth.signOut();
 
     window.location.href = "login.html";
+
+}
+
+function verCandidato(id){
+
+window.location.href =
+"candidato.html?id="+id;
 
 }
