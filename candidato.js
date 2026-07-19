@@ -359,7 +359,32 @@ carregarCandidato();
 }
 
 
+async function curtirAvaliacao(idAvaliacao){
 
+
+const {data} = await supabaseClient
+.from("avaliacoes")
+.select("likes")
+.eq("id",idAvaliacao)
+.single();
+
+
+
+await supabaseClient
+.from("avaliacoes")
+.update({
+
+likes:(data.likes || 0) + 1
+
+})
+.eq("id",idAvaliacao);
+
+
+
+carregarAvaliacoes();
+
+
+}
 
 function voltar(){
 
