@@ -203,6 +203,35 @@ ${avaliacao.observacao}
 </p>
 
 
+<div>
+
+
+<button onclick="curtirAvaliacao(${avaliacao.id})">
+
+👍 ${avaliacao.likes || 0}
+
+</button>
+
+
+
+<button onclick="descurtirAvaliacao(${avaliacao.id})">
+
+👎 ${avaliacao.dislikes || 0}
+
+</button>
+
+
+
+<button onclick="excluirAvaliacao(${avaliacao.id})">
+
+🗑️ Excluir
+
+</button>
+
+
+</div>
+
+
 </div>
 
 
