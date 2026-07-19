@@ -3,7 +3,7 @@
 // ==========================================
 
 
-// Conexão Supabase
+// Conexão Supabase final1
 
 const SUPABASE_URL = "https://jssscxlnzytmwzbabvhu.supabase.co";
 
