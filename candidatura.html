@@ -17,41 +17,44 @@
 
     <p>Preencha as informações abaixo.</p>
 
-    <form>
+    <form id="form-candidatura">
 
-    <p>Nick no Minecraft</p>
-    <input type="text" id="nick">
+        <p>Nick no Minecraft</p>
+        <input type="text" id="nick" required>
 
-    <p>Usuário do Discord</p>
-    <input type="text" id="discord">
+        <p>Usuário do Discord</p>
+        <input type="text" id="discord" required>
 
-    <p>Idade</p>
-    <input type="number" id="idade">
+        <p>Idade</p>
+        <input type="number" id="idade" required>
 
-    <p>Tempo jogando no FuturyCraft</p>
-    <input type="text" id="tempo">
+        <p>Tempo jogando no FuturyCraft</p>
+        <input type="text" id="tempo" required>
 
-    <p>Disponibilidade diária</p>
-    <input type="text" id="disponibilidade">
+        <p>Disponibilidade diária</p>
+        <input type="text" id="disponibilidade" required>
 
-    <p>Por que deseja entrar para a equipe?</p>
-    <textarea id="motivo"></textarea>
+        <p>Por que deseja entrar para a equipe?</p>
+        <textarea id="motivo" required></textarea>
 
-    <p>Como você ajudaria o servidor?</p>
-    <textarea id="ajuda"></textarea>
+        <p>Como você ajudaria o servidor?</p>
+        <textarea id="ajuda" required></textarea>
 
-    <p>O que faria ao suspeitar de um jogador utilizando hack?</p>
-    <textarea id="hack"></textarea>
+        <p>O que faria ao suspeitar de um jogador utilizando hack?</p>
+        <textarea id="hack" required></textarea>
 
-    <br><br>
 
-    <button type="button" class="botao">
-        Enviar Candidatura
-    </button>
+        <br><br>
 
-</form>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="script.js"></script>
+        <button type="submit" class="botao">
+            Enviar Candidatura
+        </button>
+
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
