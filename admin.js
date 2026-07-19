@@ -100,6 +100,11 @@ async function carregarCandidatos(){
             ${candidato.hack}
             </p>
 
+            <p>
+            <b>Status:</b> 
+            ${candidato.status}
+            </p>
+
 
         </div>
 
