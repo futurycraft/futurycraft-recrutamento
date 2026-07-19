@@ -205,7 +205,86 @@ async function salvarAnalise() {
 
 
     alert("Análise salva com sucesso!");
+    
+    async function carregarAvaliacoes(){
 
+
+const {data,error} = await supabaseClient
+.from("avaliacoes")
+.select("*")
+.eq("candidato_id", id)
+.order("created_at",{ascending:false});
+
+
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+
+
+const area = document.querySelector("#avaliacoes");
+
+
+
+area.innerHTML = "";
+
+
+
+if(data.length === 0){
+
+area.innerHTML =
+"Não existem avaliações ainda.";
+
+return;
+
+}
+
+
+
+data.forEach(avaliacao => {
+
+
+area.innerHTML += `
+
+<div class="card-candidato">
+
+
+<p>
+<b>👤 Avaliador:</b>
+${avaliacao.avaliador}
+</p>
+
+
+<p>
+<b>📅 Data:</b>
+${new Date(avaliacao.created_at).toLocaleString()}
+</p>
+
+
+<p>
+<b>📝 Avaliação:</b><br>
+${avaliacao.observacao}
+</p>
+
+
+</div>
+
+<hr>
+
+
+`;
+
+
+});
+
+
+}
+    
     carregarCandidato();
 
 }
