@@ -22,7 +22,7 @@ console.log("Supabase FuturyCraft conectado!");
 
 // Formulário
 
-const formulario = document.querySelector("#form-candidatura");
+const formulario = document.querySelector("#form-candidatos");
 
 
 formulario.addEventListener("submit", async (e) => {
