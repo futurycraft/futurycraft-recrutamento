@@ -194,3 +194,11 @@ async function alterarStatus(id, status){
 
 
 carregarCandidatos();
+
+async function logout(){
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href = "login.html";
+
+}
