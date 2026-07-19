@@ -1,27 +1,32 @@
-alert("SCRIPT FUTURYCRAFT CARREGADO");
-
 // ==========================================
 // FUTURYCRAFT - SISTEMA DE CANDIDATURA STAFF
-// Conexão Supabase
 // ==========================================
 
+
+// Conexão Supabase
+
+const SUPABASE_URL = "https://jssscxlnzytmwzbabvhu.supabase.co";
+
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzc3NjeGxuenl0bXd6YmFidmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NzE2NzcsImV4cCI6MjEwMDA0NzY3N30.Ku_HJdFQYyEmLmjkynye90l0bpM0MbbFVJPZDMCEOXQ";
+
+
 const supabaseClient = window.supabase.createClient(
-    "https://jssscxlnzytmwzbabvhu.supabase.co/rest/v1/",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzc3NjeGxuenl0bXd6YmFidmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NzE2NzcsImV4cCI6MjEwMDA0NzY3N30.Ku_HJdFQYyEmLmjkynye90l0bpM0MbbFVJPZDMCEOXQ"
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-// ==========================================
-// ENVIO DO FORMULÁRIO
-// ==========================================
+console.log("Supabase FuturyCraft conectado!");
 
-console.log("Supabase conectado");
 
+
+// Formulário
 
 const formulario = document.querySelector("#form-candidatura");
 
 
 formulario.addEventListener("submit", async (e) => {
+
 
     e.preventDefault();
 
@@ -47,7 +52,8 @@ formulario.addEventListener("submit", async (e) => {
     };
 
 
-    console.log("Enviando:", dados);
+    console.log("Enviando candidatura:", dados);
+
 
 
     const { data, error } = await supabaseClient
@@ -55,15 +61,17 @@ formulario.addEventListener("submit", async (e) => {
         .insert([dados]);
 
 
+
     if(error){
 
-        console.error(error);
+        console.error("Erro Supabase:", error);
 
         alert("Erro ao enviar candidatura!");
 
         return;
 
     }
+
 
 
     alert("Candidatura enviada com sucesso!");
@@ -73,7 +81,3 @@ formulario.addEventListener("submit", async (e) => {
 
 
 });
-
-}
-
-console.log("Supabase FuturyCraft conectado!");
