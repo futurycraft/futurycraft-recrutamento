@@ -127,17 +127,17 @@ ${data.status}
 </h3>
 
 
+<p>
+<b>Avaliador:</b>
+${data.avaliador || "Ainda não analisado"}
+</p>
 
-<button onclick="alterarStatus('Aprovado')">
-✅ Aprovar
-</button>
 
-
-
-<button onclick="alterarStatus('Recusado')">
-❌ Recusar
-</button>
-
+<p>
+<b>Observação:</b>
+<br>
+${data.observacao || "Sem observação"}
+</p>
 
 </div>
 
@@ -165,6 +165,52 @@ status:status
 alert(
 "Candidatura alterada para "+status
 );
+
+
+
+async function salvarAnalise(){
+
+
+const observacao = document.querySelector("#observacao").value;
+
+
+
+const usuario = await supabaseClient.auth.getUser();
+
+
+
+const avaliador = usuario.data.user.email;
+
+
+
+const { error } = await supabaseClient
+.from("candidatos")
+.update({
+
+    observacao: observacao,
+
+    avaliador: avaliador,
+
+    data_analise: new Date()
+
+})
+.eq("id", id);
+
+
+
+if(error){
+
+console.error(error);
+
+alert("Erro ao salvar análise");
+
+return;
+
+}
+
+
+
+alert("Análise salva com sucesso!");
 
 
 
