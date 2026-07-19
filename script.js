@@ -57,7 +57,7 @@ formulario.addEventListener("submit", async (e) => {
 
 
     const { data, error } = await supabaseClient
-        .from("candidaturas")
+        .from("candidatos")
         .insert([dados]);
 
 
