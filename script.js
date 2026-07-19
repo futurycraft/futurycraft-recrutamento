@@ -13,70 +13,70 @@ const supabaseClient = window.supabase.createClient(
 // ENVIO DO FORMULÁRIO
 // ==========================================
 
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+console.log("Supabase conectado");
+
+
 const formulario = document.querySelector("#form-candidatura");
 
-if (formulario) {
 
-    formulario.addEventListener("submit", async (event) => {
+formulario.addEventListener("submit", async (e) => {
 
-        event.preventDefault();
-
-
-        const nome = document.querySelector("#nome").value;
-        const discord = document.querySelector("#discord").value;
-        const idade = document.querySelector("#idade").value;
-        const cargo = document.querySelector("#cargo").value;
-        const experiencia = document.querySelector("#experiencia").value;
-        const motivo = document.querySelector("#motivo").value;
+    e.preventDefault();
 
 
-        const botao = formulario.querySelector("button");
+    const dados = {
 
-        botao.disabled = true;
-        botao.innerHTML = "Enviando...";
+        nick: document.querySelector("#nick").value,
 
+        discord: document.querySelector("#discord").value,
 
-        const { data, error } = await supabaseClient
-            .from("candidaturas")
-            .insert([
-                {
-                    nome: nome,
-                    discord: discord,
-                    idade: idade,
-                    cargo: cargo,
-                    experiencia: experiencia,
-                    motivo: motivo
-                }
-            ]);
+        idade: document.querySelector("#idade").value,
 
+        tempo: document.querySelector("#tempo").value,
 
-        if (error) {
+        disponibilidade: document.querySelector("#disponibilidade").value,
 
-            console.error("Erro Supabase:", error);
+        motivo: document.querySelector("#motivo").value,
 
-            alert(
-                "Ocorreu um erro ao enviar sua candidatura.\n\nTente novamente."
-            );
+        ajuda: document.querySelector("#ajuda").value,
 
-            botao.disabled = false;
-            botao.innerHTML = "Enviar candidatura";
+        hack: document.querySelector("#hack").value
 
-            return;
-        }
+    };
 
 
-        alert(
-            "✅ Candidatura enviada com sucesso!\n\nA equipe FuturyCraft irá analisar sua inscrição."
-        );
+    console.log("Enviando:", dados);
 
 
-        formulario.reset();
+    const { data, error } = await supabaseClient
+        .from("candidaturas")
+        .insert([dados]);
 
 
-        botao.disabled = false;
-        botao.innerHTML = "Enviar candidatura";
+    if(error){
 
-    });
+        console.error(error);
+
+        alert("Erro ao enviar candidatura!");
+
+        return;
+
+    }
+
+
+    alert("Candidatura enviada com sucesso!");
+
+
+    formulario.reset();
+
+
+});
 
 }
 
