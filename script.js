@@ -15,12 +15,6 @@ const supabaseClient = window.supabase.createClient(
 // ENVIO DO FORMULÁRIO
 // ==========================================
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
 console.log("Supabase conectado");
 
 
