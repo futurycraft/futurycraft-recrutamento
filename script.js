@@ -47,7 +47,7 @@ formulario.addEventListener("submit", async (e) => {
 
         ajuda: document.querySelector("#ajuda").value,
 
-        hack: document.querySelector("#hack").value
+        hack: document.querySelector("#hack").value,
 
         status: "Pendente"
 
