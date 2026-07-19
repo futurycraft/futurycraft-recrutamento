@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FuturyCraft Recrutamento</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>FuturyCraft</h1>
+
+    <h2>Recrutamento Oficial</h2>
+
+    <p>Faça parte da equipe do FuturyCraft.</p>
+
+    <a class="botao" href="candidatura.html">
+        Candidatar-se
+    </a>
+
+</body>
+
+</html>
