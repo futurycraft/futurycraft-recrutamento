@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FuturyCraft - Candidato</title>
+<title>FuturyCraft - Análise de Candidato</title>
 
 <link rel="stylesheet" href="candidato.css">
 
@@ -21,26 +21,35 @@
 
 
 
+<!-- ==========================
+     CABEÇALHO
+========================== -->
+
+
 <header class="cabecalho">
 
 
 <button onclick="voltar()" class="voltar">
+
 ← Voltar
+
 </button>
 
 
 
-<div>
+<div class="titulo">
 
 <h1>
 FuturyCraft
 </h1>
 
+
 <p>
-Análise de candidatura
+Análise de candidatura Staff
 </p>
 
 </div>
+
 
 
 </header>
@@ -50,39 +59,26 @@ Análise de candidatura
 
 
 
-<!-- PERFIL -->
 
 
-<section id="perfil-candidato" class="card">
 
+
+<!-- ==========================
+     PERFIL
+========================== -->
+
+
+<section class="card perfil-box">
+
+
+<div id="perfil-candidato">
+
+
+<div class="loading">
 
 Carregando candidato...
 
-
-</section>
-
-
-
-
-
-
-
-
-<!-- RESPOSTAS -->
-
-
-<section class="card">
-
-
-<h2>
-Respostas
-</h2>
-
-
-<div id="respostas">
-
-
-Carregando...
+</div>
 
 
 </div>
@@ -97,10 +93,99 @@ Carregando...
 
 
 
-<!-- AVALIAÇÕES -->
+
+<!-- ==========================
+     AÇÕES
+========================== -->
 
 
 <section class="card">
+
+
+<h2>
+Decisão da equipe
+</h2>
+
+
+
+<div class="acoes">
+
+
+<button class="aprovar">
+
+✓ Aprovar candidato
+
+</button>
+
+
+
+<button class="recusar">
+
+✕ Recusar candidato
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     RESPOSTAS
+========================== -->
+
+
+<section class="card">
+
+
+<h2>
+Respostas da candidatura
+</h2>
+
+
+
+<div id="respostas">
+
+
+<div class="loading">
+
+Carregando respostas...
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     COMENTÁRIOS
+========================== -->
+
+
+<section class="card comentarios">
+
+
+<div class="titulo-comentarios">
 
 
 <h2>
@@ -108,14 +193,31 @@ Comentários da equipe
 </h2>
 
 
+<span>
+Histórico interno
+</span>
+
+
+</div>
+
+
+
+
 
 <div id="avaliacoes">
 
 
+<div class="loading">
+
 Carregando comentários...
+
+</div>
 
 
 </div>
+
+
+
 
 
 
@@ -124,10 +226,15 @@ Carregando comentários...
 <div class="novo-comentario">
 
 
-<textarea 
+
+<textarea
+
 id="observacao"
-placeholder="Adicionar comentário da equipe..."
+
+placeholder="Escreva uma observação sobre este candidato..."
+
 ></textarea>
+
 
 
 
@@ -142,7 +249,11 @@ Adicionar comentário
 </div>
 
 
+
+
 </section>
+
+
 
 
 
@@ -156,11 +267,15 @@ Adicionar comentário
 
 
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="auth.js"></script>
 
 <script src="candidato.js"></script>
+
 
 
 </body>
