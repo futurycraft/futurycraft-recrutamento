@@ -195,6 +195,8 @@ function closeRole(){
 
 function mostrarPagina2(){
 
+    console.log("Mudando para página 2");
+    
     const pagina1 = document.getElementById("pagina1");
     const pagina2 = document.getElementById("pagina2");
 
