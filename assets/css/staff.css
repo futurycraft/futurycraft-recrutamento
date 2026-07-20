@@ -1,54 +1,35 @@
-.staff-area {
-
-margin-top:60px;
-
-text-align:center;
-
-}
-
-
-.staff-area h2 {
-
-font-size:32px;
-
-color:white;
-
-}
-
-
 .staff-buttons {
 
 display:flex;
 
 justify-content:center;
 
+gap:25px;
+
 margin-top:40px;
 
 }
 
 
-/* BOTÃO DO CARGO */
 
 .staff-button {
 
 
-width:120px;
+width:130px;
 
-height:120px;
+height:130px;
+
 
 border-radius:50%;
 
 
-background:
-
-linear-gradient(
-145deg,
-#1c1c1c,
-#090909
-);
+background:#111;
 
 
-border:2px solid #ff8c00;
+border:2px solid #ff9900;
+
+
+cursor:pointer;
 
 
 display:flex;
@@ -60,132 +41,46 @@ align-items:center;
 justify-content:center;
 
 
-cursor:pointer;
-
-
 transition:.3s;
 
 
 }
 
 
+
 .staff-button:hover {
 
 
-transform:translateY(-10px);
+transform:scale(1.1);
 
-box-shadow:
 
-0 0 25px #ff8c00;
+box-shadow:0 0 20px #ff9900;
 
 
 }
+
 
 
 .staff-button img {
 
 
-width:65px;
+width:70px;
 
-height:65px;
-
-object-fit:contain;
+height:70px;
 
 
 }
+
 
 
 .staff-button span {
 
 
-margin-top:8px;
-
-font-weight:bold;
-
 color:white;
 
-
-}
-
-
-
-/* CAIXA DE INFORMAÇÃO */
-
-
-.staff-info {
-
-
-margin:40px auto;
-
-
-max-width:700px;
-
-
-background:
-
-
-rgba(20,20,20,0.9);
-
-
-border-radius:20px;
-
-
-padding:30px;
-
-
-border:1px solid #ff8c00;
-
-
-text-align:left;
-
-
-box-shadow:
-
-0 0 25px rgba(255,140,0,.3);
-
-
-}
-
-
-
-.staff-info h3 {
-
-
-color:#ff9900;
-
-font-size:28px;
-
-
-}
-
-
-.staff-info .level {
-
-
-color:#aaa;
-
 font-weight:bold;
 
-
-}
-
-
-
-.staff-info h4 {
-
-
-color:#ff9900;
-
-
-}
-
-
-.staff-info li {
-
-
-color:#ddd;
-
-margin:8px 0;
+margin-top:5px;
 
 
 }
