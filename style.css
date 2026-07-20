@@ -2196,3 +2196,200 @@ display:block;
 
 
 }
+
+
+/* estilo geral estilo */
+
+/* =====================================
+   CONTAINER PRINCIPAL FUTURYCRAFT
+===================================== */
+
+.main-card {
+
+    background:
+    #151515;
+
+    width:100%;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+
+    0 20px 60px rgba(0,0,0,.7);
+
+    margin-top:80px;
+
+    overflow:hidden;
+
+}
+
+
+
+/* EFEITO DE BRILHO NO TOPO */
+
+.main-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:60%;
+
+    height:2px;
+
+
+    background:
+
+    linear-gradient(
+    90deg,
+    transparent,
+    #ff9900,
+    transparent
+    );
+
+    opacity:.8;
+
+}
+
+
+
+.main-card {
+
+    position:relative;
+
+}
+
+
+
+/* AJUSTE DO HEADER */
+
+.card-header {
+
+    background:
+
+    rgba(255,255,255,.02);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:
+
+    1px solid rgba(255,255,255,.04);
+
+    margin-bottom:40px;
+
+}
+
+
+
+/* BOTÕES DOS CARGOS */
+
+.staff-buttons {
+
+    background:
+
+    rgba(0,0,0,.25);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:
+
+    1px solid rgba(255,255,255,.04);
+
+}
+
+
+
+/* FORMULÁRIO */
+
+.form-container {
+
+
+    background:
+
+    #101010;
+
+
+    border-radius:25px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.06);
+
+
+    padding:45px;
+
+
+}
+
+
+
+/* BENEFÍCIOS */
+
+.benefits {
+
+
+    background:
+
+    rgba(0,0,0,.25);
+
+
+    padding:35px;
+
+
+    border-radius:25px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.04);
+
+
+}
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+
+.main-card {
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+
+.card-header {
+
+    padding:20px;
+
+}
+
+
+.form-container {
+
+    padding:25px;
+
+}
+
+
+}
+
