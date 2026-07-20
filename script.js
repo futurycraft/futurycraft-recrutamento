@@ -194,3 +194,11 @@ overlay.style.display="none";
 </script>
 
 //1111
+
+function mostrarPagina2(){
+
+    document.getElementById("pagina1").style.display = "none";
+
+    document.getElementById("pagina2").style.display = "block";
+
+}
