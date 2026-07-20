@@ -20,50 +20,93 @@ console.log("Supabase FuturyCraft conectado!");
 
 
 
-// Formulário
+// ==========================================
+// ENVIO DA CANDIDATURA
+// ==========================================
+
 
 const formulario = document.querySelector("#form-candidatos");
 
 
-if (formulario) {
+if(formulario){
 
 
-    formulario.addEventListener("submit", async (e) => {
+    formulario.addEventListener("submit", async (e)=>{
 
 
         e.preventDefault();
 
 
+
         const dados = {
 
-            nick: document.querySelector("#nick").value,
 
-            discord: document.querySelector("#discord").value,
+            // Página 1
 
-            idade: document.querySelector("#idade").value,
+            nome_completo:
+            document.querySelector("#nome_completo").value,
 
-            tempo: document.querySelector("#tempo").value,
 
-            disponibilidade: document.querySelector("#disponibilidade").value,
+            nick:
+            document.querySelector("#nick").value,
 
-            motivo: document.querySelector("#motivo").value,
 
-            ajuda: document.querySelector("#ajuda").value,
+            discord:
+            document.querySelector("#discord").value,
 
-            hack: document.querySelector("#hack").value,
 
-            status: "Pendente"
+            idade:
+            document.querySelector("#idade").value,
+
+
+            data_nascimento:
+            document.querySelector("#data_nascimento").value,
+
+
+            genero:
+            document.querySelector("#genero").value,
+
+
+
+            // Página 2
+
+            tempo:
+            document.querySelector("#tempo").value,
+
+
+            disponibilidade:
+            document.querySelector("#disponibilidade").value,
+
+
+            motivo:
+            document.querySelector("#motivo").value,
+
+
+            ajuda:
+            document.querySelector("#ajuda").value,
+
+
+            hack:
+            document.querySelector("#hack").value,
+
+
+
+            status:"Pendente"
+
 
         };
+
 
 
         console.log("Enviando candidatura:", dados);
 
 
 
-        const { data, error } = await supabaseClient
-            .from("candidatos")
-            .insert([dados]);
+        const {data,error} = await supabaseClient
+
+        .from("candidatos")
+
+        .insert([dados]);
 
 
 
@@ -71,6 +114,7 @@ if (formulario) {
 
 
             console.error("Erro Supabase:", error);
+
 
             alert("Erro ao enviar candidatura!");
 
