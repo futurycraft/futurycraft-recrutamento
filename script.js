@@ -214,3 +214,15 @@ function mostrarPagina2(){
     }
 
 }
+
+
+
+
+
+
+
+
+
+/*teste anuncio*/
+
+console.log("SCRIPT FUTURYCRAFT CARREGADO");
