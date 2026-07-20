@@ -475,3 +475,26 @@
     display: block;
 
 }
+
+/* ================================
+   CONTROLE DAS ETAPAS
+================================ */
+
+
+/* SEGUNDA TELA ESCONDIDA AO ABRIR */
+
+#introducao {
+
+    display: none !important;
+
+}
+
+
+
+/* SEGUNDA TELA APÓS CLICAR */
+
+#introducao.active {
+
+    display: block !important;
+
+}
