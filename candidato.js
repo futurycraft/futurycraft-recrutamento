@@ -374,19 +374,19 @@ async function carregarAvaliacoes(){
 
 
 
-            <button onclick="reagirAvaliacao(${avaliacao.id},'like')">
+            <button id="like-${avaliacao.id}" onclick="reagirAvaliacao(${avaliacao.id},'like')">
 
-            👍 ${likes}
+👍 ${likes}
 
-            </button>
+</button>
 
 
 
-            <button onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
+<button id="dislike-${avaliacao.id}" onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
 
-            👎 ${dislikes}
+👎 ${dislikes}
 
-            </button>
+</button>
 
 
 
@@ -658,6 +658,52 @@ atualizarReacoes(idAvaliacao);
 
 }
 
+async function atualizarReacoes(idAvaliacao){
+
+
+const {data,error}=await supabaseClient
+
+.from("avaliacoes_reacoes")
+
+.select("*")
+
+.eq("avaliacao_id",idAvaliacao);
+
+
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+
+
+const likes = data.filter(
+r=>r.reacao==="like"
+).length;
+
+
+
+const dislikes = data.filter(
+r=>r.reacao==="dislike"
+).length;
+
+
+
+document.querySelector(`#like-${idAvaliacao}`).innerHTML =
+`👍 ${likes}`;
+
+
+
+document.querySelector(`#dislike-${idAvaliacao}`).innerHTML =
+`👎 ${dislikes}`;
+
+
+
+}
 // ==========================================
 // EXCLUIR AVALIAÇÃO
 // ==========================================
