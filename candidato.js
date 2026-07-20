@@ -558,9 +558,7 @@ async function alterarStatus(status){
 async function reagirAvaliacao(idAvaliacao,tipo){
 
 
-
 const {data} = await supabaseClient.auth.getUser();
-
 
 
 if(!data.user){
@@ -574,7 +572,6 @@ if(!data.user){
 
 
 const email = data.user.email;
-
 
 
 
@@ -594,14 +591,8 @@ const {data:existente} = await supabaseClient
 
 
 
-
-// Se já reagiu
-
 if(existente){
 
-
-
-    // Clicou na mesma reação -> remove
 
     if(existente.reacao === tipo){
 
@@ -615,12 +606,7 @@ if(existente){
         .eq("id",existente.id);
 
 
-
     }
-
-
-
-    // Mudou de like para dislike
 
     else{
 
@@ -638,16 +624,11 @@ if(existente){
         .eq("id",existente.id);
 
 
-
     }
 
 
 
 }
-
-
-
-// Primeira reação
 
 else{
 
@@ -658,14 +639,11 @@ else{
 
     .insert([{
 
-
         avaliacao_id:idAvaliacao,
 
         usuario:email,
 
         reacao:tipo
-
-
 
     }]);
 
@@ -674,12 +652,11 @@ else{
 
 
 
-carregarAvaliacoes();
+atualizarReacoes(idAvaliacao);
 
 
 
 }
-
 
 // ==========================================
 // EXCLUIR AVALIAÇÃO
