@@ -217,11 +217,5 @@ window.location.href =
 
 // INICIAR PAINEL
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="auth.js"></script>
-
-<script src="admin.js"></script>
-
 
 carregarCandidatos();
