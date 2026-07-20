@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Painel Staff - FuturyCraft</title>
+<title>FuturyCraft - Painel Staff</title>
 
 <link rel="stylesheet" href="painel.css">
 
@@ -17,72 +17,208 @@
 <body>
 
 
-<h1>FuturyCraft</h1>
-
-<h2>Painel Staff</h2>
+<div class="painel">
 
 
-<button onclick="logout()">
+
+<header class="topo">
+
+
+<h1>
+FuturyCraft
+</h1>
+
+
+<h2>
+Painel de Candidaturas Staff
+</h2>
+
+
+
+<button class="sair" onclick="logout()">
+
 Sair
+
 </button>
 
-<div id="dashboard">
 
-    <div class="status-card">
-        <span>🟡 Pendentes:</span>
-        <span id="pendentes">0</span>
-    </div>
+</header>
 
-    <div class="status-card">
-        <span>🟢 Aprovados:</span>
-        <span id="aprovados">0</span>
-    </div>
 
-    <div class="status-card">
-        <span>🔴 Recusados:</span>
-        <span id="recusados">0</span>
-    </div>
+
+
+
+
+
+<!-- DASHBOARD -->
+
+
+<section id="dashboard">
+
+
+
+<div class="status-card pendente">
+
+
+<h3>
+Pendentes
+</h3>
+
+
+<span id="pendentes">
+0
+</span>
+
 
 </div>
 
-<h3>Filtrar candidaturas</h3>
 
 
-<div>
+
+
+<div class="status-card aprovado">
+
+
+<h3>
+Aprovados
+</h3>
+
+
+<span id="aprovados">
+0
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="status-card recusado">
+
+
+<h3>
+Recusados
+</h3>
+
+
+<span id="recusados">
+0
+</span>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- FILTROS -->
+
+
+<section class="filtros">
+
+
+<h3>
+Filtrar candidaturas
+</h3>
+
+
+
+<div class="botoes-filtro">
 
 
 <button onclick="filtrar('Todos')">
+
 Todos
+
 </button>
+
 
 
 <button onclick="filtrar('Pendente')">
+
 Pendentes
+
 </button>
+
 
 
 <button onclick="filtrar('Aprovado')">
+
 Aprovados
+
 </button>
+
 
 
 <button onclick="filtrar('Recusado')">
+
 Recusados
+
 </button>
+
 
 
 </div>
 
 
+</section>
 
-<br>
+
+
+
+
+
+
+
+
+<!-- LISTA -->
+
+
+<section class="lista-area">
+
+
+<h2>
+Candidatos
+</h2>
+
 
 
 <div id="lista-candidatos">
 
-Carregando...
+
+<div class="carregando">
+
+Carregando candidatos...
 
 </div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+</div>
+
+
+
+
 
 
 
@@ -91,6 +227,7 @@ Carregando...
 <script src="auth.js"></script>
 
 <script src="admin.js"></script>
+
 
 
 </body>
