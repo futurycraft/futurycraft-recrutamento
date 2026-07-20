@@ -205,21 +205,13 @@ carregarCandidatos();
 
 async function logout(){
 
-await supabaseClient.auth.signOut();
-
-window.location.href="login.html";
-
-}
-
-
-
-carregarCandidatos();
-
-async function logout(){
-
     await supabaseClient.auth.signOut();
 
-    window.location.href = "login.html";
+    // limpa qualquer sessão salva
+    localStorage.clear();
+    sessionStorage.clear();
+
+    window.location.replace("login.html");
 
 }
 
