@@ -17,17 +17,86 @@
 <body>
 
 
-<div class="painel-admin">
+<div class="admin-container">
 
 
 
-<!-- TOPO -->
+<!-- ==========================
+     TOPO
+========================== -->
 
 
-<header class="admin-header">
+<header class="admin-topo">
 
 
-<div>
+
+<div class="estatisticas">
+
+
+
+<div class="mini-card pendente">
+
+
+<strong id="pendentes">
+0
+</strong>
+
+
+<span>
+Pendentes
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="mini-card aprovado">
+
+
+<strong id="aprovados">
+0
+</strong>
+
+
+<span>
+Aprovados
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="mini-card recusado">
+
+
+<strong id="recusados">
+0
+</strong>
+
+
+<span>
+Recusados
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="titulo-painel">
 
 
 <h1>
@@ -36,7 +105,7 @@ FuturyCraft
 
 
 <p>
-Painel Administrativo de Candidaturas
+Painel Staff
 </p>
 
 
@@ -44,11 +113,15 @@ Painel Administrativo de Candidaturas
 
 
 
-<button class="logout-btn" onclick="logout()">
+
+
+
+<button class="logout" onclick="logout()">
 
 Sair
 
 </button>
+
 
 
 </header>
@@ -60,111 +133,25 @@ Sair
 
 
 
-<!-- ESTATÍSTICAS -->
+
+<!-- ==========================
+     MENU
+========================== -->
 
 
-<section class="dashboard">
-
-
-<div class="stat-card pendente">
-
-
-<div class="stat-title">
-Pendentes
-</div>
-
-
-<strong id="pendentes">
-0
-</strong>
-
-
-<span>
-Aguardando análise
-</span>
-
-
-</div>
+<nav class="menu-painel">
 
 
 
+<div class="menu-item">
 
 
-<div class="stat-card aprovado">
+<button>
+▼ Candidaturas
+</button>
 
 
-<div class="stat-title">
-Aprovados
-</div>
-
-
-<strong id="aprovados">
-0
-</strong>
-
-
-<span>
-Membros aceitos
-</span>
-
-
-</div>
-
-
-
-
-
-<div class="stat-card recusado">
-
-
-<div class="stat-title">
-Recusados
-</div>
-
-
-<strong id="recusados">
-0
-</strong>
-
-
-<span>
-Candidaturas encerradas
-</span>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- FILTROS -->
-
-
-<section class="controle">
-
-
-<h2>
-Candidaturas
-</h2>
-
-
-<p>
-Gerencie e avalie novos membros da equipe.
-</p>
-
-
-
-
-<div class="filtros">
+<div class="submenu">
 
 
 <button onclick="filtrar('Todos')">
@@ -190,9 +177,7 @@ Recusados
 </div>
 
 
-
-</section>
-
+</div>
 
 
 
@@ -200,14 +185,108 @@ Recusados
 
 
 
-
-<!-- LISTA -->
-
-
-<section class="candidatos-container">
+<div class="menu-item">
 
 
-<div id="lista-candidatos">
+<button>
+▼ Gerenciamento
+</button>
+
+
+<div class="submenu">
+
+
+<button>
+Equipe Staff
+</button>
+
+
+<button>
+Logs
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="menu-item">
+
+
+<button>
+▼ Configurações
+</button>
+
+
+<div class="submenu">
+
+
+<button>
+Sistema
+</button>
+
+
+<button>
+Permissões
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     LISTA
+========================== -->
+
+
+<section class="area-candidatos">
+
+
+
+<div class="titulo-area">
+
+
+<h2>
+Candidatos
+</h2>
+
+
+<p>
+Gerencie todas as candidaturas recebidas.
+</p>
+
+
+</div>
+
+
+
+
+
+<div id="lista-candidatos" class="grid-candidatos">
 
 
 <div class="loading">
@@ -228,7 +307,40 @@ Carregando candidatos...
 
 
 
+
+
+
+<!-- ==========================
+     RODAPÉ
+========================== -->
+
+
+<footer class="footer-painel">
+
+
+<h2>
+FuturyCraft Panel
+</h2>
+
+
+<p>
+Sistema de recrutamento Staff
+</p>
+
+
+<span>
+Versão 1.0
+</span>
+
+
+</footer>
+
+
+
+
+
 </div>
+
 
 
 
