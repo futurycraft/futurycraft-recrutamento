@@ -99,17 +99,15 @@ if (formulario) {
 function openRole(role){
 
 
-document.querySelectorAll('.role-info').forEach(box=>{
+const modal = document.getElementById(role);
 
-box.style.display="none";
-
-});
+const overlay = document.getElementById("overlay");
 
 
-document.getElementById("overlay").style.display="block";
+modal.classList.add("active");
 
 
-document.getElementById(role).style.display="block";
+overlay.style.display="block";
 
 
 }
@@ -121,7 +119,9 @@ function closeRole(){
 
 document.querySelectorAll('.role-info').forEach(box=>{
 
-box.style.display="none";
+
+box.classList.remove("active");
+
 
 });
 
