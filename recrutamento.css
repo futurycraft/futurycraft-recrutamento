@@ -360,14 +360,18 @@
 }
 /* recrutamenteo css*/
 
-.recruit-step {
+/* ESCONDE A SEGUNDA ETAPA */
+
+#introducao {
 
     display:none;
 
 }
 
 
-.recruit-step.active {
+/* MOSTRA APÓS CLICAR */
+
+#introducao.active {
 
     display:block;
 
