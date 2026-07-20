@@ -74,185 +74,111 @@ async function carregarCandidato(){
     document.querySelector("#perfil-candidato").innerHTML = `
 
 
+<div class="player-perfil">
 
-    <div class="info-grid">
 
+<img 
+src="https://mc-heads.net/avatar/${data.nick}"
+>
 
-        <div>
 
-            <b>Nome completo</b>
 
-            <p>${data.nome_completo || "Não informado"}</p>
+<div class="player-info">
 
-        </div>
 
+<h2>
+${data.nome_completo || data.nick}
+</h2>
 
 
-        <div>
 
-            <b>Nick Minecraft</b>
+<p>
+🎮 Nick: ${data.nick}
+</p>
 
-            <p>${data.nick}</p>
 
-        </div>
+<p>
+💬 Discord: ${data.discord}
+</p>
 
 
+<p>
+🎂 Idade: ${data.idade}
+</p>
 
-        <div>
 
-            <b>Discord</b>
+<p class="status status-${data.status}">
+${data.status || "Pendente"}
+</p>
 
-            <p>${data.discord}</p>
 
-        </div>
+</div>
 
 
+</div>
 
-        <div>
 
-            <b>Idade</b>
+`;
 
-            <p>${data.idade}</p>
 
-        </div>
 
 
 
-        <div>
 
-            <b>Data de nascimento</b>
+document.querySelector("#respostas").innerHTML = `
 
-            <p>${data.data_nascimento || "Não informado"}</p>
 
-        </div>
+<div class="resposta">
 
+<strong>
+Por que deseja entrar para a equipe?
+</strong>
 
 
-        <div>
+<p>
+${data.motivo}
+</p>
 
-            <b>Gênero</b>
 
-            <p>${data.genero || "Não informado"}</p>
+</div>
 
-        </div>
 
 
 
-        <div>
+<div class="resposta">
 
-            <b>Status atual</b>
+<strong>
+Como ajudaria o servidor?
+</strong>
 
-            <p>${data.status || "Pendente"}</p>
 
-        </div>
+<p>
+${data.ajuda}
+</p>
 
 
+</div>
 
-    </div>
 
 
 
 
-    <hr>
+<div class="resposta">
 
+<strong>
+Como agiria contra hackers?
+</strong>
 
 
-    <h3>
-    Experiência
-    </h3>
+<p>
+${data.hack}
+</p>
 
 
+</div>
 
-    <p>
 
-    <b>Tempo no FuturyCraft:</b><br>
-
-    ${data.tempo || "Não informado"}
-
-    </p>
-
-
-
-    <p>
-
-    <b>Disponibilidade:</b><br>
-
-    ${data.disponibilidade || "Não informado"}
-
-    </p>
-
-
-
-
-    <h3>
-    Respostas
-    </h3>
-
-
-
-
-    <p>
-
-    <b>Motivo:</b><br>
-
-    ${data.motivo || "Não informado"}
-
-    </p>
-
-
-
-
-    <p>
-
-    <b>Como ajudaria:</b><br>
-
-    ${data.ajuda || "Não informado"}
-
-    </p>
-
-
-
-
-    <p>
-
-    <b>Situação de hack:</b><br>
-
-    ${data.hack || "Não informado"}
-
-    </p>
-
-
-
-
-
-    <div class="acoes">
-
-
-        <button onclick="alterarStatus('Aprovado')">
-
-        Aprovar
-
-        </button>
-
-
-
-        <button onclick="alterarStatus('Recusado')">
-
-        Recusar
-
-        </button>
-
-
-    </div>
-
-
-
-    `;
-
-
-
-}
-
+`;
 
 
 
