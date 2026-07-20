@@ -93,3 +93,42 @@ if (formulario) {
 
 
 }
+
+//novo botao index
+
+function openRole(role){
+
+
+document.querySelectorAll('.role-info').forEach(box=>{
+
+box.style.display="none";
+
+});
+
+
+document.getElementById("overlay").style.display="block";
+
+
+document.getElementById(role).style.display="block";
+
+
+}
+
+
+
+function closeRole(){
+
+
+document.querySelectorAll('.role-info').forEach(box=>{
+
+box.style.display="none";
+
+});
+
+
+document.getElementById("overlay").style.display="none";
+
+
+}
+
+//1111
