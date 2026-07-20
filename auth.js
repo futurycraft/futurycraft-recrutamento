@@ -29,3 +29,16 @@ async function verificarAcesso(){
 
 
 verificarAcesso();
+
+window.addEventListener("pageshow", async function(){
+
+    const {data} = await supabaseClient.auth.getSession();
+
+
+    if(!data.session){
+
+        window.location.replace("login.html");
+
+    }
+
+});
