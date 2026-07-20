@@ -550,7 +550,135 @@ async function alterarStatus(status){
 
 
 
+// ==========================================
+// REAÇÃO LIKE / DISLIKE
+// ==========================================
 
+
+async function reagirAvaliacao(idAvaliacao,tipo){
+
+
+
+const {data} = await supabaseClient.auth.getUser();
+
+
+
+if(!data.user){
+
+    alert("Sessão expirada!");
+
+    return;
+
+}
+
+
+
+const email = data.user.email;
+
+
+
+
+const {data:existente} = await supabaseClient
+
+.from("avaliacoes_reacoes")
+
+.select("*")
+
+.eq("avaliacao_id",idAvaliacao)
+
+.eq("usuario",email)
+
+.maybeSingle();
+
+
+
+
+
+
+// Se já reagiu
+
+if(existente){
+
+
+
+    // Clicou na mesma reação -> remove
+
+    if(existente.reacao === tipo){
+
+
+        await supabaseClient
+
+        .from("avaliacoes_reacoes")
+
+        .delete()
+
+        .eq("id",existente.id);
+
+
+
+    }
+
+
+
+    // Mudou de like para dislike
+
+    else{
+
+
+        await supabaseClient
+
+        .from("avaliacoes_reacoes")
+
+        .update({
+
+            reacao:tipo
+
+        })
+
+        .eq("id",existente.id);
+
+
+
+    }
+
+
+
+}
+
+
+
+// Primeira reação
+
+else{
+
+
+    await supabaseClient
+
+    .from("avaliacoes_reacoes")
+
+    .insert([{
+
+
+        avaliacao_id:idAvaliacao,
+
+        usuario:email,
+
+        reacao:tipo
+
+
+
+    }]);
+
+
+}
+
+
+
+carregarAvaliacoes();
+
+
+
+}
 
 
 // ==========================================
