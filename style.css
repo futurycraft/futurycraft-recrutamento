@@ -1690,71 +1690,119 @@ footer {
 }
 
 .role-info {
-    display: none;
-    max-width: 700px;
-    margin: 40px auto;
 
-    background: rgba(15,15,15,0.95);
 
-    padding: 30px;
+display:none;
 
-    border-radius: 20px;
 
-    border: 2px solid #ff9900;
+position:fixed;
 
-    color: white;
 
-    animation: aparecer .3s ease;
+top:50%;
+
+left:50%;
+
+
+transform:translate(-50%, -50%);
+
+
+
+width:600px;
+
+
+background:
+
+linear-gradient(
+145deg,
+#111,
+#050505
+);
+
+
+
+padding:40px;
+
+
+border-radius:25px;
+
+
+border:2px solid #ff9900;
+
+
+
+color:white;
+
+
+
+z-index:9999;
+
+
+
+box-shadow:
+
+0 0 50px rgba(255,153,0,.5);
+
+
+
+animation:modalShow .3s ease;
+
+
+
 }
 
 
 .role-info h2 {
 
-    color:#ff9900;
-    font-size:28px;
+
+text-align:center;
+
+
+color:#ff9900;
+
+
+font-size:32px;
+
 
 }
+
 
 
 .role-info span {
 
-    color:#aaa;
+
+display:block;
+
+
+text-align:center;
+
+
+color:#aaa;
+
+
+margin-bottom:20px;
+
 
 }
+
 
 
 .role-info h3 {
 
-    color:#ff9900;
+
+color:#ff9900;
+
+
+margin-top:25px;
+
 
 }
+
 
 
 .role-info li {
 
-    margin:10px 0;
 
-}
+margin:10px 0;
 
-
-
-@keyframes aparecer {
-
-from {
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-
-to {
-
-opacity:1;
-
-transform:translateY(0);
-
-}
 
 }
