@@ -1,31 +1,45 @@
-/* =====================================
+/* ==========================================
    FUTURYCRAFT - PAINEL STAFF
-===================================== */
+========================================== */
 
 
-body {
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    background: #080b14;
 
-    color: #ffffff;
 
-    font-family: Montserrat, sans-serif;
+body{
 
-    margin: 0;
+    min-height:100vh;
 
-    padding: 30px;
+    background:
+    radial-gradient(circle at top,#172033,#050505 70%);
+
+    color:#fff;
+
+    font-family:Arial, Helvetica, sans-serif;
 
 }
+
+
 
 
 
 /* CONTAINER */
 
-.painel {
 
-    max-width: 1000px;
+.admin-container{
 
-    margin: auto;
+
+    width:92%;
+
+    max-width:1300px;
+
+    margin:35px auto;
+
 
 }
 
@@ -33,206 +47,176 @@ body {
 
 
 
-/* CABEÇALHO */
 
-.topo {
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #111827,
-        #172554
-    );
+/* ==========================================
+   TOPO
+========================================== */
 
 
-    padding:25px;
+.admin-topo{
 
-    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    background:#0d111b;
+
+    border:1px solid #1d2638;
+
+    padding:22px 30px;
+
+    border-radius:18px;
+
+
+    box-shadow:0 0 25px #000;
+
+
+}
+
+
+
+
+
+/* ESTATISTICAS */
+
+
+.estatisticas{
+
+
+    display:flex;
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+.mini-card{
+
+
+    width:95px;
+
+    height:80px;
+
+
+    background:#131927;
+
+
+    border-radius:14px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    border:1px solid #27344d;
+
+
+}
+
+
+
+
+
+.mini-card strong{
+
+
+    font-size:30px;
+
+
+}
+
+
+
+.mini-card span{
+
+
+    font-size:12px;
+
+    color:#aaa;
+
+
+}
+
+
+
+
+
+.mini-card.pendente strong{
+
+    color:#ffd43b;
+
+}
+
+
+.mini-card.aprovado strong{
+
+    color:#00ff88;
+
+}
+
+
+.mini-card.recusado strong{
+
+    color:#ff4d4d;
+
+}
+
+
+
+
+
+
+
+/* TITULO */
+
+
+.titulo-painel{
+
 
     text-align:center;
 
-    margin-bottom:25px;
-
-    border:1px solid #2563eb;
 
 }
 
 
+.titulo-painel h1{
 
-.topo h1 {
-
-    color:#00d9ff;
 
     font-size:38px;
 
-    margin:0;
-
-}
+    letter-spacing:3px;
 
 
-
-.topo h2 {
-
-    color:white;
-
-    font-weight:normal;
-
-}
+    color:#00eaff;
 
 
+    text-shadow:
 
-
-/* ÁREAS */
-
-.area-candidato,
-.area-avaliacoes,
-.nova-avaliacao {
-
-
-    background:#111827;
-
-
-    padding:25px;
-
-
-    border-radius:15px;
-
-
-    margin-bottom:25px;
-
-
-    border:1px solid #1e40af;
+    0 0 10px #00eaff;
 
 
 }
 
 
+.titulo-painel p{
 
-h3 {
 
-    color:#00d9ff;
+    color:#aaa;
 
-    border-bottom:1px solid #1e40af;
-
-    padding-bottom:10px;
-
-}
-
-
-
-
-
-/* CARD CANDIDATO */
-
-
-.card-candidato {
-
-
-    background:#0f172a;
-
-
-    padding:20px;
-
-
-    border-radius:12px;
-
-
-    margin-top:15px;
-
-
-}
-
-
-
-.card-candidato p {
-
-    line-height:1.6;
-
-}
-
-
-
-.card-candidato b {
-
-    color:#38bdf8;
-
-}
-
-
-
-
-
-/* AVALIAÇÕES */
-
-
-#avaliacoes .card-candidato {
-
-    border-left:4px solid #00d9ff;
-
-}
-
-
-
-
-
-/* FORMULÁRIOS */
-
-
-input,
-textarea,
-select {
-
-
-    width:100%;
-
-
-    padding:14px;
-
-
-    margin-top:10px;
-
-
-    background:#020617;
-
-
-    color:white;
-
-
-    border:1px solid #2563eb;
-
-
-    border-radius:10px;
-
-
-    font-size:15px;
-
-
-}
-
-
-
-textarea {
-
-
-    min-height:120px;
-
-
-    resize:vertical;
-
-
-}
-
-
-
-input:focus,
-textarea:focus {
-
-
-    outline:none;
-
-
-    border-color:#00d9ff;
+    margin-top:5px;
 
 
 }
@@ -241,14 +225,14 @@ textarea:focus {
 
 
 
-/* BOTÕES */
+
+/* BOTAO SAIR */
 
 
-button {
+.logout{
 
 
-    background:#2563eb;
-
+    background:#ff3b3b;
 
     color:white;
 
@@ -265,23 +249,17 @@ button {
     cursor:pointer;
 
 
-    font-size:15px;
-
-
-    transition:.3s;
+    font-weight:bold;
 
 
 }
 
 
 
-button:hover {
+.logout:hover{
 
 
-    background:#00d9ff;
-
-
-    color:#020617;
+    transform:scale(1.05);
 
 
 }
@@ -290,23 +268,327 @@ button:hover {
 
 
 
-.botao-voltar {
 
 
-    background:#374151;
+
+/* ==========================================
+   MENU
+========================================== */
+
+
+.menu-painel{
+
+
+    margin-top:25px;
+
+
+    display:flex;
+
+
+    gap:15px;
 
 
 }
 
 
 
-.botao-voltar:hover {
 
 
-    background:#6b7280;
+.menu-item{
+
+
+    position:relative;
 
 
 }
+
+
+
+.menu-item button{
+
+
+    background:#111827;
+
+
+    color:white;
+
+
+    border:1px solid #26344d;
+
+
+    padding:14px 25px;
+
+
+    border-radius:12px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+.menu-item:hover .submenu{
+
+
+    display:flex;
+
+
+}
+
+
+
+
+
+.submenu{
+
+
+    display:none;
+
+
+    position:absolute;
+
+
+    top:55px;
+
+
+    left:0;
+
+
+    background:#0d111b;
+
+
+    border:1px solid #27344d;
+
+
+    border-radius:12px;
+
+
+    padding:10px;
+
+
+    flex-direction:column;
+
+
+    width:180px;
+
+
+    z-index:5;
+
+
+}
+
+
+
+.submenu button{
+
+
+    border:none;
+
+
+    background:none;
+
+
+    text-align:left;
+
+
+}
+
+
+.submenu button:hover{
+
+
+    background:#182235;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   CANDIDATOS
+========================================== */
+
+
+.area-candidatos{
+
+
+    margin-top:35px;
+
+
+}
+
+
+
+.titulo-area h2{
+
+
+    font-size:28px;
+
+
+}
+
+
+
+.titulo-area p{
+
+
+    color:#999;
+
+
+    margin-top:5px;
+
+
+}
+
+
+
+
+
+
+
+.grid-candidatos{
+
+
+    margin-top:25px;
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(3,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+
+/* CARD GERADO PELO JS */
+
+
+.candidato-card{
+
+
+    background:#101622;
+
+
+    border:1px solid #24314a;
+
+
+    border-radius:16px;
+
+
+    padding:22px;
+
+
+    transition:.25s;
+
+
+}
+
+
+
+.candidato-card:hover{
+
+
+    transform:translateY(-5px);
+
+
+    border-color:#00eaff;
+
+
+    box-shadow:
+
+    0 0 20px rgba(0,234,255,.15);
+
+
+}
+
+
+
+
+
+.candidato-card h3{
+
+
+    color:#00eaff;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+.candidato-card p{
+
+
+    color:#ccc;
+
+    margin:8px 0;
+
+
+}
+
+
+
+.candidato-card button{
+
+
+    width:100%;
+
+
+    margin-top:15px;
+
+
+    padding:12px;
+
+
+    border:none;
+
+
+    border-radius:10px;
+
+
+    background:#00eaff;
+
+
+    color:#000;
+
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+.candidato-card button:hover{
+
+
+    box-shadow:0 0 15px #00eaff;
+
+
+}
+
+
+
 
 
 
@@ -315,82 +597,55 @@ button:hover {
 /* STATUS */
 
 
-.status-pendente {
+.status{
 
 
-    color:#facc15;
+    display:inline-block;
 
 
-}
+    padding:6px 15px;
 
 
-
-.status-aprovado {
-
-
-    color:#22c55e;
+    border-radius:20px;
 
 
-}
-
-
-
-.status-recusado {
-
-
-    color:#ef4444;
+    font-size:13px;
 
 
 }
 
 
 
+.status-Pendente{
 
 
-/* DASHBOARD */
+    background:#403600;
 
-
-#dashboard {
-
-
-    display:flex;
-
-    gap:15px;
-
-    margin:20px 0;
-
-    flex-wrap:wrap;
+    color:#ffd43b;
 
 
 }
 
 
 
-.status-card {
+.status-Aprovado{
 
 
-    background:#1e1e1e;
+    background:#003d22;
+
+    color:#00ff88;
 
 
-    padding:12px 20px;
+}
 
 
-    border-radius:8px;
+
+.status-Recusado{
 
 
-    border:1px solid #333;
+    background:#450000;
 
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:8px;
-
-
-    font-weight:bold;
+    color:#ff4d4d;
 
 
 }
@@ -399,36 +654,119 @@ button:hover {
 
 
 
-/* RESPONSIVO */
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+
+.footer-painel{
+
+
+    margin-top:50px;
+
+
+    text-align:center;
+
+
+    padding:30px;
+
+
+    border-top:1px solid #222;
+
+
+    color:#777;
+
+
+}
+
+
+
+.footer-painel h2{
+
+
+    color:#00eaff;
+
+
+    letter-spacing:3px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+
+@media(max-width:1000px){
+
+
+.grid-candidatos{
+
+
+    grid-template-columns:repeat(2,1fr);
+
+
+}
+
+
+
+}
+
 
 
 @media(max-width:700px){
 
 
-body{
 
-padding:15px;
+.admin-topo{
+
+
+    flex-direction:column;
+
+    gap:20px;
+
 
 }
 
 
 
-.topo h1{
+.estatisticas{
 
-font-size:28px;
+
+    width:100%;
+
+    justify-content:center;
+
+
+}
+
+
+
+.grid-candidatos{
+
+
+    grid-template-columns:1fr;
+
 
 }
 
 
 
-.area-candidato,
-.area-avaliacoes,
-.nova-avaliacao{
+.menu-painel{
 
-padding:18px;
+
+    flex-direction:column;
+
 
 }
-
 
 
 }
