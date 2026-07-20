@@ -96,18 +96,29 @@ if (formulario) {
 
 //novo botao index
 
+<script>
+
 function openRole(role){
 
+console.log("Abrindo cargo:", role);
 
-const modal = document.getElementById(role);
 
-const overlay = document.getElementById("overlay");
+let modal = document.getElementById(role);
+let overlay = document.getElementById("overlay");
+
+
+if(!modal){
+
+console.log("Modal não encontrado");
+
+return;
+
+}
 
 
 modal.classList.add("active");
 
-
-overlay.style.display="block";
+overlay.style.display = "block";
 
 
 }
@@ -117,18 +128,25 @@ overlay.style.display="block";
 function closeRole(){
 
 
-document.querySelectorAll('.role-info').forEach(box=>{
+let modais = document.querySelectorAll(".role-info");
 
 
-box.classList.remove("active");
+modais.forEach(function(modal){
 
+modal.classList.remove("active");
 
 });
 
 
-document.getElementById("overlay").style.display="none";
+let overlay = document.getElementById("overlay");
+
+
+overlay.style.display="none";
 
 
 }
+
+
+</script>
 
 //1111
