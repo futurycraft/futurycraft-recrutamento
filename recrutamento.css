@@ -445,3 +445,29 @@
     font-size:14px;
 
 }
+
+
+/* LOGO TOPO ESQUERDO */
+
+.top-logo {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 25px;
+
+    z-index: 100;
+
+}
+
+
+.top-logo img {
+
+    width: 55px;
+
+    height: auto;
+
+    display: block;
+
+}
