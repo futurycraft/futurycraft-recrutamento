@@ -1,5 +1,5 @@
 /* ===================================
-   PÁGINA DE RECRUTAMENTO FUTURYCRAFT
+   RECRUTAMENTO FUTURYCRAFT
 =================================== */
 
 
@@ -9,47 +9,40 @@
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
 
-    padding:40px 20px;
+    align-items:center;
+
+    padding:30px 20px;
 
 }
 
 
 
-.recruit-card {
+/* CARD PRINCIPAL */
 
+.recruit-card {
 
     width:100%;
 
-    max-width:850px;
+    max-width:720px;
 
 
-    background:
-
-    linear-gradient(
-    145deg,
-    #181818,
-    #0c0c0c
-    );
+    background:#151515;
 
 
-    border-radius:25px;
+    padding:35px 45px;
 
 
-    padding:50px;
+    border-radius:18px;
 
 
-    border:
-
-    1px solid rgba(255,153,0,.25);
+    border:1px solid rgba(255,153,0,.18);
 
 
     box-shadow:
 
-    0 0 50px rgba(0,0,0,.6);
+    0 15px 50px rgba(0,0,0,.45);
 
 
     text-align:center;
@@ -60,21 +53,58 @@
 
 
 
+
+/* LOGO */
+
+.recruit-card::before {
+
+
+    content:"";
+
+
+    display:block;
+
+
+    width:100px;
+
+
+    height:100px;
+
+
+    margin:
+
+    0 auto 20px;
+
+
+    background:url("./assets/logo.png") center/contain no-repeat;
+
+
+}
+
+
+
+
+
+
 /* TITULO */
+
 
 .recruit-card h1 {
 
 
-    font-size:42px;
+    font-size:26px;
 
 
     font-weight:800;
 
 
+    letter-spacing:.04em;
+
+
     color:white;
 
 
-    margin-bottom:15px;
+    margin-bottom:8px;
 
 
 }
@@ -84,39 +114,46 @@
 .recruit-card h1 span {
 
 
-    display:block;
-
-
     color:#ff9900;
 
 
-    margin-top:5px;
+    display:block;
+
+
+    font-size:20px;
+
+
+    margin-top:3px;
 
 
 }
 
 
 
+
+
+
+/* DESCRIÇÃO */
 
 
 .recruit-description {
 
 
-    color:#a1a1aa;
-
-
-    font-size:16px;
-
-
-    line-height:1.7;
-
-
-    max-width:650px;
+    max-width:560px;
 
 
     margin:
 
-    0 auto 35px;
+    0 auto 25px;
+
+
+    color:#a1a1aa;
+
+
+    font-size:14px;
+
+
+    line-height:1.6;
 
 
 }
@@ -125,48 +162,30 @@
 
 
 
-/* CAIXAS DE INFORMAÇÃO */
+/* BOXES */
 
 
 .recruit-box {
 
 
-    background:
-
-    rgba(255,255,255,.03);
+    background:#101010;
 
 
     border:
 
-    1px solid rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.06);
 
 
-    border-radius:18px;
+    border-radius:12px;
 
 
-    padding:25px;
+    padding:18px 22px;
+
+
+    margin-bottom:15px;
 
 
     text-align:left;
-
-
-    margin-bottom:25px;
-
-
-    transition:.3s;
-
-
-}
-
-
-
-.recruit-box:hover {
-
-
-    border-color:#ff9900;
-
-
-    transform:translateY(-3px);
 
 
 }
@@ -178,16 +197,19 @@
 .recruit-box h2 {
 
 
+    font-size:15px;
+
+
+    font-weight:700;
+
+
     color:#ff9900;
 
 
-    font-size:18px;
-
-
-    margin-bottom:20px;
-
-
     text-align:center;
+
+
+    margin-bottom:12px;
 
 
 }
@@ -199,13 +221,12 @@
 .recruit-box ul {
 
 
-    list-style:none;
-
-
     padding:0;
 
-
     margin:0;
+
+
+    list-style:none;
 
 
 }
@@ -215,13 +236,13 @@
 .recruit-box li {
 
 
-    color:#d4d4d8;
+    font-size:13px;
 
 
-    font-size:14px;
+    color:#c4c4c8;
 
 
-    padding:10px 0 10px 30px;
+    padding:7px 0 7px 25px;
 
 
     position:relative;
@@ -261,25 +282,30 @@
 .recruit-button {
 
 
+    width:100%;
+
+
+    max-width:420px;
+
+
+    height:55px;
+
+
+    margin:
+
+    25px auto 0;
+
+
     display:flex;
-
-
-    align-items:center;
 
 
     justify-content:center;
 
 
-    width:100%;
+    align-items:center;
 
 
-    height:65px;
-
-
-    margin-top:35px;
-
-
-    border-radius:15px;
+    border-radius:10px;
 
 
     background:
@@ -288,32 +314,26 @@
     linear-gradient(
     135deg,
     #ff9900,
-    #ff5500
+    #ff6500
     );
 
 
     color:white;
 
 
-    font-size:18px;
+    font-size:15px;
 
 
     font-weight:800;
 
 
-    letter-spacing:.05em;
+    letter-spacing:.06em;
 
 
     text-decoration:none;
 
 
-    transition:.3s;
-
-
-    box-shadow:
-
-
-    0 10px 30px rgba(255,153,0,.25);
+    transition:.25s;
 
 
 }
@@ -323,16 +343,10 @@
 .recruit-button:hover {
 
 
-    transform:translateY(-5px);
+    transform:translateY(-3px);
 
 
-    filter:brightness(1.15);
-
-
-    box-shadow:
-
-
-    0 15px 40px rgba(255,153,0,.45);
+    filter:brightness(1.12);
 
 
 }
@@ -357,43 +371,22 @@
 
 
 
+.recruit-card::before {
+
+
+    width:80px;
+
+    height:80px;
+
+
+}
+
+
+
 .recruit-card h1 {
 
 
-    font-size:30px;
-
-
-}
-
-
-
-.recruit-description {
-
-
-    font-size:14px;
-
-
-}
-
-
-
-.recruit-box {
-
-
-    padding:20px;
-
-
-}
-
-
-
-.recruit-button {
-
-
-    height:55px;
-
-
-    font-size:15px;
+    font-size:22px;
 
 
 }
