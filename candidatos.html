@@ -15,46 +15,97 @@
 
     <h2>Candidatura Staff</h2>
 
-    <p>Preencha as informações abaixo.</p>
+    <p>Informações Básicas</p>
+
+    <p>
+        Preencha seus dados corretamente para iniciar sua candidatura.
+    </p>
+
 
     <form id="form-candidatos">
 
+
+        <p>Nome completo</p>
+        <input 
+            type="text" 
+            id="nome_completo"
+            placeholder="Exemplo: João Silva"
+            required
+        >
+
+
         <p>Nick no Minecraft</p>
-        <input type="text" id="nick" required>
+        <input 
+            type="text" 
+            id="nick"
+            placeholder="Exemplo: Joao123"
+            required
+        >
+
 
         <p>Usuário do Discord</p>
-        <input type="text" id="discord" required>
+        <input 
+            type="text" 
+            id="discord"
+            placeholder="Exemplo: joao#0000"
+            required
+        >
 
-        <p>Idade</p>
-        <input type="number" id="idade" required>
 
-        <p>Tempo jogando no FuturyCraft</p>
-        <input type="text" id="tempo" required>
+        <p>Qual é a sua idade?</p>
+        <input 
+            type="number" 
+            id="idade"
+            placeholder="Exemplo: 16"
+            required
+        >
 
-        <p>Disponibilidade diária</p>
-        <input type="text" id="disponibilidade" required>
 
-        <p>Por que deseja entrar para a equipe?</p>
-        <textarea id="motivo" required></textarea>
+        <p>Qual é sua data de nascimento?</p>
+        <input 
+            type="date"
+            id="data_nascimento"
+            required
+        >
 
-        <p>Como você ajudaria o servidor?</p>
-        <textarea id="ajuda" required></textarea>
 
-        <p>O que faria ao suspeitar de um jogador utilizando hack?</p>
-        <textarea id="hack" required></textarea>
+        <p>Como você prefere ser identificado?</p>
+
+        <select id="genero">
+
+            <option value="">
+                Prefiro não informar
+            </option>
+
+            <option value="masculino">
+                Masculino
+            </option>
+
+            <option value="feminino">
+                Feminino
+            </option>
+
+            <option value="outro">
+                Outro
+            </option>
+
+        </select>
 
 
         <br><br>
 
-        <button type="submit" class="botao">
-            Enviar Candidatura
+
+        <button type="button" class="botao">
+            Continuar
         </button>
+
 
     </form>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
+
 
 </body>
 </html>
