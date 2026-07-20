@@ -349,19 +349,25 @@ PARTIR PARA O FORMULÁRIO
 function mostrarIntroducao(){
 
 
-const primeiraTela = document.querySelectorAll(".recruit-card > *:not(#introducao)");
+const primeiraTela = document.querySelectorAll(
+".recruit-card > *:not(#introducao)"
+);
 
 
 
-primeiraTela.forEach(elemento=>{
+primeiraTela.forEach(item=>{
 
-elemento.style.display="none";
+item.style.display="none";
 
 });
 
 
 
-document.getElementById("introducao").classList.add("active");
+const segundaTela = document.getElementById("introducao");
+
+
+segundaTela.classList.add("active");
+
 
 
 }
