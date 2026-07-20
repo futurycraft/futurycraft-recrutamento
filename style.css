@@ -2088,112 +2088,83 @@ display:block;
 
 .role-info h2 {
 
-
     text-align:center;
-
 
     color:#ff9900;
 
-
-    font-size:26px;
-
+    font-size:30px;
 
     margin-bottom:5px;
 
-
 }
-
 
 
 .modal-level {
 
-
     display:block;
-
 
     text-align:center;
 
-
     color:#aaa;
 
-
-    font-size:14px;
-
-
-    margin-bottom:20px;
-
+    margin-bottom:25px;
 
 }
-
-
 
 
 .role-info p {
 
-
     color:#ccc;
 
+    font-size:15px;
 
-    font-size:14px;
-
-
-    line-height:1.6;
-
-
-    text-align:center;
-
+    line-height:1.7;
 
     margin-bottom:20px;
 
-
 }
-
-
 
 
 .role-info h3 {
 
-
     color:#ff9900;
-
-
-    font-size:17px;
-
 
     margin-top:20px;
 
-
     margin-bottom:10px;
 
+    font-size:18px;
 
 }
-
 
 
 .role-info ul {
 
+    display:grid;
 
-    padding-left:20px;
+    grid-template-columns:1fr 1fr;
 
+    gap:10px 30px;
+
+    list-style:none;
 
 }
-
 
 
 .role-info li {
 
+    background:
+    rgba(255,153,0,.08);
+
+    padding:10px 15px;
+
+    border-radius:10px;
 
     color:#ddd;
 
-
-    font-size:13px;
-
-
-    margin:7px 0;
-
+    font-size:14px;
 
 }
-
 
 
 
