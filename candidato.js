@@ -71,7 +71,7 @@ async function carregarCandidato(){
 
 
 
-    document.querySelector("#candidato").innerHTML = `
+    document.querySelector("#perfil-candidato").innerHTML = `
 
 
 
