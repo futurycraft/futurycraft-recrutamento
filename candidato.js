@@ -273,34 +273,55 @@ async function carregarAvaliacoes(){
         area.innerHTML += `
 
 
-
-        <div class="avaliacao">
-
+<div class="avaliacao">
 
 
-            <p>
-            <b>Avaliador:</b>
-            ${avaliacao.avaliador}
-            </p>
+<div class="autor">
 
 
-
-            <p>
-            <b>Data:</b>
-            ${new Date(
-            avaliacao.created_at
-            ).toLocaleString()}
-            </p>
+<div class="avatar-staff">
+${avaliacao.avaliador.charAt(0).toUpperCase()}
+</div>
 
 
 
-            <p>
-            ${avaliacao.observacao}
-            </p>
+<div>
+
+<b>
+${avaliacao.avaliador}
+</b>
+
+
+<div class="data-comentario">
+
+${new Date(avaliacao.created_at).toLocaleString()}
+
+</div>
+
+
+</div>
+
+
+</div>
 
 
 
-            <button id="like-${avaliacao.id}" onclick="reagirAvaliacao(${avaliacao.id},'like')">
+
+
+<p>
+
+${avaliacao.observacao}
+
+</p>
+
+
+
+
+
+<div class="reacoes">
+
+
+<button class="like" onclick="reagirAvaliacao(${avaliacao.id},'like')">
 
 👍 ${likes}
 
@@ -308,7 +329,7 @@ async function carregarAvaliacoes(){
 
 
 
-<button id="dislike-${avaliacao.id}" onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
+<button class="dislike" onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
 
 👎 ${dislikes}
 
@@ -316,19 +337,21 @@ async function carregarAvaliacoes(){
 
 
 
-            <button onclick="excluirAvaliacao(${avaliacao.id})">
+<button class="delete" onclick="excluirAvaliacao(${avaliacao.id})">
 
-            Excluir
+🗑
 
-            </button>
-
-
-
-        </div>
+</button>
 
 
 
-        `;
+</div>
+
+
+</div>
+
+
+`;
 
 
     }
