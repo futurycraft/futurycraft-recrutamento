@@ -220,7 +220,7 @@ ${avaliacao.observacao}
 
 <button onclick="curtirAvaliacao(${avaliacao.id})">
 
-👍 ${avaliacao.likes || 0}
+👍 ${likes}
 
 </button>
 
@@ -228,7 +228,7 @@ ${avaliacao.observacao}
 
 <button onclick="descurtirAvaliacao(${avaliacao.id})">
 
-👎 ${avaliacao.dislikes || 0}
+👎 ${dislikes}
 
 </button>
 
