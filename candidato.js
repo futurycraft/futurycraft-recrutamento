@@ -105,9 +105,8 @@ ${data.hack}
 <hr>
 
 
-<h3>
-Status: ${data.status}
-</h3>
+<h3>Status: ${data.status || "Pendente"}</h3>
+
 
 
 <button onclick="alterarStatus('Aprovado')">
@@ -125,7 +124,6 @@ Status: ${data.status}
 
 `;
 
-
 }
 
 
@@ -133,7 +131,6 @@ Status: ${data.status}
 // ===============================
 // CARREGAR AVALIAÇÕES
 // ===============================
-
 
 async function carregarAvaliacoes(){
 
@@ -148,7 +145,7 @@ const {data,error} = await supabaseClient
 
 if(error){
 
-console.error("Erro avaliações:",error);
+console.error(error);
 
 return;
 
@@ -156,22 +153,8 @@ return;
 
 
 
-const area =
-document.querySelector("#avaliacoes");
+const area = document.querySelector("#avaliacoes");
 
-const {data: reacoes} = await supabaseClient
-.from("avaliacoes_reacoes")
-.select("*")
-.eq("avaliacao_id", avaliacao.id);
-
-
-
-const likes =
-reacoes.filter(r => r.reacao === "like").length;
-
-
-const dislikes =
-reacoes.filter(r => r.reacao === "dislike").length;
 
 area.innerHTML = "";
 
@@ -188,7 +171,27 @@ return;
 
 
 
-data.forEach(avaliacao=>{
+for(const avaliacao of data){
+
+
+
+const {data: reacoes} = await supabaseClient
+.from("avaliacoes_reacoes")
+.select("*")
+.eq("avaliacao_id",avaliacao.id);
+
+
+
+const likes = reacoes.filter(
+r => r.reacao === "like"
+).length;
+
+
+
+const dislikes = reacoes.filter(
+r => r.reacao === "dislike"
+).length;
+
 
 
 area.innerHTML += `
@@ -215,10 +218,8 @@ ${avaliacao.observacao}
 </p>
 
 
-<div>
 
-
-<button onclick="curtirAvaliacao(${avaliacao.id})">
+<button onclick="reagirAvaliacao(${avaliacao.id},'like')">
 
 👍 ${likes}
 
@@ -226,11 +227,12 @@ ${avaliacao.observacao}
 
 
 
-<button onclick="descurtirAvaliacao(${avaliacao.id})">
+<button onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
 
 👎 ${dislikes}
 
 </button>
+
 
 
 <button onclick="excluirAvaliacao(${avaliacao.id})">
@@ -239,8 +241,6 @@ ${avaliacao.observacao}
 
 </button>
 
-
-</div>
 
 
 </div>
@@ -252,7 +252,7 @@ ${avaliacao.observacao}
 `;
 
 
-});
+}
 
 
 }
@@ -321,7 +321,6 @@ return;
 alert("Avaliação adicionada!");
 
 
-
 document.querySelector("#observacao").value="";
 
 
@@ -333,8 +332,9 @@ carregarAvaliacoes();
 
 
 
+
 // ===============================
-// ALTERAR STATUS
+// STATUS
 // ===============================
 
 
@@ -370,25 +370,86 @@ carregarCandidato();
 }
 
 
-async function curtirAvaliacao(idAvaliacao){
 
 
-const {data} = await supabaseClient
-.from("avaliacoes")
-.select("likes")
-.eq("id",idAvaliacao)
-.single();
+// ===============================
+// REAÇÃO LIKE/DISLIKE
+// ===============================
 
+
+async function reagirAvaliacao(idAvaliacao,tipo){
+
+
+
+const usuario =
+await supabaseClient.auth.getUser();
+
+
+
+const email =
+usuario.data.user.email;
+
+
+
+const {data: existente} =
+await supabaseClient
+.from("avaliacoes_reacoes")
+.select("*")
+.eq("avaliacao_id",idAvaliacao)
+.eq("usuario",email)
+.maybeSingle();
+
+
+
+if(existente){
+
+
+if(existente.reacao === tipo){
 
 
 await supabaseClient
-.from("avaliacoes")
+.from("avaliacoes_reacoes")
+.delete()
+.eq("id",existente.id);
+
+
+}
+
+else{
+
+
+await supabaseClient
+.from("avaliacoes_reacoes")
 .update({
 
-likes:(data.likes || 0) + 1
+reacao:tipo
 
 })
-.eq("id",idAvaliacao);
+.eq("id",existente.id);
+
+
+}
+
+
+}
+
+else{
+
+
+await supabaseClient
+.from("avaliacoes_reacoes")
+.insert([{
+
+avaliacao_id:idAvaliacao,
+
+usuario:email,
+
+reacao:tipo
+
+}]);
+
+
+}
 
 
 
@@ -397,44 +458,19 @@ carregarAvaliacoes();
 
 }
 
-async function descurtirAvaliacao(idAvaliacao){
-
-
-const {data} = await supabaseClient
-.from("avaliacoes")
-.select("dislikes")
-.eq("id",idAvaliacao)
-.single();
 
 
 
-await supabaseClient
-.from("avaliacoes")
-.update({
 
-dislikes:(data.dislikes || 0) + 1
-
-})
-.eq("id",idAvaliacao);
-
-
-
-carregarAvaliacoes();
-
-
-}
+// ===============================
+// EXCLUIR AVALIAÇÃO
+// ===============================
 
 
 async function excluirAvaliacao(idAvaliacao){
 
 
-const confirmar = confirm(
-"Tem certeza que deseja excluir esta avaliação?"
-);
-
-
-
-if(!confirmar){
+if(!confirm("Excluir esta avaliação?")){
 
 return;
 
@@ -453,7 +489,7 @@ if(error){
 
 console.error(error);
 
-alert("Erro ao excluir avaliação");
+alert("Erro ao excluir");
 
 return;
 
@@ -463,12 +499,11 @@ return;
 
 alert("Avaliação excluída!");
 
-
-
 carregarAvaliacoes();
 
 
 }
+
 
 
 
@@ -480,94 +515,7 @@ window.location.href="admin.html";
 
 
 
-// iniciar
 
 carregarCandidato();
 
 carregarAvaliacoes();
-
-async function reagirAvaliacao(idAvaliacao, tipo){
-
-
-const usuario =
-await supabaseClient.auth.getUser();
-
-
-
-const email =
-usuario.data.user.email;
-
-
-
-// Verifica se já existe reação
-
-const {data: existente} =
-await supabaseClient
-.from("avaliacoes_reacoes")
-.select("*")
-.eq("avaliacao_id", idAvaliacao)
-.eq("usuario", email)
-.single();
-
-
-
-if(existente){
-
-
-    // Se clicou na mesma reação, remove
-
-    if(existente.reacao === tipo){
-
-
-        await supabaseClient
-        .from("avaliacoes_reacoes")
-        .delete()
-        .eq("id", existente.id);
-
-
-    }
-
-    // Se mudou de reação
-
-    else{
-
-
-        await supabaseClient
-        .from("avaliacoes_reacoes")
-        .update({
-
-            reacao: tipo
-
-        })
-        .eq("id", existente.id);
-
-
-    }
-
-
-}
-
-else{
-
-
-    await supabaseClient
-    .from("avaliacoes_reacoes")
-    .insert([{
-
-        avaliacao_id: idAvaliacao,
-
-        usuario: email,
-
-        reacao: tipo
-
-    }]);
-
-
-}
-
-
-
-carregarAvaliacoes();
-
-
-}
