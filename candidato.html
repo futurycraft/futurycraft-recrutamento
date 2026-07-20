@@ -7,9 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Candidatura - FuturyCraft</title>
+<title>FuturyCraft - Candidato</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="candidato.css">
 
 </head>
 
@@ -17,56 +17,143 @@
 <body>
 
 
-<h1>FuturyCraft</h1>
-
-<h2>Detalhes da Candidatura</h2>
+<div class="candidato-container">
 
 
-<button onclick="voltar()">
-⬅ Voltar
+
+<header class="cabecalho">
+
+
+<button onclick="voltar()" class="voltar">
+← Voltar
 </button>
 
-<br><br>
 
-<h3>
-Histórico de Avaliações
-</h3>
+
+<div>
+
+<h1>
+FuturyCraft
+</h1>
+
+<p>
+Análise de candidatura
+</p>
+
+</div>
+
+
+</header>
+
+
+
+
+
+
+<!-- PERFIL -->
+
+
+<section id="perfil-candidato" class="card">
+
+
+Carregando candidato...
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- RESPOSTAS -->
+
+
+<section class="card">
+
+
+<h2>
+Respostas
+</h2>
+
+
+<div id="respostas">
+
+
+Carregando...
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- AVALIAÇÕES -->
+
+
+<section class="card">
+
+
+<h2>
+Comentários da equipe
+</h2>
+
 
 
 <div id="avaliacoes">
 
-Carregando avaliações...
+
+Carregando comentários...
+
 
 </div>
 
 
-<br>
 
 
-<h3>
-Nova Avaliação
-</h3>
+
+<div class="novo-comentario">
 
 
 <textarea 
 id="observacao"
-placeholder="Digite sua avaliação..."
-rows="5"
-cols="50"></textarea>
+placeholder="Adicionar comentário da equipe..."
+></textarea>
 
-
-<br><br>
 
 
 <button onclick="adicionarAvaliacao()">
-💾 Adicionar avaliação
-</button>
-  
-<div id="candidato">
 
-Carregando...
+Adicionar comentário
+
+</button>
+
+
 
 </div>
+
+
+</section>
+
+
+
+
+
+
+
+</div>
+
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
