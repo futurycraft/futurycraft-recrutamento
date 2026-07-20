@@ -1766,7 +1766,10 @@ display:block;
 
 }
 
-/* ÁREA DOS CARGOS */
+/* ================================
+   ÁREA DOS CARGOS STAFF
+================================ */
+
 
 .staff-buttons {
 
@@ -1776,11 +1779,27 @@ display:block;
 
     align-items:flex-start;
 
-    gap:35px;
+    gap:45px;
 
-    margin:40px 0;
+    margin:50px auto;
 
-    flex-wrap:wrap;
+    width:100%;
+
+}
+
+
+
+.staff-role {
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
 
 }
 
@@ -1790,22 +1809,27 @@ display:block;
 
 .staff-button {
 
-    width:90px;
 
-    height:90px;
+    width:85px;
+
+    height:85px;
+
 
     border-radius:50%;
+
 
     background:
 
     linear-gradient(
-    145deg,
-    #202020,
-    #0b0b0b
+        145deg,
+        #202020,
+        #090909
     );
 
 
-    border:2px solid rgba(255,153,0,.5);
+    border:
+
+    2px solid rgba(255,153,0,.5);
 
 
     display:flex;
@@ -1814,49 +1838,43 @@ display:block;
 
     justify-content:center;
 
-    flex-direction:column;
-
 
     cursor:pointer;
-
-    transition:.3s;
 
 
     padding:0;
 
 
-    position:relative;
+    transition:.3s;
+
 
 }
 
 
 
-/* IMAGEM */
+/* IMAGEM DO CARGO */
 
 .staff-button img {
+
 
     width:55px;
 
     height:55px;
 
+
     object-fit:contain;
+
 
 }
 
 
 
-/* TEXTO EMBAIXO */
+/* NOME DO CARGO */
 
-.staff-button span {
-
-
-    position:absolute;
+.staff-role span {
 
 
-    top:105px;
-
-
-    white-space:nowrap;
+    color:white;
 
 
     font-size:14px;
@@ -1865,14 +1883,14 @@ display:block;
     font-weight:700;
 
 
-    color:white;
+    text-align:center;
 
 
 }
 
 
 
-/* EFEITO AO PASSAR MOUSE */
+/* EFEITO */
 
 .staff-button:hover {
 
@@ -1886,6 +1904,393 @@ display:block;
     box-shadow:
 
     0 0 25px rgba(255,153,0,.5);
+
+
+}
+
+
+
+/* ================================
+   MODAL DOS CARGOS
+================================ */
+
+
+#overlay {
+
+
+    display:none;
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    background:
+
+    rgba(0,0,0,.75);
+
+
+    backdrop-filter:blur(5px);
+
+
+    z-index:9998;
+
+
+}
+
+
+
+.role-info {
+
+
+    display:none;
+
+
+    position:fixed;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    width:600px;
+
+
+    max-width:90%;
+
+
+    max-height:80vh;
+
+
+    overflow-y:auto;
+
+
+    background:
+
+
+    linear-gradient(
+        145deg,
+        #151515,
+        #080808
+    );
+
+
+    padding:40px;
+
+
+    border-radius:25px;
+
+
+    border:
+
+    2px solid #ff9900;
+
+
+    color:white;
+
+
+    z-index:9999;
+
+
+    box-shadow:
+
+    0 0 50px rgba(255,153,0,.5);
+
+
+    animation:
+
+    modalShow .3s ease;
+
+
+}
+
+
+
+@keyframes modalShow {
+
+
+    from {
+
+
+        opacity:0;
+
+
+        transform:
+
+        translate(-50%,-45%);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+
+        transform:
+
+        translate(-50%,-50%);
+
+
+    }
+
+
+}
+
+
+
+
+/* ICONE DENTRO DO MODAL */
+
+
+.modal-icon {
+
+
+    width:90px;
+
+
+    height:90px;
+
+
+    border-radius:50%;
+
+
+    background:#222;
+
+
+    border:
+
+    2px solid #ff9900;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    margin:0 auto 20px;
+
+
+}
+
+
+
+.modal-icon img {
+
+
+    width:60px;
+
+
+    height:60px;
+
+
+    object-fit:contain;
+
+
+}
+
+
+
+
+.role-info h2 {
+
+
+    text-align:center;
+
+
+    color:#ff9900;
+
+
+    font-size:32px;
+
+
+    margin-bottom:5px;
+
+
+}
+
+
+
+.modal-level {
+
+
+    display:block;
+
+
+    text-align:center;
+
+
+    color:#aaa;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+.role-info p {
+
+
+    color:#ccc;
+
+
+    line-height:1.7;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.role-info h3 {
+
+
+    color:#ff9900;
+
+
+    margin-top:25px;
+
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+.role-info ul {
+
+
+    padding-left:20px;
+
+
+}
+
+
+
+.role-info li {
+
+
+    color:#ddd;
+
+
+    margin:8px 0;
+
+
+}
+
+
+
+/* BOTÃO FECHAR */
+
+
+.close-modal {
+
+
+    position:absolute;
+
+
+    top:15px;
+
+
+    right:20px;
+
+
+    width:35px;
+
+
+    height:35px;
+
+
+    border-radius:50%;
+
+
+    background:#ff9900;
+
+
+    border:none;
+
+
+    color:white;
+
+
+    font-size:25px;
+
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.close-modal:hover {
+
+
+    background:#ff5500;
+
+
+    transform:rotate(90deg);
+
+
+}
+
+
+
+/* MOBILE */
+
+
+@media(max-width:768px){
+
+
+.staff-buttons {
+
+
+    gap:25px;
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+.role-info {
+
+
+    width:90%;
+
+
+    padding:25px;
+
+
+}
 
 
 }
