@@ -12,24 +12,6 @@ const supabaseClient = window.supabase.createClient(
 
 
 
-async function verificarLogin(){
-
-    const { data } = await supabaseClient.auth.getSession();
-
-
-    if(!data.session){
-
-        window.location.href = "login.html";
-
-    }
-
-}
-
-
-verificarLogin();
-
-
-
 let candidatos = [];
 
 let filtroAtual = "Todos";
