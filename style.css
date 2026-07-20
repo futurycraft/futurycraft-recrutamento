@@ -1922,52 +1922,38 @@ display:block;
     position:fixed;
 
     top:50%;
-
     left:50%;
 
-    transform:translate(-50%,-50%);
+    transform:translate(-50%, -50%);
 
+    width:850px;
+    max-width:90vw;
 
-    width:480px;
-
-    max-width:90%;
-
-
-    max-height:75vh;
+    max-height:85vh;
 
     overflow-y:auto;
 
-
     background:
-
     linear-gradient(
         145deg,
-        #171717,
+        #181818,
         #090909
     );
 
+    padding:35px 45px;
 
-    padding:30px;
+    border-radius:25px;
 
-
-    border-radius:20px;
-
-
-    border:
-
-    1px solid rgba(255,153,0,.6);
-
+    border:2px solid #ff9900;
 
     color:white;
 
-
     z-index:9999;
 
-
     box-shadow:
+    0 0 50px rgba(255,153,0,.35);
 
-    0 0 40px rgba(255,153,0,.35);
-
+    animation:modalShow .25s ease;
 
 }
 
