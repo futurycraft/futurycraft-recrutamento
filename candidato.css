@@ -626,7 +626,7 @@ to{
 
 
 /* ==========================================
-   LIKE / DISLIKE
+   BOTÕES DE REAÇÃO DOS COMENTÁRIOS
 ========================================== */
 
 
@@ -635,11 +635,11 @@ to{
 
     display:flex;
 
+    align-items:center;
 
-    gap:10px;
+    gap:12px;
 
-
-    margin-top:15px;
+    margin-top:20px;
 
 
 }
@@ -650,35 +650,40 @@ to{
 .reacoes button{
 
 
-    display:flex;
+    height:38px;
 
+    min-width:65px;
+
+
+    display:flex;
 
     align-items:center;
 
-
-    gap:8px;
-
-
-    padding:
-
-    8px 18px;
+    justify-content:center;
 
 
-    border-radius:10px;
+    gap:7px;
+
+
+    border-radius:12px;
 
 
     background:#111827;
 
 
-    border:
-
-    1px solid #334155;
+    color:#d1d5db;
 
 
-    color:white;
+    border:1px solid #26344d;
 
 
     cursor:pointer;
+
+
+    font-size:14px;
+
+
+    font-weight:600;
 
 
     transition:.25s;
@@ -688,10 +693,24 @@ to{
 
 
 
-.reacoes button:hover{
 
 
-    transform:translateY(-3px);
+/* LIKE */
+
+
+.reacoes .like{
+
+
+    background:
+
+    linear-gradient(
+    145deg,
+    #062e22,
+    #071a15
+    );
+
+
+    border-color:#065f46;
 
 
 }
@@ -701,23 +720,159 @@ to{
 .reacoes .like:hover{
 
 
+    color:#00ff88;
+
+
     border-color:#00ff88;
 
 
-    color:#00ff88;
+    box-shadow:
+
+    0 0 15px rgba(0,255,136,.35);
+
+
+    transform:translateY(-3px);
 
 
 }
 
 
 
+
+
+.reacoes .like:active{
+
+
+    transform:scale(.92);
+
+
+}
+
+
+
+
+
+
+
+/* DESLIKE */
+
+
+.reacoes .dislike{
+
+
+    background:
+
+    linear-gradient(
+    145deg,
+    #350b0b,
+    #190707
+    );
+
+
+    border-color:#7f1d1d;
+
+
+}
+
+
+
+
 .reacoes .dislike:hover{
+
+
+    color:#ff5555;
 
 
     border-color:#ff5555;
 
 
-    color:#ff5555;
+    box-shadow:
+
+    0 0 15px rgba(255,85,85,.35);
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+
+
+.reacoes .dislike:active{
+
+
+    transform:scale(.92);
+
+
+}
+
+
+
+
+
+
+
+/* EXCLUIR */
+
+
+.reacoes .delete{
+
+
+    width:42px;
+
+    min-width:42px;
+
+
+    background:#111827;
+
+
+    color:#9ca3af;
+
+
+    border-color:#374151;
+
+
+    font-size:16px;
+
+
+}
+
+
+
+
+
+.reacoes .delete:hover{
+
+
+    color:#ff4444;
+
+
+    border-color:#ff4444;
+
+
+    background:#260909;
+
+
+    box-shadow:
+
+    0 0 15px rgba(255,68,68,.35);
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+
+
+.reacoes .delete:active{
+
+
+    transform:scale(.90);
 
 
 }
