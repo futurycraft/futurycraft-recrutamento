@@ -300,13 +300,22 @@ return;
 
 
 
-const usuario =
-await supabaseClient.auth.getUser();
+const { data: usuario } = await supabaseClient.auth.getUser();
 
+
+if(!usuario.user){
+
+    alert("Sua sessão expirou. Faça login novamente.");
+
+    window.location.href = "login.html";
+
+    return;
+
+}
 
 
 const avaliador =
-usuario.data.user.email;
+usuario.user.email;
 
 
 
