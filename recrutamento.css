@@ -381,40 +381,54 @@
 
 }
 
-/* SEGUNDA PARTE DO RECRUTAMENTO */
+/* SEGUNDA ETAPA RECRUTAMENTO */
 
-.hidden-step {
+#introducao {
 
-    display:none !important;
+    max-width:650px;
 
-}
-
-
-.hidden-step.active {
-
-    display:block !important;
+    margin:auto;
 
 }
 
 
-.recruit-columns {
+#introducao h1 {
 
-    display:flex;
+    text-align:center;
 
-    flex-direction:column;
+    font-size:32px;
 
-    gap:20px;
+    margin-bottom:20px;
 
 }
 
-.recruit-box {
+
+
+#introducao .recruit-description {
+
+    text-align:center;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+#introducao .recruit-box {
 
     padding:20px;
 
+    margin-bottom:25px;
+
 }
 
 
-.recruit-box h2 {
+
+#introducao .recruit-box h2 {
 
     font-size:18px;
 
@@ -423,44 +437,11 @@
 }
 
 
-.recruit-box ul {
 
-    padding-left:18px;
-
-}
-
-
-.recruit-box li {
+#introducao li {
 
     margin-bottom:8px;
 
     font-size:14px;
-
-}
-
-
-
-/* LOGO NO CANTO SUPERIOR */
-
-.top-logo {
-
-    position:fixed;
-
-    top:25px;
-
-    left:30px;
-
-    z-index:10;
-
-}
-
-
-.top-logo img {
-
-    width:70px;
-
-    height:auto;
-
-    display:block;
 
 }
