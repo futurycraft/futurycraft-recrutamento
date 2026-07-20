@@ -420,3 +420,18 @@
     cursor:pointer;
 
 }
+
+/* SEGUNDA ETAPA DO RECRUTAMENTO */
+
+#introducao {
+
+    display:none;
+
+}
+
+
+#introducao.active {
+
+    display:block;
+
+}
