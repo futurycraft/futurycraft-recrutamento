@@ -10,6 +10,33 @@ const supabaseClient = window.supabase.createClient(
 );
 
 
+async function verificarAcesso(){
+
+
+    const { data } = await supabaseClient.auth.getSession();
+
+
+
+    if(!data.session){
+
+
+        window.location.href = "login.html";
+
+
+        return;
+
+
+    }
+
+
+
+}
+
+
+
+verificarAcesso();
+
+
 
 const parametros = new URLSearchParams(
     window.location.search
