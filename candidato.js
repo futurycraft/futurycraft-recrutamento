@@ -650,13 +650,32 @@ r=>r.reacao==="dislike"
 
 
 
-document.querySelector(`#like-${idAvaliacao}`).innerHTML =
+const botaoLike = document.querySelector(
+`#like-${idAvaliacao}`
+);
+
+
+const botaoDislike = document.querySelector(
+`#dislike-${idAvaliacao}`
+);
+
+
+
+if(botaoLike){
+
+botaoLike.innerHTML =
 `👍 ${likes}`;
 
+}
 
 
-document.querySelector(`#dislike-${idAvaliacao}`).innerHTML =
+
+if(botaoDislike){
+
+botaoDislike.innerHTML =
 `👎 ${dislikes}`;
+
+}
 
 
 
