@@ -58,26 +58,31 @@
 
 .recruit-logo {
 
+    width:100%;
 
-    content:"";
+    display:flex;
 
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+
+
+.recruit-logo img {
+
+    width:75px;
+
+    height:75px;
+
+    object-fit:contain;
 
     display:block;
 
-
-    width:100px;
-
-
-    height:100px;
-
-
-    margin:
-
-    0 auto 20px;
-
-
-    background:url("./assets/logo.png") center/contain no-repeat;
-
+    user-select:none;
 
 }
 
