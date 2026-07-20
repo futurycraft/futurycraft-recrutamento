@@ -17,8 +17,6 @@
 <body>
 
 
-<!-- PARTÍCULAS -->
-
 <div class="particles">
 
 <span class="particle"></span>
@@ -31,8 +29,6 @@
 
 
 
-<!-- LOGO -->
-
 <div class="tf-logo tf-logo--global">
 
 <img 
@@ -44,29 +40,17 @@ alt="FuturyCraft">
 
 
 
-
-<!-- CONTAINER PRINCIPAL -->
-
 <div class="container">
-
-
-
 
 
 <section class="main-card">
 
 
 
-
-
-<!-- CABEÇALHO -->
-
 <header class="card-header">
 
 
-
 <div class="header-content">
-
 
 
 <h1 class="card-title">
@@ -80,8 +64,6 @@ FUTURYCRAFT
 </h1>
 
 
-
-
 <p class="card-subtitle">
 
 Comece sua jornada como Ajudante e cresça dentro da maior comunidade futurista de Minecraft.
@@ -89,10 +71,7 @@ Comece sua jornada como Ajudante e cresça dentro da maior comunidade futurista 
 </p>
 
 
-
 </div>
-
-
 
 
 
@@ -112,46 +91,80 @@ alt="Equipe FuturyCraft">
 </div>
 
 
-
 </header>
 
 
 
 
-<!-- CONTEÚDO -->
+<!-- BOTÕES DOS CARGOS -->
+
 
 <div class="staff-buttons">
 
 
+
 <button class="staff-button" onclick="openRole('ajudante')">
+
 
 <img src="./assets/staff/ajudante.png">
 
-<span>Ajudante</span>
+
+<span>
+
+Ajudante
+
+</span>
+
 
 </button>
 
 
+
+
+
 <button class="staff-button">
+
 
 <img src="./assets/staff/suporte.png">
 
-<span>Suporte</span>
+
+<span>
+
+Suporte
+
+</span>
+
 
 </button>
+
+
+
 
 
 <button class="staff-button">
 
+
 <img src="./assets/staff/moderador.png">
 
-<span>Moderador</span>
+
+<span>
+
+Moderador
+
+</span>
+
 
 </button>
+
+
 
 
 </div>
 
+<!-- MODAL DOS CARGOS -->
+
+
+<div id="overlay"></div>
 
 
 
@@ -159,43 +172,127 @@ alt="Equipe FuturyCraft">
 
 
 <button class="close-modal" onclick="closeRole()">
+
 ×
+
 </button>
 
 
 
-<h2>Ajudante</h2>
 
-<span>Nível 1</span>
+<div class="modal-icon">
 
-
-<p>
-O Ajudante é o primeiro cargo da equipe FuturyCraft.
-Ele aprende os procedimentos internos e auxilia jogadores.
-</p>
-
-
-<h3>Responsabilidades:</h3>
-
-
-<ul>
-
-<li>Responder dúvidas básicas dos jogadores</li>
-
-<li>Orientar novos membros</li>
-
-<li>Auxiliar a equipe em eventos</li>
-
-<li>Reportar problemas encontrados</li>
-
-</ul>
-
+<img src="./assets/staff/ajudante.png">
 
 </div>
 
 
 
-<!-- HIERARQUIA STAFF -->
+<h2>
+
+Ajudante
+
+</h2>
+
+
+<span class="modal-level">
+
+Nível 1
+
+</span>
+
+
+
+<p>
+
+O Ajudante é o primeiro passo dentro da equipe FuturyCraft.
+
+Este cargo é responsável por aprender os procedimentos da equipe,
+auxiliar jogadores e conhecer melhor o funcionamento do servidor.
+
+</p>
+
+
+
+
+<h3>
+
+Responsabilidades
+
+</h3>
+
+
+
+
+<ul>
+
+
+<li>
+Responder dúvidas básicas dos jogadores
+</li>
+
+
+<li>
+Orientar novos jogadores dentro do servidor
+</li>
+
+
+<li>
+Auxiliar a equipe em eventos
+</li>
+
+
+<li>
+Reportar problemas encontrados
+</li>
+
+
+<li>
+Manter uma boa comunicação com a comunidade
+</li>
+
+
+</ul>
+
+
+
+
+<h3>
+
+Requisitos
+
+</h3>
+
+
+
+<ul>
+
+
+<li>
+Conhecer as regras do servidor
+</li>
+
+
+<li>
+Ter boa comunicação
+</li>
+
+
+<li>
+Ser ativo na comunidade
+</li>
+
+
+<li>
+Ter vontade de aprender
+</li>
+
+
+</ul>
+
+
+
+</div>
 
 
 
@@ -241,7 +338,6 @@ Cargo inicial disponível
 </p>
 
 
-
 </div>
 
 
@@ -280,7 +376,9 @@ da equipe FuturyCraft.
 
 </p>
 
-<!-- RESPONSABILIDADES -->
+
+
+
 
 <div class="responsibilities">
 
@@ -382,13 +480,7 @@ Reportar problemas para a administração
 
 
 
-
-
-<!-- BOTÃO -->
-
-<a 
-href="#formulario"
-class="submit-button">
+<a href="#formulario" class="submit-button">
 
 
 ENVIAR FORMULÁRIO
@@ -399,30 +491,16 @@ ENVIAR FORMULÁRIO
 
 
 
-
 </div>
 
-
-
-
-
-
-
-
-
 <!-- BENEFÍCIOS -->
-
 
 
 <div class="benefits">
 
 
 
-
-
-
 <div class="benefit-item">
-
 
 
 <div class="benefit-icon">
@@ -432,13 +510,11 @@ ENVIAR FORMULÁRIO
 </div>
 
 
-
 <h3 class="benefit-title">
 
 Comunidade
 
 </h3>
-
 
 
 <p class="benefit-description">
@@ -448,7 +524,6 @@ Faça parte de uma equipe unida e ajude a construir uma grande comunidade.
 </p>
 
 
-
 </div>
 
 
@@ -456,10 +531,7 @@ Faça parte de uma equipe unida e ajude a construir uma grande comunidade.
 
 
 
-
-
 <div class="benefit-item">
-
 
 
 <div class="benefit-icon">
@@ -469,13 +541,11 @@ Faça parte de uma equipe unida e ajude a construir uma grande comunidade.
 </div>
 
 
-
 <h3 class="benefit-title">
 
 Evolução
 
 </h3>
-
 
 
 <p class="benefit-description">
@@ -485,10 +555,7 @@ Suba de cargo, adquira experiência e conquiste novas responsabilidades.
 </p>
 
 
-
 </div>
-
-
 
 
 
@@ -498,13 +565,11 @@ Suba de cargo, adquira experiência e conquiste novas responsabilidades.
 <div class="benefit-item">
 
 
-
 <div class="benefit-icon">
 
 ★
 
 </div>
-
 
 
 <h3 class="benefit-title">
@@ -514,7 +579,6 @@ Experiência
 </h3>
 
 
-
 <p class="benefit-description">
 
 Aprenda gerenciamento de comunidade e desenvolva novas habilidades.
@@ -522,18 +586,7 @@ Aprenda gerenciamento de comunidade e desenvolva novas habilidades.
 </p>
 
 
-
 </div>
-
-
-
-
-
-</div>
-
-
-
-
 
 
 
@@ -543,21 +596,13 @@ Aprenda gerenciamento de comunidade e desenvolva novas habilidades.
 
 
 
-<!-- MODAIS DOS CARGOS -->
-
-
-
-<div id="overlay" onclick="closeRole()"></div>
+</section>
 
 
 
 
-
-
-<!-- FOOTER -->
 
 <footer>
-
 
 
 <p class="footer-text">
@@ -573,18 +618,13 @@ criar uma experiência única para todos os jogadores.
 
 
 
-
 <div class="social-links">
 
 
-<a 
-href="#"
-class="social-link">
+<a href="#" class="social-link">
 
 
-<img 
-src="./assets/discord.png"
-alt="Discord">
+<img src="./assets/discord.png">
 
 
 </a>
@@ -592,15 +632,10 @@ alt="Discord">
 
 
 
-
-<a 
-href="#"
-class="social-link">
+<a href="#" class="social-link">
 
 
-<img 
-src="./assets/server.png"
-alt="Servidor">
+<img src="./assets/server.png">
 
 
 </a>
@@ -613,15 +648,12 @@ alt="Servidor">
 
 
 
-
 <p class="copyright">
 
 
 FuturyCraft © Todos os direitos reservados.
 
-
 <br>
-
 
 Feito com 
 
@@ -634,10 +666,7 @@ Feito com
 pela equipe FuturyCraft.
 
 
-
 </p>
-
-
 
 
 </footer>
@@ -646,11 +675,6 @@ pela equipe FuturyCraft.
 
 
 
-
-
-
-
-<!-- STATUS -->
 
 <div class="tf-status">
 
@@ -662,14 +686,13 @@ pela equipe FuturyCraft.
 
 
 
-
-
-<!-- JAVASCRIPT -->
-
 <script src="./script.js"></script>
 
 
 <script src="./cargos.js"></script>
+
+
+
 
 <script>
 
@@ -677,22 +700,84 @@ pela equipe FuturyCraft.
 function openRole(role){
 
 
-document.querySelectorAll('.role-info').forEach(box=>{
+const modal = document.getElementById(role);
 
-box.style.display="none";
-
-});
+const overlay = document.getElementById("overlay");
 
 
-document.getElementById(role).style.display="block";
+
+modal.style.display = "block";
+
+
+overlay.style.display = "block";
+
 
 
 }
 
 
-</script>  
 
-  
+
+function closeRole(){
+
+
+const modal = document.querySelector(".role-info");
+
+const overlay = document.getElementById("overlay");
+
+
+
+modal.style.display = "none";
+
+
+overlay.style.display = "none";
+
+
+
+}
+
+
+
+
+// fechar clicando fora
+
+
+document.getElementById("overlay").addEventListener("click", function(){
+
+
+closeRole();
+
+
+});
+
+
+
+
+// fechar com ESC
+
+
+document.addEventListener("keydown", function(event){
+
+
+if(event.key === "Escape"){
+
+
+closeRole();
+
+
+}
+
+
+});
+
+
+
+</script>
+
+
+
+
+
 </body>
 
 </html>
