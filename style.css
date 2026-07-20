@@ -1688,3 +1688,73 @@ footer {
 
 
 }
+
+.role-info {
+    display: none;
+    max-width: 700px;
+    margin: 40px auto;
+
+    background: rgba(15,15,15,0.95);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    border: 2px solid #ff9900;
+
+    color: white;
+
+    animation: aparecer .3s ease;
+}
+
+
+.role-info h2 {
+
+    color:#ff9900;
+    font-size:28px;
+
+}
+
+
+.role-info span {
+
+    color:#aaa;
+
+}
+
+
+.role-info h3 {
+
+    color:#ff9900;
+
+}
+
+
+.role-info li {
+
+    margin:10px 0;
+
+}
+
+
+
+@keyframes aparecer {
+
+from {
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
