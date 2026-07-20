@@ -25,28 +25,13 @@
 
     width:100%;
 
-    max-width:720px;
+    max-width:850px;
 
+    padding:35px;
 
-    background:#151515;
+    background:#171618;
 
-
-    padding:35px 45px;
-
-
-    border-radius:18px;
-
-
-    border:1px solid rgba(255,153,0,.18);
-
-
-    box-shadow:
-
-    0 15px 50px rgba(0,0,0,.45);
-
-
-    text-align:center;
-
+    border-radius:20px;
 
 }
 
