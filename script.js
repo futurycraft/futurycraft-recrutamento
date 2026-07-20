@@ -195,10 +195,22 @@ overlay.style.display="none";
 
 //1111
 
+// ==========================================
+// NAVEGAÇÃO ENTRE PÁGINAS
+// ==========================================
+
 function mostrarPagina2(){
 
-    document.getElementById("pagina1").style.display = "none";
+    const pagina1 = document.getElementById("pagina1");
+    const pagina2 = document.getElementById("pagina2");
 
-    document.getElementById("pagina2").style.display = "block";
+
+    if(pagina1 && pagina2){
+
+        pagina1.style.display = "none";
+
+        pagina2.style.display = "block";
+
+    }
 
 }
