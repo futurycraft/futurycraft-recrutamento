@@ -473,3 +473,89 @@ window.location.href="admin.html";
 carregarCandidato();
 
 carregarAvaliacoes();
+
+async function reagirAvaliacao(idAvaliacao, tipo){
+
+
+const usuario =
+await supabaseClient.auth.getUser();
+
+
+
+const email =
+usuario.data.user.email;
+
+
+
+// Verifica se já existe reação
+
+const {data: existente} =
+await supabaseClient
+.from("avaliacoes_reacoes")
+.select("*")
+.eq("avaliacao_id", idAvaliacao)
+.eq("usuario", email)
+.single();
+
+
+
+if(existente){
+
+
+    // Se clicou na mesma reação, remove
+
+    if(existente.reacao === tipo){
+
+
+        await supabaseClient
+        .from("avaliacoes_reacoes")
+        .delete()
+        .eq("id", existente.id);
+
+
+    }
+
+    // Se mudou de reação
+
+    else{
+
+
+        await supabaseClient
+        .from("avaliacoes_reacoes")
+        .update({
+
+            reacao: tipo
+
+        })
+        .eq("id", existente.id);
+
+
+    }
+
+
+}
+
+else{
+
+
+    await supabaseClient
+    .from("avaliacoes_reacoes")
+    .insert([{
+
+        avaliacao_id: idAvaliacao,
+
+        usuario: email,
+
+        reacao: tipo
+
+    }]);
+
+
+}
+
+
+
+carregarAvaliacoes();
+
+
+}
