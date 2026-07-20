@@ -421,17 +421,17 @@
 
 }
 
-/* SEGUNDA ETAPA DO RECRUTAMENTO */
+/* SEGUNDA PARTE DO RECRUTAMENTO */
 
-#introducao {
+.hidden-step {
 
-    display:none;
+    display:none !important;
 
 }
 
 
-#introducao.active {
+.hidden-step.active {
 
-    display:block;
+    display:block !important;
 
 }
