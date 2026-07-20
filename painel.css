@@ -347,12 +347,9 @@ body{
 
     display:none;
 
-
     position:absolute;
 
-
-    top:55px;
-
+    top:100%;
 
     left:0;
 
@@ -372,14 +369,45 @@ body{
     flex-direction:column;
 
 
-    width:180px;
+    width:200px;
 
 
-    z-index:5;
+    z-index:100;
+
+
+    margin-top:8px;
 
 
 }
 
+
+/* mantém o menu aberto */
+
+.menu-item:hover .submenu{
+
+
+    display:flex;
+
+
+}
+
+
+
+.menu-item::after{
+
+    content:"";
+
+    position:absolute;
+
+    height:10px;
+
+    width:100%;
+
+    bottom:-10px;
+
+    left:0;
+
+}
 
 
 .submenu button{
