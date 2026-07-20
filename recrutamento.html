@@ -348,11 +348,17 @@ PARTIR PARA O FORMULÁRIO
 
 function mostrarIntroducao(){
 
-document.querySelector(".recruit-card > *:not(#introducao)").forEach(el=>{
 
-el.style.display="none";
+const primeiraTela = document.querySelectorAll(".recruit-card > *:not(#introducao)");
+
+
+
+primeiraTela.forEach(elemento=>{
+
+elemento.style.display="none";
 
 });
+
 
 
 document.getElementById("introducao").classList.add("active");
