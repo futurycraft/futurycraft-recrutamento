@@ -180,7 +180,17 @@ ${candidato.status}
 
 }
 
+async function logout(){
 
+    await supabaseClient.auth.signOut();
+
+    // limpa qualquer sessão salva
+    localStorage.clear();
+    sessionStorage.clear();
+
+    window.location.replace("login.html");
+
+}
 
 
 async function alterarStatus(id,status){
@@ -200,20 +210,6 @@ carregarCandidatos();
 
 }
 
-
-
-
-async function logout(){
-
-    await supabaseClient.auth.signOut();
-
-    // limpa qualquer sessão salva
-    localStorage.clear();
-    sessionStorage.clear();
-
-    window.location.replace("login.html");
-
-}
 
 function verCandidato(id){
 
