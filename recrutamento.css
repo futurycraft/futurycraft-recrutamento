@@ -398,3 +398,25 @@
 
 
 }
+/* recrutamenteo css*/
+
+.recruit-step {
+
+    display:none;
+
+}
+
+
+.recruit-step.active {
+
+    display:block;
+
+}
+
+
+
+.recruit-button {
+
+    cursor:pointer;
+
+}
