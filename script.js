@@ -140,30 +140,27 @@ if(formulario){
 
 //novo botao index
 
-<script>
-
 function openRole(role){
 
-console.log("Abrindo cargo:", role);
+    console.log("Abrindo cargo:", role);
 
 
-let modal = document.getElementById(role);
-let overlay = document.getElementById("overlay");
+    let modal = document.getElementById(role);
+    let overlay = document.getElementById("overlay");
 
 
-if(!modal){
+    if(!modal){
 
-console.log("Modal não encontrado");
+        console.log("Modal não encontrado");
 
-return;
+        return;
 
-}
+    }
 
 
-modal.classList.add("active");
+    modal.classList.add("active");
 
-overlay.style.display = "block";
-
+    overlay.style.display = "block";
 
 }
 
@@ -172,26 +169,23 @@ overlay.style.display = "block";
 function closeRole(){
 
 
-let modais = document.querySelectorAll(".role-info");
+    let modais = document.querySelectorAll(".role-info");
 
 
-modais.forEach(function(modal){
+    modais.forEach(function(modal){
 
-modal.classList.remove("active");
+        modal.classList.remove("active");
 
-});
-
-
-let overlay = document.getElementById("overlay");
+    });
 
 
-overlay.style.display="none";
+    let overlay = document.getElementById("overlay");
+
+
+    overlay.style.display="none";
 
 
 }
-
-
-</script>
 
 //1111
 
@@ -214,13 +208,6 @@ function mostrarPagina2(){
     }
 
 }
-
-
-
-
-
-
-
 
 
 /*teste anuncio*/
