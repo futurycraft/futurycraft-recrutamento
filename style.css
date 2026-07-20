@@ -1,108 +1,368 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
 @font-face {
-    font-family: Montserrat;
-    src: url('./fonts/Montserrat-Medium.ttf');
-    font-weight:500;
+
+font-family: Montserrat;
+
+src:url('./fonts/Montserrat-Medium.ttf');
+
+font-weight:500;
+
 }
 
-@font-face {
-    font-family: Montserrat;
-    src: url('./fonts/Montserrat-Bold.ttf');
-    font-weight:700;
-}
 
 @font-face {
-    font-family: Montserrat;
-    src: url('./fonts/Montserrat-ExtraBold.ttf');
-    font-weight:800;
+
+font-family: Montserrat;
+
+src:url('./fonts/Montserrat-Bold.ttf');
+
+font-weight:700;
+
 }
+
+
+@font-face {
+
+font-family: Montserrat;
+
+src:url('./fonts/Montserrat-ExtraBold.ttf');
+
+font-weight:800;
+
+}
+
 
 
 :root{
 
-    --background:#070b18;
-    --card:#10182c;
-    --card-hover:#15213d;
+--background:#070b18;
 
-    --primary:#00d9ff;
-    --secondary:#8b5cff;
+--card:#10182c;
 
-    --gold:#ffcc55;
+--card-hover:#15213d;
 
-    --white:#ffffff;
-    --gray:#9ca3af;
+--primary:#00d9ff;
 
-    --border:rgba(255,255,255,.08);
+--secondary:#8b5cff;
+
+--white:#fff;
+
+--gray:#9ca3af;
+
+--border:rgba(255,255,255,.08);
 
 }
 
 
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Montserrat,sans-serif;
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:Montserrat,sans-serif;
+
 }
+
 
 
 body{
 
-    min-height:100vh;
+min-height:100vh;
 
-    background:
-    linear-gradient(
-    rgba(7,11,24,.85),
-    rgba(7,11,24,.95)
-    ),
-    url('./assets/background.jpg');
+background:
 
-    background-size:cover;
-    background-position:center;
+linear-gradient(
+rgba(7,11,24,.85),
+rgba(7,11,24,.95)
+),
 
-    color:white;
+url('./assets/background.jpg');
+
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
+color:white;
 
 }
+
+
+
+
+.container{
+
+width:90%;
+
+max-width:1100px;
+
+margin:auto;
+
+}
+
+
+
+/* LOGO */
+
+
+.logo{
+
+text-align:center;
+
+padding:40px 0;
+
+}
+
+
+.logo img{
+
+width:180px;
+
+filter:drop-shadow(0 0 20px var(--primary));
+
+}
+
+
+
+
+/* HEADER */
+
+
+.header{
+
+text-align:center;
+
+padding:30px;
+
+}
+
+
+.header h1{
+
+font-size:42px;
+
+font-weight:800;
+
+}
+
+
+.header span{
+
+color:var(--primary);
+
+}
+
+
+
+.header p{
+
+margin-top:15px;
+
+color:var(--gray);
+
+}
+
+
+
+
+/* CARD */
+
+
+.card{
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,255,255,.06),
+rgba(255,255,255,.01)
+);
+
+
+border:1px solid var(--border);
+
+border-radius:15px;
+
+padding:40px;
+
+backdrop-filter:blur(15px);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.5);
+
+}
+
+
+
+
+.banner{
+
+width:100%;
+
+max-height:350px;
+
+object-fit:contain;
+
+margin-bottom:30px;
+
+}
+
+
+
+
+.title{
+
+font-size:28px;
+
+font-weight:800;
+
+}
+
+
+
+.subtitle{
+
+color:var(--gray);
+
+margin-top:10px;
+
+}
+
+
+
+
+/* STAFF */
+
+
+.staff-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+
+gap:20px;
+
+margin-top:40px;
+
+}
+
+
+
+.staff-card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+padding:25px;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+
+
+.staff-card:hover{
+
+transform:translateY(-8px);
+
+background:var(--card-hover);
+
+border-color:var(--primary);
+
+}
+
+
+
+
+.staff-card img{
+
+width:90px;
+
+height:90px;
+
+object-fit:contain;
+
+margin-bottom:15px;
+
+}
+
+
+
+
+
+.staff-card p{
+
+color:var(--gray);
+
+font-size:13px;
+
+}
+
+
+
+
+/* FORMULARIO */
+
+
+.form-box{
+
+margin-top:40px;
+
+background:#0c1325;
+
+padding:30px;
+
+border-radius:12px;
+
+border:1px solid var(--border);
+
+}
+
+
 
 .vacancy{
 
 display:inline-block;
 
-margin:20px 0;
-
 padding:10px 18px;
+
+margin:20px 0;
 
 background:
 rgba(0,217,255,.15);
 
-
 border:1px solid var(--primary);
-
 
 border-radius:6px;
 
-
 color:var(--primary);
-
 
 font-weight:700;
 
-
-font-size:14px;
-
-
 }
+
+
 
 
 .form-box ul{
 
 list-style:none;
 
-margin-top:25px;
+margin-top:20px;
 
 }
+
 
 
 .form-box li{
@@ -115,301 +375,18 @@ color:#cbd5e1;
 
 
 
-/* =====================
-   CONTAINER
-===================== */
-
-
-.container{
-
-    width:90%;
-    max-width:1100px;
-
-    margin:auto;
-
-}
-
-
-/* =====================
-   LOGO
-===================== */
-
-
-.logo{
-
-    text-align:center;
-
-    padding-top:40px;
-
-}
-
-
-.logo img{
-
-    width:180px;
-
-    filter:
-    drop-shadow(0 0 20px #00d9ff);
-
-}
-
-
-
-/* =====================
-   HEADER
-===================== */
-
-
-.header{
-
-    text-align:center;
-
-    padding:40px 20px;
-
-}
-
-
-.header h1{
-
-    font-size:42px;
-
-    font-weight:800;
-
-}
-
-
-.header span{
-
-    color:var(--primary);
-
-}
-
-
-
-.header p{
-
-    color:var(--gray);
-
-    margin-top:15px;
-
-    font-size:16px;
-
-}
-
-
-
-/* =====================
-   CARD PRINCIPAL
-===================== */
-
-
-.card{
-
-
-background:
-linear-gradient(
-145deg,
-rgba(255,255,255,.05),
-rgba(255,255,255,.01)
-);
-
-
-border:1px solid var(--border);
-
-
-border-radius:12px;
-
-
-padding:40px;
-
-
-backdrop-filter:blur(15px);
-
-
-box-shadow:
-0 20px 60px rgba(0,0,0,.4);
-
-
-
-}
-
-
-
-
-/* =====================
-   IMAGEM PRINCIPAL
-===================== */
-
-
-.banner{
-
-
-width:100%;
-
-max-height:350px;
-
-object-fit:cover;
-
-border-radius:10px;
-
-
-margin-bottom:30px;
-
-
-}
-
-
-
-
-/* =====================
-   TITULOS
-===================== */
-
-
-.title{
-
-
-font-size:28px;
-
-font-weight:800;
-
-margin-bottom:10px;
-
-
-}
-
-
-.subtitle{
-
-color:var(--gray);
-
-}
-
-
-
-/* =====================
-   CARGOS STAFF
-===================== */
-
-
-.staff-grid{
-
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(180px,1fr));
-
-
-gap:20px;
-
-margin-top:40px;
-
-
-}
-
-
-
-.staff-card{
-
-
-background:var(--card);
-
-
-border:1px solid var(--border);
-
-
-border-radius:10px;
-
-
-padding:25px;
-
-
-text-align:center;
-
-
-transition:.3s;
-
-
-
-}
-
-
-
-.staff-card:hover{
-
-
-transform:translateY(-8px);
-
-
-background:var(--card-hover);
-
-
-border-color:var(--primary);
-
-
-}
-
-
-
-
-.staff-card img{
-
-
-width:90px;
-
-height:90px;
-
-object-fit:contain;
-
-
-margin-bottom:15px;
-
-
-}
-
-
-
-
-
-.staff-card h3{
-
-
-font-size:18px;
-
-
-}
-
-
-
-.staff-card p{
-
-
-font-size:13px;
-
-color:var(--gray);
-
-
-}
-
-
-
-
-/* =====================
-   BOTÃO
-===================== */
-
-
 .button{
-
 
 display:block;
 
+margin-top:30px;
 
-margin-top:35px;
+padding:15px;
 
+text-align:center;
 
 background:
+
 linear-gradient(
 90deg,
 var(--primary),
@@ -417,40 +394,24 @@ var(--secondary)
 );
 
 
-color:white;
-
-
-text-decoration:none;
-
-
-text-align:center;
-
-
-padding:15px;
-
-
 border-radius:8px;
 
+color:white;
 
 font-weight:700;
 
+text-decoration:none;
 
 transition:.3s;
 
-
 }
-
 
 
 .button:hover{
 
-
 transform:scale(1.03);
 
-
-box-shadow:
-0 0 25px var(--primary);
-
+box-shadow:0 0 25px var(--primary);
 
 }
 
@@ -458,61 +419,36 @@ box-shadow:
 
 
 
-/* =====================
-   FORMULARIO
-===================== */
-
-
-.form-box{
-
-
-margin-top:40px;
-
-
-background:#0c1325;
-
-
-padding:30px;
-
-
-border-radius:10px;
-
-
-border:1px solid var(--border);
-
-
-}
-
+/* INPUTS */
 
 
 input,
 textarea,
 select{
 
-
 width:100%;
-
 
 padding:14px;
 
-
 margin-top:10px;
-
 
 background:#080e1c;
 
-
 border:1px solid var(--border);
 
-
-border-radius:6px;
-
+border-radius:8px;
 
 color:white;
 
+}
 
-outline:none;
 
+
+textarea{
+
+min-height:120px;
+
+resize:vertical;
 
 }
 
@@ -521,48 +457,49 @@ outline:none;
 input:focus,
 textarea:focus{
 
+outline:none;
 
 border-color:var(--primary);
 
-
 }
 
 
 
 
 
-/* =====================
-   FOOTER
-===================== */
+/* BENEFICIOS */
 
 
-footer{
+.benefits{
 
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:20px;
+
+margin-top:40px;
+
+}
+
+
+
+.benefit-item{
+
+background:var(--card);
+
+padding:25px;
+
+border-radius:12px;
 
 text-align:center;
 
-
-padding:40px;
-
-
-color:var(--gray);
-
-
-font-size:13px;
-
-
 }
 
 
 
 
-
-/* =====================
- MOBILE
-===================== */
-
-
-@media(max-width:700px){
+@media(max-width:800px){
 
 
 .header h1{
@@ -579,383 +516,164 @@ padding:20px;
 }
 
 
+
+.benefits{
+
+grid-template-columns:1fr;
+
+}
+
+
 .logo img{
 
 width:130px;
 
 }
 
-
-}
-</body>
-
-</html>
-
-input{
-    width:300px;
-    padding:12px;
-    border-radius:8px;
-    border:none;
-    margin-bottom:10px;
-}
-
-form{
-    margin-top:30px;
-}
-textarea{
-    width:300px;
-    height:120px;
-    padding:12px;
-    border-radius:8px;
-    border:none;
-    resize:vertical;
-    margin-bottom:15px;
-}
-
-button{
-    border:none;
-    cursor:pointer;
-}
-
-
-#dashboard{
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
-.status-card{
-    background: #1e1e1e;
-    padding: 12px 20px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
-}
-
-
-/* =====================================
-   FUTURYCRAFT - PAINEL STAFF
-===================================== */
-
-
-body {
-
-    background: #080b14;
-
-    color: #ffffff;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    margin: 0;
-
-    padding: 30px;
-
-}
-
-
-/* CONTAINER PRINCIPAL */
-
-.painel {
-
-    max-width: 1000px;
-
-    margin: auto;
-
-}
-
-
-
-/* CABEÇALHO */
-
-.topo {
-
-    background: linear-gradient(
-        135deg,
-        #111827,
-        #172554
-    );
-
-    padding: 25px;
-
-    border-radius: 15px;
-
-    text-align: center;
-
-    margin-bottom: 25px;
-
-    border: 1px solid #2563eb;
-
-}
-
-
-.topo h1 {
-
-    color: #00d9ff;
-
-    font-size: 38px;
-
-    margin: 0;
-
-}
-
-
-.topo h2 {
-
-    color: #ffffff;
-
-    font-weight: normal;
-
 }
 
 
 
 
 
-/* CARDS */
+/* =====================
+ PAINEL STAFF
+===================== */
+
+
+.painel{
+
+max-width:1000px;
+
+margin:auto;
+
+}
+
+
+
+.topo{
+
+background:
+linear-gradient(
+135deg,
+#111827,
+#172554
+);
+
+
+padding:25px;
+
+border-radius:15px;
+
+text-align:center;
+
+border:1px solid #2563eb;
+
+margin-bottom:25px;
+
+}
+
+
+
+.topo h1{
+
+color:var(--primary);
+
+}
+
+
+
+
 
 .area-candidato,
 .area-avaliacoes,
-.nova-avaliacao {
+.nova-avaliacao{
 
 
-    background: #111827;
+background:#111827;
 
+padding:25px;
 
-    padding: 25px;
+border-radius:15px;
 
+margin-bottom:25px;
 
-    border-radius: 15px;
-
-
-    margin-bottom: 25px;
-
-
-    border: 1px solid #1e40af;
-
+border:1px solid #1e40af;
 
 }
 
 
 
-h3 {
-
-    color: #00d9ff;
-
-    border-bottom: 1px solid #1e40af;
-
-    padding-bottom: 10px;
-
-}
+.card-candidato{
 
 
+background:#0f172a;
 
+padding:20px;
 
+border-radius:12px;
 
-/* CARD DO CANDIDATO */
-
-.card-candidato {
-
-
-    background: #0f172a;
-
-
-    padding: 20px;
-
-
-    border-radius: 12px;
-
-
-    margin-top: 15px;
-
+margin-top:15px;
 
 }
 
 
 
-.card-candidato p {
+.card-candidato b{
 
-
-    line-height: 1.6;
-
+color:#38bdf8;
 
 }
 
 
 
-.card-candidato b {
+button{
 
 
-    color: #38bdf8;
+background:#2563eb;
 
+color:white;
 
-}
+border:none;
 
+padding:12px 25px;
 
+border-radius:10px;
 
+cursor:pointer;
 
-/* AVALIAÇÕES */
-
-
-#avaliacoes .card-candidato {
-
-
-    border-left: 4px solid #00d9ff;
-
+transition:.3s;
 
 }
 
 
 
-/* TEXTAREA */
+button:hover{
 
+background:var(--primary);
 
-textarea {
-
-
-    width: 100%;
-
-
-    min-height: 120px;
-
-
-    background: #020617;
-
-
-    color: white;
-
-
-    border: 1px solid #2563eb;
-
-
-    border-radius: 10px;
-
-
-    padding: 15px;
-
-
-    font-size: 15px;
-
-
-    resize: vertical;
-
+color:#020617;
 
 }
 
 
 
-textarea:focus {
+.status-pendente{
 
-
-    outline: none;
-
-
-    border-color: #00d9ff;
-
+color:#facc15;
 
 }
 
 
+.status-aprovado{
 
-
-
-/* BOTÕES */
-
-
-button {
-
-
-    background: #2563eb;
-
-
-    color: white;
-
-
-    border: none;
-
-
-    padding: 12px 25px;
-
-
-    border-radius: 10px;
-
-
-    cursor: pointer;
-
-
-    font-size: 15px;
-
-
-    transition: .3s;
-
+color:#22c55e;
 
 }
 
 
+.status-recusado{
 
-button:hover {
-
-
-    background: #00d9ff;
-
-
-    color: #020617;
-
+color:#ef4444;
 
 }
-
-
-
-
-
-.botao-voltar {
-
-
-    background: #374151;
-
-
-}
-
-
-
-.botao-voltar:hover {
-
-
-    background: #6b7280;
-
-
-}
-
-
-
-
-
-/* STATUS */
-
-
-.status-pendente {
-
-
-    color: #facc15;
-
-}
-
-
-.status-aprovado {
-
-
-    color: #22c55e;
-
-}
-
-
-.status-recusado {
-
-
-    color: #ef4444;
-
-}
-
