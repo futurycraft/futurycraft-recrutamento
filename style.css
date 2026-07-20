@@ -1689,35 +1689,53 @@ footer {
 
 }
 
-.role-info {
+/* FUNDO ESCURO ATRÁS DO MODAL */
 
+#overlay {
 
 display:none;
 
-
 position:fixed;
 
+inset:0;
+
+background:rgba(0,0,0,.75);
+
+backdrop-filter:blur(5px);
+
+z-index:9998;
+
+}
+
+
+
+/* MODAL DO CARGO */
+
+.role-info {
+
+display:none;
+
+position:fixed;
 
 top:50%;
 
 left:50%;
 
-
-transform:translate(-50%, -50%);
-
+transform:translate(-50%, -50%) scale(.8);
 
 
 width:600px;
+
+max-width:90%;
 
 
 background:
 
 linear-gradient(
 145deg,
-#111,
-#050505
+#181818,
+#080808
 );
-
 
 
 padding:40px;
@@ -1729,13 +1747,10 @@ border-radius:25px;
 border:2px solid #ff9900;
 
 
-
 color:white;
 
 
-
 z-index:9999;
-
 
 
 box-shadow:
@@ -1744,11 +1759,33 @@ box-shadow:
 
 
 
-animation:modalShow .3s ease;
+opacity:0;
+
+
+transition:.3s;
 
 
 
 }
+
+
+
+/* QUANDO ABRIR */
+
+.role-info.active {
+
+
+display:block;
+
+
+opacity:1;
+
+
+transform:translate(-50%, -50%) scale(1);
+
+
+}
+
 
 
 .role-info h2 {
@@ -1807,6 +1844,8 @@ margin:10px 0;
 
 }
 
+
+
 .close-modal {
 
 
@@ -1818,22 +1857,18 @@ top:15px;
 right:20px;
 
 
-
 width:35px;
 
 height:35px;
 
 
-
 border-radius:50%;
-
 
 
 background:#ff9900;
 
 
 border:none;
-
 
 
 color:white;
@@ -1845,9 +1880,7 @@ font-size:25px;
 font-weight:bold;
 
 
-
 cursor:pointer;
-
 
 
 transition:.3s;
