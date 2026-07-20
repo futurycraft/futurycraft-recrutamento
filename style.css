@@ -1766,137 +1766,126 @@ display:block;
 
 }
 
+/* ÁREA DOS CARGOS */
+
 .staff-buttons {
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-gap:35px;
+    align-items:flex-start;
 
-margin:40px 0;
+    gap:35px;
 
-flex-wrap:wrap;
+    margin:40px 0;
+
+    flex-wrap:wrap;
 
 }
 
 
-/* BOTÃO REDONDO SOMENTE COM IMAGEM */
+
+/* BOTÃO REDONDO */
 
 .staff-button {
 
+    width:90px;
 
-width:90px;
+    height:90px;
 
-height:90px;
+    border-radius:50%;
 
+    background:
 
-border-radius:50%;
-
-
-background:
-
-linear-gradient(
-145deg,
-#202020,
-#0b0b0b
-);
+    linear-gradient(
+    145deg,
+    #202020,
+    #0b0b0b
+    );
 
 
-border:2px solid rgba(255,153,0,.4);
+    border:2px solid rgba(255,153,0,.5);
 
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-
-cursor:pointer;
-
-
-transition:.3s;
+    flex-direction:column;
 
 
-padding:0;
+    cursor:pointer;
 
+    transition:.3s;
+
+
+    padding:0;
+
+
+    position:relative;
 
 }
 
 
-/* IMAGEM DO CARGO */
+
+/* IMAGEM */
 
 .staff-button img {
 
+    width:55px;
 
-width:55px;
+    height:55px;
 
-height:55px;
-
-
-object-fit:contain;
-
+    object-fit:contain;
 
 }
 
 
 
-
-/* HOVER */
-
-.staff-button:hover {
-
-
-transform:translateY(-8px) scale(1.08);
-
-
-border-color:#ff9900;
-
-
-box-shadow:
-
-0 0 30px rgba(255,153,0,.6);
-
-
-}
-
-
-
-
-/* NOME DO CARGO */
+/* TEXTO EMBAIXO */
 
 .staff-button span {
 
 
-position:absolute;
+    position:absolute;
 
 
-margin-top:135px;
+    top:105px;
 
 
-font-size:14px;
+    white-space:nowrap;
 
 
-font-weight:700;
+    font-size:14px;
 
 
-color:white;
+    font-weight:700;
 
 
-pointer-events:none;
+    color:white;
 
 
 }
 
-.staff-role {
 
-display:flex;
 
-flex-direction:column;
+/* EFEITO AO PASSAR MOUSE */
 
-align-items:center;
+.staff-button:hover {
 
-gap:15px;
+
+    transform:translateY(-8px);
+
+
+    border-color:#ff9900;
+
+
+    box-shadow:
+
+    0 0 25px rgba(255,153,0,.5);
+
 
 }
