@@ -205,9 +205,6 @@ status:status
 
 
 
-carregarCandidatos();
-
-
 }
 
 
@@ -217,3 +214,7 @@ window.location.href =
 "candidato.html?id="+id;
 
 }
+
+// INICIAR PAINEL
+
+carregarCandidatos();
