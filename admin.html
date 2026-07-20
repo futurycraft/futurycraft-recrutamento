@@ -17,11 +17,17 @@
 <body>
 
 
-<div class="painel">
+<div class="painel-admin">
 
 
 
-<header class="topo">
+<!-- TOPO -->
+
+
+<header class="admin-header">
+
+
+<div>
 
 
 <h1>
@@ -29,13 +35,16 @@ FuturyCraft
 </h1>
 
 
-<h2>
-Painel de Candidaturas Staff
-</h2>
+<p>
+Painel Administrativo de Candidaturas
+</p>
+
+
+</div>
 
 
 
-<button class="sair" onclick="logout()">
+<button class="logout-btn" onclick="logout()">
 
 Sair
 
@@ -50,23 +59,28 @@ Sair
 
 
 
-<!-- DASHBOARD -->
+
+<!-- ESTATÍSTICAS -->
 
 
-<section id="dashboard">
+<section class="dashboard">
 
 
+<div class="stat-card pendente">
 
-<div class="status-card pendente">
 
-
-<h3>
+<div class="stat-title">
 Pendentes
-</h3>
+</div>
 
 
-<span id="pendentes">
+<strong id="pendentes">
 0
+</strong>
+
+
+<span>
+Aguardando análise
 </span>
 
 
@@ -76,16 +90,21 @@ Pendentes
 
 
 
-<div class="status-card aprovado">
+<div class="stat-card aprovado">
 
 
-<h3>
+<div class="stat-title">
 Aprovados
-</h3>
+</div>
 
 
-<span id="aprovados">
+<strong id="aprovados">
 0
+</strong>
+
+
+<span>
+Membros aceitos
 </span>
 
 
@@ -95,16 +114,21 @@ Aprovados
 
 
 
-<div class="status-card recusado">
+<div class="stat-card recusado">
 
 
-<h3>
+<div class="stat-title">
 Recusados
-</h3>
+</div>
 
 
-<span id="recusados">
+<strong id="recusados">
 0
+</strong>
+
+
+<span>
+Candidaturas encerradas
 </span>
 
 
@@ -125,51 +149,46 @@ Recusados
 <!-- FILTROS -->
 
 
-<section class="filtros">
+<section class="controle">
 
 
-<h3>
-Filtrar candidaturas
-</h3>
+<h2>
+Candidaturas
+</h2>
+
+
+<p>
+Gerencie e avalie novos membros da equipe.
+</p>
 
 
 
-<div class="botoes-filtro">
+
+<div class="filtros">
 
 
 <button onclick="filtrar('Todos')">
-
-Todos
-
+Todas
 </button>
-
 
 
 <button onclick="filtrar('Pendente')">
-
 Pendentes
-
 </button>
-
 
 
 <button onclick="filtrar('Aprovado')">
-
 Aprovados
-
 </button>
-
 
 
 <button onclick="filtrar('Recusado')">
-
 Recusados
-
 </button>
 
 
-
 </div>
+
 
 
 </section>
@@ -185,19 +204,13 @@ Recusados
 <!-- LISTA -->
 
 
-<section class="lista-area">
-
-
-<h2>
-Candidatos
-</h2>
-
+<section class="candidatos-container">
 
 
 <div id="lista-candidatos">
 
 
-<div class="carregando">
+<div class="loading">
 
 Carregando candidatos...
 
@@ -214,8 +227,8 @@ Carregando candidatos...
 
 
 
-</div>
 
+</div>
 
 
 
@@ -227,7 +240,6 @@ Carregando candidatos...
 <script src="auth.js"></script>
 
 <script src="admin.js"></script>
-
 
 
 </body>
