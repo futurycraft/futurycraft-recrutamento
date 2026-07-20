@@ -344,7 +344,25 @@ PARTIR PARA O FORMULÁRIO
 
 <script src="./script.js"></script>
 
+<script>
 
+function mostrarIntroducao(){
+
+document.querySelector(".recruit-card > *:not(#introducao)").forEach(el=>{
+
+el.style.display="none";
+
+});
+
+
+document.getElementById("introducao").classList.add("active");
+
+
+}
+
+
+</script>
+  
 </body>
 
 </html>
