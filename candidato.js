@@ -522,18 +522,6 @@ carregarAvaliacoes();
 
 }
 
-async function logout(){
-
-    await supabaseClient.auth.signOut();
-
-    // limpa qualquer sessão salva
-    localStorage.clear();
-    sessionStorage.clear();
-
-    window.location.replace("login.html");
-
-}
-
 
 function voltar(){
 
