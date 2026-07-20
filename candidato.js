@@ -321,7 +321,10 @@ ${avaliacao.observacao}
 <div class="reacoes">
 
 
-<button class="like" onclick="reagirAvaliacao(${avaliacao.id},'like')">
+<button 
+class="like"
+id="like-${avaliacao.id}"
+onclick="reagirAvaliacao(${avaliacao.id},'like')">
 
 👍 ${likes}
 
@@ -329,7 +332,10 @@ ${avaliacao.observacao}
 
 
 
-<button class="dislike" onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
+<button 
+class="dislike"
+id="dislike-${avaliacao.id}"
+onclick="reagirAvaliacao(${avaliacao.id},'dislike')">
 
 👎 ${dislikes}
 
@@ -337,15 +343,17 @@ ${avaliacao.observacao}
 
 
 
-<button class="delete" onclick="excluirAvaliacao(${avaliacao.id})">
+<button 
+class="delete"
+onclick="excluirAvaliacao(${avaliacao.id})">
 
 🗑
 
 </button>
 
 
-
 </div>
+
 
 
 </div>
