@@ -159,7 +159,19 @@ return;
 const area =
 document.querySelector("#avaliacoes");
 
+const {data: reacoes} = await supabaseClient
+.from("avaliacoes_reacoes")
+.select("*")
+.eq("avaliacao_id", avaliacao.id);
 
+
+
+const likes =
+reacoes.filter(r => r.reacao === "like").length;
+
+
+const dislikes =
+reacoes.filter(r => r.reacao === "dislike").length;
 
 area.innerHTML = "";
 
