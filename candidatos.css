@@ -1,11 +1,38 @@
 /* ==========================================
-   FUTURYCRAFT - FORMULÁRIO DE CANDIDATURA
+   FUTURYCRAFT - CANDIDATURA STAFF
 ========================================== */
+
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top,#172033,#050505 70%);
+
+    color:white;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
 
 
 /* CONTAINER PRINCIPAL */
 
+
 .recruit-container{
+
 
     min-height:100vh;
 
@@ -17,13 +44,16 @@
 
     padding:40px 20px;
 
+
 }
 
 
 
-/* CARD DA CANDIDATURA */
+/* CARD */
+
 
 .recruit-card{
+
 
     width:100%;
 
@@ -39,22 +69,26 @@
 
     box-shadow:
 
-    0 0 30px rgba(0,234,255,.10);
+    0 0 30px rgba(0,234,255,.15);
+
 
 }
 
 
 
-/* TITULO */
+
+
+/* TITULOS */
 
 
 .recruit-card h1{
 
+
     text-align:center;
 
-    font-size:38px;
+    font-size:42px;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
     color:#00eaff;
 
@@ -62,118 +96,259 @@
 
     0 0 15px #00eaff;
 
-    margin-bottom:10px;
 
 }
 
 
 
-.recruit-card > p{
+.recruit-card h2{
+
 
     text-align:center;
 
-    color:#aaa;
+    margin-top:10px;
 
-    margin-bottom:35px;
+    margin-bottom:15px;
+
+    color:white;
+
 
 }
 
 
 
-/* GRUPOS */
+.recruit-card p{
+
+
+    color:#aaa;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+/* CAMPOS */
+
 
 .form-group{
 
-    margin-bottom:22px;
+
+    margin-bottom:25px;
+
 
 }
 
 
 
-/* LABEL */
-
 .form-group label{
+
 
     display:block;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
 
     color:#00eaff;
 
     font-weight:bold;
 
-}
-
-
-
-/* INPUTS */
-
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-
-
-    width:100%;
-
-    padding:14px 16px;
-
-    background:#0b101a;
-
-    color:white;
-
-    border:1px solid #27344d;
-
-    border-radius:12px;
-
-    outline:none;
-
-    font-size:15px;
-
-    transition:.25s;
 
 }
 
 
 
 
-.form-group textarea{
 
-    min-height:130px;
-
-    resize:vertical;
-
-}
-
-
-
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-
-
-    border-color:#00eaff;
-
-    box-shadow:
-
-    0 0 15px rgba(0,234,255,.25);
-
-}
-
-
-
-/* BOTÃO ENVIAR */
-
-
-.recruit-card button{
+input,
+textarea,
+select{
 
 
     width:100%;
 
     padding:15px;
 
+    background:#080d16;
+
+    border:1px solid #27344d;
+
+    border-radius:12px;
+
+    color:white;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+
+}
+
+
+
+textarea{
+
+
+    min-height:130px;
+
+    resize:none;
+
+
+}
+
+
+
+input:focus,
+textarea:focus,
+select:focus{
+
+
+    border-color:#00eaff;
+
+    box-shadow:
+
+    0 0 15px rgba(0,234,255,.3);
+
+
+}
+
+
+
+
+
+/* BARRA DE IDADE */
+
+
+#idade{
+
+
+    width:100%;
+
+    height:8px;
+
+    cursor:pointer;
+
+    accent-color:#00eaff;
+
+
+}
+
+
+
+.idade-valor{
+
+
+    text-align:center;
+
     margin-top:15px;
+
+    color:#aaa;
+
+
+}
+
+
+
+.idade-valor strong{
+
+
+    color:#00eaff;
+
+    font-size:25px;
+
+
+}
+
+
+
+
+
+/* SEXO */
+
+
+.sexo-container{
+
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.sexo-btn{
+
+
+    flex:1;
+
+    padding:15px;
+
+    background:#080d16;
+
+    border:1px solid #27344d;
+
+    border-radius:12px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+
+}
+
+
+
+.sexo-btn:hover{
+
+
+    border-color:#00eaff;
+
+
+}
+
+
+
+.sexo-btn.selecionado{
+
+
+    background:#00eaff;
+
+    color:#000;
+
+    border-color:#00eaff;
+
+    box-shadow:
+
+    0 0 15px #00eaff;
+
+
+}
+
+
+
+
+
+/* BOTÕES */
+
+
+.recruit-button,
+.botao{
+
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:16px;
 
     border:none;
 
@@ -183,20 +358,22 @@
 
     color:#000;
 
-    font-size:16px;
-
     font-weight:bold;
+
+    font-size:16px;
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:.3s;
 
 
 }
 
 
 
-.recruit-card button:hover{
+
+.recruit-button:hover,
+.botao:hover{
 
 
     transform:translateY(-3px);
@@ -211,72 +388,20 @@
 
 
 
-/* MENSAGENS */
+
+/* SEGUNDA PÁGINA */
 
 
-.sucesso{
-
-    background:#003d22;
-
-    color:#00ff88;
-
-    padding:15px;
-
-    border-radius:12px;
-
-    margin-top:20px;
-
-    text-align:center;
-
-}
+#pagina2 h2{
 
 
+    color:#00eaff;
 
-.erro{
-
-    background:#450000;
-
-    color:#ff4d4d;
-
-    padding:15px;
-
-    border-radius:12px;
-
-    margin-top:20px;
-
-    text-align:center;
-
-}
-
-
-
-/* DIVISÕES */
-
-.form-section{
-
-
-    margin-top:30px;
-
-    padding-top:25px;
-
-    border-top:1px solid #24314a;
+    margin-bottom:25px;
 
 
 }
 
-
-
-.form-section h2{
-
-
-    color:#fff;
-
-    font-size:22px;
-
-    margin-bottom:20px;
-
-
-}
 
 
 
@@ -286,21 +411,33 @@
 @media(max-width:700px){
 
 
-    .recruit-card{
+.recruit-card{
 
 
-        padding:25px;
-
-    }
+    padding:25px;
 
 
+}
 
-    .recruit-card h1{
 
 
-        font-size:28px;
+.recruit-card h1{
 
-    }
+
+    font-size:32px;
+
+
+}
+
+
+
+.sexo-container{
+
+
+    flex-direction:column;
+
+
+}
 
 
 
