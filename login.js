@@ -1,25 +1,12 @@
-const SUPABASE_URL = "https://jssscxlnzytmwzbabvhu.supabase.co";
-
-
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzc3NjeGxuenl0bXd6YmFidmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NzE2NzcsImV4cCI6MjEwMDA0NzY3N30.Ku_HJdFQYyEmLmjkynye90l0bpM0MbbFVJPZDMCEOXQ";
-
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
+const supabaseClient = window.supabaseClient;
 
 
 const formulario = document.querySelector("#login-form");
 
 
-
 formulario.addEventListener("submit", async (e)=>{
 
-
     e.preventDefault();
-
 
 
     const email = document.querySelector("#email").value;
@@ -40,7 +27,6 @@ formulario.addEventListener("submit", async (e)=>{
 
     if(error){
 
-
         alert("Email ou senha incorretos!");
 
         console.error(error);
@@ -51,19 +37,22 @@ formulario.addEventListener("submit", async (e)=>{
 
 
 
-const cargo = await pegarCargo();
+    const cargo = await pegarCargo();
 
-if(!cargo){
 
-alert("Sua conta ainda não possui cargo");
 
-await supabaseClient.auth.signOut();
+    if(!cargo){
 
-return;
+        alert("Sua conta ainda não possui cargo");
 
-}
+        await supabaseClient.auth.signOut();
 
-    
+        return;
+
+    }
+
+
+
     /*
     =====================================
     ATUALIZAR USUARIO STAFF
@@ -105,7 +94,6 @@ return;
 
 
     window.location.href = "admin.html";
-
 
 
 });
