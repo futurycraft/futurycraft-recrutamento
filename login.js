@@ -51,6 +51,19 @@ formulario.addEventListener("submit", async (e)=>{
 
 
 
+const cargo = await pegarCargo();
+
+if(!cargo){
+
+alert("Sua conta ainda não possui cargo");
+
+await supabaseClient.auth.signOut();
+
+return;
+
+}
+
+    
     /*
     =====================================
     ATUALIZAR USUARIO STAFF
