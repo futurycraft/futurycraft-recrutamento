@@ -1,36 +1,32 @@
 async function iniciarPagina(){
 
 
-const cargo = await pegarCargo();
+    const cargo = await pegarCargo();
 
 
 
-if(
-cargo !== "fundador" &&
-cargo !== "diretor"
-){
+    if(
+        cargo !== "fundador" &&
+        cargo !== "diretor" &&
+        cargo !== "admin"
+    ){
+
+        alert("Você não possui permissão");
+
+        window.location.href="admin.html";
+
+        return;
+
+    }
 
 
-alert("Você não possui permissão");
 
+    carregarStaff();
 
-window.location.href="admin.html";
-
-
-return;
+    carregarUsuarios();
 
 
 }
-
-
-
-carregarStaff();
-
-
-}
-
-
-
 
 
 
@@ -39,68 +35,123 @@ carregarStaff();
 async function carregarStaff(){
 
 
-const {data,error}=await supabaseClient
-.from("cargos_staff")
-.select("*");
+    const {data,error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("*");
 
 
 
-if(error){
+    if(error){
 
-console.log(error);
+        console.log("Erro ao carregar staff:", error);
 
-return;
+        return;
+
+    }
+
+
+
+    let html="";
+
+
+
+    data.forEach(staff=>{
+
+
+        html += `
+
+        <div class="staff-card">
+
+
+            <p>
+            <b>Nick:</b>
+            ${staff.nick ?? "Sem nick"}
+            </p>
+
+
+
+            <p>
+            <b>Email:</b>
+            ${staff.email ?? "Sem email"}
+            </p>
+
+
+
+            <p>
+            <b>Cargo:</b>
+            ${staff.cargo ?? "Sem cargo"}
+            </p>
+
+
+
+        </div>
+
+        `;
+
+
+    });
+
+
+
+    document.getElementById("listaStaff").innerHTML = html;
+
 
 }
 
 
 
-let html="";
 
 
 
-data.forEach(staff=>{
 
-
-html += `
-
-<div class="staff-card">
-
-
-<p>
-<b>Email:</b>
-${staff.email ?? "Sem email"}
-</p>
+async function carregarUsuarios(){
 
 
 
-<p>
-<b>Cargo:</b>
-${staff.cargo}
-</p>
+    const select = document.getElementById("usuarioStaff");
 
 
 
-<button onclick="removerStaff('${staff.id}')">
+    const {data,error}=await supabaseClient
 
-Remover
+    .from("usuarios_staff")
 
-</button>
-
-
-
-</div>
-
-`;
+    .select("*");
 
 
 
-});
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
 
 
 
-document.getElementById("listaStaff")
-.innerHTML=html;
+    select.innerHTML="";
+
+
+
+    data.forEach(usuario=>{
+
+
+        select.innerHTML += `
+
+        <option value="${usuario.usuario_id}">
+
+        ${usuario.nick ?? usuario.email}
+
+        </option>
+
+        `;
+
+
+    });
+
 
 
 }
@@ -117,103 +168,64 @@ async function adicionarStaff(){
 
 
 
-const email =
-document.getElementById("emailStaff").value;
+    const usuario_id =
+    document.getElementById("usuarioStaff").value;
 
 
 
-const cargo =
-document.getElementById("cargoStaff").value;
-
-
-
-if(!email){
-
-
-alert("Digite um email");
-
-
-return;
-
-
-}
+    const cargo =
+    document.getElementById("cargoStaff").value;
 
 
 
 
+    if(!usuario_id){
+
+        alert("Selecione um usuário");
+
+        return;
+
+    }
 
 
-/*
-=================================
-BUSCAR USUARIO CADASTRADO
-=================================
-*/
 
 
-const {data:user,error}=await supabaseClient
+    const {error}=await supabaseClient
 
-.from("usuarios_staff")
+    .from("usuarios_staff")
 
-.select("*")
+    .update({
 
-.eq("email",email)
+        cargo:cargo
 
-.maybeSingle();
+    })
+
+    .eq("usuario_id",usuario_id);
 
 
 
 
 
-/*
-=================================
-CRIAR CARGO
-=================================
-*/
+    if(error){
 
 
-const {error:erroCargo}=await supabaseClient
+        console.log(error);
 
-.from("cargos_staff")
+        alert("Erro ao alterar cargo");
 
-.insert({
-
-
-usuario_id:user.usuario_id,
+        return;
 
 
-email:user.email,
-
-
-cargo:cargo
-
-
-});
+    }
 
 
 
 
-if(erroCargo){
-
-
-console.log(erroCargo);
-
-
-alert("Erro ao adicionar cargo");
-
-
-return;
-
-
-}
+    alert("Cargo atualizado com sucesso!");
 
 
 
-
-alert("Staff adicionado com sucesso");
-
-
-
-carregarStaff();
+    carregarStaff();
 
 
 
@@ -231,79 +243,74 @@ async function removerStaff(id){
 
 
 
-const cargoAtual = await pegarCargo();
+    const cargoAtual = await pegarCargo();
 
 
 
-if(cargoAtual !== "fundador"){
+    if(cargoAtual !== "fundador"){
 
 
-alert(
-"Somente o Fundador pode remover cargos"
-);
+        alert(
+        "Somente o Fundador pode remover cargos"
+        );
 
 
-return;
+        return;
 
 
-}
-
-
-
-
-
-
-if(!confirm("Remover este membro?")){
-
-
-return;
-
-
-}
+    }
 
 
 
 
+    if(!confirm("Remover este membro?")){
 
-const {error}=await supabaseClient
 
-.from("cargos_staff")
+        return;
 
-.delete()
 
-.eq("id",id);
+    }
+
+
+
+
+    const {error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .delete()
+
+    .eq("id",id);
 
 
 
 
 
-if(error){
+    if(error){
 
 
-console.log(error);
+        console.log(error);
+
+        alert("Erro ao remover");
 
 
-alert("Erro ao remover");
+        return;
 
 
-return;
-
-
-}
-
-
-
-
-alert("Membro removido");
+    }
 
 
 
-carregarStaff();
+
+    alert("Membro removido");
+
+
+
+    carregarStaff();
 
 
 
 }
-
 
 
 
