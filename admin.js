@@ -321,9 +321,15 @@ window.location.href=
 
 
 
+//==========================================
+// EQUIPE
+//==========================================
 
+function abrirStaff(){
 
+window.location.href="gerenciar-staff.html";
 
+}
 
 
 // ==========================================
@@ -354,3 +360,6 @@ window.location.replace("login.html");
 
 
 carregarCandidatos();
+
+
+
