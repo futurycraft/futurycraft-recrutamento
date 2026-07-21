@@ -1,52 +1,119 @@
 async function pegarCargo(){
 
-
-const {data:{user}} = await supabaseClient.auth.getUser();
-
+    const { data: { user } } = await supabaseClient.auth.getUser();
 
 
-if(!user){
+    if(!user){
 
-return null;
+        return null;
+
+    }
+
+
+
+    const { data, error } = await supabaseClient
+
+        .from("usuarios_staff")
+
+        .select("cargo")
+
+        .eq("usuario_id", user.id)
+
+        .maybeSingle();
+
+
+
+    if(error){
+
+        console.log("Erro ao buscar cargo:", error);
+
+        return null;
+
+    }
+
+
+
+    if(!data || !data.cargo){
+
+        console.log("Usuário sem cargo");
+
+        return null;
+
+    }
+
+
+
+    return data.cargo.toLowerCase();
+
 
 }
 
 
 
-const {data,error}=await supabaseClient
 
-.from("cargos_staff")
 
-.select("cargo")
+async function verificarPermissaoStaff(){
 
-.eq("usuario_id",user.id)
 
-.maybeSingle();
+    const cargo = await pegarCargo();
 
 
 
-if(error){
+    if(!cargo){
 
-console.log(error);
+        alert("Usuário sem permissão");
 
-return null;
+        window.location.href = "admin.html";
+
+        return false;
+
+    }
+
+
+
+    const cargosPermitidos = [
+
+        "fundador",
+
+        "diretor",
+
+        "admin"
+
+    ];
+
+
+
+    if(!cargosPermitidos.includes(cargo)){
+
+
+        alert("Você não possui permissão para acessar esta página");
+
+
+        window.location.href = "admin.html";
+
+
+        return false;
+
+
+    }
+
+
+
+    return true;
+
 
 }
 
 
 
-if(!data){
-
-console.log("Usuário sem cargo");
-
-return null;
-
-}
 
 
+// Executa proteção apenas na página de gerenciamento
 
-return data.cargo;
+if(window.location.pathname.includes("gerenciar-staff.html")){
 
+
+    verificarPermissaoStaff();
 
 
 }
