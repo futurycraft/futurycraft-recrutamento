@@ -22,12 +22,7 @@ document.getElementById("senha").value;
 
 
 
-
-if(
-!nick ||
-!email ||
-!senha
-){
+if(!nick || !email || !senha){
 
 alert("Preencha todos os campos");
 
@@ -37,9 +32,6 @@ return;
 
 
 
-
-
-// Criar usuário no Supabase Auth
 
 const {data,error}=await supabaseClient.auth.signUp({
 
@@ -63,15 +55,11 @@ return;
 
 
 
-
 const usuario = data.user;
 
 
 
-
-// Salvar dados do staff
-
-const {error:erroStaff}=await supabaseClient
+const {error:erroBanco}=await supabaseClient
 
 .from("usuarios_staff")
 
@@ -92,12 +80,11 @@ data_nascimento:nascimento
 
 
 
+if(erroBanco){
 
-if(erroStaff){
+console.log(erroBanco);
 
-console.log(erroStaff);
-
-alert("Erro ao salvar dados");
+alert("Conta criada, mas erro ao salvar informações");
 
 return;
 
@@ -105,11 +92,8 @@ return;
 
 
 
-alert(
-"Cadastro realizado! Aguarde aprovação."
-);
 
-
+alert("Cadastro realizado com sucesso!");
 
 window.location.href="login.html";
 
