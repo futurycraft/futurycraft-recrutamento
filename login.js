@@ -51,6 +51,42 @@ formulario.addEventListener("submit", async (e)=>{
 
 
 
+    /*
+    =====================================
+    ATUALIZAR USUARIO STAFF
+    =====================================
+    */
+
+
+    const usuario = data.user;
+
+
+
+    const { error: erroStaff } = await supabaseClient
+
+    .from("usuarios_staff")
+
+    .update({
+
+        usuario_id: usuario.id
+
+    })
+
+    .eq("email", usuario.email);
+
+
+
+    if(erroStaff){
+
+        console.log(
+            "Usuário ainda não está cadastrado como staff:",
+            erroStaff
+        );
+
+    }
+
+
+
     alert("Login realizado com sucesso!");
 
 
