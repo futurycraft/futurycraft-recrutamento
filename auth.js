@@ -7,38 +7,3 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
-
-
-async function verificarAcesso(){
-
-
-    const { data } = await supabaseClient.auth.getSession();
-
-
-    if(!data.session){
-
-        window.location.href = "login.html";
-
-        return;
-
-    }
-
-
-}
-
-
-verificarAcesso();
-
-window.addEventListener("pageshow", async function(){
-
-    const {data} = await supabaseClient.auth.getSession();
-
-
-    if(!data.session){
-
-        window.location.replace("login.html");
-
-    }
-
-});
