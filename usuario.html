@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Minha Conta - FuturyCraft</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="user-container">
+
+
+<div class="user-card">
+
+
+<h1>
+Minha Conta
+</h1>
+
+
+<p>
+Gerencie suas informações
+</p>
+
+
+
+
+<label>
+Nick Minecraft
+</label>
+
+
+<input 
+id="nick"
+placeholder="Seu nick">
+
+
+<button onclick="salvarNick()">
+
+Salvar Nick
+
+</button>
+
+
+
+
+<hr>
+
+
+
+
+<label>
+Email atual
+</label>
+
+
+<input 
+id="emailAtual"
+disabled>
+
+
+
+
+<label>
+Novo Email
+</label>
+
+
+<input 
+id="novoEmail"
+placeholder="Novo email">
+
+
+<button onclick="alterarEmail()">
+
+Alterar Email
+
+</button>
+
+
+
+
+
+<hr>
+
+
+
+
+
+<label>
+Nova Senha
+</label>
+
+
+<input 
+type="password"
+id="novaSenha"
+placeholder="Nova senha">
+
+
+<button onclick="alterarSenha()">
+
+Alterar Senha
+
+</button>
+
+
+
+
+<br><br>
+
+
+<button onclick="window.location.href='admin.html'">
+
+Voltar
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="auth.js"></script>
+
+<script src="usuario.js"></script>
+
+
+</body>
+
+</html>
