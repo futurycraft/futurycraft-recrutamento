@@ -7,3 +7,41 @@ window.supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+
+
+async function pegarCargo(){
+
+    const { data: { user } } = await supabaseClient.auth.getUser();
+
+
+    if(!user){
+
+        return null;
+
+    }
+
+
+    const { data, error } = await supabaseClient
+
+        .from("usuarios_staff")
+
+        .select("cargo")
+
+        .eq("email", user.email)
+
+        .single();
+
+
+
+    if(error){
+
+        console.log("Erro ao buscar cargo:", error);
+
+        return null;
+
+    }
+
+
+    return data.cargo;
+
+}
