@@ -158,25 +158,7 @@ const {data:user,error}=await supabaseClient
 
 .eq("email",email)
 
-.single();
-
-
-
-
-
-if(error || !user){
-
-
-alert(
-"Este usuário ainda não entrou no painel"
-);
-
-
-return;
-
-
-}
-
+.maybeSingle();
 
 
 
