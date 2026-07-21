@@ -7,11 +7,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gerenciar Staff - FuturyCraft</title>
+<title>Gerenciar Staff | FuturyCraft</title>
 
 
 <link rel="stylesheet" href="style.css">
-
 
 </head>
 
@@ -19,24 +18,29 @@
 <body>
 
 
-<div class="admin-container">
+<div class="staff-container">
 
 
-<div class="admin-card">
-
+<div class="staff-header">
 
 <h1>
-Gerenciar Staff
+Gerenciamento de Staff
 </h1>
 
-
 <p>
-Controle de cargos e permissões
+Controle de cargos e permissões da equipe FuturyCraft
 </p>
 
+</div>
 
 
-<div id="adicionarStaff">
+
+
+
+<div class="staff-actions">
+
+
+<div class="staff-box">
 
 
 <h2>
@@ -44,42 +48,57 @@ Adicionar membro
 </h2>
 
 
-<input 
-id="emailStaff"
-placeholder="Email do usuário"
->
+<label>
+Usuário
+</label>
+
+
+<select id="usuarioStaff">
+
+<option>
+Carregando usuários...
+</option>
+
+</select>
+
+
+
+
+<label>
+Cargo
+</label>
 
 
 <select id="cargoStaff">
 
 
 <option value="fundador">
-Fundador
+👑 Fundador
 </option>
 
 
 <option value="diretor">
-Diretor
+⭐ Diretor
 </option>
 
 
 <option value="gerente">
-Gerente
+🔷 Gerente
 </option>
 
 
 <option value="admin">
-Admin
+🛡 Admin
 </option>
 
 
 <option value="moderador">
-Moderador
+🔨 Moderador
 </option>
 
 
 <option value="ajudante">
-Ajudante
+💬 Ajudante
 </option>
 
 
@@ -87,9 +106,10 @@ Ajudante
 
 
 
+
 <button onclick="adicionarStaff()">
 
-Adicionar
+Adicionar Staff
 
 </button>
 
@@ -99,9 +119,10 @@ Adicionar
 
 
 
-<hr>
 
 
+
+<div class="staff-box">
 
 
 <h2>
@@ -109,19 +130,41 @@ Equipe atual
 </h2>
 
 
+
 <div id="listaStaff">
 
 
-Carregando...
+<div class="loading">
 
-
-</div>
-
+Carregando equipe...
 
 </div>
 
 
 </div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<button class="voltar"
+onclick="window.location.href='admin.html'">
+
+Voltar ao painel
+
+</button>
+
+
+
+</div>
+
 
 
 
