@@ -2540,3 +2540,35 @@ textarea{
     border-left:4px solid #00ffff;
 
 }
+
+
+.staff-card{
+
+background:#171717;
+
+padding:20px;
+
+margin-top:15px;
+
+border-radius:10px;
+
+border:1px solid #333;
+
+}
+
+
+.staff-card button{
+
+background:#d33;
+
+color:white;
+
+border:none;
+
+padding:10px;
+
+border-radius:5px;
+
+cursor:pointer;
+
+}
