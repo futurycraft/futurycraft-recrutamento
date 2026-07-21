@@ -281,11 +281,24 @@ Há quanto tempo você joga no FuturyCraft?
 
 
 <input
-type="text"
+type="range"
 id="tempo"
-placeholder="Exemplo: 6 meses"
-required
+min="1"
+max="60"
+value="1"
+oninput="mostrarTempo(this.value)"
 >
+
+
+
+<div class="tempo-valor">
+
+Tempo:
+<strong id="valorTempo">
+1 mês
+</strong>
+
+</div>
 
 
 </div>
