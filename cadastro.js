@@ -59,7 +59,7 @@ const usuario = data.user;
 
 
 
-const {error:erroBanco}=await supabaseClient
+const {error:erroBanco}=await window.supabaseClient
 
 .from("usuarios_staff")
 
