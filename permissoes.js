@@ -1,49 +1,82 @@
-async function pegarCargo(){
-
-    const { data: { user } } = await supabaseClient.auth.getUser();
-
-
-    if(!user){
-
-        return null;
-
-    }
-
+async function carregarStaff(){
 
 
     const { data, error } = await supabaseClient
 
         .from("usuarios_staff")
 
-        .select("cargo")
+        .select("*")
 
-        .eq("usuario_id", user.id)
-
-        .maybeSingle();
+        .order("cargo", { ascending:true });
 
 
 
     if(error){
 
-        console.log("Erro ao buscar cargo:", error);
+        console.log("Erro ao carregar staff:", error);
 
-        return null;
-
-    }
-
-
-
-    if(!data || !data.cargo){
-
-        console.log("Usuário sem cargo");
-
-        return null;
+        return;
 
     }
 
 
 
-    return data.cargo.toLowerCase();
+    const lista = document.getElementById("listaStaff");
+
+
+
+    if(!data || data.length === 0){
+
+        lista.innerHTML = `
+            <div class="loading">
+                Nenhum membro encontrado
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+
+    lista.innerHTML = "";
+
+
+
+    data.forEach(staff => {
+
+
+        lista.innerHTML += `
+
+        <div class="staff-member">
+
+
+            <h3>${staff.nick || "Sem nick"}</h3>
+
+
+            <p>
+            Nome: ${staff.nome || "Não informado"}
+            </p>
+
+
+            <p>
+            Email: ${staff.email}
+            </p>
+
+
+            <p>
+            Cargo:
+            <strong>${staff.cargo || "Sem cargo"}</strong>
+            </p>
+
+
+        </div>
+
+        `;
+
+
+    });
+
 
 
 }
@@ -52,54 +85,50 @@ async function pegarCargo(){
 
 
 
-async function verificarPermissaoStaff(){
+async function carregarUsuarios(){
 
 
-    const cargo = await pegarCargo();
-
-
-
-    if(!cargo){
-
-        alert("Usuário sem permissão");
-
-        window.location.href = "admin.html";
-
-        return false;
-
-    }
+    const select = document.getElementById("usuarioStaff");
 
 
 
-    const cargosPermitidos = [
+    const {data,error}=await supabaseClient
 
-        "fundador",
+        .from("usuarios_staff")
 
-        "diretor",
-
-        "admin"
-
-    ];
+        .select("*");
 
 
 
-    if(!cargosPermitidos.includes(cargo)){
+    if(error){
 
+        console.log(error);
 
-        alert("Você não possui permissão para acessar esta página");
-
-
-        window.location.href = "admin.html";
-
-
-        return false;
-
+        return;
 
     }
 
 
 
-    return true;
+    select.innerHTML = "";
+
+
+
+    data.forEach(usuario=>{
+
+
+        select.innerHTML += `
+
+        <option value="${usuario.usuario_id}">
+
+        ${usuario.nick || usuario.email}
+
+        </option>
+
+        `;
+
+
+    });
 
 
 }
@@ -108,12 +137,70 @@ async function verificarPermissaoStaff(){
 
 
 
-// Executa proteção apenas na página de gerenciamento
-
-if(window.location.pathname.includes("gerenciar-staff.html")){
+async function adicionarStaff(){
 
 
-    verificarPermissaoStaff();
+
+    const usuario_id = document.getElementById("usuarioStaff").value;
+
+
+    const cargo = document.getElementById("cargoStaff").value;
+
+
+
+    if(!usuario_id){
+
+        alert("Selecione um usuário");
+
+        return;
+
+    }
+
+
+
+    const {error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .update({
+
+        cargo:cargo
+
+    })
+
+    .eq("usuario_id",usuario_id);
+
+
+
+
+    if(error){
+
+        console.log(error);
+
+        alert("Erro ao alterar cargo");
+
+        return;
+
+    }
+
+
+
+    alert("Cargo atualizado com sucesso!");
+
+
+
+    carregarStaff();
+
 
 
 }
+
+
+
+
+
+
+
+carregarStaff();
+
+carregarUsuarios();
