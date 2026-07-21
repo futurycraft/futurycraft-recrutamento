@@ -33,6 +33,9 @@ carregarStaff();
 
 
 
+
+
+
 async function carregarStaff(){
 
 
@@ -65,13 +68,15 @@ html += `
 
 
 <p>
-<b>Cargo:</b> ${staff.cargo}
+<b>Email:</b>
+${staff.email ?? "Sem email"}
 </p>
 
 
+
 <p>
-ID:
-${staff.usuario_id}
+<b>Cargo:</b>
+${staff.cargo}
 </p>
 
 
@@ -86,8 +91,8 @@ Remover
 
 </div>
 
-
 `;
+
 
 
 });
@@ -106,43 +111,69 @@ document.getElementById("listaStaff")
 
 
 
+
+
 async function adicionarStaff(){
 
 
 
-let email =
+const email =
 document.getElementById("emailStaff").value;
 
 
 
-let cargo =
+const cargo =
 document.getElementById("cargoStaff").value;
 
 
 
 if(!email){
 
+
 alert("Digite um email");
 
+
 return;
+
 
 }
 
 
 
+
+
+
+/*
+=================================
+BUSCAR USUARIO CADASTRADO
+=================================
+*/
 
 
 const {data:user,error}=await supabaseClient
-.auth.admin
-.getUserByEmail(email);
+
+.from("usuarios_staff")
+
+.select("*")
+
+.eq("email",email)
+
+.single();
 
 
 
-if(error){
 
-alert("Usuário não encontrado");
+
+if(error || !user){
+
+
+alert(
+"Este usuário ainda não entrou no painel"
+);
+
 
 return;
+
 
 }
 
@@ -150,25 +181,62 @@ return;
 
 
 
-await supabaseClient
+
+/*
+=================================
+CRIAR CARGO
+=================================
+*/
+
+
+const {error:erroCargo}=await supabaseClient
+
 .from("cargos_staff")
+
 .insert({
 
-usuario_id:user.user.id,
+
+usuario_id:user.usuario_id,
+
+
+email:user.email,
+
 
 cargo:cargo
+
 
 });
 
 
 
-alert("Staff adicionado");
+
+if(erroCargo){
+
+
+console.log(erroCargo);
+
+
+alert("Erro ao adicionar cargo");
+
+
+return;
+
+
+}
+
+
+
+
+alert("Staff adicionado com sucesso");
+
 
 
 carregarStaff();
 
 
+
 }
+
 
 
 
@@ -180,28 +248,80 @@ carregarStaff();
 async function removerStaff(id){
 
 
-if(!confirm("Remover este membro?")){
+
+const cargoAtual = await pegarCargo();
+
+
+
+if(cargoAtual !== "fundador"){
+
+
+alert(
+"Somente o Fundador pode remover cargos"
+);
+
 
 return;
+
 
 }
 
 
 
-await supabaseClient
+
+
+
+if(!confirm("Remover este membro?")){
+
+
+return;
+
+
+}
+
+
+
+
+
+const {error}=await supabaseClient
+
 .from("cargos_staff")
+
 .delete()
+
 .eq("id",id);
 
 
 
-alert("Removido");
+
+
+if(error){
+
+
+console.log(error);
+
+
+alert("Erro ao remover");
+
+
+return;
+
+
+}
+
+
+
+
+alert("Membro removido");
+
 
 
 carregarStaff();
 
 
+
 }
+
 
 
 
