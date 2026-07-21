@@ -458,7 +458,65 @@ document.getElementById("genero").value = valor;
 
 </script>
 
+<script>
 
+
+function mostrarTempo(valor){
+
+
+valor = Number(valor);
+
+
+
+let texto;
+
+
+
+if(valor < 12){
+
+
+texto = valor + (valor == 1 ? " mês" : " meses");
+
+
+}else{
+
+
+let anos = Math.floor(valor / 12);
+
+let meses = valor % 12;
+
+
+
+if(meses == 0){
+
+
+texto = anos + (anos == 1 ? " ano" : " anos");
+
+
+}else{
+
+
+texto =
+anos + (anos == 1 ? " ano " : " anos ")
++
+meses + " meses";
+
+
+}
+
+
+}
+
+
+
+document.getElementById("valorTempo").innerHTML = texto;
+
+
+
+}
+
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
