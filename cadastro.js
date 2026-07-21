@@ -33,7 +33,7 @@ return;
 
 
 
-const {data,error}=await supabaseClient.auth.signUp({
+const {data,error}=await window.supabaseClient.auth.signUp({
 
 email:email,
 
