@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gerenciar Staff - FuturyCraft</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="admin-container">
+
+
+<div class="admin-card">
+
+
+<h1>
+Gerenciar Staff
+</h1>
+
+
+<p>
+Controle de cargos e permissões
+</p>
+
+
+
+<div id="adicionarStaff">
+
+
+<h2>
+Adicionar membro
+</h2>
+
+
+<input 
+id="emailStaff"
+placeholder="Email do usuário"
+>
+
+
+<select id="cargoStaff">
+
+
+<option value="diretor">
+Diretor
+</option>
+
+
+<option value="gerente">
+Gerente
+</option>
+
+
+<option value="admin">
+Admin
+</option>
+
+
+<option value="moderador">
+Moderador
+</option>
+
+
+<option value="ajudante">
+Ajudante
+</option>
+
+
+</select>
+
+
+
+<button onclick="adicionarStaff()">
+
+Adicionar
+
+</button>
+
+
+</div>
+
+
+
+
+<hr>
+
+
+
+
+<h2>
+Equipe atual
+</h2>
+
+
+<div id="listaStaff">
+
+
+Carregando...
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script src="supabase.js"></script>
+
+<script src="permissoes.js"></script>
+
+<script src="gerenciar-staff.js"></script>
+
+
+</body>
+
+</html>
