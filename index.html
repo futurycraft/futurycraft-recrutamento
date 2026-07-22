@@ -137,7 +137,113 @@ alt="Equipe FuturyCraft">
 
 </div>
 
-  
+
+
+<!-- OVERLAY -->
+
+<div id="overlay"></div>
+
+
+<!-- MODAL AJUDANTE -->
+
+<div id="ajudante" class="role-info">
+
+<button class="close-modal" onclick="closeRole()">
+×
+</button>
+
+
+<div class="modal-icon">
+
+<img src="./assets/staff/ajudante.png">
+
+</div>
+
+
+<h2>
+Ajudante
+</h2>
+
+
+<span class="modal-level">
+Nível 1
+</span>
+
+
+<p>
+
+O Ajudante é o primeiro passo dentro da equipe FuturyCraft.
+Este cargo é responsável por aprender os procedimentos da equipe,
+auxiliar jogadores e conhecer melhor o funcionamento do servidor.
+
+</p>
+
+
+<h3>
+Responsabilidades
+</h3>
+
+
+<ul>
+
+<li>
+Responder dúvidas básicas dos jogadores
+</li>
+
+<li>
+Orientar novos jogadores dentro do servidor
+</li>
+
+<li>
+Auxiliar a equipe em eventos
+</li>
+
+<li>
+Reportar problemas encontrados
+</li>
+
+<li>
+Manter uma boa comunicação com a comunidade
+</li>
+
+</ul>
+
+
+
+<h3>
+Requisitos
+</h3>
+
+
+<ul>
+
+<li>
+Conhecer as regras do servidor
+</li>
+
+<li>
+Ter boa comunicação
+</li>
+
+<li>
+Ser ativo na comunidade
+</li>
+
+<li>
+Ter vontade de aprender
+</li>
+
+</ul>
+
+
+</div>
+
+
+
+<!-- OVERLAY -->
+
+<div id="overlay"></div>
+    
 <!-- MODAL MODERADOR -->
 
 <div id="moderador" class="role-info">
@@ -236,7 +342,10 @@ Maturidade e responsabilidade
 
 
 
+<!-- OVERLAY -->
 
+<div id="overlay"></div>
+    
 <!-- MODAL ADMIN -->
 
 
@@ -335,7 +444,9 @@ Comprometimento com o projeto
 
 
 
+<!-- OVERLAY -->
 
+<div id="overlay"></div>
 
 <!-- MODAL GERENTE -->
 
@@ -435,7 +546,9 @@ Capacidade de organização
 
 
 
+<!-- OVERLAY -->
 
+<div id="overlay"></div>
 
 <!-- MODAL DIRETOR -->
 
@@ -912,81 +1025,49 @@ pela equipe FuturyCraft.
 
 <script>
 
-
 function openRole(role){
 
+    const modal = document.getElementById(role);
+    const overlay = document.getElementById("overlay");
 
-const modal = document.getElementById(role);
+    document.querySelectorAll(".role-info").forEach(function(item){
+        item.classList.remove("active");
+    });
 
-const overlay = document.getElementById("overlay");
+    modal.classList.add("active");
 
-
-
-modal.style.display = "block";
-
-
-overlay.style.display = "block";
-
-
+    overlay.style.display = "block";
 
 }
-
-
 
 
 function closeRole(){
 
+    document.querySelectorAll(".role-info").forEach(function(item){
+        item.classList.remove("active");
+    });
 
-const modal = document.querySelector(".role-info");
-
-const overlay = document.getElementById("overlay");
-
-
-
-modal.style.display = "none";
-
-
-overlay.style.display = "none";
-
-
+    document.getElementById("overlay").style.display = "none";
 
 }
-
-
-
-
-// fechar clicando fora
 
 
 document.getElementById("overlay").addEventListener("click", function(){
 
-
-closeRole();
-
+    closeRole();
 
 });
-
-
-
-
-// fechar com ESC
 
 
 document.addEventListener("keydown", function(event){
 
+    if(event.key === "Escape"){
 
-if(event.key === "Escape"){
+        closeRole();
 
-
-closeRole();
-
-
-}
-
+    }
 
 });
-
-
 
 </script>
 
