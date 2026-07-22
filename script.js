@@ -215,3 +215,30 @@ function mostrarPagina2(){
 /*teste anuncio*/
 
 console.log("SCRIPT FUTURYCRAFT CARREGADO");
+
+// FECHAR AO CLICAR NO FUNDO ESCURO
+
+const overlay = document.getElementById("overlay");
+
+if(overlay){
+
+    overlay.addEventListener("click", function(){
+
+        closeRole();
+
+    });
+
+}
+
+
+// FECHAR COM ESC
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        closeRole();
+
+    }
+
+});
