@@ -1,151 +1,135 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Staff - FuturyCraft</title>
+```html
+<main class="dashboard">
 
-    <link rel="stylesheet" href="dashboard.css">
+    <!-- PERFIL -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <section class="welcome-card">
 
-    <div class="background-glow"></div>
+        <div class="profile-info">
 
-    <header class="topbar">
-
-        <div class="logo-area">
-            <h1>FUTURYCRAFT</h1>
-            <span>Painel Staff</span>
-        </div>
-
-        <div class="topbar-actions">
-
-            <button class="btn-primary" onclick="window.location.href='painel.html'">
-                Candidaturas
-            </button>
-
-            <button class="btn-danger" onclick="logout()">
-                Sair
-            </button>
-
-        </div>
-
-    </header>
-
-    <main class="dashboard">
-
-        <section class="welcome-card">
-
-            <h2>Bem-vindo ao Painel Staff</h2>
+            <h2>Bem-vindo, <span id="nome-staff">Staff</span></h2>
 
             <p>
-                Gerencie candidaturas, acompanhe estatísticas
-                e monitore a atividade da equipe do FuturyCraft.
+                Cargo atual:
+                <strong id="cargo-staff">Carregando...</strong>
             </p>
 
-        </section>
+            <p>
+                Membro da equipe desde:
+                <strong id="tempo-staff">--</strong>
+            </p>
 
-        <section class="stats-grid">
+        </div>
 
-            <div class="stat-card">
-                <span class="stat-title">Pendentes</span>
-                <h3 id="pendentes">0</h3>
-            </div>
+    </section>
 
-            <div class="stat-card">
-                <span class="stat-title">Em Análise</span>
-                <h3 id="analise">0</h3>
-            </div>
+    <!-- AVISOS E AGENDA -->
 
-            <div class="stat-card">
-                <span class="stat-title">Aprovados</span>
-                <h3 id="aprovados">0</h3>
-            </div>
+    <section class="content-grid">
 
-            <div class="stat-card">
-                <span class="stat-title">Recusados</span>
-                <h3 id="recusados">0</h3>
-            </div>
+        <div class="panel-card">
 
-        </section>
+            <h3>📢 Avisos da Administração</h3>
 
-        <section class="content-grid">
+            <div id="avisos">
 
-            <div class="panel-card">
-
-                <h3>Atividade Recente</h3>
-
-                <div id="atividade">
-
-                    <div class="activity-item">
-                        Carregando atividades...
-                    </div>
-
+                <div class="activity-item">
+                    Nenhum aviso disponível.
                 </div>
 
             </div>
 
-            <div class="panel-card">
+        </div>
 
-                <h3>Ações Rápidas</h3>
+        <div class="panel-card">
 
-                <div class="quick-actions">
+            <h3>📅 Próximos Eventos</h3>
 
-                    <button onclick="window.location.href='painel.html'">
-                        Ver Candidaturas
-                    </button>
+            <div id="agenda">
 
-                    <button onclick="window.location.href='painel.html?filtro=pendente'">
-                        Pendentes
-                    </button>
-
-                    <button onclick="window.location.href='painel.html?filtro=aprovado'">
-                        Aprovados
-                    </button>
-
-                    <button onclick="window.location.href='painel.html?filtro=recusado'">
-                        Recusados
-                    </button>
-
+                <div class="activity-item">
+                    Nenhum evento agendado.
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-        <section class="panel-card">
+    </section>
 
-            <h3>Resumo Geral</h3>
+    <!-- DESEMPENHO E EVOLUÇÃO -->
 
-            <div class="summary-grid">
+    <section class="stats-grid">
 
-                <div>
-                    <span>Total de Candidaturas</span>
-                    <h2 id="total">0</h2>
-                </div>
+        <div class="stat-card">
+            <span class="stat-title">Atendimentos</span>
+            <h3 id="atendimentos">0</h3>
+        </div>
 
-                <div>
-                    <span>Taxa de Aprovação</span>
-                    <h2 id="taxa">0%</h2>
-                </div>
+        <div class="stat-card">
+            <span class="stat-title">Avaliações</span>
+            <h3 id="avaliacoes">0</h3>
+        </div>
 
+        <div class="stat-card">
+            <span class="stat-title">Horas Online</span>
+            <h3 id="horas">0h</h3>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-title">Progresso de Evolução</span>
+            <h3 id="progresso">0%</h3>
+        </div>
+
+    </section>
+
+    <!-- PROCEDIMENTOS -->
+
+    <section class="panel-card">
+
+        <h3>📚 Central de Procedimentos</h3>
+
+        <div class="quick-actions">
+
+            <button>
+                Manual da Staff
+            </button>
+
+            <button>
+                Regras da Staff
+            </button>
+
+            <button>
+                Sistema de Punições
+            </button>
+
+            <button>
+                Processo de Recrutamento
+            </button>
+
+            <button>
+                Escala de Eventos
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- MURAL -->
+
+    <section class="panel-card">
+
+        <h3>💬 Mural da Staff</h3>
+
+        <div id="mural">
+
+            <div class="activity-item">
+                Bem-vindo ao sistema interno da Staff.
             </div>
 
-        </section>
+        </div>
 
-    </main>
+    </section>
 
-    <!-- SUPABASE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- AUTENTICAÇÃO -->
-    <script src="auth.js"></script>
-
-    <!-- DASHBOARD -->
-    <script src="dashboard.js"></script>
-
-</body>
-</html>
+</main>
+```
