@@ -3,7 +3,6 @@
 // ==========================================
 
 
-
 // ==========================================
 // CARREGAR PERFIL DO STAFF
 // ==========================================
@@ -13,7 +12,9 @@ async function carregarPerfil(){
     try{
 
 
-        const { data:user } = await supabaseClient.auth.getUser();
+        const { data:user } =
+        await supabaseClient.auth.getUser();
+
 
 
         if(!user.user){
@@ -29,7 +30,8 @@ async function carregarPerfil(){
 
 
 
-        const { data, error } = await supabaseClient
+        const { data, error } =
+        await supabaseClient
         .from("usuarios_staff")
         .select("*")
         .eq("email", email)
@@ -39,7 +41,10 @@ async function carregarPerfil(){
 
         if(error){
 
-            console.error("Erro ao buscar staff:", error);
+            console.error(
+                "Erro ao buscar staff:",
+                error
+            );
 
             return;
 
@@ -64,26 +69,34 @@ async function carregarPerfil(){
 
         document.getElementById("tempo-staff").innerHTML =
         data.data_entrada
-        ? new Date(data.data_entrada).toLocaleDateString("pt-BR")
+        ? new Date(data.data_entrada)
+            .toLocaleDateString("pt-BR")
         : "--";
 
 
 
-        // Carrega tempo do FuturySync
+        console.log(
+            "Staff carregado:",
+            data.nick
+        );
 
-        carregarTempoStaff(data.nick);
+
+
+        await carregarTempoStaff(data.nick);
 
 
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erro perfil:",
+            error
+        );
 
     }
 
 
 }
-
 
 
 
@@ -100,15 +113,34 @@ async function carregarTempoStaff(nick){
     try{
 
 
-        const {data,error} = await supabaseClient
+        console.log(
+            "Buscando tempo para:",
+            nick
+        );
+
+
+
+        const {data,error} =
+        await supabaseClient
         .from("skyblock_tempo")
-        .select("tempo")
+        .select("nick,tempo")
         .eq("nick", nick)
         .single();
 
 
 
+
+        console.log(
+            "Resposta Supabase tempo:",
+            data,
+            error
+        );
+
+
+
+
         if(error){
+
 
             console.error(
                 "Erro buscando tempo staff:",
@@ -116,8 +148,9 @@ async function carregarTempoStaff(nick){
             );
 
 
-            document.getElementById("horas").innerHTML =
-            "0h";
+
+            document.getElementById("horas")
+            .innerHTML = "0h";
 
 
             return;
@@ -126,12 +159,17 @@ async function carregarTempoStaff(nick){
 
 
 
-        let segundos = data.tempo || 0;
+
+
+        let segundos =
+        Number(data.tempo) || 0;
 
 
 
         let horas =
-        Math.floor(segundos / 3600);
+        Math.floor(
+            segundos / 3600
+        );
 
 
 
@@ -142,16 +180,28 @@ async function carregarTempoStaff(nick){
 
 
 
-        document.getElementById("horas").innerHTML =
+
+        document.getElementById("horas")
+        .innerHTML =
 
         horas + "h " + minutos + "min";
+
+
+
+        console.log(
+            "Tempo convertido:",
+            horas + "h " + minutos + "min"
+        );
 
 
 
     }catch(error){
 
 
-        console.error(error);
+        console.error(
+            "Erro tempo:",
+            error
+        );
 
 
     }
@@ -166,23 +216,27 @@ async function carregarTempoStaff(nick){
 
 
 
-
 // ==========================================
 // CARREGAR AVISOS
 // ==========================================
 
 async function carregarAvisos(){
 
-    const area = document.getElementById("avisos");
+    const area =
+    document.getElementById("avisos");
 
 
     try{
 
 
-        const {data,error} = await supabaseClient
+        const {data,error} =
+        await supabaseClient
         .from("avisos")
         .select("*")
-        .order("created_at",{ascending:false})
+        .order("created_at",
+        {
+            ascending:false
+        })
         .limit(5);
 
 
@@ -199,13 +253,17 @@ async function carregarAvisos(){
 
         if(!data || data.length === 0){
 
+
             area.innerHTML = `
 
             <div class="activity-item">
+
                 Nenhum aviso disponível.
+
             </div>
 
             `;
+
 
             return;
 
@@ -213,7 +271,9 @@ async function carregarAvisos(){
 
 
 
+
         area.innerHTML = "";
+
 
 
         data.forEach(aviso=>{
@@ -255,7 +315,6 @@ async function carregarAvisos(){
 
 
 
-
 // ==========================================
 // CARREGAR AGENDA
 // ==========================================
@@ -263,16 +322,21 @@ async function carregarAvisos(){
 async function carregarAgenda(){
 
 
-    const area = document.getElementById("agenda");
+    const area =
+    document.getElementById("agenda");
 
 
     try{
 
 
-        const {data,error} = await supabaseClient
+        const {data,error} =
+        await supabaseClient
         .from("agenda")
         .select("*")
-        .order("data",{ascending:true})
+        .order("data",
+        {
+            ascending:true
+        })
         .limit(5);
 
 
@@ -289,13 +353,17 @@ async function carregarAgenda(){
 
         if(!data || data.length === 0){
 
+
             area.innerHTML = `
 
             <div class="activity-item">
+
                 Nenhum evento agendado.
+
             </div>
 
             `;
+
 
             return;
 
@@ -303,7 +371,9 @@ async function carregarAgenda(){
 
 
 
-        area.innerHTML="";
+
+        area.innerHTML = "";
+
 
 
         data.forEach(evento=>{
@@ -354,21 +424,21 @@ async function carregarAgenda(){
 async function carregarDesempenho(){
 
 
-    document.getElementById("atendimentos").innerHTML = 0;
+    document.getElementById("atendimentos")
+    .innerHTML = 0;
 
 
-    document.getElementById("avaliacoes").innerHTML = 0;
+
+    document.getElementById("avaliacoes")
+    .innerHTML = 0;
 
 
-    // Não reseta mais horas
-    // O valor vem do FuturySync
 
-
-    document.getElementById("progresso").innerHTML = "0%";
+    document.getElementById("progresso")
+    .innerHTML = "0%";
 
 
 }
-
 
 
 
@@ -381,7 +451,9 @@ async function carregarDesempenho(){
 // INICIAR DASHBOARD
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", async ()=>{
+document.addEventListener(
+"DOMContentLoaded",
+async ()=>{
 
 
     await verificarLogin();
