@@ -1,4 +1,4 @@
-```javascript
+javascript
 // ==========================================
 // FUTURYCRAFT DASHBOARD STAFF
 // ==========================================
@@ -180,4 +180,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     await carregarAtividades();
 
 });
-```
