@@ -1,127 +1,65 @@
+// ==========================================
+// FUTURYCRAFT - CENTRAL STAFF DASHBOARD
+// ==========================================
+
 
 // ==========================================
-// CARREGAR ESTATÍSTICAS
+// CARREGAR PERFIL STAFF
 // ==========================================
 
-async function carregarEstatisticas() {
+async function carregarPerfil() {
 
     try {
 
-        const { data, error } = await supabaseClient
-            .from("candidatos")
-            .select("*");
+        const { data: usuario } = await supabaseClient.auth.getUser();
 
-        if (error) {
-            console.error(error);
+
+        if (!usuario.user) {
+            window.location.href = "login.html";
             return;
         }
 
-        const total = data.length;
 
-        const pendentes = data.filter(
-            c => c.status === "pendente"
-        ).length;
+        const email = usuario.user.email;
 
-        const aprovados = data.filter(
-            c => c.status === "aprovado"
-        ).length;
 
-        const recusados = data.filter(
-            c => c.status === "recusado"
-        ).length;
-
-        const analise = data.filter(
-            c => c.status === "analise"
-        ).length;
-
-        document.getElementById("total").textContent = total;
-
-        document.getElementById("pendentes").textContent = pendentes;
-
-        document.getElementById("aprovados").textContent = aprovados;
-
-        document.getElementById("recusados").textContent = recusados;
-
-        document.getElementById("analise").textContent = analise;
-
-        let taxa = 0;
-
-        if (total > 0) {
-            taxa = Math.round((aprovados / total) * 100);
-        }
-
-        document.getElementById("taxa").textContent = taxa + "%";
-
-    } catch(err) {
-
-        console.error(err);
-
-    }
-
-}
-
-// ==========================================
-// ATIVIDADES RECENTES
-// ==========================================
-
-async function carregarAtividades() {
-
-    const container = document.getElementById("atividade");
-
-    try {
-
+        // Busca informações do staff
         const { data, error } = await supabaseClient
-            .from("candidatos")
+            .from("staff")
             .select("*")
-            .order("data_analise", {
-                ascending: false
-            })
-            .limit(8);
+            .eq("email", email)
+            .single();
 
-        if (error) {
+
+
+        if(error){
+
             console.error(error);
-            return;
-        }
 
-        if (!data.length) {
-
-            container.innerHTML = `
-                <div class="activity-item">
-                    Nenhuma atividade encontrada.
-                </div>
-            `;
+            document.getElementById("nome-staff").textContent = email;
 
             return;
 
         }
 
-        container.innerHTML = "";
 
-        data.forEach(candidato => {
 
-            let status = candidato.status || "pendente";
+        document.getElementById("nome-staff").textContent =
+            data.nome || "Staff";
 
-            let avaliador =
-                candidato.avaliador || "Sistema";
 
-            let dataAnalise = candidato.data_analise
-                ? new Date(
-                    candidato.data_analise
-                  ).toLocaleDateString("pt-BR")
-                : "-";
+        document.getElementById("cargo-staff").textContent =
+            data.cargo || "Sem cargo";
 
-            container.innerHTML += `
-                <div class="activity-item">
-                    <strong>${candidato.nick}</strong><br>
-                    Status: ${status}<br>
-                    Avaliador: ${avaliador}<br>
-                    Data: ${dataAnalise}
-                </div>
-            `;
 
-        });
+        document.getElementById("tempo-staff").textContent =
+            data.entrada
+            ? new Date(data.entrada).toLocaleDateString("pt-BR")
+            : "--";
 
-    } catch(err) {
+
+
+    } catch(err){
 
         console.error(err);
 
@@ -129,28 +67,261 @@ async function carregarAtividades() {
 
 }
 
+
+
+
+
 // ==========================================
-// LOGOUT
+// CARREGAR AVISOS
 // ==========================================
 
-async function logout() {
+async function carregarAvisos(){
 
-    await supabaseClient.auth.signOut();
 
-    window.location.href = "login.html";
+    const area =
+    document.getElementById("avisos");
+
+
+
+    const { data, error } =
+    await supabaseClient
+    .from("avisos")
+    .select("*")
+    .order("created_at", {
+        ascending:false
+    })
+    .limit(5);
+
+
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+
+
+    if(!data || data.length === 0){
+
+        area.innerHTML =
+        `
+        <div class="activity-item">
+            Nenhum aviso disponível.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+
+    area.innerHTML="";
+
+
+
+    data.forEach(aviso=>{
+
+
+        area.innerHTML +=
+        `
+        <div class="activity-item">
+
+            <strong>
+            ${aviso.titulo}
+            </strong>
+
+            <br>
+
+            ${aviso.mensagem}
+
+        </div>
+        `;
+
+
+    });
+
 
 }
 
+
+
+
+
+
 // ==========================================
-// INICIAR
+// CARREGAR AGENDA
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function carregarAgenda(){
+
+
+    const area =
+    document.getElementById("agenda");
+
+
+
+    const {data,error}=
+
+    await supabaseClient
+    .from("agenda")
+    .select("*")
+    .order("data",{
+        ascending:true
+    })
+    .limit(5);
+
+
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+
+
+    if(!data || data.length===0){
+
+        area.innerHTML=
+        `
+        <div class="activity-item">
+            Nenhum evento marcado.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+
+    area.innerHTML="";
+
+
+
+    data.forEach(evento=>{
+
+
+        area.innerHTML +=
+        `
+        <div class="activity-item">
+
+            <strong>
+            ${evento.titulo}
+            </strong>
+
+            <br>
+
+            ${evento.data}
+
+        </div>
+        `;
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+// ==========================================
+// CARREGAR DESEMPENHO
+// ==========================================
+
+async function carregarDesempenho(){
+
+
+    const {data:user}=
+
+    await supabaseClient.auth.getUser();
+
+
+
+    if(!user.user)
+    return;
+
+
+
+    const {data,error}=
+
+    await supabaseClient
+    .from("staff_desempenho")
+    .select("*")
+    .eq("email",user.user.email)
+    .single();
+
+
+
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
+
+
+
+    document.getElementById("atendimentos").textContent =
+    data.atendimentos || 0;
+
+
+
+    document.getElementById("avaliacoes").textContent =
+    data.avaliacoes || 0;
+
+
+
+    document.getElementById("horas").textContent =
+    (data.horas || 0) + "h";
+
+
+
+    document.getElementById("progresso").textContent =
+    (data.progresso || 0) + "%";
+
+
+
+}
+
+
+
+
+
+
+
+// ==========================================
+// INICIAR DASHBOARD
+// ==========================================
+
+document.addEventListener(
+"DOMContentLoaded",
+async()=>{
+
 
     await verificarLogin();
 
-    await carregarEstatisticas();
 
-    await carregarAtividades();
+    await carregarPerfil();
+
+
+    await carregarAvisos();
+
+
+    await carregarAgenda();
+
+
+    await carregarDesempenho();
+
+
 
 });
