@@ -93,7 +93,7 @@ formulario.addEventListener("submit", async (e)=>{
 
 
 
-    window.location.href = "admin.html";
+    window.location.href = "dashboard.html";
 
 
 });
