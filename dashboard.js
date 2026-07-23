@@ -3,6 +3,7 @@
 // ==========================================
 
 
+
 // ==========================================
 // CARREGAR PERFIL DO STAFF
 // ==========================================
@@ -68,6 +69,12 @@ async function carregarPerfil(){
 
 
 
+        // Carrega tempo do FuturySync
+
+        carregarTempoStaff(data.nick);
+
+
+
     }catch(error){
 
         console.error(error);
@@ -76,6 +83,83 @@ async function carregarPerfil(){
 
 
 }
+
+
+
+
+
+
+
+// ==========================================
+// CARREGAR TEMPO STAFF SKYBLOCK
+// ==========================================
+
+async function carregarTempoStaff(nick){
+
+
+    try{
+
+
+        const {data,error} = await supabaseClient
+        .from("skyblock_tempo")
+        .select("tempo")
+        .eq("nick", nick)
+        .single();
+
+
+
+        if(error){
+
+            console.error(
+                "Erro buscando tempo staff:",
+                error
+            );
+
+
+            document.getElementById("horas").innerHTML =
+            "0h";
+
+
+            return;
+
+        }
+
+
+
+        let segundos = data.tempo || 0;
+
+
+
+        let horas =
+        Math.floor(segundos / 3600);
+
+
+
+        let minutos =
+        Math.floor(
+            (segundos % 3600) / 60
+        );
+
+
+
+        document.getElementById("horas").innerHTML =
+
+        horas + "h " + minutos + "min";
+
+
+
+    }catch(error){
+
+
+        console.error(error);
+
+
+    }
+
+
+}
+
+
 
 
 
@@ -163,6 +247,8 @@ async function carregarAvisos(){
     }
 
 }
+
+
 
 
 
@@ -259,6 +345,8 @@ async function carregarAgenda(){
 
 
 
+
+
 // ==========================================
 // CARREGAR DESEMPENHO
 // ==========================================
@@ -272,13 +360,16 @@ async function carregarDesempenho(){
     document.getElementById("avaliacoes").innerHTML = 0;
 
 
-    document.getElementById("horas").innerHTML = "0h";
+    // Não reseta mais horas
+    // O valor vem do FuturySync
 
 
     document.getElementById("progresso").innerHTML = "0%";
 
 
 }
+
+
 
 
 
