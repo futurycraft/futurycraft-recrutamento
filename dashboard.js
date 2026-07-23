@@ -3,30 +3,69 @@
 // ==========================================
 
 
+// ==========================================
 // CARREGAR PERFIL DO STAFF
+// ==========================================
+
 async function carregarPerfil(){
 
     try{
 
-        const { data } = await supabaseClient.auth.getUser();
 
-        if(!data.user){
+        const { data:user } = await supabaseClient.auth.getUser();
+
+
+        if(!user.user){
+
             window.location.href = "login.html";
             return;
+
         }
 
 
-        const email = data.user.email;
+
+        const email = user.user.email;
 
 
-        document.getElementById("nome-staff").innerHTML = email;
+
+        const { data, error } = await supabaseClient
+        .from("usuarios_staff")
+        .select("*")
+        .eq("email", email)
+        .single();
 
 
-        // futuramente vai buscar o cargo no banco
-        document.getElementById("cargo-staff").innerHTML = "Staff";
+
+        if(error){
+
+            console.error("Erro ao buscar staff:", error);
+
+            return;
+
+        }
 
 
-        document.getElementById("tempo-staff").innerHTML = "--";
+
+        document.getElementById("nick-staff").innerHTML =
+        data.nick || "--";
+
+
+
+        document.getElementById("nome-staff").innerHTML =
+        data.nome || "--";
+
+
+
+        document.getElementById("cargo-staff").innerHTML =
+        data.cargo || "Sem cargo";
+
+
+
+        document.getElementById("tempo-staff").innerHTML =
+        data.data_entrada
+        ? new Date(data.data_entrada).toLocaleDateString("pt-BR")
+        : "--";
+
 
 
     }catch(error){
@@ -35,11 +74,19 @@ async function carregarPerfil(){
 
     }
 
+
 }
 
 
 
+
+
+
+
+// ==========================================
 // CARREGAR AVISOS
+// ==========================================
+
 async function carregarAvisos(){
 
     const area = document.getElementById("avisos");
@@ -69,7 +116,7 @@ async function carregarAvisos(){
         if(!data || data.length === 0){
 
             area.innerHTML = `
-            
+
             <div class="activity-item">
                 Nenhum aviso disponível.
             </div>
@@ -120,7 +167,13 @@ async function carregarAvisos(){
 
 
 
+
+
+
+// ==========================================
 // CARREGAR AGENDA
+// ==========================================
+
 async function carregarAgenda(){
 
 
@@ -175,7 +228,7 @@ async function carregarAgenda(){
             <div class="activity-item">
 
                 <strong>
-                ${evento.titulo}
+                    ${evento.titulo}
                 </strong>
 
                 <br>
@@ -203,15 +256,24 @@ async function carregarAgenda(){
 
 
 
+
+
+
+// ==========================================
 // CARREGAR DESEMPENHO
+// ==========================================
+
 async function carregarDesempenho(){
 
 
     document.getElementById("atendimentos").innerHTML = 0;
 
+
     document.getElementById("avaliacoes").innerHTML = 0;
 
+
     document.getElementById("horas").innerHTML = "0h";
+
 
     document.getElementById("progresso").innerHTML = "0%";
 
@@ -222,25 +284,28 @@ async function carregarDesempenho(){
 
 
 
-// INICIAR
-
-document.addEventListener("DOMContentLoaded",()=>{
 
 
-    verificarLogin();
+// ==========================================
+// INICIAR DASHBOARD
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", async ()=>{
 
 
-    carregarPerfil();
+    await verificarLogin();
 
 
-    carregarAvisos();
+    await carregarPerfil();
 
 
-    carregarAgenda();
+    await carregarAvisos();
 
 
-    carregarDesempenho();
+    await carregarAgenda();
 
+
+    await carregarDesempenho();
 
 
 });
