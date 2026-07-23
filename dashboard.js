@@ -39,16 +39,61 @@ async function carregarPerfil(){
 
 
 
-        if(error){
 
-            console.error(
-                "Erro ao buscar staff:",
-                error
+
+        // NÃO É STAFF OU FOI REMOVIDO
+
+        if(error || !data){
+
+
+            console.log(
+                "Usuário não encontrado na staff"
             );
+
+
+            await removerTempoStaff(email);
+
+
+            window.location.href = "login.html";
+
 
             return;
 
+
         }
+
+
+
+
+
+
+
+        // SEM CARGO
+
+        if(!data.cargo){
+
+
+            console.log(
+                "Staff sem cargo"
+            );
+
+
+            await removerTempoStaff(
+                data.nick
+            );
+
+
+            window.location.href = "login.html";
+
+
+            return;
+
+
+        }
+
+
+
+
 
 
 
@@ -75,6 +120,8 @@ async function carregarPerfil(){
 
 
 
+
+
         console.log(
             "Staff carregado:",
             data.nick
@@ -82,21 +129,111 @@ async function carregarPerfil(){
 
 
 
-        await carregarTempoStaff(data.nick);
+
+
+        await carregarTempoStaff(
+            data.nick
+        );
+
 
 
 
     }catch(error){
+
 
         console.error(
             "Erro perfil:",
             error
         );
 
+
     }
 
 
 }
+
+
+
+
+
+
+
+
+// ==========================================
+// REMOVER TEMPO DE QUEM NÃO É STAFF
+// ==========================================
+
+async function removerTempoStaff(nick){
+
+
+    try{
+
+
+        if(!nick){
+
+            return;
+
+        }
+
+
+
+
+
+        const {error} =
+        await supabaseClient
+        .from("skyblock_tempo")
+        .delete()
+        .eq(
+            "nick",
+            nick
+        );
+
+
+
+
+
+        if(error){
+
+
+            console.error(
+                "Erro removendo tempo:",
+                error
+            );
+
+
+            return;
+
+
+        }
+
+
+
+
+
+        console.log(
+            "Tempo removido:",
+            nick
+        );
+
+
+
+
+    }catch(error){
+
+
+        console.error(
+            "Erro remover tempo:",
+            error
+        );
+
+
+    }
+
+
+}
+
+
+
 
 
 
@@ -120,12 +257,14 @@ async function carregarTempoStaff(nick){
 
 
 
+
         const {data,error} =
         await supabaseClient
         .from("skyblock_tempo")
         .select("nick,tempo")
         .eq("nick", nick)
-        .single();
+        .maybeSingle();
+
 
 
 
@@ -139,6 +278,7 @@ async function carregarTempoStaff(nick){
 
 
 
+
         if(error){
 
 
@@ -148,6 +288,23 @@ async function carregarTempoStaff(nick){
             );
 
 
+            document.getElementById("horas")
+            .innerHTML = "0h";
+
+
+            return;
+
+
+        }
+
+
+
+
+
+
+
+        if(!data){
+
 
             document.getElementById("horas")
             .innerHTML = "0h";
@@ -155,7 +312,10 @@ async function carregarTempoStaff(nick){
 
             return;
 
+
         }
+
+
 
 
 
@@ -166,10 +326,14 @@ async function carregarTempoStaff(nick){
 
 
 
+
+
         let horas =
         Math.floor(
             segundos / 3600
         );
+
+
 
 
 
@@ -181,6 +345,8 @@ async function carregarTempoStaff(nick){
 
 
 
+
+
         document.getElementById("horas")
         .innerHTML =
 
@@ -188,10 +354,14 @@ async function carregarTempoStaff(nick){
 
 
 
+
+
+
         console.log(
             "Tempo convertido:",
             horas + "h " + minutos + "min"
         );
+
 
 
 
@@ -208,6 +378,7 @@ async function carregarTempoStaff(nick){
 
 
 }
+
 
 
 
@@ -233,11 +404,14 @@ async function carregarAvisos(){
         await supabaseClient
         .from("avisos")
         .select("*")
-        .order("created_at",
-        {
-            ascending:false
-        })
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        )
         .limit(5);
+
 
 
 
@@ -248,6 +422,7 @@ async function carregarAvisos(){
             return;
 
         }
+
 
 
 
@@ -272,7 +447,9 @@ async function carregarAvisos(){
 
 
 
+
         area.innerHTML = "";
+
 
 
 
@@ -315,6 +492,7 @@ async function carregarAvisos(){
 
 
 
+
 // ==========================================
 // CARREGAR AGENDA
 // ==========================================
@@ -333,11 +511,14 @@ async function carregarAgenda(){
         await supabaseClient
         .from("agenda")
         .select("*")
-        .order("data",
-        {
-            ascending:true
-        })
+        .order(
+            "data",
+            {
+                ascending:true
+            }
+        )
         .limit(5);
+
 
 
 
@@ -348,6 +529,8 @@ async function carregarAgenda(){
             return;
 
         }
+
+
 
 
 
@@ -372,7 +555,10 @@ async function carregarAgenda(){
 
 
 
+
+
         area.innerHTML = "";
+
 
 
 
@@ -439,6 +625,7 @@ async function carregarDesempenho(){
 
 
 }
+
 
 
 
