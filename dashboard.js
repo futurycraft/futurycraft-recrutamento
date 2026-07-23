@@ -1,29 +1,3 @@
-javascript
-// ==========================================
-// FUTURYCRAFT DASHBOARD STAFF
-// ==========================================
-
-const SUPABASE_URL = "https://jssscxlnzytmwzbabvhu.supabase.co";
-const SUPABASE_KEY = "SUA_CHAVE_AQUI";
-
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-// ==========================================
-// VERIFICAR LOGIN
-// ==========================================
-
-async function verificarLogin() {
-
-    const { data } = await supabaseClient.auth.getSession();
-
-    if (!data.session) {
-        window.location.href = "login.html";
-    }
-
-}
 
 // ==========================================
 // CARREGAR ESTATÍSTICAS
