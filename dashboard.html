@@ -1,133 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Staff - FuturyCraft</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="background-glow"></div>
+
+
+
+<header class="topbar">
+
+
+    <div class="logo-area">
+
+        <h1>FUTURYCRAFT</h1>
+
+        <span>Central Staff</span>
+
+    </div>
+
+
+
+    <div class="topbar-actions">
+
+
+        <button class="btn-primary" onclick="window.location.href='painel.html'">
+
+            Candidaturas
+
+        </button>
+
+
+
+        <button class="btn-danger" onclick="logout()">
+
+            Sair
+
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+
+
 <main class="dashboard">
 
-    <!-- PERFIL -->
 
-    <section class="welcome-card">
 
-        <div class="profile-info">
 
-            <h2>Bem-vindo, <span id="nome-staff">Staff</span></h2>
 
-            <p>
-                Cargo atual:
-                <strong id="cargo-staff">Carregando...</strong>
-            </p>
+<!-- PERFIL -->
 
-            <p>
-                Membro da equipe desde:
-                <strong id="tempo-staff">--</strong>
-            </p>
+<section class="welcome-card">
 
-        </div>
 
-    </section>
+    <div class="profile-info">
 
-    <!-- AVISOS E AGENDA -->
 
-    <section class="content-grid">
+        <h2>
 
-        <div class="panel-card">
+            Bem-vindo, 
+            <span id="nome-staff">
+                Staff
+            </span>
 
-            <h3>📢 Avisos da Administração</h3>
+        </h2>
 
-            <div id="avisos">
 
-                <div class="activity-item">
-                    Nenhum aviso disponível.
-                </div>
 
-            </div>
+        <p>
 
-        </div>
+            Cargo atual:
 
-        <div class="panel-card">
+            <strong id="cargo-staff">
 
-            <h3>📅 Próximos Eventos</h3>
+                Carregando...
 
-            <div id="agenda">
+            </strong>
 
-                <div class="activity-item">
-                    Nenhum evento agendado.
-                </div>
+        </p>
 
-            </div>
 
-        </div>
 
-    </section>
+        <p>
 
-    <!-- DESEMPENHO E EVOLUÇÃO -->
+            Membro da equipe desde:
 
-    <section class="stats-grid">
+            <strong id="tempo-staff">
 
-        <div class="stat-card">
-            <span class="stat-title">Atendimentos</span>
-            <h3 id="atendimentos">0</h3>
-        </div>
+                --
 
-        <div class="stat-card">
-            <span class="stat-title">Avaliações</span>
-            <h3 id="avaliacoes">0</h3>
-        </div>
+            </strong>
 
-        <div class="stat-card">
-            <span class="stat-title">Horas Online</span>
-            <h3 id="horas">0h</h3>
-        </div>
+        </p>
 
-        <div class="stat-card">
-            <span class="stat-title">Progresso de Evolução</span>
-            <h3 id="progresso">0%</h3>
-        </div>
 
-    </section>
 
-    <!-- PROCEDIMENTOS -->
+    </div>
 
-    <section class="panel-card">
 
-        <h3>📚 Central de Procedimentos</h3>
+</section>
 
-        <div class="quick-actions">
 
-            <button>
-                Manual da Staff
-            </button>
 
-            <button>
-                Regras da Staff
-            </button>
 
-            <button>
-                Sistema de Punições
-            </button>
 
-            <button>
-                Processo de Recrutamento
-            </button>
 
-            <button>
-                Escala de Eventos
-            </button>
+<!-- AVISOS E AGENDA -->
+
+
+<section class="content-grid">
+
+
+
+<div class="panel-card">
+
+
+    <h3>
+
+        📢 Avisos da Administração
+
+    </h3>
+
+
+
+    <div id="avisos">
+
+
+        <div class="activity-item">
+
+            Carregando avisos...
 
         </div>
 
-    </section>
 
-    <!-- MURAL -->
+    </div>
 
-    <section class="panel-card">
 
-        <h3>💬 Mural da Staff</h3>
+</div>
 
-        <div id="mural">
 
-            <div class="activity-item">
-                Bem-vindo ao sistema interno da Staff.
-            </div>
+
+
+
+
+
+<div class="panel-card">
+
+
+    <h3>
+
+        📅 Próximos Eventos
+
+    </h3>
+
+
+
+
+    <div id="agenda">
+
+
+        <div class="activity-item">
+
+            Carregando eventos...
 
         </div>
 
-    </section>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- DESEMPENHO -->
+
+
+<section class="stats-grid">
+
+
+
+<div class="stat-card">
+
+    <span class="stat-title">
+
+        Atendimentos
+
+    </span>
+
+
+    <h3 id="atendimentos">
+
+        0
+
+    </h3>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+    <span class="stat-title">
+
+        Avaliações
+
+    </span>
+
+
+
+    <h3 id="avaliacoes">
+
+        0
+
+    </h3>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+    <span class="stat-title">
+
+        Horas Online
+
+    </span>
+
+
+
+    <h3 id="horas">
+
+        0h
+
+    </h3>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+    <span class="stat-title">
+
+        Evolução
+
+    </span>
+
+
+
+    <h3 id="progresso">
+
+        0%
+
+    </h3>
+
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- CENTRAL DE PROCEDIMENTOS -->
+
+
+<section class="panel-card">
+
+
+<h3>
+
+    📚 Central de Procedimentos
+
+</h3>
+
+
+
+<div class="quick-actions">
+
+
+
+<button>
+
+    Manual da Staff
+
+</button>
+
+
+
+<button>
+
+    Regras da Staff
+
+</button>
+
+
+
+<button>
+
+    Sistema de Punições
+
+</button>
+
+
+
+<button>
+
+    Processo de Recrutamento
+
+</button>
+
+
+
+<button>
+
+    Escala de Eventos
+
+</button>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- MURAL -->
+
+
+<section class="panel-card">
+
+
+<h3>
+
+    💬 Mural da Staff
+
+</h3>
+
+
+
+<div id="mural">
+
+
+<div class="activity-item">
+
+    Bem-vindo ao sistema interno da Staff FuturyCraft.
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
 
 </main>
+
+
+
+
+
+
+
+
+
+<!-- SCRIPTS -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script src="auth.js"></script>
+
+
+<script src="dashboard.js"></script>
+
+
+
+</body>
+
+</html>
