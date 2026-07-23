@@ -2,12 +2,15 @@
    FUTURYCRAFT - CENTRAL STAFF
 =================================== */
 
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:'Montserrat',sans-serif;
 }
+
+
 
 body{
 
@@ -19,70 +22,85 @@ body{
 }
 
 
-/* FUNDO FUTURISTA */
+
+/* FUNDO */
 
 .background-glow{
 
     position:fixed;
     inset:0;
+
     z-index:-1;
 
     background:
-    radial-gradient(circle at 20% 20%,rgba(124,92,255,.18),transparent 35%),
-    radial-gradient(circle at 80% 30%,rgba(0,174,255,.14),transparent 35%),
-    radial-gradient(circle at 50% 90%,rgba(124,92,255,.12),transparent 40%);
+    radial-gradient(circle at 20% 20%, rgba(124,92,255,.18), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(0,174,255,.14), transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(124,92,255,.10), transparent 40%);
 
 }
 
 
-/* TOPO */
+
+
+
+/* HEADER */
 
 .topbar{
 
     width:100%;
+
     padding:20px 40px;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
-    background:rgba(15,18,27,.75);
+
+    background:rgba(12,15,23,.75);
+
     border-bottom:1px solid rgba(255,255,255,.08);
 
     backdrop-filter:blur(15px);
 
-    position:sticky;
-    top:0;
-
-    z-index:10;
-
 }
+
 
 
 .logo-area h1{
 
-    color:#865cff;
+    color:#875cff;
+
     font-size:28px;
+
     letter-spacing:2px;
 
 }
 
 
+
 .logo-area span{
 
     color:#9da3b2;
+
     font-size:13px;
 
 }
 
 
 
+
 .topbar-actions{
 
     display:flex;
+
     gap:12px;
 
 }
+
+
+
 
 
 /* BOTÕES */
@@ -93,6 +111,7 @@ body{
     padding:12px 20px;
 
     border:none;
+
     border-radius:12px;
 
     cursor:pointer;
@@ -104,17 +123,21 @@ body{
 }
 
 
+
 .btn-primary{
 
     background:#7447ff;
+
     color:white;
 
 }
 
 
+
 .btn-danger{
 
     background:#ff4141;
+
     color:white;
 
 }
@@ -130,9 +153,13 @@ body{
 
 
 
+
+
 /* CONTAINER */
 
 .dashboard{
+
+    width:100%;
 
     max-width:1400px;
 
@@ -144,36 +171,26 @@ body{
 
 
 
-/* CARD GERAL */
-
-.panel-card,
-.welcome-card,
-.stat-card{
-
-    background:
-    rgba(255,255,255,.04);
-
-    border:
-
-    1px solid rgba(255,255,255,.08);
-
-
-    border-radius:22px;
-
-    backdrop-filter:blur(15px);
-
-}
 
 
 /* PERFIL */
 
 .welcome-card{
 
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
     padding:35px;
 
     margin-bottom:30px;
 
+    backdrop-filter:blur(15px);
+
 }
+
 
 
 .profile-info h2{
@@ -185,6 +202,7 @@ body{
 }
 
 
+
 .profile-info span{
 
     color:#875cff;
@@ -192,20 +210,16 @@ body{
 }
 
 
+
 .profile-info p{
 
-    color:#aeb5c5;
+    color:#b0b6c5;
 
     margin-top:8px;
 
 }
 
 
-.profile-info strong{
-
-    color:white;
-
-}
 
 
 
@@ -225,15 +239,26 @@ body{
 
 
 
-/* PAINEIS */
+
+
+/* CARDS */
 
 .panel-card{
 
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
     padding:30px;
+
+    backdrop-filter:blur(15px);
 
     margin-bottom:30px;
 
 }
+
 
 
 .panel-card h3{
@@ -246,19 +271,15 @@ body{
 
 
 
-/* AVISOS */
+
+
+/* ATIVIDADES */
 
 .activity-item{
 
-    background:
+    background:rgba(255,255,255,.04);
 
-    rgba(255,255,255,.04);
-
-
-    border-left:
-
-    3px solid #875cff;
-
+    border-left:3px solid #875cff;
 
     padding:15px;
 
@@ -266,9 +287,12 @@ body{
 
     margin-bottom:12px;
 
-    color:#d1d5df;
+    color:#d2d6df;
 
 }
+
+
+
 
 
 
@@ -287,7 +311,14 @@ body{
 }
 
 
+
 .stat-card{
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
 
     padding:25px;
 
@@ -303,11 +334,10 @@ body{
 
     border-color:#875cff;
 
-    box-shadow:
-
-    0 0 25px rgba(135,92,255,.25);
+    box-shadow:0 0 25px rgba(135,92,255,.25);
 
 }
+
 
 
 .stat-title{
@@ -319,19 +349,20 @@ body{
 }
 
 
-.stat-card h3{
 
-    margin-top:15px;
+.stat-card h3{
 
     font-size:38px;
 
-    color:white;
+    margin-top:15px;
 
 }
 
 
 
-/* PROCEDIMENTOS */
+
+
+/* BOTÕES CENTRAL */
 
 .quick-actions{
 
@@ -377,14 +408,6 @@ body{
 
 
 
-/* EVOLUÇÃO */
-
-#progresso{
-
-    color:#8c63ff;
-
-}
-
 
 
 /* SCROLL */
@@ -396,11 +419,13 @@ body{
 }
 
 
+
 ::-webkit-scrollbar-track{
 
     background:#080a10;
 
 }
+
 
 
 ::-webkit-scrollbar-thumb{
@@ -410,6 +435,8 @@ body{
     border-radius:20px;
 
 }
+
+
 
 
 
@@ -423,6 +450,7 @@ body{
         grid-template-columns:1fr;
 
     }
+
 
 
     .topbar{
@@ -448,9 +476,9 @@ body{
     }
 
 
-    .welcome-card{
+    .topbar{
 
-        padding:25px;
+        padding:20px;
 
     }
 
