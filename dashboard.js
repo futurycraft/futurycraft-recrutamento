@@ -3,32 +3,56 @@
 // ==========================================
 
 
-// ==========================================
-// CARREGAR PERFIL STAFF
-// ==========================================
+// CARREGAR PERFIL DO STAFF
+async function carregarPerfil(){
 
-async function carregarPerfil() {
+    try{
 
-    try {
+        const { data } = await supabaseClient.auth.getUser();
 
-        const { data: usuario } = await supabaseClient.auth.getUser();
-
-
-        if (!usuario.user) {
+        if(!data.user){
             window.location.href = "login.html";
             return;
         }
 
 
-        const email = usuario.user.email;
+        const email = data.user.email;
 
 
-        // Busca informações do staff
-        const { data, error } = await supabaseClient
-            .from("staff")
-            .select("*")
-            .eq("email", email)
-            .single();
+        document.getElementById("nome-staff").innerHTML = email;
+
+
+        // futuramente vai buscar o cargo no banco
+        document.getElementById("cargo-staff").innerHTML = "Staff";
+
+
+        document.getElementById("tempo-staff").innerHTML = "--";
+
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+
+// CARREGAR AVISOS
+async function carregarAvisos(){
+
+    const area = document.getElementById("avisos");
+
+
+    try{
+
+
+        const {data,error} = await supabaseClient
+        .from("avisos")
+        .select("*")
+        .order("created_at",{ascending:false})
+        .limit(5);
 
 
 
@@ -36,7 +60,21 @@ async function carregarPerfil() {
 
             console.error(error);
 
-            document.getElementById("nome-staff").textContent = email;
+            return;
+
+        }
+
+
+
+        if(!data || data.length === 0){
+
+            area.innerHTML = `
+            
+            <div class="activity-item">
+                Nenhum aviso disponível.
+            </div>
+
+            `;
 
             return;
 
@@ -44,185 +82,120 @@ async function carregarPerfil() {
 
 
 
-        document.getElementById("nome-staff").textContent =
-            data.nome || "Staff";
+        area.innerHTML = "";
 
 
-        document.getElementById("cargo-staff").textContent =
-            data.cargo || "Sem cargo";
+        data.forEach(aviso=>{
 
 
-        document.getElementById("tempo-staff").textContent =
-            data.entrada
-            ? new Date(data.entrada).toLocaleDateString("pt-BR")
-            : "--";
+            area.innerHTML += `
+
+            <div class="activity-item">
+
+                <strong>
+                    ${aviso.titulo}
+                </strong>
+
+                <br>
+
+                ${aviso.mensagem}
+
+            </div>
+
+            `;
 
 
-
-    } catch(err){
-
-        console.error(err);
-
-    }
-
-}
-
-
-
-
-
-// ==========================================
-// CARREGAR AVISOS
-// ==========================================
-
-async function carregarAvisos(){
-
-
-    const area =
-    document.getElementById("avisos");
+        });
 
 
 
-    const { data, error } =
-    await supabaseClient
-    .from("avisos")
-    .select("*")
-    .order("created_at", {
-        ascending:false
-    })
-    .limit(5);
-
-
-
-    if(error){
+    }catch(error){
 
         console.error(error);
-        return;
 
     }
-
-
-
-    if(!data || data.length === 0){
-
-        area.innerHTML =
-        `
-        <div class="activity-item">
-            Nenhum aviso disponível.
-        </div>
-        `;
-
-        return;
-
-    }
-
-
-
-    area.innerHTML="";
-
-
-
-    data.forEach(aviso=>{
-
-
-        area.innerHTML +=
-        `
-        <div class="activity-item">
-
-            <strong>
-            ${aviso.titulo}
-            </strong>
-
-            <br>
-
-            ${aviso.mensagem}
-
-        </div>
-        `;
-
-
-    });
-
 
 }
 
 
 
 
-
-
-// ==========================================
 // CARREGAR AGENDA
-// ==========================================
-
 async function carregarAgenda(){
 
 
-    const area =
-    document.getElementById("agenda");
+    const area = document.getElementById("agenda");
+
+
+    try{
+
+
+        const {data,error} = await supabaseClient
+        .from("agenda")
+        .select("*")
+        .order("data",{ascending:true})
+        .limit(5);
 
 
 
-    const {data,error}=
+        if(error){
 
-    await supabaseClient
-    .from("agenda")
-    .select("*")
-    .order("data",{
-        ascending:true
-    })
-    .limit(5);
+            console.error(error);
+
+            return;
+
+        }
 
 
 
-    if(error){
+        if(!data || data.length === 0){
+
+            area.innerHTML = `
+
+            <div class="activity-item">
+                Nenhum evento agendado.
+            </div>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        area.innerHTML="";
+
+
+        data.forEach(evento=>{
+
+
+            area.innerHTML += `
+
+            <div class="activity-item">
+
+                <strong>
+                ${evento.titulo}
+                </strong>
+
+                <br>
+
+                ${evento.data}
+
+            </div>
+
+            `;
+
+
+        });
+
+
+
+    }catch(error){
 
         console.error(error);
-        return;
 
     }
-
-
-
-    if(!data || data.length===0){
-
-        area.innerHTML=
-        `
-        <div class="activity-item">
-            Nenhum evento marcado.
-        </div>
-        `;
-
-        return;
-
-    }
-
-
-
-    area.innerHTML="";
-
-
-
-    data.forEach(evento=>{
-
-
-        area.innerHTML +=
-        `
-        <div class="activity-item">
-
-            <strong>
-            ${evento.titulo}
-            </strong>
-
-            <br>
-
-            ${evento.data}
-
-        </div>
-        `;
-
-
-    });
 
 
 }
@@ -230,65 +203,17 @@ async function carregarAgenda(){
 
 
 
-
-
-
-// ==========================================
 // CARREGAR DESEMPENHO
-// ==========================================
-
 async function carregarDesempenho(){
 
 
-    const {data:user}=
+    document.getElementById("atendimentos").innerHTML = 0;
 
-    await supabaseClient.auth.getUser();
+    document.getElementById("avaliacoes").innerHTML = 0;
 
+    document.getElementById("horas").innerHTML = "0h";
 
-
-    if(!user.user)
-    return;
-
-
-
-    const {data,error}=
-
-    await supabaseClient
-    .from("staff_desempenho")
-    .select("*")
-    .eq("email",user.user.email)
-    .single();
-
-
-
-    if(error){
-
-        console.log(error);
-
-        return;
-
-    }
-
-
-
-    document.getElementById("atendimentos").textContent =
-    data.atendimentos || 0;
-
-
-
-    document.getElementById("avaliacoes").textContent =
-    data.avaliacoes || 0;
-
-
-
-    document.getElementById("horas").textContent =
-    (data.horas || 0) + "h";
-
-
-
-    document.getElementById("progresso").textContent =
-    (data.progresso || 0) + "%";
-
+    document.getElementById("progresso").innerHTML = "0%";
 
 
 }
@@ -297,30 +222,24 @@ async function carregarDesempenho(){
 
 
 
+// INICIAR
+
+document.addEventListener("DOMContentLoaded",()=>{
 
 
-// ==========================================
-// INICIAR DASHBOARD
-// ==========================================
-
-document.addEventListener(
-"DOMContentLoaded",
-async()=>{
+    verificarLogin();
 
 
-    await verificarLogin();
+    carregarPerfil();
 
 
-    await carregarPerfil();
+    carregarAvisos();
 
 
-    await carregarAvisos();
+    carregarAgenda();
 
 
-    await carregarAgenda();
-
-
-    await carregarDesempenho();
+    carregarDesempenho();
 
 
 
