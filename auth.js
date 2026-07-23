@@ -45,3 +45,20 @@ async function pegarCargo(){
     return data.cargo;
 
 }
+
+// ==========================================
+// VERIFICAR LOGIN
+// ==========================================
+
+async function verificarLogin(){
+
+    const { data } = await supabaseClient.auth.getSession();
+
+
+    if(!data.session){
+
+        window.location.href = "login.html";
+
+    }
+
+}
