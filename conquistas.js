@@ -688,10 +688,10 @@ async function liberarConquista(
 
 document.addEventListener(
 "DOMContentLoaded",
-()=>{
+async ()=>{
 
 
-carregarPerfil();
+await carregarPerfil();
 
 
 });
