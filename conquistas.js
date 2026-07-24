@@ -491,7 +491,72 @@ nick
 .maybeSingle();
 
 
+// ==========================================
+// TEMPO NA EQUIPE STAFF
+// ==========================================
 
+
+const {data:staff}=
+
+await supabaseClient
+
+.from("usuarios_staff")
+
+.select(
+"data_entrada"
+)
+
+.eq(
+"nick",
+nick
+)
+
+.maybeSingle();
+
+
+
+
+let diasStaff = 0;
+
+
+
+if(staff?.data_entrada){
+
+
+const entrada =
+new Date(
+staff.data_entrada
+);
+
+
+
+const hoje =
+new Date();
+
+
+
+const diferenca =
+hoje - entrada;
+
+
+
+diasStaff =
+Math.floor(
+diferenca /
+(1000 * 60 * 60 * 24)
+);
+
+
+
+}
+
+
+
+
+console.log(
+"Dias na equipe:",
+diasStaff
+);
 
 
 if(error){
@@ -651,7 +716,163 @@ conquista
 
 
 
+// ==========================================
+// CONQUISTAS POR TEMPO DE EQUIPE
+// ==========================================
 
+
+
+const conquistasTempo = [
+
+
+{
+
+dias:1,
+
+nome:"Primeiro Dia de Staff",
+
+descricao:"Completou 1 dia como membro da equipe Staff",
+
+icone:"📅"
+
+},
+
+
+
+{
+
+dias:7,
+
+nome:"Primeira Semana",
+
+descricao:"Permaneceu 7 dias na equipe Staff",
+
+icone:"⭐"
+
+},
+
+
+
+{
+
+dias:15,
+
+nome:"Duas Semanas de Staff",
+
+descricao:"Completou 15 dias na equipe Staff FuturyCraft",
+
+icone:"📅"
+
+},
+
+
+
+{
+
+dias:30,
+
+nome:"Primeiro Mês",
+
+descricao:"Completou 1 mês na equipe Staff FuturyCraft",
+
+icone:"📅"
+
+},
+
+
+
+{
+
+dias:90,
+
+nome:"Veterano da Equipe",
+
+descricao:"Completou 3 meses na equipe Staff",
+
+icone:"🏆"
+
+},
+
+
+
+{
+
+dias:180,
+
+nome:"Lenda FuturyCraft",
+
+descricao:"Completou 6 meses na equipe Staff",
+
+icone:"👑"
+
+},
+
+
+
+{
+
+dias:365,
+
+nome:"Elite FuturyCraft",
+
+descricao:"Completou 1 ano na equipe",
+
+icone:"💎"
+
+},
+
+
+
+{
+
+dias:730,
+
+nome:"Veterano Galáctico",
+
+descricao:"Completou 2 anos na equipe",
+
+icone:"🌠"
+
+}
+
+
+];
+
+
+
+
+
+for(
+const conquista of conquistasTempo
+){
+
+
+if(
+diasStaff >= conquista.dias
+){
+
+
+await liberarConquista(
+
+nick,
+
+{
+
+nome:conquista.nome,
+
+descricao:conquista.descricao,
+
+icone:conquista.icone
+
+}
+
+);
+
+
+}
+
+
+}
 
 
 
