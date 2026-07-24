@@ -206,6 +206,106 @@ body{
 
 }
 
+/* NOVO BOTÃO INÍCIO */
+.inicio-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    height:52px;
+
+    padding:0 24px;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #162133,
+        #202d46
+    );
+
+    border:1px solid #304261;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.inicio-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#00eaff;
+
+    box-shadow:
+    0 0 18px rgba(0,234,255,.25);
+
+}
+
+/* BOTÃO PERFIL */
+.perfil-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    height:52px;
+
+    padding:0 24px;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #162133,
+        #202d46
+    );
+
+    border:1px solid #304261;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.perfil-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#00eaff;
+
+    box-shadow:
+    0 0 18px rgba(0,234,255,.25);
+
+}
+
+.acoes-topo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
 .perfil-btn{
 
     background:
