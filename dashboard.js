@@ -261,7 +261,7 @@ async function carregarTempoStaff(nick){
 
             tempo =
             formatarTempo(
-                data.horas_online
+                data.tempo_online
             );
 
         }
