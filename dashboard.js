@@ -3,9 +3,15 @@
 // ==========================================
 
 
+// ==========================================
+// VARIÁVEIS
+// ==========================================
+
+let staffAtual = null;
+
 
 // ==========================================
-// CARREGAR PERFIL DO STAFF
+// CARREGAR PERFIL STAFF
 // ==========================================
 
 async function carregarPerfil(){
@@ -41,81 +47,56 @@ async function carregarPerfil(){
 
 
 
-
         if(error || !data){
 
-
-            console.log(
-                "Usuário não encontrado na staff"
+            console.error(
+                "Staff não encontrado",
+                error
             );
 
 
-            window.location.href = "login.html";
+            window.location.href =
+            "login.html";
 
 
             return;
-
 
         }
 
 
 
 
-
-
-        if(!data.cargo){
-
-
-            console.log(
-                "Staff sem cargo"
-            );
-
-
-            window.location.href = "login.html";
-
-
-            return;
-
-
-        }
+        staffAtual = data;
 
 
 
-
-
-
-
-        document.getElementById("nick-staff").innerHTML =
+        document.getElementById(
+            "nick-staff"
+        ).innerHTML =
         data.nick || "--";
 
 
 
-        document.getElementById("nome-staff").innerHTML =
+        document.getElementById(
+            "nome-staff"
+        ).innerHTML =
         data.nome || "--";
 
 
 
-        document.getElementById("cargo-staff").innerHTML =
-        data.cargo || "Sem cargo";
+        document.getElementById(
+            "cargo-staff"
+        ).innerHTML =
+        data.cargo || "--";
 
 
 
-        document.getElementById("tempo-staff").innerHTML =
-        data.data_entrada
-        ? new Date(data.data_entrada)
-            .toLocaleDateString("pt-BR")
-        : "--";
-
-
-
-
-
-        console.log(
-            "Staff carregado:",
-            data.nick
+        document.getElementById(
+            "tempo-staff"
+        ).innerHTML =
+        formatarData(
+            data.data_entrada
         );
-
-
 
 
 
@@ -125,9 +106,8 @@ async function carregarPerfil(){
 
 
 
-
-
-    }catch(error){
+    }
+    catch(error){
 
 
         console.error(
@@ -146,11 +126,101 @@ async function carregarPerfil(){
 
 
 
+// ==========================================
+// FORMATAR DATA
+// ==========================================
+
+function formatarData(data){
+
+
+    if(!data)
+        return "--";
+
+
+
+    return new Date(data)
+    .toLocaleDateString(
+        "pt-BR"
+    );
+
+
+}
+
+
+
+
 
 
 
 // ==========================================
-// CARREGAR TEMPO STAFF SKYBLOCK
+// FORMATAR TEMPO ONLINE
+// ==========================================
+
+function formatarTempo(segundos){
+
+
+    segundos =
+    Number(segundos) || 0;
+
+
+
+    let dias =
+    Math.floor(
+        segundos / 86400
+    );
+
+
+
+    let horas =
+    Math.floor(
+        (segundos % 86400) / 3600
+    );
+
+
+
+    let minutos =
+    Math.floor(
+        (segundos % 3600) / 60
+    );
+
+
+
+    let texto = "";
+
+
+
+    if(dias > 0)
+        texto += dias + "d ";
+
+
+
+    if(horas > 0)
+        texto += horas + "h ";
+
+
+
+    if(minutos > 0)
+        texto += minutos + "m";
+
+
+
+    if(texto === "")
+        texto = "0m";
+
+
+
+    return texto.trim();
+
+
+}
+
+
+
+
+
+
+// ==========================================
+// CARREGAR HORAS STAFF
 // ==========================================
 
 async function carregarTempoStaff(nick){
@@ -159,49 +229,177 @@ async function carregarTempoStaff(nick){
     try{
 
 
-        console.log(
-            "Buscando tempo:",
-            nick
-        );
-
-
-
-
         const {data,error} =
         await supabaseClient
         .from("skyblock_tempo")
         .select(
-            "nick,tempo_online,grupo,staff"
+            "tempo_online,nick"
         )
         .eq(
             "nick",
             nick
-        )
-        .eq(
-            "staff",
-            true
         )
         .maybeSingle();
 
 
 
 
+        if(error){
 
-        console.log(
-            "Resposta tempo:",
-            data,
-            error
+            console.error(error);
+
+        }
+
+
+
+        let tempo =
+        data
+        ? formatarTempo(
+            data.tempo_online
+        )
+        : "0m";
+
+
+
+
+        const horas =
+        document.getElementById(
+            "horas"
         );
 
 
 
+        if(horas)
+            horas.innerHTML = tempo;
 
 
-        if(error || !data){
 
 
-            document.getElementById("horas")
-            .innerHTML = "0h";
+        const area =
+        document.getElementById(
+            "horas-online"
+        );
+
+
+
+        if(area){
+
+
+            area.innerHTML = `
+
+
+            <div class="hour-card">
+
+
+                <div>
+
+                    <span>
+                    Seu tempo online
+                    </span>
+
+
+                    <h2>
+                    ${tempo}
+                    </h2>
+
+
+                </div>
+
+
+
+                <div>
+
+                    ⏱
+
+                </div>
+
+
+            </div>
+
+
+            `;
+
+
+        }
+
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Erro horas:",
+            error
+        );
+
+
+    }
+
+
+}
+
+// ==========================================
+// CARREGAR TOP RANKS STAFF
+// ==========================================
+
+async function carregarTopStaff(){
+
+
+    const area =
+    document.getElementById(
+        "top-staff"
+    );
+
+
+    if(!area)
+        return;
+
+
+
+    try{
+
+
+        const {data,error} =
+        await supabaseClient
+        .from("skyblock_tempo")
+        .select(
+            "nick,tempo_online,staff"
+        )
+        .eq(
+            "staff",
+            true
+        )
+        .order(
+            "tempo_online",
+            {
+                ascending:false
+            }
+        )
+        .limit(5);
+
+
+
+
+
+        if(error){
+
+
+            console.error(
+                "Erro ranking:",
+                error
+            );
+
+
+            area.innerHTML = `
+
+            <div class="rank-item">
+
+                Ranking indisponível.
+
+            </div>
+
+            `;
 
 
             return;
@@ -214,82 +412,123 @@ async function carregarTempoStaff(nick){
 
 
 
-        let segundos = 
-Number(data.tempo_online) || 0;
+        if(!data || data.length === 0){
 
 
+            area.innerHTML = `
 
-let dias =
-Math.floor(
-    segundos / 86400
-);
+            <div class="rank-item">
 
+                Nenhum staff encontrado.
 
+            </div>
 
-let horas =
-Math.floor(
-    (segundos % 86400) / 3600
-);
+            `;
 
 
-
-let minutos =
-Math.floor(
-    (segundos % 3600) / 60
-);
+            return;
 
 
-
-
-let textoTempo = "";
-
-
-
-if(dias > 0){
-
-    textoTempo += dias + "d ";
-
-}
-
-
-
-if(horas > 0){
-
-    textoTempo += horas + "h ";
-
-}
-
-
-
-if(minutos > 0){
-
-    textoTempo += minutos + "m";
-
-}
-
-
-
-if(textoTempo === ""){
-
-    textoTempo = "0m";
-
-}
-
-
-
-
-document.getElementById("horas")
-.innerHTML = textoTempo.trim();
+        }
 
 
 
 
 
-    }catch(error){
+        area.innerHTML = "";
+
+
+
+
+        data.forEach(
+        (staff,index)=>{
+
+
+            let medalha = "";
+
+
+
+            if(index === 0)
+                medalha = "🥇";
+
+
+            else if(index === 1)
+                medalha = "🥈";
+
+
+            else if(index === 2)
+                medalha = "🥉";
+
+
+            else
+                medalha = "#" + (index + 1);
+
+
+
+
+            area.innerHTML += `
+
+
+            <div class="rank-item">
+
+
+                <div class="rank-position">
+
+                    ${medalha}
+
+                </div>
+
+
+
+                <div class="rank-info">
+
+
+                    <strong>
+
+                        ${staff.nick}
+
+                    </strong>
+
+
+
+                    <span>
+
+                        Staff FuturyCraft
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="rank-hours">
+
+
+                    ${formatarTempo(
+                        staff.tempo_online
+                    )}
+
+
+                </div>
+
+
+
+            </div>
+
+
+            `;
+
+
+        });
+
+
+    }
+    catch(error){
 
 
         console.error(
-            "Erro tempo staff:",
+            "Erro top staff:",
             error
         );
 
@@ -305,8 +544,6 @@ document.getElementById("horas")
 
 
 
-
-
 // ==========================================
 // CARREGAR AVISOS
 // ==========================================
@@ -315,7 +552,15 @@ async function carregarAvisos(){
 
 
     const area =
-    document.getElementById("avisos");
+    document.getElementById(
+        "avisos"
+    );
+
+
+
+    if(!area)
+        return;
+
 
 
     try{
@@ -339,9 +584,25 @@ async function carregarAvisos(){
         if(error){
 
 
-            console.error(error);
+            console.error(
+                "Avisos:",
+                error
+            );
+
+
+            area.innerHTML = `
+
+            <div class="activity-item">
+
+                Nenhum aviso disponível.
+
+            </div>
+
+            `;
+
 
             return;
+
 
         }
 
@@ -372,141 +633,13 @@ async function carregarAvisos(){
 
 
 
-
         area.innerHTML = "";
 
 
 
 
-
-        data.forEach(aviso=>{
-
-
-            area.innerHTML += `
-
-
-            <div class="activity-item">
-
-
-                <strong>
-                    ${aviso.titulo}
-                </strong>
-
-
-                <br>
-
-
-                ${aviso.mensagem}
-
-
-            </div>
-
-
-            `;
-
-
-        });
-
-
-
-
-    }catch(error){
-
-
-        console.error(error);
-
-
-    }
-
-
-}
-
-
-
-
-
-
-
-
-
-// ==========================================
-// CARREGAR AGENDA
-// ==========================================
-
-async function carregarAgenda(){
-
-
-    const area =
-    document.getElementById("agenda");
-
-
-    try{
-
-
-        const {data,error} =
-        await supabaseClient
-        .from("agenda")
-        .select("*")
-        .order(
-            "data",
-            {
-                ascending:true
-            }
-        )
-        .limit(5);
-
-
-
-
-        if(error){
-
-
-            console.error(error);
-
-            return;
-
-        }
-
-
-
-
-
-
-        if(!data || data.length === 0){
-
-
-            area.innerHTML = `
-
-
-            <div class="activity-item">
-
-
-                Nenhum evento agendado.
-
-
-            </div>
-
-
-            `;
-
-
-            return;
-
-
-        }
-
-
-
-
-
-
-        area.innerHTML = "";
-
-
-
-
-
-        data.forEach(evento=>{
+        data.forEach(
+        aviso=>{
 
 
             area.innerHTML += `
@@ -517,15 +650,21 @@ async function carregarAgenda(){
 
                 <strong>
 
-                    ${evento.titulo}
+                    📢 ${aviso.titulo}
 
                 </strong>
+
 
 
                 <br>
 
 
-                ${evento.data}
+
+                <span>
+
+                    ${aviso.mensagem}
+
+                </span>
 
 
             </div>
@@ -540,11 +679,14 @@ async function carregarAgenda(){
 
 
 
+    }
+    catch(error){
 
-    }catch(error){
 
-
-        console.error(error);
+        console.error(
+            "Erro avisos:",
+            error
+        );
 
 
     }
@@ -558,31 +700,205 @@ async function carregarAgenda(){
 
 
 
-
-
 // ==========================================
-// CARREGAR DESEMPENHO
+// DESEMPENHO STAFF
 // ==========================================
 
 async function carregarDesempenho(){
 
 
-
-    document.getElementById("atendimentos")
-    .innerHTML = 0;
+    try{
 
 
+        let atendimentos = 0;
 
-
-    document.getElementById("avaliacoes")
-    .innerHTML = 0;
+        let avaliacoes = 0;
 
 
 
+        // futuramente puxará
+        // das tabelas reais
 
-    document.getElementById("progresso")
-    .innerHTML = "0%";
 
+
+        const atendimento =
+        document.getElementById(
+            "atendimentos"
+        );
+
+
+        const avaliacao =
+        document.getElementById(
+            "avaliacoes"
+        );
+
+
+        const progresso =
+        document.getElementById(
+            "progresso"
+        );
+
+
+
+
+        if(atendimento)
+            atendimento.innerHTML =
+            atendimentos;
+
+
+
+
+        if(avaliacao)
+            avaliacao.innerHTML =
+            avaliacoes;
+
+
+
+
+        if(progresso)
+            progresso.innerHTML =
+            "0%";
+
+
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Erro desempenho:",
+            error
+        );
+
+
+    }
+
+
+}
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+async function logout(){
+
+
+    try{
+
+
+        await supabaseClient.auth.signOut();
+
+
+
+        localStorage.clear();
+
+        sessionStorage.clear();
+
+
+
+        window.location.replace(
+            "login.html"
+        );
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Erro logout:",
+            error
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+// ==========================================
+// VERIFICAR LOGIN
+// ==========================================
+
+async function verificarLogin(){
+
+
+    try{
+
+
+        const {data} =
+        await supabaseClient.auth.getSession();
+
+
+
+        if(!data.session){
+
+
+            window.location.href =
+            "login.html";
+
+
+            return false;
+
+
+        }
+
+
+
+        return true;
+
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Erro login:",
+            error
+        );
+
+
+        return false;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+// ==========================================
+// ATUALIZAÇÃO AUTOMÁTICA
+// ==========================================
+
+async function atualizarDashboard(){
+
+
+    await carregarPerfil();
+
+
+    await carregarTopStaff();
+
+
+    await carregarAvisos();
+
+
+    await carregarDesempenho();
 
 
 }
@@ -604,19 +920,47 @@ document.addEventListener(
 async ()=>{
 
 
+    const logado =
     await verificarLogin();
+
+
+
+    if(!logado)
+        return;
+
+
 
 
     await carregarPerfil();
 
 
+
+    await carregarTopStaff();
+
+
+
     await carregarAvisos();
 
-
-    await carregarAgenda();
 
 
     await carregarDesempenho();
 
 
+
 });
+
+
+
+
+
+
+
+// Atualiza a cada 5 minutos
+
+setInterval(()=>{
+
+
+    atualizarDashboard();
+
+
+},300000);
