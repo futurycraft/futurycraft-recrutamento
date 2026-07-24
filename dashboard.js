@@ -1567,7 +1567,181 @@ async ()=>{
 
 
 
+// ==========================================
+// RANKING STAFF SEMANAL
+// ==========================================
 
+
+async function carregarRankingStaff(){
+
+
+const area =
+document.getElementById("ranking-staff");
+
+
+
+if(!area) return;
+
+
+
+
+try{
+
+
+const semana =
+pegarInicioSemana();
+
+
+
+
+const {data,error}=
+
+await supabaseClient
+
+.from("historico_staff")
+
+.select("*")
+
+.eq(
+"semana_inicio",
+semana
+)
+
+.order(
+"horas_online",
+{
+ascending:false
+}
+)
+
+.limit(10);
+
+
+
+
+
+if(error || !data || data.length===0){
+
+
+area.innerHTML=`
+
+<div class="activity-item">
+
+Ranking indisponível.
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+area.innerHTML="";
+
+
+
+
+
+data.forEach((staff,index)=>{
+
+
+
+let medalha="🏅";
+
+
+if(index===0)
+medalha="🥇";
+
+
+if(index===1)
+medalha="🥈";
+
+
+if(index===2)
+medalha="🥉";
+
+
+
+
+
+
+area.innerHTML += `
+
+
+<div class="ranking-item">
+
+
+<div class="ranking-posicao">
+
+${medalha}
+
+</div>
+
+
+
+<div class="ranking-nome">
+
+
+<strong>
+
+${staff.nick}
+
+</strong>
+
+
+<span>
+
+Staff FuturyCraft
+
+</span>
+
+
+</div>
+
+
+
+<div class="ranking-tempo">
+
+${staff.horas_online}h
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
+
+}catch(error){
+
+
+console.error(
+"Erro ranking:",
+error
+);
+
+
+}
+
+
+}
 
 
 
