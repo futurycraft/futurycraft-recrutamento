@@ -1,6 +1,7 @@
 /* ==========================================
    FUTURYCRAFT - GERENCIAMENTO STAFF
-   ========================================== */
+   STYLE CSS
+========================================== */
 
 
 *{
@@ -12,17 +13,23 @@
 
 
 
+
 body{
 
     min-height:100vh;
 
     background:
-    radial-gradient(circle at top,#162447,#050814 60%);
+
+    radial-gradient(
+        circle at top,
+        #182b52,
+        #050814 70%
+    );
+
 
     color:white;
 
     padding:40px;
-
 
 }
 
@@ -30,7 +37,8 @@ body{
 
 
 
-/* CONTAINER PRINCIPAL */
+
+/* CONTAINER */
 
 
 .staff-container{
@@ -45,6 +53,8 @@ body{
 
 
 
+
+
 /* CABEÇALHO */
 
 
@@ -52,59 +62,78 @@ body{
 
     text-align:center;
 
-    margin-bottom:40px;
+    margin-bottom:45px;
 
 }
+
+
 
 
 
 .staff-logo{
 
-    width:80px;
+    width:90px;
 
-    height:80px;
-
-    margin:auto;
+    height:90px;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
 
-    font-size:40px;
+    align-items:center;
 
-    background:
-    linear-gradient(135deg,#00eaff,#0066ff);
+    margin:auto;
 
     border-radius:50%;
 
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #00eaff,
+        #0066ff
+    );
+
+
+    font-size:45px;
+
+
     box-shadow:
-    0 0 25px #00eaff;
+
+    0 0 35px #00eaff;
 
 }
+
+
 
 
 
 .staff-header h1{
 
+
     margin-top:20px;
 
-    font-size:38px;
+    font-size:42px;
 
     letter-spacing:1px;
 
+
 }
+
+
 
 
 
 .staff-header p{
 
-    color:#9da9c7;
 
     margin-top:10px;
 
+    color:#9ca9c9;
+
     font-size:16px;
+
 
 }
 
@@ -113,7 +142,8 @@ body{
 
 
 
-/* ÁREA PRINCIPAL */
+
+/* CONTEUDO */
 
 
 .staff-content{
@@ -134,7 +164,8 @@ body{
 
 
 
-/* BOXES */
+
+/* BOX PRINCIPAL */
 
 
 .staff-box{
@@ -142,28 +173,32 @@ body{
 
     background:
 
-    rgba(15,22,42,0.85);
+    rgba(10,18,38,.85);
 
 
-    border:1px solid rgba(0,220,255,.15);
+    border:
+
+    1px solid rgba(0,234,255,.18);
 
 
-    border-radius:18px;
+    border-radius:20px;
 
 
-    padding:25px;
+    padding:28px;
 
 
     box-shadow:
 
-    0 0 25px rgba(0,0,0,.5);
+    0 0 35px rgba(0,0,0,.5);
 
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(15px);
+
+
+    transition:.3s;
 
 
 }
-
 
 
 
@@ -183,7 +218,7 @@ body{
 
 
 
-/* TITULO DAS BOX */
+/* TITULO */
 
 
 .staff-title{
@@ -195,6 +230,7 @@ body{
 
     align-items:center;
 
+
     margin-bottom:25px;
 
 
@@ -202,32 +238,34 @@ body{
 
 
 
+
 .staff-title h2{
 
 
-    font-size:22px;
+    font-size:24px;
 
 
 }
 
 
 
+
 .staff-title span{
-
-
-    font-size:12px;
-
-
-    padding:6px 12px;
-
-
-    border-radius:20px;
 
 
     background:#00eaff;
 
 
-    color:#00111c;
+    color:#00131f;
+
+
+    padding:6px 14px;
+
+
+    border-radius:20px;
+
+
+    font-size:12px;
 
 
     font-weight:bold;
@@ -241,7 +279,8 @@ body{
 
 
 
-/* INPUTS */
+
+/* LABEL */
 
 
 label{
@@ -256,15 +295,18 @@ label{
     margin-bottom:8px;
 
 
-    color:#b9c6e4;
-
-
-    font-size:14px;
+    color:#b8c5e4;
 
 
 }
 
 
+
+
+
+
+
+/* SELECT */
 
 
 select{
@@ -279,10 +321,12 @@ select{
     border-radius:12px;
 
 
-    border:1px solid #263452;
+    background:#070d1c;
 
 
-    background:#080e1c;
+    border:
+
+    1px solid #263557;
 
 
     color:white;
@@ -299,13 +343,25 @@ select{
 
 
 
-select:focus{
+
+select:hover{
 
 
     border-color:#00eaff;
 
 
-    box-shadow:0 0 10px rgba(0,234,255,.4);
+}
+
+
+
+
+
+select:focus{
+
+
+    box-shadow:
+
+    0 0 15px rgba(0,234,255,.4);
 
 
 }
@@ -315,7 +371,9 @@ select:focus{
 
 
 
-/* BOTÃO */
+
+
+/* BOTÕES */
 
 
 button{
@@ -333,7 +391,7 @@ button{
     border:none;
 
 
-    border-radius:12px;
+    border-radius:14px;
 
 
     cursor:pointer;
@@ -342,21 +400,24 @@ button{
     font-weight:bold;
 
 
-    font-size:15px;
+    color:white;
 
 
     background:
 
-    linear-gradient(135deg,#00eaff,#0066ff);
 
-
-    color:white;
+    linear-gradient(
+        135deg,
+        #00eaff,
+        #0066ff
+    );
 
 
     transition:.3s;
 
 
 }
+
 
 
 
@@ -369,7 +430,7 @@ button:hover{
 
     box-shadow:
 
-    0 0 20px #00eaff;
+    0 0 25px #00eaff;
 
 
 }
@@ -381,8 +442,7 @@ button:hover{
 
 
 
-
-/* LISTA STAFF */
+/* LISTA */
 
 
 .staff-list{
@@ -391,10 +451,12 @@ button:hover{
     display:grid;
 
 
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(280px,1fr));
 
 
-    gap:20px;
+    gap:22px;
 
 
 }
@@ -404,7 +466,9 @@ button:hover{
 
 
 
-/* CARD DE MEMBRO */
+
+
+/* CARD STAFF */
 
 
 .staff-card{
@@ -412,26 +476,29 @@ button:hover{
 
     background:
 
+
     linear-gradient(
-
-    145deg,
-
-    rgba(20,31,60,.9),
-
-    rgba(8,12,25,.95)
-
+        145deg,
+        rgba(25,38,70,.95),
+        rgba(5,10,25,.95)
     );
 
 
-    border-radius:16px;
+    border-radius:18px;
 
 
-    padding:22px;
+    padding:25px;
 
 
     border:
 
-    1px solid rgba(0,234,255,.18);
+    1px solid rgba(255,255,255,.08);
+
+
+    position:relative;
+
+
+    overflow:hidden;
 
 
     transition:.3s;
@@ -443,18 +510,33 @@ button:hover{
 
 
 
-.staff-card:hover{
+.staff-card::before{
 
 
-    transform:translateY(-5px);
+    content:"";
 
 
-    border-color:#00eaff;
+    position:absolute;
 
 
-    box-shadow:
+    top:0;
 
-    0 0 25px rgba(0,234,255,.25);
+    left:0;
+
+
+    width:100%;
+
+
+    height:3px;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #00eaff,
+        #0066ff
+    );
 
 
 }
@@ -464,16 +546,36 @@ button:hover{
 
 
 
+.staff-card:hover{
+
+
+    transform:translateY(-6px);
+
+
+    box-shadow:
+
+    0 0 30px rgba(0,234,255,.25);
+
+
+}
+
+
+
+
+
+
+
+
 .staff-card h3{
 
 
-    font-size:22px;
-
-
-    margin-bottom:18px;
-
-
     color:#00eaff;
+
+
+    font-size:23px;
+
+
+    margin-bottom:20px;
 
 
 }
@@ -487,16 +589,18 @@ button:hover{
 .staff-card p{
 
 
-    margin-top:12px;
+    margin-top:13px;
 
 
-    color:#d4dcf2;
+    color:#d6def5;
 
 
     line-height:1.5;
 
 
 }
+
+
 
 
 
@@ -515,20 +619,35 @@ button:hover{
 
 
 
-
-/* LOADING */
-
-
-.loading{
+/* BOTAO REMOVER */
 
 
-    text-align:center;
+.btn-remover{
 
 
-    padding:30px;
+    margin-top:22px;
 
 
-    color:#9da9c7;
+    background:
+
+
+    linear-gradient(
+        135deg,
+        #ff3b3b,
+        #9b0000
+    );
+
+
+}
+
+
+
+.btn-remover:hover{
+
+
+    box-shadow:
+
+    0 0 25px rgba(255,0,0,.6);
 
 
 }
@@ -540,7 +659,8 @@ button:hover{
 
 
 
-/* BOTÃO VOLTAR */
+
+/* VOLTAR */
 
 
 .voltar{
@@ -549,13 +669,14 @@ button:hover{
     width:auto;
 
 
-    padding:14px 30px;
+    padding:14px 35px;
 
 
     margin-top:35px;
 
 
     background:
+
 
     rgba(255,255,255,.08);
 
@@ -574,7 +695,9 @@ button:hover{
 .voltar:hover{
 
 
-    background:#ffffff20;
+    background:
+
+    rgba(255,255,255,.15);
 
 
     box-shadow:none;
@@ -590,10 +713,35 @@ button:hover{
 
 
 
+/* LOADING */
+
+
+.loading{
+
+
+    padding:30px;
+
+
+    text-align:center;
+
+
+    color:#9ca9c9;
+
+
+}
+
+
+
+
+
+
+
+
+
 /* RESPONSIVO */
 
 
-@media(max-width:900px){
+@media(max-width:950px){
 
 
 
@@ -602,6 +750,7 @@ button:hover{
         padding:20px;
 
     }
+
 
 
 
@@ -616,10 +765,12 @@ button:hover{
 
 
 
+
+
     .staff-header h1{
 
 
-        font-size:28px;
+        font-size:30px;
 
 
     }
