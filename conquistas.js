@@ -266,7 +266,33 @@ area.innerHTML = `
 
 
 
+// ORDENAR CONQUISTAS POR CARREIRA
 
+const ordemCategorias = {
+
+"Inicio":1,
+
+"Dedicacao":2,
+
+"Carreira":3,
+
+"Elite":4
+
+};
+
+
+lista.sort((a,b)=>{
+
+
+return (
+
+ordemCategorias[a.categoria] -
+ordemCategorias[b.categoria]
+
+);
+
+
+});
 
 
 
