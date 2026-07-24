@@ -1363,16 +1363,26 @@ select:focus{
 
     margin-bottom:20px;
 
+    min-width:0;
+
 }
 
+
+/* Área do nome */
 .card-header .dados{
 
     display:flex;
 
     flex-direction:column;
 
+    min-width:0;
+
+    flex:1;
+
 }
 
+
+/* Nick */
 .card-header .dados h3{
 
     font-size:22px;
@@ -1381,16 +1391,37 @@ select:focus{
 
     margin-bottom:4px;
 
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
 }
 
+
+/* Nome completo */
 .card-header .dados small{
 
     color:var(--text3);
 
     font-size:13px;
 
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
 }
 
+
+/* Status não quebra */
+.card-header .status{
+
+    flex-shrink:0;
+
+}
 /* ==========================================================
    BADGES
 ==========================================================*/
