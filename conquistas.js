@@ -163,7 +163,7 @@ await supabaseClient
 .select("*")
 
 .order(
-"id",
+"ordem",
 {
 ascending:true
 }
