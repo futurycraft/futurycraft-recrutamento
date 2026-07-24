@@ -104,6 +104,11 @@ async function carregarPerfil(){
             data.nick
         );
 
+        await carregarEvolucaoStaff(
+            data.cargo,
+            data.nick
+        );
+        
         await carregarMetasStaff(
             data.nick,
             data.cargo
@@ -1383,7 +1388,237 @@ ${valor}${unidade} / ${objetivo}${unidade}
 }
 
 
+// ==========================================
+// EVOLUÇÃO STAFF
+// ==========================================
 
+
+async function carregarEvolucaoStaff(
+cargo,
+nick
+){
+
+
+const area =
+document.getElementById(
+"evolucao-staff"
+);
+
+
+if(!area)
+return;
+
+
+
+const cargos = [
+
+"ajudante",
+
+"moderador",
+
+"admin",
+
+"gerente",
+
+"diretor",
+
+"fundador"
+
+];
+
+
+
+let atual =
+cargo.toLowerCase();
+
+
+
+let index =
+cargos.indexOf(atual);
+
+
+
+if(index === -1){
+
+area.innerHTML =
+`
+<div class="activity-item">
+
+Cargo não reconhecido
+
+</div>
+`;
+
+return;
+
+}
+
+
+
+if(index >= cargos.length-1){
+
+
+area.innerHTML =
+`
+
+<div class="activity-item">
+
+
+🎖 Cargo máximo alcançado
+
+
+<br>
+
+
+${cargo}
+
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+
+
+let proximo =
+cargos[index+1];
+
+
+
+
+/*
+tempo necessário para subir
+
+*/
+
+let horasNecessarias = [
+
+0,
+100,
+250,
+500,
+1000,
+0
+
+];
+
+
+
+
+
+const {data}=
+
+await supabaseClient
+
+.from("skyblock_tempo")
+
+.select("tempo_online")
+
+.eq(
+"nick",
+nick
+)
+
+.maybeSingle();
+
+
+
+
+
+let horasAtual =
+
+Math.floor(
+Number(data?.tempo_online || 0)
+/3600
+);
+
+
+
+
+
+let meta =
+
+horasNecessarias[index+1];
+
+
+
+
+
+let porcentagem =
+
+Math.min(
+
+(horasAtual/meta)*100,
+
+100
+
+);
+
+
+
+
+
+
+
+area.innerHTML =
+
+`
+
+<div class="evolucao-box">
+
+
+<h2>
+
+${cargo}
+
+➡️
+
+${proximo}
+
+</h2>
+
+
+<div class="barra">
+
+
+<div class="barra-progresso"
+
+style="width:${porcentagem}%">
+
+</div>
+
+
+</div>
+
+
+<p>
+
+${horasAtual}h / ${meta}h
+
+</p>
+
+
+<span>
+
+${Math.floor(porcentagem)}% concluído
+
+</span>
+
+
+</div>
+
+`;
+
+
+
+}
 
 // ==========================================
 // INICIAR DASHBOARD
