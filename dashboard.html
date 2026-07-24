@@ -3,17 +3,23 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Dashboard Staff - FuturyCraft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="dashboard.css">
+<title>Dashboard Staff - FuturyCraft</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dashboard.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -28,38 +34,68 @@
 <header class="topbar">
 
 
-    <div class="logo-area">
+<div class="logo-area">
 
-        <h1>FUTURYCRAFT</h1>
+<h1>
 
-        <span>Central Staff</span>
+FUTURYCRAFT
 
-    </div>
-
-
-
-    <div class="topbar-actions">
+</h1>
 
 
-        <button class="btn-primary" onclick="window.location.href='admin.html'">
+<span>
 
-            Candidaturas
+Central Staff
 
-        </button>
-
-
-
-        <button class="btn-danger" onclick="logout()">
-
-            Sair
-
-        </button>
+</span>
 
 
-    </div>
+</div>
+
+
+
+
+
+<div class="topbar-actions">
+
+
+<button 
+class="btn-primary"
+onclick="window.location.href='admin.html'">
+
+📋 Candidaturas
+
+</button>
+
+
+
+
+<button 
+class="btn-primary"
+onclick="window.location.href='gerenciar-staff.html'">
+
+🛡 Gerenciar Staff
+
+</button>
+
+
+
+
+<button 
+class="btn-danger"
+onclick="logout()">
+
+🚪 Sair
+
+</button>
+
+
+</div>
 
 
 </header>
+
+
 
 
 
@@ -71,74 +107,80 @@
 
 
 
-<!-- PERFIL -->
+
+<!-- PERFIL STAFF -->
 
 <section class="welcome-card">
 
 
-    <div class="profile-info">
+<div class="profile-info">
 
 
-        <h2>
+<h2>
 
-            Bem-vindo,
+Bem-vindo,
 
-            <span id="nick-staff">
+<span id="nick-staff">
 
-                Carregando...
+Carregando...
 
-            </span>
+</span>
 
-        </h2>
-
-
-
-
-        <p>
-
-            Nome:
-
-            <strong id="nome-staff">
-
-                Carregando...
-
-            </strong>
-
-        </p>
+</h2>
 
 
 
 
-        <p>
-
-            Cargo atual:
-
-            <strong id="cargo-staff">
-
-                Carregando...
-
-            </strong>
-
-        </p>
+<div class="profile-details">
 
 
+<p>
 
+👤 Nome
 
-        <p>
+<strong id="nome-staff">
 
-            Membro da equipe desde:
+--
 
-            <strong id="tempo-staff">
+</strong>
 
-                --
-
-            </strong>
-
-        </p>
+</p>
 
 
 
-    </div>
+<p>
+
+⭐ Cargo
+
+<strong id="cargo-staff">
+
+--
+
+</strong>
+
+</p>
+
+
+
+<p>
+
+📅 Na equipe desde
+
+<strong id="tempo-staff">
+
+--
+
+</strong>
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
 
 
 </section>
@@ -148,35 +190,44 @@
 
 
 
-<!-- AVISOS E AGENDA -->
+
+
+
+<!-- INFORMAÇÕES PRINCIPAIS -->
 
 
 <section class="content-grid">
 
 
 
+
+
+<!-- AVISOS -->
+
+
 <div class="panel-card">
 
 
-    <h3>
+<h3>
 
-        📢 Avisos da Administração
+📢 Avisos da Administração
 
-    </h3>
-
-
-
-    <div id="avisos">
+</h3>
 
 
-        <div class="activity-item">
-
-            Carregando avisos...
-
-        </div>
 
 
-    </div>
+<div id="avisos">
+
+
+<div class="activity-item">
+
+Carregando avisos...
+
+</div>
+
+
+</div>
 
 
 </div>
@@ -187,31 +238,64 @@
 
 
 
+<!-- TOP STAFF -->
+
+
 <div class="panel-card">
 
 
-    <h3>
+<h3>
 
-        📅 Próximos Eventos
+🏆 Top Ranks Staff
 
-    </h3>
-
-
-
-
-    <div id="agenda">
-
-
-        <div class="activity-item">
-
-            Carregando eventos...
-
-        </div>
+</h3>
 
 
 
-    </div>
 
+<div id="top-staff">
+
+
+<div class="rank-item">
+
+Carregando ranking...
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</section>
+
+<!-- HORAS ONLINE STAFF -->
+
+<section class="panel-card">
+
+
+<h3>
+
+⏱ Horas Online Staff
+
+</h3>
+
+
+
+
+<div id="horas-online">
+
+
+<div class="rank-item">
+
+Carregando horas...
+
+</div>
 
 
 </div>
@@ -230,25 +314,35 @@
 
 <!-- DESEMPENHO -->
 
-
 <section class="stats-grid">
 
 
 
+
+
 <div class="stat-card">
 
-    <span class="stat-title">
 
-        Atendimentos
+<span class="stat-title">
 
-    </span>
+🎧 Atendimentos
+
+</span>
 
 
-    <h3 id="atendimentos">
 
-        0
+<h3 id="atendimentos">
 
-    </h3>
+0
+
+</h3>
+
+
+<p>
+
+Tickets e suporte realizados
+
+</p>
 
 
 </div>
@@ -259,22 +353,31 @@
 
 
 
+
 <div class="stat-card">
 
 
-    <span class="stat-title">
+<span class="stat-title">
 
-        Avaliações
+📋 Avaliações
 
-    </span>
+</span>
 
 
 
-    <h3 id="avaliacoes">
+<h3 id="avaliacoes">
 
-        0
+0
 
-    </h3>
+</h3>
+
+
+
+<p>
+
+Candidatos analisados
+
+</p>
 
 
 </div>
@@ -285,23 +388,32 @@
 
 
 
+
+
 <div class="stat-card">
 
 
-    <span class="stat-title">
+<span class="stat-title">
 
-        Horas Online
+⏱ Horas Online
 
-    </span>
+</span>
 
 
 
-    <h3 id="horas">
+<h3 id="horas">
 
-        0h
+0h
 
-    </h3>
+</h3>
 
+
+
+<p>
+
+Tempo ativo no servidor
+
+</p>
 
 
 </div>
@@ -312,26 +424,38 @@
 
 
 
+
+
 <div class="stat-card">
 
 
-    <span class="stat-title">
+<span class="stat-title">
 
-        Evolução
+📈 Evolução
 
-    </span>
+</span>
 
 
 
-    <h3 id="progresso">
+<h3 id="progresso">
 
-        0%
+0%
 
-    </h3>
+</h3>
 
+
+
+<p>
+
+Progresso no cargo atual
+
+</p>
 
 
 </div>
+
+
+
 
 
 
@@ -348,15 +472,16 @@
 
 <!-- CENTRAL DE PROCEDIMENTOS -->
 
-
 <section class="panel-card">
+
 
 
 <h3>
 
-    📚 Central de Procedimentos
+📚 Central de Procedimentos
 
 </h3>
+
 
 
 
@@ -366,39 +491,43 @@
 
 <button>
 
-    Manual da Staff
+📖 Manual Staff
 
 </button>
 
 
 
+
 <button>
 
-    Regras da Staff
+📜 Regras Internas
 
 </button>
 
 
 
+
 <button>
 
-    Sistema de Punições
+⚖ Sistema de Punições
 
 </button>
 
 
 
+
 <button>
 
-    Processo de Recrutamento
+📝 Recrutamento
 
 </button>
 
 
 
+
 <button>
 
-    Escala de Eventos
+🎯 Metas da Equipe
 
 </button>
 
@@ -418,15 +547,14 @@
 
 
 
-<!-- MURAL -->
-
+<!-- MURAL STAFF -->
 
 <section class="panel-card">
 
 
 <h3>
 
-    💬 Mural da Staff
+💬 Mural da Staff
 
 </h3>
 
@@ -437,7 +565,9 @@
 
 <div class="activity-item">
 
-    Bem-vindo ao sistema interno da Staff FuturyCraft.
+
+Bem-vindo ao sistema interno da Staff FuturyCraft.
+
 
 </div>
 
@@ -447,7 +577,6 @@
 
 
 </section>
-
 
 
 
@@ -460,11 +589,6 @@
 
 
 
-
-
-
-
-<!-- SCRIPTS -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -480,3 +604,4 @@
 </body>
 
 </html>
+
