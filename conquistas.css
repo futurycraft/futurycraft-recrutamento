@@ -204,3 +204,37 @@ border-color:#00eaff;
 
 
 }
+
+.desbloqueada{
+
+margin-top:15px;
+
+padding:10px;
+
+border-radius:10px;
+
+background:rgba(0,255,136,.15);
+
+color:#00ff88;
+
+font-weight:bold;
+
+}
+
+
+
+.bloqueada{
+
+margin-top:15px;
+
+padding:10px;
+
+border-radius:10px;
+
+background:rgba(255,255,255,.05);
+
+color:#8892a8;
+
+font-weight:bold;
+
+}
