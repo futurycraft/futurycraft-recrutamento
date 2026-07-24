@@ -1549,17 +1549,17 @@ async ()=>{
 
     await carregarPerfil();
 
-
-
+    
     await carregarTopStaff();
-
 
 
     await carregarAvisos();
 
 
-
     await carregarDesempenho();
+
+    
+    await carregarRankingStaff();
 
 
 
