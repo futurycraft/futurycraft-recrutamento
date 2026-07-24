@@ -7,8 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<title>Gerenciamento de Staff | FuturyCraft</title>
+<title>Gerenciamento Staff | FuturyCraft</title>
 
 
 <link rel="stylesheet" href="gerenciar-staff.css">
@@ -20,17 +19,14 @@
 <body>
 
 
-
-<div class="staff-page">
-
-
+<div class="staff-container">
 
 
 
 <header class="staff-header">
 
 
-<div class="staff-icon">
+<div class="logo-staff">
 
 🛡️
 
@@ -49,7 +45,7 @@ Gerenciamento de Staff
 
 <p>
 
-Controle de cargos e membros da equipe FuturyCraft
+Controle completo da equipe FuturyCraft
 
 </p>
 
@@ -65,10 +61,7 @@ Controle de cargos e membros da equipe FuturyCraft
 
 
 
-
-
-<section class="staff-manager">
-
+<div class="staff-layout">
 
 
 
@@ -76,16 +69,15 @@ Controle de cargos e membros da equipe FuturyCraft
 
 <!-- ADICIONAR -->
 
-<div class="staff-control">
+<section class="box adicionar">
 
 
 
 <h2>
 
-Adicionar Staff
+Adicionar membro
 
 </h2>
-
 
 
 
@@ -112,12 +104,12 @@ Carregando usuários...
 
 
 
-
 <label>
 
 Cargo
 
 </label>
+
 
 
 <select id="cargoStaff">
@@ -173,24 +165,18 @@ Cargo
 
 
 
-
 <button 
-onclick="adicionarStaff()"
-class="btn-add">
+class="btn-add"
+onclick="adicionarStaff()">
 
-
-Adicionar à Staff
-
+Adicionar Staff
 
 </button>
 
 
 
 
-</div>
-
-
-
+</section>
 
 
 
@@ -202,11 +188,11 @@ Adicionar à Staff
 
 <!-- LISTA -->
 
-<div class="staff-list-area">
+<section class="box equipe">
 
 
 
-<div class="list-title">
+<div class="titulo-equipe">
 
 
 <h2>
@@ -230,9 +216,7 @@ STAFF
 
 
 
-
-<div id="listaStaff" class="staff-grid">
-
+<div id="listaStaff" class="cards-staff">
 
 
 <div class="loading">
@@ -242,17 +226,7 @@ Carregando equipe...
 </div>
 
 
-
 </div>
-
-
-
-
-
-</div>
-
-
-
 
 
 
@@ -264,22 +238,21 @@ Carregando equipe...
 
 
 
+</div>
 
 
 
-<button
 
-class="btn-back"
+
+
+
+<button class="btn-voltar"
 
 onclick="window.location.href='admin.html'">
 
-
-← Voltar
-
+← Voltar painel
 
 </button>
-
-
 
 
 
@@ -297,12 +270,9 @@ onclick="window.location.href='admin.html'">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script src="auth.js"></script>
 
-
 <script src="permissoes.js"></script>
-
 
 <script src="gerenciar-staff.js"></script>
 
