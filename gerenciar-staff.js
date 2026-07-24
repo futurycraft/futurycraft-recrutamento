@@ -30,9 +30,6 @@ async function iniciarPagina(){
 
 
 
-
-
-
 async function carregarStaff(){
 
 
@@ -43,8 +40,6 @@ async function carregarStaff(){
     .select("*")
 
     .order("cargo");
-
-
 
 
 
@@ -59,13 +54,40 @@ async function carregarStaff(){
 
 
 
+
     let html="";
 
 
 
 
 
+    if(!data || data.length === 0){
+
+
+        html = `
+
+        <div class="loading">
+
+        Nenhum membro encontrado
+
+        </div>
+
+        `;
+
+
+    }
+
+
+
+
+
     data.forEach(staff=>{
+
+
+
+        const status = staff.status ?? "ativo";
+
+
 
 
 
@@ -77,126 +99,88 @@ async function carregarStaff(){
 
 
 
-            <h3>
 
-            🛡 ${staff.nick ?? "Sem nick"}
 
-            </h3>
+            <div class="staff-main">
 
 
 
+                <h3>
+
+                🛡 ${staff.nick ?? "Sem nick"}
+
+                </h3>
 
 
-            <p>
-
-            <b>Cargo:</b>
-
-            ${formatarCargo(staff.cargo)}
-
-            </p>
-
-
-
-
-
-
-
-            <p>
-
-            <b>Status:</b>
-
-            ${
-                staff.status === "ativo"
-
-                ?
-
-                "🟢 Ativo"
-
-                :
-
-                "🔴 Membro"
-
-            }
-
-            </p>
-
-
-
-
-
-
-
-
-            <p>
-
-            <b>📅 Entrou na Staff:</b>
-
-            <br>
-
-
-            ${
-                staff.entrou_staff
-
-                ?
-
-                new Date(staff.entrou_staff)
-                .toLocaleString("pt-BR")
-
-                :
-
-                "Não registrado"
-
-            }
-
-
-            </p>
-
-
-
-
-
-
-
-
-
-            ${
-                staff.status === "ativo"
-
-                ?
-
-                `
 
 
                 <p>
 
-                <b>⏳ Tempo na Staff:</b>
+                <b>Cargo:</b>
 
-                <br>
-
-                ${calcularTempoStaff(staff.entrou_staff)}
+                ${formatarCargo(staff.cargo)}
 
                 </p>
 
 
-                `
 
-                :
-
-                `
 
 
                 <p>
 
-                <b>📅 Saiu da Staff:</b>
+                <b>Status:</b>
+
+                ${
+                    status === "ativo"
+
+                    ?
+
+                    "🟢 Ativo"
+
+                    :
+
+                    "🔴 Membro"
+
+                }
+
+                </p>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="staff-extra">
+
+
+
+
+
+                <hr>
+
+
+
+
+
+                <p>
+
+                <b>📅 Entrada na Staff:</b>
 
                 <br>
 
                 ${
-                    staff.saida_staff
+                    staff.entrou_staff
 
                     ?
 
-                    new Date(staff.saida_staff)
+                    new Date(staff.entrou_staff)
                     .toLocaleString("pt-BR")
 
                     :
@@ -209,60 +193,128 @@ async function carregarStaff(){
 
 
 
-                `
-
-            }
 
 
 
 
 
+                ${
+                    status === "ativo"
+
+                    ?
+
+                    `
+
+                    <p>
+
+                    <b>⏳ Tempo na Staff:</b>
+
+                    <br>
+
+                    ${calcularTempoStaff(staff.entrou_staff)}
+
+                    </p>
+
+                    `
+
+
+                    :
+
+
+                    `
+
+                    <p>
+
+                    <b>📅 Saiu da Staff:</b>
+
+                    <br>
+
+                    ${
+                        staff.saida_staff
+
+                        ?
+
+                        new Date(staff.saida_staff)
+                        .toLocaleString("pt-BR")
+
+                        :
+
+                        "Não registrado"
+
+                    }
+
+                    </p>
+
+
+                    `
+
+                }
 
 
 
 
-            <p>
-
-            <b>👤 Promovido por:</b>
-
-            <br>
-
-            ${staff.promovido_por ?? "Sistema"}
-
-            </p>
 
 
 
 
 
+                <p>
+
+                <b>👤 Promovido por:</b>
+
+                <br>
+
+                ${staff.promovido_por ?? "Sistema"}
+
+                </p>
 
 
 
-            ${
-                staff.status === "ativo"
-
-                ?
-
-                `
-
-                <button
-
-                class="btn-remover"
-
-                onclick="removerStaff(${staff.id})">
-
-                ❌ Remover da Staff
-
-                </button>
 
 
-                `
 
-                :
 
-                ""
 
-            }
+
+                ${
+                    status === "ativo"
+
+                    ?
+
+                    `
+
+                    <button
+
+                    class="btn-remover"
+
+                    onclick="removerStaff('${staff.id}')">
+
+                    ❌ Remover da Staff
+
+                    </button>
+
+
+                    `
+
+                    :
+
+                    `
+
+                    <div class="membro-inativo">
+
+                    👤 Sem cargo na equipe
+
+                    </div>
+
+                    `
+
+                }
+
+
+
+
+
+            </div>
 
 
 
@@ -277,6 +329,18 @@ async function carregarStaff(){
 
 
     });
+
+
+
+
+
+
+
+    document.getElementById("listaStaff").innerHTML = html;
+
+
+
+}
 
 
 
