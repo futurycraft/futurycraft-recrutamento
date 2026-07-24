@@ -218,13 +218,127 @@ erroMinhas
 
 
 
-area.innerHTML="";
+// CRIA AS CATEGORIAS
+
+area.innerHTML = `
+
+
+<div class="categoria-conquistas">
+
+<h2>🌱 Iniciante</h2>
+
+<div id="categoria-inicio"></div>
+
+</div>
+
+
+
+<div class="categoria-conquistas">
+
+<h2>🚀 Experiência</h2>
+
+<div id="categoria-experiencia"></div>
+
+</div>
+
+
+
+<div class="categoria-conquistas">
+
+<h2>🏆 Veterano</h2>
+
+<div id="categoria-veterano"></div>
+
+</div>
+
+
+
+<div class="categoria-conquistas">
+
+<h2>💎 Elite</h2>
+
+<div id="categoria-elite"></div>
+
+</div>
+
+
+`;
+
+
 
 
 
 
 
 lista.forEach(conquista=>{
+
+
+
+let destino;
+
+
+
+
+
+// DEFINE A CATEGORIA
+
+if(conquista.categoria === "Inicio"){
+
+
+destino =
+document.getElementById(
+"categoria-inicio"
+);
+
+
+}
+
+
+else if(conquista.categoria === "Dedicacao"){
+
+
+destino =
+document.getElementById(
+"categoria-experiencia"
+);
+
+
+}
+
+
+else if(conquista.categoria === "Carreira"){
+
+
+destino =
+document.getElementById(
+"categoria-veterano"
+);
+
+
+}
+
+
+else{
+
+
+destino =
+document.getElementById(
+"categoria-elite"
+);
+
+
+}
+
+
+
+
+
+if(!destino)
+return;
+
+
+
+
 
 
 
@@ -242,7 +356,8 @@ item.conquista === conquista.nome
 
 
 
-area.innerHTML += `
+
+destino.innerHTML += `
 
 
 <div class="achievement-card">
@@ -268,8 +383,10 @@ ${conquista.descricao}
 
 
 
-${possui ?
+${
+possui
 
+?
 
 `
 
@@ -279,12 +396,9 @@ ${possui ?
 
 </div>
 
-
 `
 
-
 :
-
 
 `
 
@@ -294,12 +408,9 @@ ${possui ?
 
 </div>
 
-
 `
 
 }
-
-
 
 
 
@@ -307,7 +418,6 @@ ${possui ?
 
 
 `;
-
 
 
 
@@ -331,7 +441,6 @@ error
 
 
 }
-
 
 
 // ==========================================
