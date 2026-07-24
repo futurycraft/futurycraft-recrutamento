@@ -454,29 +454,10 @@ async function verificarConquistasAutomaticas(nick){
 try{
 
 
-// Busca perfil
-
-const {data:staff}=
-
-await supabaseClient
-
-.from("usuarios_staff")
-
-.select("*")
-
-.eq(
-"nick",
+console.log(
+"Verificando conquistas:",
 nick
-)
-
-.maybeSingle();
-
-
-
-if(!staff)
-return;
-
-
+);
 
 
 
@@ -501,7 +482,6 @@ nick
 
 
 
-
 let horas = 0;
 
 
@@ -515,10 +495,20 @@ Number(tempo.tempo_online) / 3600;
 
 
 
+console.log(
+"Horas online:",
+horas
+);
 
 
 
-// PRIMEIROS PASSOS
+
+
+
+// ==========================================
+// INICIO
+// ==========================================
+
 
 await liberarConquista(
 nick,
@@ -534,6 +524,31 @@ icone:"🌱"
 
 
 
+
+
+// ==========================================
+// EXPERIÊNCIA
+// ==========================================
+
+
+// 25 HORAS
+
+if(horas >= 25){
+
+await liberarConquista(
+nick,
+{
+nome:"Presença Constante",
+descricao:"Alcançou 25 horas online no servidor",
+icone:"⏱"
+}
+);
+
+}
+
+
+
+
 // 50 HORAS
 
 if(horas >= 50){
@@ -541,9 +556,9 @@ if(horas >= 50){
 await liberarConquista(
 nick,
 {
-nome:"50 Horas Online",
-descricao:"Alcançou 50 horas jogadas no servidor",
-icone:"⏱"
+nome:"Dedicação",
+descricao:"Alcançou 50 horas online no servidor",
+icone:"🔥"
 }
 );
 
@@ -560,9 +575,52 @@ if(horas >= 100){
 await liberarConquista(
 nick,
 {
-nome:"100 Horas Online",
-descricao:"Alcançou 100 horas jogadas no servidor",
-icone:"⭐"
+nome:"Guardião do Servidor",
+descricao:"Alcançou 100 horas online no servidor",
+icone:"🛡️"
+}
+);
+
+}
+
+
+
+
+
+// ==========================================
+// VETERANO
+// ==========================================
+
+
+// 250 HORAS
+
+if(horas >= 250){
+
+await liberarConquista(
+nick,
+{
+nome:"Presença Marcante",
+descricao:"Alcançou 250 horas online no servidor",
+icone:"🌌"
+}
+);
+
+}
+
+
+
+
+
+// 500 HORAS
+
+if(horas >= 500){
+
+await liberarConquista(
+nick,
+{
+nome:"Mestre da Comunidade",
+descricao:"Alcançou 500 horas online no servidor",
+icone:"🌟"
 }
 );
 
@@ -584,9 +642,7 @@ error
 }
 
 
-
 }
-
 
 
 
