@@ -293,7 +293,227 @@ error
 
 
 
+// ==========================================
+// VERIFICAR CONQUISTAS AUTOMÁTICAS
+// ==========================================
 
+
+async function verificarConquistasAutomaticas(nick){
+
+
+try{
+
+
+// Busca perfil
+
+const {data:staff}=
+
+await supabaseClient
+
+.from("usuarios_staff")
+
+.select("*")
+
+.eq(
+"nick",
+nick
+)
+
+.maybeSingle();
+
+
+
+if(!staff)
+return;
+
+
+
+
+
+
+// Busca tempo online
+
+const {data:tempo}=
+
+await supabaseClient
+
+.from("skyblock_tempo")
+
+.select("tempo_online")
+
+.eq(
+"nick",
+nick
+)
+
+.maybeSingle();
+
+
+
+
+
+let horas = 0;
+
+
+
+if(tempo){
+
+horas =
+Number(tempo.tempo_online) / 3600;
+
+}
+
+
+
+
+
+
+// PRIMEIROS PASSOS
+
+await liberarConquista(
+nick,
+1
+);
+
+
+
+
+
+
+// 50 HORAS
+
+if(horas >= 50){
+
+await liberarConquista(
+nick,
+2
+);
+
+}
+
+
+
+
+
+// 100 HORAS
+
+if(horas >= 100){
+
+await liberarConquista(
+nick,
+3
+);
+
+}
+
+
+
+
+
+}catch(error){
+
+
+console.error(
+"Erro conquistas automáticas:",
+error
+);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+// ==========================================
+// LIBERAR CONQUISTA
+// ==========================================
+
+
+async function liberarConquista(
+nick,
+conquista_id
+){
+
+
+
+const {data:existe}=
+
+await supabaseClient
+
+.from("conquistas_staff")
+
+.select("*")
+
+.eq(
+"nick",
+nick
+)
+
+.eq(
+"conquista_id",
+conquista_id
+)
+
+.maybeSingle();
+
+
+
+
+
+if(existe)
+return;
+
+
+
+
+
+
+
+const {error}=
+
+await supabaseClient
+
+.from("conquistas_staff")
+
+.insert({
+
+nick:nick,
+
+conquista_id:conquista_id
+
+});
+
+
+
+
+
+if(error){
+
+console.error(
+"Erro liberar conquista:",
+error
+);
+
+}
+else{
+
+console.log(
+"Conquista liberada:",
+conquista_id
+);
+
+}
+
+
+}
 
 
 
