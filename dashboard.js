@@ -104,7 +104,10 @@ async function carregarPerfil(){
             data.nick
         );
 
-
+        await carregarMetasStaff(
+            data.nick,
+            data.cargo
+        );
 
     }
     catch(error){
@@ -911,7 +914,293 @@ async function atualizarDashboard(){
 
 
 
+// ==========================================
+// METAS SEMANAIS STAFF AUTOMÁTICAS
+// ==========================================
 
+
+async function carregarMetasStaff(nick, cargo){
+
+
+    const area = document.getElementById("metas-staff");
+
+
+    if(!area) return;
+
+
+
+    try{
+
+
+        // Busca metas do cargo
+
+        const {data:meta,error:erroMeta}=
+
+        await supabaseClient
+
+        .from("metas_staff")
+
+        .select("*")
+
+        .eq("cargo",cargo)
+
+        .single();
+
+
+
+
+        if(erroMeta || !meta){
+
+
+            area.innerHTML=`
+
+            <div class="activity-item">
+
+            Nenhuma meta configurada para ${cargo}
+
+            </div>
+
+            `;
+
+
+            return;
+
+        }
+
+
+
+
+
+
+        // ==============================
+        // HORAS ONLINE
+        // ==============================
+
+
+        const {data:tempo}=
+
+        await supabaseClient
+
+        .from("skyblock_tempo")
+
+        .select("tempo_online")
+
+        .eq("nick",nick)
+
+        .maybeSingle();
+
+
+
+        let segundos = Number(
+            tempo?.tempo_online || 0
+        );
+
+
+
+        let horas = Math.floor(
+            segundos / 3600
+        );
+
+
+
+
+
+
+        // ==============================
+        // AVALIAÇÕES
+        // ==============================
+
+
+        const {count:avaliacoes}=
+
+        await supabaseClient
+
+        .from("candidatos")
+
+        .select(
+            "*",
+            {
+                count:"exact",
+                head:true
+            }
+        )
+
+        .eq(
+            "avaliador",
+            nick
+        );
+
+
+
+
+
+
+
+        // ==============================
+        // ATIVIDADES
+        // ==============================
+
+
+        // Inicialmente vamos usar avaliações
+        // depois podemos trocar por outro sistema
+
+
+        let atividades = avaliacoes || 0;
+
+
+
+
+
+
+        criarMeta(
+
+            "⏱ Tempo Online",
+
+            horas,
+
+            meta.meta_horas,
+
+            "h"
+
+        );
+
+
+
+        criarMeta(
+
+            "📝 Avaliações",
+
+            avaliacoes || 0,
+
+            meta.meta_avaliacoes,
+
+            ""
+
+        );
+
+
+
+        criarMeta(
+
+            "⭐ Atividades Staff",
+
+            atividades,
+
+            meta.meta_atividades,
+
+            ""
+
+        );
+
+
+
+
+
+    }catch(error){
+
+
+        console.error(
+            "Erro metas:",
+            error
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+
+function criarMeta(
+nome,
+valor,
+objetivo,
+unidade
+){
+
+
+const area =
+document.getElementById("metas-staff");
+
+
+
+let porcentagem = 0;
+
+
+
+if(objetivo > 0){
+
+    porcentagem =
+    Math.min(
+        (valor / objetivo) * 100,
+        100
+    );
+
+}
+
+
+
+area.innerHTML += `
+
+
+<div class="meta-item">
+
+
+<div class="meta-header">
+
+
+<strong>
+
+${nome}
+
+</strong>
+
+
+<span>
+
+${Math.floor(porcentagem)}%
+
+</span>
+
+
+</div>
+
+
+
+
+<div class="meta-progresso">
+
+
+<div class="meta-barra"
+
+style="width:${porcentagem}%">
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="meta-info">
+
+${valor}${unidade} / ${objetivo}${unidade}
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+}
 
 
 
