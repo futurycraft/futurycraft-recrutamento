@@ -7,10 +7,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>Gerenciamento de Staff | FuturyCraft</title>
 
 
-<link rel="stylesheet" href="gerenciar-staff.css">
+<link rel="stylesheet" href="style.css">
 
 
 </head>
@@ -24,183 +25,183 @@
 
 
 
-    <div class="staff-header">
 
 
-        <div class="staff-logo">
+<header class="staff-header">
 
-            🛡️
 
-        </div>
+<div class="staff-logo">
 
+🛡️
 
-        <h1>
+</div>
 
-            Gerenciamento de Staff
 
-        </h1>
+<h1>
 
+Gerenciamento de Staff
 
-        <p>
+</h1>
 
-            Controle de cargos, permissões e evolução da equipe FuturyCraft
 
-        </p>
+<p>
 
+Controle de cargos, permissões e membros da equipe FuturyCraft
 
+</p>
 
-    </div>
 
 
+</header>
 
 
 
 
 
 
-    <div class="staff-content">
 
+<section class="staff-content">
 
 
 
 
-        <!-- ADICIONAR STAFF -->
 
-        <div class="staff-box">
 
 
-            <div class="staff-title">
+<!-- ADICIONAR MEMBRO -->
 
+<div class="staff-box">
 
-                <h2>
 
-                    Adicionar membro
 
-                </h2>
+<div class="staff-title">
 
+<h2>
 
-                <span>
+Adicionar membro
 
-                    STAFF
+</h2>
 
-                </span>
 
+<span>
 
+STAFF
 
-            </div>
+</span>
 
 
+</div>
 
 
 
-            <label>
 
-                Usuário
 
-            </label>
 
+<label>
 
-            <select id="usuarioStaff">
+Usuário
 
+</label>
 
-                <option>
 
-                    Carregando usuários...
 
-                </option>
+<select id="usuarioStaff">
 
 
+<option>
 
-            </select>
+Carregando usuários...
 
+</option>
 
 
+</select>
 
 
 
 
 
-            <label>
 
-                Cargo
 
-            </label>
+<label>
 
+Cargo
 
+</label>
 
-            <select id="cargoStaff">
 
 
+<select id="cargoStaff">
 
-                <option value="fundador">
 
-                    👑 Fundador
 
-                </option>
+<option value="fundador">
 
+👑 Fundador
 
+</option>
 
-                <option value="diretor">
 
-                    ⭐ Diretor
 
-                </option>
+<option value="diretor">
 
+⭐ Diretor
 
+</option>
 
-                <option value="gerente">
 
-                    🔷 Gerente
 
-                </option>
+<option value="gerente">
 
+🔷 Gerente
 
+</option>
 
-                <option value="admin">
 
-                    🛡 Admin
 
-                </option>
+<option value="admin">
 
+🛡 Admin
 
+</option>
 
-                <option value="moderador">
 
-                    🔨 Moderador
 
-                </option>
+<option value="moderador">
 
+🔨 Moderador
 
+</option>
 
-                <option value="ajudante">
 
-                    💬 Ajudante
 
-                </option>
+<option value="ajudante">
 
+💬 Ajudante
 
+</option>
 
-            </select>
 
 
+</select>
 
 
 
 
 
 
-            <button onclick="adicionarStaff()">
 
-                Adicionar Staff
+<button onclick="adicionarStaff()">
 
-            </button>
+Adicionar Staff
 
+</button>
 
 
 
-        </div>
 
 
+</div>
 
 
 
@@ -211,81 +212,83 @@
 
 
 
-        <!-- LISTA DE STAFF -->
 
-        <div class="staff-box">
 
+<!-- LISTA STAFF -->
 
-            <div class="staff-title">
+<div class="staff-box">
 
 
-                <h2>
 
-                    Equipe Atual
+<div class="staff-title">
 
-                </h2>
 
+<h2>
 
-                <span>
+Equipe Atual
 
-                    ONLINE
+</h2>
 
-                </span>
 
 
+<span>
 
-            </div>
+GERENCIAR
 
+</span>
 
 
 
+</div>
 
-            <div id="listaStaff" class="staff-list">
 
 
 
-                <div class="loading">
 
 
-                    Carregando equipe...
+<div id="listaStaff" class="staff-list">
 
 
-                </div>
 
+<div class="loading">
 
+Carregando equipe...
 
+</div>
 
-            </div>
 
 
+</div>
 
 
 
-        </div>
 
 
+</div>
 
 
 
-    </div>
 
 
 
 
+</section>
 
 
 
 
 
-    <button class="voltar"
 
-    onclick="window.location.href='admin.html'">
 
+<button class="voltar"
 
-        ← Voltar ao painel
+onclick="window.location.href='admin.html'">
 
 
-    </button>
+← Voltar ao painel
+
+
+</button>
 
 
 
@@ -303,6 +306,9 @@
 
 
 
+<!-- SCRIPTS -->
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
@@ -313,6 +319,7 @@
 
 
 <script src="gerenciar-staff.js"></script>
+
 
 
 
