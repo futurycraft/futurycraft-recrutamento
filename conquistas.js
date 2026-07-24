@@ -234,7 +234,7 @@ minhas?.some(
 
 (item)=>
 
-item.conquista_id === conquista.id
+item.conquista === conquista.nome
 
 );
 
