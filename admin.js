@@ -616,6 +616,12 @@ window.addEventListener("load", async () => {
 
 });
 
+function abrirStaff(){
+
+    window.location.href = "gerenciar-staff.html";
+
+}
+
 // ======================================================
 // FUTURO
 // ======================================================
