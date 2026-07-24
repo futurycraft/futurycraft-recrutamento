@@ -240,7 +240,85 @@ await supabaseClient
 nick
 );
 
+// ===============================
+// CALCULAR PROGRESSO
+// ===============================
 
+
+const totalConquistas = lista.length;
+
+
+const desbloqueadas = minhas?.length || 0;
+
+
+
+const porcentagem = totalConquistas > 0
+
+?
+Math.round(
+(desbloqueadas / totalConquistas) * 100
+)
+
+:
+
+0;
+
+
+
+
+const contador =
+document.getElementById(
+"contador-conquistas"
+);
+
+
+
+const texto =
+document.getElementById(
+"texto-conquistas"
+);
+
+
+
+const barra =
+document.getElementById(
+"progresso-barra"
+);
+
+
+
+
+
+if(contador){
+
+contador.innerHTML =
+porcentagem + "%";
+
+}
+
+
+
+
+if(texto){
+
+texto.innerHTML =
+
+desbloqueadas +
+" de " +
+totalConquistas +
+" conquistas";
+
+}
+
+
+
+
+if(barra){
+
+barra.style.width =
+porcentagem + "%";
+
+}
 
 
 
