@@ -225,7 +225,6 @@ function formatarTempo(segundos){
 
 async function carregarTempoStaff(nick){
 
-
     try{
 
 
@@ -233,34 +232,43 @@ async function carregarTempoStaff(nick){
         await supabaseClient
         .from("staff_ranking")
         .select(
-            "tempo_online,nick"
+            "horas_online,nick"
         )
         .eq(
             "nick",
             nick
         )
-        .maybeSingle();
-
+        .single();
 
 
 
         if(error){
 
-            console.error(error);
+            console.error(
+                "Erro horas:",
+                error
+            );
 
         }
 
 
 
-        let tempo =
-        data
-        ? formatarTempo(
-            data.tempo_online
-        )
-        : "0m";
+        let tempo = "0m";
 
 
 
+        if(data){
+
+            tempo =
+            formatarTempo(
+                data.horas_online
+            );
+
+        }
+
+
+
+        // Card principal
 
         const horas =
         document.getElementById(
@@ -268,12 +276,17 @@ async function carregarTempoStaff(nick){
         );
 
 
+        if(horas){
 
-        if(horas)
-            horas.innerHTML = tempo;
+            horas.innerHTML =
+            tempo;
+
+        }
 
 
 
+
+        // Card horas online staff
 
         const area =
         document.getElementById(
@@ -281,12 +294,10 @@ async function carregarTempoStaff(nick){
         );
 
 
-
         if(area){
 
 
             area.innerHTML = `
-
 
             <div class="hour-card">
 
@@ -306,7 +317,6 @@ async function carregarTempoStaff(nick){
                 </div>
 
 
-
                 <div>
 
                     ⏱
@@ -316,7 +326,6 @@ async function carregarTempoStaff(nick){
 
             </div>
 
-
             `;
 
 
@@ -324,12 +333,11 @@ async function carregarTempoStaff(nick){
 
 
 
-    }
-    catch(error){
+    }catch(error){
 
 
         console.error(
-            "Erro horas:",
+            "Erro tempo staff:",
             error
         );
 
