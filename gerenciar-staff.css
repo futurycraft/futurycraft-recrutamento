@@ -1,38 +1,43 @@
 /* ==========================================
    FUTURYCRAFT
-   STAFF MANAGEMENT SYSTEM
+   GERENCIAMENTO STAFF
 ========================================== */
 
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Segoe UI",Arial,sans-serif;
+    font-family:"Segoe UI", Arial, sans-serif;
+
 }
 
 
 
 body{
 
+
     min-height:100vh;
+
 
     background:
 
     radial-gradient(
         circle at top,
-        #19345f,
-        #070b16 45%,
+        #183565,
+        #070b16 55%,
         #02040a
     );
 
+
     color:white;
+
 
     padding:40px;
 
+
 }
-
-
 
 
 
@@ -40,16 +45,17 @@ body{
 
 /* CONTAINER */
 
-.page{
 
-    width:100%;
+.staff-container{
+
 
     max-width:1500px;
 
+
     margin:auto;
 
-}
 
+}
 
 
 
@@ -59,12 +65,15 @@ body{
 
 /* HEADER */
 
-.top-header{
+
+.staff-header{
 
 
     display:flex;
 
+
     align-items:center;
+
 
     gap:25px;
 
@@ -77,12 +86,12 @@ body{
     rgba(10,18,40,.85);
 
 
+    border-radius:25px;
+
+
     border:
 
     1px solid rgba(0,234,255,.25);
-
-
-    border-radius:25px;
 
 
     box-shadow:
@@ -99,18 +108,20 @@ body{
 
 
 
+.logo-staff{
 
-.header-icon{
+
+    width:90px;
 
 
-    width:95px;
-
-    height:95px;
+    height:90px;
 
 
     display:flex;
 
+
     align-items:center;
+
 
     justify-content:center;
 
@@ -123,6 +134,7 @@ body{
 
     background:
 
+
     linear-gradient(
         135deg,
         #00eaff,
@@ -131,6 +143,7 @@ body{
 
 
     box-shadow:
+
 
     0 0 35px #00eaff;
 
@@ -141,26 +154,11 @@ body{
 
 
 
-.top-header h1{
+
+.staff-header h1{
 
 
-    font-size:40px;
-
-
-    letter-spacing:1px;
-
-
-}
-
-
-
-.top-header p{
-
-
-    margin-top:10px;
-
-
-    color:#9eadd0;
+    font-size:38px;
 
 
 }
@@ -169,19 +167,35 @@ body{
 
 
 
+.staff-header p{
+
+
+    margin-top:8px;
+
+
+    color:#a6b4d4;
+
+
+}
 
 
 
-/* DASHBOARD */
 
 
-.dashboard{
+
+
+
+
+/* LAYOUT */
+
+
+.staff-layout{
 
 
     display:grid;
 
 
-    grid-template-columns:380px 1fr;
+    grid-template-columns:350px 1fr;
 
 
     gap:30px;
@@ -196,22 +210,16 @@ body{
 
 
 
-/* PAINEIS */
+/* BOX */
 
 
-.panel{
+.box{
 
 
     background:
 
 
-    rgba(8,15,32,.9);
-
-
-    border:
-
-
-    1px solid rgba(255,255,255,.08);
+    rgba(8,15,32,.88);
 
 
     border-radius:25px;
@@ -220,26 +228,15 @@ body{
     padding:30px;
 
 
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+
     box-shadow:
 
 
     0 20px 60px rgba(0,0,0,.45);
-
-
-    backdrop-filter:blur(15px);
-
-
-}
-
-
-
-
-
-
-.panel:hover{
-
-
-    border-color:#00eaff;
 
 
 }
@@ -254,63 +251,16 @@ body{
 /* TITULOS */
 
 
-.panel-header{
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:center;
-
-
-    margin-bottom:30px;
-
-
-}
-
-
-
-.panel-header h2{
+.box h2{
 
 
     font-size:25px;
 
 
-}
-
-
-
-
-.panel-header span{
-
-
-    padding:7px 15px;
-
-
-    border-radius:20px;
-
-
-    font-size:12px;
-
-
-    color:#00eaff;
-
-
-    border:
-
-    1px solid #00eaff;
-
-
-    background:
-
-    rgba(0,234,255,.1);
+    margin-bottom:25px;
 
 
 }
-
 
 
 
@@ -321,29 +271,23 @@ body{
 /* FORM */
 
 
-.form-group{
-
-
-    margin-bottom:22px;
-
-
-}
-
-
-
 label{
 
 
     display:block;
 
 
+    margin-top:18px;
+
+
     margin-bottom:8px;
 
 
-    color:#c5d0eb;
+    color:#bdc9e6;
 
 
 }
+
 
 
 
@@ -379,6 +323,7 @@ select{
 
 
 
+
 select:focus{
 
 
@@ -387,7 +332,8 @@ select:focus{
 
     box-shadow:
 
-    0 0 15px rgba(0,234,255,.4);
+
+    0 0 15px rgba(0,234,255,.3);
 
 
 }
@@ -399,34 +345,35 @@ select:focus{
 
 
 
-/* BOTAO ADICIONAR */
+
+/* BOTAO ADD */
 
 
-.btn-primary{
+.btn-add{
 
 
     width:100%;
 
 
-    padding:16px;
+    margin-top:25px;
 
 
-    border-radius:15px;
+    padding:15px;
 
 
     border:none;
 
 
+    border-radius:15px;
+
+
     cursor:pointer;
-
-
-    color:white;
 
 
     font-weight:bold;
 
 
-    font-size:15px;
+    color:white;
 
 
     background:
@@ -446,8 +393,7 @@ select:focus{
 
 
 
-
-.btn-primary:hover{
+.btn-add:hover{
 
 
     transform:translateY(-3px);
@@ -456,7 +402,7 @@ select:focus{
     box-shadow:
 
 
-    0 0 30px #00eaff;
+    0 0 25px #00eaff;
 
 
 }
@@ -469,10 +415,61 @@ select:focus{
 
 
 
-/* LISTA */
+/* TITULO EQUIPE */
 
 
-.staff-grid{
+.titulo-equipe{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+.titulo-equipe span{
+
+
+    padding:7px 18px;
+
+
+    border-radius:20px;
+
+
+    color:#00eaff;
+
+
+    border:
+
+    1px solid #00eaff;
+
+
+    font-size:12px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* GRID */
+
+
+.cards-staff{
 
 
     display:grid;
@@ -480,10 +477,9 @@ select:focus{
 
     grid-template-columns:
 
-
     repeat(
         auto-fit,
-        minmax(290px,1fr)
+        minmax(280px,1fr)
     );
 
 
@@ -491,6 +487,7 @@ select:focus{
 
 
 }
+
 
 
 
@@ -516,7 +513,7 @@ select:focus{
 
     linear-gradient(
         145deg,
-        #17294c,
+        #172b50,
         #080d1d
     );
 
@@ -529,7 +526,6 @@ select:focus{
 
     border:
 
-
     1px solid rgba(0,234,255,.15);
 
 
@@ -537,7 +533,6 @@ select:focus{
 
 
 }
-
 
 
 
@@ -585,13 +580,17 @@ select:focus{
 
     transform:
 
+
     translateY(-8px);
+
+
+    border-color:#00eaff;
 
 
     box-shadow:
 
 
-    0 0 35px rgba(0,234,255,.3);
+    0 0 35px rgba(0,234,255,.35);
 
 
 }
@@ -603,7 +602,29 @@ select:focus{
 
 
 
-.staff-card h3{
+
+/* TOPO CARD */
+
+
+.staff-top{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+
+.staff-top h3{
 
 
     font-size:24px;
@@ -612,7 +633,44 @@ select:focus{
     color:#00eaff;
 
 
-    margin-bottom:18px;
+}
+
+
+
+
+
+
+
+.cargo{
+
+
+    display:inline-block;
+
+
+    width:max-content;
+
+
+    padding:8px 14px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    rgba(0,234,255,.15);
+
+
+    border:
+
+    1px solid #00eaff;
+
+
+    color:#00eaff;
+
+
+    font-size:13px;
 
 
 }
@@ -621,19 +679,27 @@ select:focus{
 
 
 
+
+
+
+
+/* TEXTO CARD */
+
+
 .staff-card p{
 
 
-    color:#d7e1ff;
+    margin-top:15px;
 
 
-    margin-top:12px;
+    color:#d6e0ff;
 
 
     line-height:1.5;
 
 
 }
+
 
 
 
@@ -654,13 +720,10 @@ select:focus{
 
 
 
+/* INFORMAÇÕES HOVER */
 
-/* INFORMAÇÕES ESCONDIDAS */
 
 .staff-extra{
-
-
-    margin-top:15px;
 
 
     max-height:0;
@@ -672,23 +735,26 @@ select:focus{
     overflow:hidden;
 
 
-    transition:.5s;
+    transition:.5s ease;
 
 
 }
+
+
 
 
 
 .staff-card:hover .staff-extra{
 
 
-    max-height:600px;
+    max-height:500px;
 
 
     opacity:1;
 
 
 }
+
 
 
 
@@ -708,40 +774,7 @@ select:focus{
     rgba(255,255,255,.15);
 
 
-    margin:18px 0;
-
-
-}
-
-
-
-
-
-
-
-
-/* STATUS */
-
-.status-ativo{
-
-
-    color:#00ff88;
-
-
-    font-weight:bold;
-
-
-}
-
-
-
-.status-inativo{
-
-
-    color:#ff5555;
-
-
-    font-weight:bold;
+    margin:20px 0;
 
 
 }
@@ -763,16 +796,16 @@ select:focus{
     width:100%;
 
 
-    margin-top:20px;
+    margin-top:25px;
 
 
-    padding:13px;
+    padding:14px;
 
 
     border:none;
 
 
-    border-radius:12px;
+    border-radius:14px;
 
 
     cursor:pointer;
@@ -789,8 +822,8 @@ select:focus{
 
     linear-gradient(
         135deg,
-        #ff3030,
-        #970000
+        #ff3b3b,
+        #980000
     );
 
 
@@ -802,10 +835,11 @@ select:focus{
 
 
 
+
 .btn-remover:hover{
 
 
-    transform:scale(1.03);
+    transform:scale(1.04);
 
 
     box-shadow:
@@ -823,46 +857,11 @@ select:focus{
 
 
 
-/* MEMBRO SEM CARGO */
-
-
-.membro-inativo{
-
-
-    margin-top:20px;
-
-
-    padding:12px;
-
-
-    text-align:center;
-
-
-    border-radius:12px;
-
-
-    background:
-
-
-    rgba(255,255,255,.08);
-
-
-    color:#aaa;
-
-
-}
-
-
-
-
-
-
-
 
 /* VOLTAR */
 
 
-.btn-back{
+.btn-voltar{
 
 
     margin-top:35px;
@@ -900,7 +899,7 @@ select:focus{
 
 
 
-.btn-back:hover{
+.btn-voltar:hover{
 
 
     background:
@@ -924,13 +923,13 @@ select:focus{
 .loading{
 
 
-    padding:40px;
-
-
     text-align:center;
 
 
-    color:#9da9c8;
+    padding:40px;
+
+
+    color:#9aa8c8;
 
 
 }
@@ -956,7 +955,8 @@ select:focus{
 
 
 
-    .dashboard{
+
+    .staff-layout{
 
 
         grid-template-columns:1fr;
@@ -967,24 +967,13 @@ select:focus{
 
 
 
-    .top-header{
+    .staff-header{
 
 
         flex-direction:column;
 
 
         text-align:center;
-
-
-    }
-
-
-
-
-    .top-header h1{
-
-
-        font-size:30px;
 
 
     }
