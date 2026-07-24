@@ -214,40 +214,72 @@ async function carregarTempoStaff(nick){
 
 
 
-        let segundos =
-        Number(data.tempo_online) || 0;
+        let segundos = 
+Number(data.tempo_online) || 0;
+
+
+
+let dias =
+Math.floor(
+    segundos / 86400
+);
+
+
+
+let horas =
+Math.floor(
+    (segundos % 86400) / 3600
+);
+
+
+
+let minutos =
+Math.floor(
+    (segundos % 3600) / 60
+);
 
 
 
 
-
-
-        let horas =
-        Math.floor(
-            segundos / 3600
-        );
+let textoTempo = "";
 
 
 
+if(dias > 0){
 
+    textoTempo += dias + "d ";
 
-        let minutos =
-        Math.floor(
-            (segundos % 3600) / 60
-        );
-
-
+}
 
 
 
+if(horas > 0){
 
-        document.getElementById("horas")
-        .innerHTML =
+    textoTempo += horas + "h ";
 
-        horas +
-        "h " +
-        minutos +
-        "min";
+}
+
+
+
+if(minutos > 0){
+
+    textoTempo += minutos + "m";
+
+}
+
+
+
+if(textoTempo === ""){
+
+    textoTempo = "0m";
+
+}
+
+
+
+
+document.getElementById("horas")
+.innerHTML = textoTempo.trim();
 
 
 
