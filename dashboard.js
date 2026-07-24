@@ -1077,9 +1077,9 @@ async function carregarMetasStaff(nick, cargo){
 
         .select("*")
 
-        .eq("cargo",cargo)
+        .ilike("cargo",cargo)
 
-        .single();
+        .maybeSingle();
 
 
 
