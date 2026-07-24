@@ -751,3 +751,105 @@ body{
 
 
 }
+
+/* ==========================================
+   METAS STAFF
+========================================== */
+
+
+.metas-panel{
+
+    margin-top:25px;
+
+}
+
+
+
+.meta-item{
+
+    background:
+    linear-gradient(
+        145deg,
+        #131c2c,
+        #1a2538
+    );
+
+    border:1px solid #263550;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-top:15px;
+
+}
+
+
+
+.meta-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.meta-header span{
+
+    color:#00eaff;
+
+    font-weight:bold;
+
+}
+
+
+
+.meta-progresso{
+
+    height:12px;
+
+    background:#080d16;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+
+.meta-barra{
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #00eaff,
+        #008cff
+    );
+
+    border-radius:20px;
+
+    transition:.5s;
+
+}
+
+
+
+.meta-info{
+
+    margin-top:10px;
+
+    color:#b8c2d5;
+
+    font-size:14px;
+
+}
