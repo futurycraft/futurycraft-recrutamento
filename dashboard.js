@@ -355,9 +355,7 @@ async function carregarTopStaff(){
 
 
     const area =
-    document.getElementById(
-        "top-staff"
-    );
+    document.getElementById("top-staff");
 
 
     if(!area)
@@ -368,40 +366,47 @@ async function carregarTopStaff(){
     try{
 
 
-        const {data,error} =
-        await supabaseClient
-        .from("staff_ranking")
+        const {data,error}=await supabaseClient
+
+        .from("skyblock_tempo")
+
         .select(
-            "nick,tempo_online,staff"
+            "nick,tempo_online,grupo"
         )
+
         .eq(
             "staff",
             true
         )
+
         .order(
             "tempo_online",
             {
                 ascending:false
             }
         )
+
         .limit(5);
 
 
 
 
+        console.log(
+            "Top Staff:",
+            data,
+            error
+        );
 
-        if(error){
 
 
-            console.error(
-                "Erro ranking:",
-                error
-            );
+
+
+        if(error || !data || data.length === 0){
 
 
             area.innerHTML = `
 
-            <div class="rank-item">
+            <div class="activity-item">
 
                 Ranking indisponível.
 
@@ -412,32 +417,8 @@ async function carregarTopStaff(){
 
             return;
 
-
         }
 
-
-
-
-
-
-        if(!data || data.length === 0){
-
-
-            area.innerHTML = `
-
-            <div class="rank-item">
-
-                Nenhum staff encontrado.
-
-            </div>
-
-            `;
-
-
-            return;
-
-
-        }
 
 
 
@@ -448,28 +429,33 @@ async function carregarTopStaff(){
 
 
 
-        data.forEach(
-        (staff,index)=>{
+        data.forEach((staff,index)=>{
 
 
-            let medalha = "";
+            let medalha;
 
 
+            if(index === 0){
 
-            if(index === 0)
-                medalha = "🥇";
+                medalha="🥇";
 
+            }
+            else if(index === 1){
 
-            else if(index === 1)
-                medalha = "🥈";
+                medalha="🥈";
 
+            }
+            else if(index === 2){
 
-            else if(index === 2)
-                medalha = "🥉";
+                medalha="🥉";
 
+            }
+            else{
 
-            else
-                medalha = "#" + (index + 1);
+                medalha="#"+(index+1);
+
+            }
+
 
 
 
@@ -498,10 +484,9 @@ async function carregarTopStaff(){
                     </strong>
 
 
-
                     <span>
 
-                        Staff FuturyCraft
+                        ${staff.grupo || "Staff FuturyCraft"}
 
                     </span>
 
@@ -531,14 +516,26 @@ async function carregarTopStaff(){
         });
 
 
-    }
-    catch(error){
+
+
+    }catch(error){
 
 
         console.error(
-            "Erro top staff:",
+            "Erro ranking staff:",
             error
         );
+
+
+        area.innerHTML = `
+
+        <div class="activity-item">
+
+            Erro carregando ranking.
+
+        </div>
+
+        `;
 
 
     }
