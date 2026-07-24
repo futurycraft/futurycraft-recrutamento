@@ -7,8 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gerenciar Staff | FuturyCraft</title>
-
+<title>Gerenciamento de Staff | FuturyCraft</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -21,149 +20,185 @@
 <div class="staff-container">
 
 
-<div class="staff-header">
+    <div class="staff-header">
 
-<h1>
-Gerenciamento de Staff
-</h1>
+        <div class="staff-icon">
+            🛡️
+        </div>
 
-<p>
-Controle de cargos e permissões da equipe FuturyCraft
-</p>
+        <h1>
+            Gerenciamento de Staff
+        </h1>
+
+        <p>
+            Controle de cargos, membros e evolução da equipe FuturyCraft
+        </p>
+
+    </div>
+
+
+
+
+    <div class="staff-grid">
+
+
+
+        <!-- ADICIONAR STAFF -->
+
+        <div class="staff-box">
+
+
+            <div class="box-title">
+
+                <h2>
+                    Adicionar membro
+                </h2>
+
+                <span>
+                    + STAFF
+                </span>
+
+            </div>
+
+
+
+            <label>
+                Usuário
+            </label>
+
+
+            <select id="usuarioStaff">
+
+                <option>
+                    Carregando usuários...
+                </option>
+
+            </select>
+
+
+
+
+            <label>
+                Cargo
+            </label>
+
+
+            <select id="cargoStaff">
+
+
+                <option value="fundador">
+                    👑 Fundador
+                </option>
+
+
+                <option value="diretor">
+                    ⭐ Diretor
+                </option>
+
+
+                <option value="gerente">
+                    🔷 Gerente
+                </option>
+
+
+                <option value="admin">
+                    🛡 Admin
+                </option>
+
+
+                <option value="moderador">
+                    🔨 Moderador
+                </option>
+
+
+                <option value="ajudante">
+                    💬 Ajudante
+                </option>
+
+
+            </select>
+
+
+
+            <button onclick="adicionarStaff()">
+
+                Adicionar Staff
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- LISTA STAFF -->
+
+        <div class="staff-box equipe-box">
+
+
+            <div class="box-title">
+
+                <h2>
+                    Equipe Atual
+                </h2>
+
+
+                <span>
+                    STAFF
+                </span>
+
+
+            </div>
+
+
+
+            <div id="listaStaff">
+
+
+                <div class="loading">
+
+                    Carregando equipe...
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <button class="voltar"
+    onclick="window.location.href='admin.html'">
+
+
+        ← Voltar ao painel
+
+
+    </button>
+
+
+
 
 </div>
 
 
-
-
-
-<div class="staff-actions">
-
-
-<div class="staff-box">
-
-
-<h2>
-Adicionar membro
-</h2>
-
-
-<label>
-Usuário
-</label>
-
-
-<select id="usuarioStaff">
-
-<option>
-Carregando usuários...
-</option>
-
-</select>
-
-
-
-
-<label>
-Cargo
-</label>
-
-
-<select id="cargoStaff">
-
-
-<option value="fundador">
-👑 Fundador
-</option>
-
-
-<option value="diretor">
-⭐ Diretor
-</option>
-
-
-<option value="gerente">
-🔷 Gerente
-</option>
-
-
-<option value="admin">
-🛡 Admin
-</option>
-
-
-<option value="moderador">
-🔨 Moderador
-</option>
-
-
-<option value="ajudante">
-💬 Ajudante
-</option>
-
-
-</select>
-
-
-
-
-<button onclick="adicionarStaff()">
-
-Adicionar Staff
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="staff-box">
-
-
-<h2>
-Equipe atual
-</h2>
-
-
-
-<div id="listaStaff">
-
-
-<div class="loading">
-
-Carregando equipe...
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<button class="voltar"
-onclick="window.location.href='admin.html'">
-
-Voltar ao painel
-
-</button>
-
-
-
-</div>
 
 
 
@@ -179,5 +214,6 @@ Voltar ao painel
 
 
 </body>
+
 
 </html>
