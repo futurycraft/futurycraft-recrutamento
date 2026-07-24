@@ -87,9 +87,8 @@ async function carregarPerfil(){
 
 
 
-        // CARREGAR CONQUISTAS NA TELA
-
-        await carregarConquistas(
+        console.log(
+            "Carregando conquistas de:",
             data.nick
         );
 
@@ -97,7 +96,7 @@ async function carregarPerfil(){
 
 
 
-        // VERIFICAR SE GANHOU NOVAS CONQUISTAS
+        // PRIMEIRO VERIFICA CONQUISTAS NOVAS
 
         await verificarConquistasAutomaticas(
             data.nick
@@ -107,8 +106,7 @@ async function carregarPerfil(){
 
 
 
-        // ATUALIZA A LISTA NOVAMENTE
-        // PARA MOSTRAR AS NOVAS CONQUISTAS
+        // DEPOIS MOSTRA NA TELA
 
         await carregarConquistas(
             data.nick
@@ -130,8 +128,6 @@ async function carregarPerfil(){
 
 
 }
-
-
 
 
 
