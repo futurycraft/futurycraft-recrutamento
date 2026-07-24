@@ -1,6 +1,6 @@
 // ==========================================
 // FUTURYCRAFT - SISTEMA DE CONQUISTAS
-// OTIMIZADO
+// VERSÃO OTIMIZADA
 // ==========================================
 
 
@@ -9,14 +9,12 @@ let staffAtual = null;
 let conquistasCache = null;
 
 
-
 // ==========================================
 // CARREGAR PERFIL
 // ==========================================
 
 
 async function carregarPerfil(){
-
 
 try{
 
@@ -35,6 +33,7 @@ return;
 
 
 
+
 const email =
 user.user.email;
 
@@ -48,7 +47,7 @@ await supabaseClient
 .from("usuarios_staff")
 
 .select(
-"nick,cargo"
+"nick,cargo,data_entrada"
 )
 
 .eq(
@@ -65,13 +64,14 @@ email
 if(error || !data){
 
 console.error(
-"Erro staff:",
+"Erro buscando staff:",
 error
 );
 
 return;
 
 }
+
 
 
 
@@ -83,20 +83,38 @@ staffAtual=data;
 
 document.getElementById(
 "nick-staff"
-).innerHTML=data.nick;
+).innerHTML =
+data.nick;
+
 
 
 
 document.getElementById(
 "cargo-staff"
-).innerHTML=data.cargo;
+).innerHTML =
+data.cargo;
 
 
 
 
+console.log(
+"Staff:",
+data.nick
+);
 
 
-// MOSTRA IMEDIATAMENTE
+
+
+// Primeiro libera conquistas
+
+await verificarConquistasAutomaticas(
+data
+);
+
+
+
+
+// Depois mostra
 
 await carregarConquistas(
 data.nick
@@ -104,27 +122,8 @@ data.nick
 
 
 
-
-// VERIFICA EM SEGUNDO PLANO
-
-verificarConquistasAutomaticas(
-data.nick
-)
-.then(()=>{
-
-
-carregarConquistas(
-data.nick
-);
-
-
-});
-
-
-
-
-
-}catch(error){
+}
+catch(error){
 
 
 console.error(
@@ -143,10 +142,8 @@ error
 
 
 
-
-
 // ==========================================
-// CARREGAR LISTA
+// BUSCAR LISTA DE CONQUISTAS
 // ==========================================
 
 
@@ -155,7 +152,6 @@ async function buscarListaConquistas(){
 
 if(conquistasCache)
 return conquistasCache;
-
 
 
 
@@ -189,7 +185,6 @@ return [];
 
 
 
-
 conquistasCache=data;
 
 
@@ -203,14 +198,12 @@ return data;
 
 
 
-
 // ==========================================
 // MOSTRAR CONQUISTAS
 // ==========================================
 
 
 async function carregarConquistas(nick){
-
 
 
 const area =
@@ -226,13 +219,8 @@ return;
 
 
 
-try{
-
-
-
 const lista =
 await buscarListaConquistas();
-
 
 
 
@@ -256,51 +244,53 @@ nick
 
 
 
-area.innerHTML=`
+let desbloqueadas =
+minhas || [];
 
+
+
+
+area.innerHTML="";
+
+
+
+
+
+let categorias={
+
+Inicio:"🌱 Iniciante",
+
+Dedicacao:"🚀 Experiência",
+
+Carreira:"🏆 Veterano",
+
+Elite:"💎 Elite"
+
+};
+
+
+
+
+Object.keys(categorias)
+.forEach(cat=>{
+
+
+area.innerHTML += `
 
 <div class="categoria-conquistas">
 
-<h2>🌱 Iniciante</h2>
+<h2>
+${categorias[cat]}
+</h2>
 
-<div id="categoria-inicio"></div>
-
+<div id="${cat}">
 </div>
 
-
-
-<div class="categoria-conquistas">
-
-<h2>🚀 Experiência</h2>
-
-<div id="categoria-experiencia"></div>
-
 </div>
-
-
-
-<div class="categoria-conquistas">
-
-<h2>🏆 Veterano</h2>
-
-<div id="categoria-veterano"></div>
-
-</div>
-
-
-
-<div class="categoria-conquistas">
-
-<h2>💎 Elite</h2>
-
-<div id="categoria-elite"></div>
-
-</div>
-
 
 `;
 
-
+});
 
 
 
@@ -309,58 +299,10 @@ area.innerHTML=`
 lista.forEach(conquista=>{
 
 
-
-let destino;
-
-
-
-switch(conquista.categoria){
-
-
-case "Inicio":
-
-destino=
+let destino =
 document.getElementById(
-"categoria-inicio"
+conquista.categoria
 );
-
-break;
-
-
-
-case "Dedicacao":
-
-destino=
-document.getElementById(
-"categoria-experiencia"
-);
-
-break;
-
-
-
-case "Carreira":
-
-destino=
-document.getElementById(
-"categoria-veterano"
-);
-
-break;
-
-
-
-default:
-
-destino=
-document.getElementById(
-"categoria-elite"
-);
-
-
-}
-
-
 
 
 
@@ -370,17 +312,11 @@ return;
 
 
 
+let possui = desbloqueadas.some(
 
-const possui =
-
-minhas?.some(
-
-item=>
-
-item.conquista === conquista.nome
+x=>x.conquista === conquista.nome
 
 );
-
 
 
 
@@ -400,6 +336,7 @@ ${conquista.nome}
 </h3>
 
 
+
 <p>
 
 ${conquista.descricao}
@@ -408,17 +345,24 @@ ${conquista.descricao}
 
 
 
+
 <div class="${
-possui ?
-"desbloqueada":
+possui
+?
+"desbloqueada"
+:
 "bloqueada"
 }">
 
+
 ${
-possui ?
-"✅ Desbloqueada":
+possui
+?
+"✅ Desbloqueada"
+:
 "🔒 Bloqueada"
 }
+
 
 </div>
 
@@ -435,31 +379,22 @@ possui ?
 
 
 
-
-}catch(error){
-
-
-console.error(
-"Erro conquistas:",
-error
-);
-
-
 }
 
-
-
-}
 
 // ==========================================
 // VERIFICAR CONQUISTAS AUTOMÁTICAS
 // ==========================================
 
 
-async function verificarConquistasAutomaticas(nick){
+async function verificarConquistasAutomaticas(staff){
 
 
 try{
+
+
+const nick = staff.nick;
+
 
 
 console.log(
@@ -470,10 +405,12 @@ nick
 
 
 
-// Busca tempo online
+// ==========================================
+// TEMPO ONLINE
+// ==========================================
 
 
-const {data:tempo,error}=
+const {data:tempo}=
 
 await supabaseClient
 
@@ -489,86 +426,6 @@ nick
 )
 
 .maybeSingle();
-
-
-// ==========================================
-// TEMPO NA EQUIPE STAFF
-// ==========================================
-
-
-const {data:staff}=
-
-await supabaseClient
-
-.from("usuarios_staff")
-
-.select(
-"data_entrada"
-)
-
-.eq(
-"nick",
-nick
-)
-
-.maybeSingle();
-
-
-
-
-let diasStaff = 0;
-
-
-
-if(staff?.data_entrada){
-
-
-const entrada =
-new Date(
-staff.data_entrada
-);
-
-
-
-const hoje =
-new Date();
-
-
-
-const diferenca =
-hoje - entrada;
-
-
-
-diasStaff =
-Math.floor(
-diferenca /
-(1000 * 60 * 60 * 24)
-);
-
-
-
-}
-
-
-
-
-console.log(
-"Dias na equipe:",
-diasStaff
-);
-
-
-if(error){
-
-console.error(
-"Erro tempo:",
-error
-);
-
-}
-
-
 
 
 
@@ -588,7 +445,6 @@ tempo.tempo_online
 
 
 
-
 console.log(
 "Horas online:",
 horas
@@ -598,90 +454,106 @@ horas
 
 
 
-
-
 // ==========================================
-// CONQUISTAS DE HORAS
+// TEMPO NA STAFF
 // ==========================================
 
 
+let diasStaff = 0;
 
-const conquistasHoras = [
+
+
+if(staff.data_entrada){
+
+
+
+const inicio =
+new Date(
+staff.data_entrada
+);
+
+
+
+const hoje =
+new Date();
+
+
+
+diasStaff =
+
+Math.floor(
+
+(
+hoje - inicio
+)
+
+/
+
+(1000*60*60*24)
+
+);
+
+
+
+}
+
+
+
+console.log(
+"Dias Staff:",
+diasStaff
+);
+
+
+
+
+
+// ==========================================
+// CONQUISTAS POR HORAS
+// ==========================================
+
+
+const conquistasHoras=[
 
 
 {
-
 limite:25,
-
 nome:"Presença Constante",
-
 descricao:"Alcançou 25 horas online no servidor",
-
 icone:"⏱"
-
 },
 
 
-
 {
-
 limite:50,
-
 nome:"Dedicação",
-
 descricao:"Alcançou 50 horas online no servidor",
-
 icone:"🔥"
-
 },
 
 
-
-
 {
-
 limite:100,
-
 nome:"Guardião do Servidor",
-
 descricao:"Alcançou 100 horas online no servidor",
-
 icone:"🛡️"
-
 },
 
 
-
-
-
 {
-
 limite:250,
-
 nome:"Presença Marcante",
-
 descricao:"Alcançou 250 horas online",
-
 icone:"🌌"
-
 },
 
 
-
-
-
 {
-
 limite:500,
-
 nome:"Mestre da Comunidade",
-
 descricao:"Alcançou 500 horas online",
-
 icone:"🌟"
-
 }
-
 
 
 ];
@@ -690,21 +562,17 @@ icone:"🌟"
 
 
 
-
-
 for(
-const conquista of conquistasHoras
+const c of conquistasHoras
 ){
 
 
-if(
-horas >= conquista.limite
-){
+if(horas >= c.limite){
 
 
 await liberarConquista(
 nick,
-conquista
+c
 );
 
 
@@ -716,124 +584,85 @@ conquista
 
 
 
+
 // ==========================================
-// CONQUISTAS POR TEMPO DE EQUIPE
+// CONQUISTAS POR TEMPO DE STAFF
 // ==========================================
 
 
-
-const conquistasTempo = [
+const conquistasStaff=[
 
 
 {
-
 dias:1,
-
 nome:"Primeiro Dia de Staff",
-
 descricao:"Completou 1 dia como membro da equipe Staff",
-
 icone:"📅"
-
 },
 
 
 
 {
-
 dias:7,
-
 nome:"Primeira Semana",
-
 descricao:"Permaneceu 7 dias na equipe Staff",
-
 icone:"⭐"
-
 },
 
 
 
 {
-
 dias:15,
-
 nome:"Duas Semanas de Staff",
-
 descricao:"Completou 15 dias na equipe Staff FuturyCraft",
-
 icone:"📅"
-
 },
 
 
 
 {
-
 dias:30,
-
 nome:"Primeiro Mês",
-
 descricao:"Completou 1 mês na equipe Staff FuturyCraft",
-
 icone:"📅"
-
 },
 
 
 
 {
-
 dias:90,
-
 nome:"Veterano da Equipe",
-
 descricao:"Completou 3 meses na equipe Staff",
-
 icone:"🏆"
-
 },
 
 
 
 {
-
 dias:180,
-
 nome:"Lenda FuturyCraft",
-
 descricao:"Completou 6 meses na equipe Staff",
-
 icone:"👑"
-
 },
 
 
 
 {
-
 dias:365,
-
 nome:"Elite FuturyCraft",
-
 descricao:"Completou 1 ano na equipe",
-
 icone:"💎"
-
 },
 
 
 
 {
-
 dias:730,
-
 nome:"Veterano Galáctico",
-
 descricao:"Completou 2 anos na equipe",
-
 icone:"🌠"
-
 }
+
 
 
 ];
@@ -842,27 +671,26 @@ icone:"🌠"
 
 
 
+
 for(
-const conquista of conquistasTempo
+const c of conquistasStaff
 ){
 
 
 if(
-diasStaff >= conquista.dias
+diasStaff >= c.dias
 ){
 
 
 await liberarConquista(
-
 nick,
-
 {
 
-nome:conquista.nome,
+nome:c.nome,
 
-descricao:conquista.descricao,
+descricao:c.descricao,
 
-icone:conquista.icone
+icone:c.icone
 
 }
 
@@ -873,6 +701,7 @@ icone:conquista.icone
 
 
 }
+
 
 
 
@@ -901,29 +730,16 @@ icone:"🌱"
 
 
 
+}
 
 
 
-
-// ==========================================
-// FUTURO:
-// AQUI VAMOS COLOCAR
-// DIAS NA EQUIPE
-// ==========================================
-
-
-
-
-
-}catch(error){
+catch(error){
 
 
 console.error(
-
 "Erro verificar conquistas:",
-
 error
-
 );
 
 
@@ -932,9 +748,6 @@ error
 
 
 }
-
-
-
 
 
 
@@ -952,7 +765,6 @@ async function liberarConquista(
 nick,
 conquista
 ){
-
 
 
 try{
@@ -985,13 +797,11 @@ conquista.nome
 
 
 
-
 if(existe){
 
 return;
 
 }
-
 
 
 
@@ -1014,12 +824,9 @@ descricao:conquista.descricao,
 
 icone:conquista.icone,
 
-data_conquista:
-new Date()
+data_conquista:new Date()
 
 });
-
-
 
 
 
@@ -1030,11 +837,8 @@ if(error){
 
 
 console.error(
-
 "Erro liberar conquista:",
-
 error
-
 );
 
 
@@ -1043,11 +847,8 @@ else{
 
 
 console.log(
-
-"Conquista desbloqueada:",
-
+"🏆 Nova conquista:",
 conquista.nome
-
 );
 
 
@@ -1055,15 +856,14 @@ conquista.nome
 
 
 
+}
 
-}catch(error){
+catch(error){
 
 
 console.error(
-
 "Erro liberar:",
 error
-
 );
 
 
@@ -1072,9 +872,6 @@ error
 
 
 }
-
-
-
 
 
 
@@ -1088,10 +885,10 @@ error
 
 document.addEventListener(
 "DOMContentLoaded",
-async ()=>{
+()=>{
 
 
-await carregarPerfil();
+carregarPerfil();
 
 
 });
