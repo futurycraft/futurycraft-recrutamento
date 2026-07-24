@@ -3,6 +3,7 @@
 // ==========================================
 
 
+
 // ==========================================
 // CARREGAR PERFIL DO STAFF
 // ==========================================
@@ -41,17 +42,12 @@ async function carregarPerfil(){
 
 
 
-        // NÃO É STAFF OU FOI REMOVIDO
-
         if(error || !data){
 
 
             console.log(
                 "Usuário não encontrado na staff"
             );
-
-
-            await removerTempoStaff(email);
 
 
             window.location.href = "login.html";
@@ -67,19 +63,11 @@ async function carregarPerfil(){
 
 
 
-
-        // SEM CARGO
-
         if(!data.cargo){
 
 
             console.log(
                 "Staff sem cargo"
-            );
-
-
-            await removerTempoStaff(
-                data.nick
             );
 
 
@@ -138,91 +126,12 @@ async function carregarPerfil(){
 
 
 
+
     }catch(error){
 
 
         console.error(
             "Erro perfil:",
-            error
-        );
-
-
-    }
-
-
-}
-
-
-
-
-
-
-
-
-// ==========================================
-// REMOVER TEMPO DE QUEM NÃO É STAFF
-// ==========================================
-
-async function removerTempoStaff(nick){
-
-
-    try{
-
-
-        if(!nick){
-
-            return;
-
-        }
-
-
-
-
-
-        const {error} =
-        await supabaseClient
-        .from("skyblock_tempo")
-        .delete()
-        .eq(
-            "nick",
-            nick
-        );
-
-
-
-
-
-        if(error){
-
-
-            console.error(
-                "Erro removendo tempo:",
-                error
-            );
-
-
-            return;
-
-
-        }
-
-
-
-
-
-        console.log(
-            "Tempo removido:",
-            nick
-        );
-
-
-
-
-    }catch(error){
-
-
-        console.error(
-            "Erro remover tempo:",
             error
         );
 
@@ -251,7 +160,7 @@ async function carregarTempoStaff(nick){
 
 
         console.log(
-            "Buscando tempo para:",
+            "Buscando tempo:",
             nick
         );
 
@@ -261,8 +170,17 @@ async function carregarTempoStaff(nick){
         const {data,error} =
         await supabaseClient
         .from("skyblock_tempo")
-        .select("nick,tempo")
-        .eq("nick", nick)
+        .select(
+            "nick,tempo_online,grupo,staff"
+        )
+        .eq(
+            "nick",
+            nick
+        )
+        .eq(
+            "staff",
+            true
+        )
         .maybeSingle();
 
 
@@ -270,7 +188,7 @@ async function carregarTempoStaff(nick){
 
 
         console.log(
-            "Resposta Supabase tempo:",
+            "Resposta tempo:",
             data,
             error
         );
@@ -279,13 +197,7 @@ async function carregarTempoStaff(nick){
 
 
 
-        if(error){
-
-
-            console.error(
-                "Erro buscando tempo staff:",
-                error
-            );
+        if(error || !data){
 
 
             document.getElementById("horas")
@@ -296,25 +208,6 @@ async function carregarTempoStaff(nick){
 
 
         }
-
-
-
-
-
-
-
-        if(!data){
-
-
-            document.getElementById("horas")
-            .innerHTML = "0h";
-
-
-            return;
-
-
-        }
-
 
 
 
@@ -322,7 +215,8 @@ async function carregarTempoStaff(nick){
 
 
         let segundos =
-        Number(data.tempo) || 0;
+        Number(data.tempo_online) || 0;
+
 
 
 
@@ -350,17 +244,11 @@ async function carregarTempoStaff(nick){
         document.getElementById("horas")
         .innerHTML =
 
-        horas + "h " + minutos + "min";
+        horas +
+        "h " +
+        minutos +
+        "min";
 
-
-
-
-
-
-        console.log(
-            "Tempo convertido:",
-            horas + "h " + minutos + "min"
-        );
 
 
 
@@ -369,7 +257,7 @@ async function carregarTempoStaff(nick){
 
 
         console.error(
-            "Erro tempo:",
+            "Erro tempo staff:",
             error
         );
 
@@ -392,6 +280,7 @@ async function carregarTempoStaff(nick){
 // ==========================================
 
 async function carregarAvisos(){
+
 
     const area =
     document.getElementById("avisos");
@@ -417,11 +306,13 @@ async function carregarAvisos(){
 
         if(error){
 
+
             console.error(error);
 
             return;
 
         }
+
 
 
 
@@ -442,7 +333,9 @@ async function carregarAvisos(){
 
             return;
 
+
         }
+
 
 
 
@@ -453,22 +346,29 @@ async function carregarAvisos(){
 
 
 
+
         data.forEach(aviso=>{
 
 
             area.innerHTML += `
 
+
             <div class="activity-item">
+
 
                 <strong>
                     ${aviso.titulo}
                 </strong>
 
+
                 <br>
+
 
                 ${aviso.mensagem}
 
+
             </div>
+
 
             `;
 
@@ -477,11 +377,15 @@ async function carregarAvisos(){
 
 
 
+
     }catch(error){
+
 
         console.error(error);
 
+
     }
+
 
 }
 
@@ -524,6 +428,7 @@ async function carregarAgenda(){
 
         if(error){
 
+
             console.error(error);
 
             return;
@@ -534,21 +439,27 @@ async function carregarAgenda(){
 
 
 
+
         if(!data || data.length === 0){
 
 
             area.innerHTML = `
 
+
             <div class="activity-item">
+
 
                 Nenhum evento agendado.
 
+
             </div>
+
 
             `;
 
 
             return;
+
 
         }
 
@@ -562,33 +473,47 @@ async function carregarAgenda(){
 
 
 
+
         data.forEach(evento=>{
 
 
             area.innerHTML += `
 
+
             <div class="activity-item">
 
+
                 <strong>
+
                     ${evento.titulo}
+
                 </strong>
+
 
                 <br>
 
+
                 ${evento.data}
+
 
             </div>
 
+
             `;
+
 
 
         });
 
 
 
+
+
     }catch(error){
 
+
         console.error(error);
+
 
     }
 
@@ -610,8 +535,10 @@ async function carregarAgenda(){
 async function carregarDesempenho(){
 
 
+
     document.getElementById("atendimentos")
     .innerHTML = 0;
+
 
 
 
@@ -620,8 +547,10 @@ async function carregarDesempenho(){
 
 
 
+
     document.getElementById("progresso")
     .innerHTML = "0%";
+
 
 
 }
