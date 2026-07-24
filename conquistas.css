@@ -1,3 +1,13 @@
+/* ==========================================
+   FUTURYCRAFT - CONQUISTAS STAFF
+========================================== */
+
+
+*{
+    box-sizing:border-box;
+}
+
+
 body{
 
 margin:0;
@@ -7,6 +17,11 @@ font-family:'Montserrat',sans-serif;
 color:white;
 
 background:
+radial-gradient(
+circle at top,
+rgba(0,234,255,.15),
+transparent 35%
+),
 linear-gradient(
 180deg,
 #05070d,
@@ -19,26 +34,40 @@ min-height:100vh;
 
 
 
+
+
 .background-glow{
 
 position:fixed;
 
-width:500px;
+width:600px;
 
-height:500px;
+height:600px;
 
 background:#00eaff;
 
-opacity:.08;
+opacity:.10;
 
-filter:blur(150px);
+filter:blur(180px);
 
-top:-150px;
+top:-200px;
 
 left:50%;
 
+transform:translateX(-50%);
+
+z-index:-1;
+
 }
 
+
+
+
+
+
+/* ===============================
+   TOPO
+================================ */
 
 
 .topbar{
@@ -49,9 +78,12 @@ justify-content:space-between;
 
 align-items:center;
 
-padding:30px;
+padding:25px 40px;
 
-background:#111827;
+background:
+rgba(17,24,39,.85);
+
+backdrop-filter:blur(15px);
 
 border-bottom:1px solid #24304b;
 
@@ -61,9 +93,11 @@ border-bottom:1px solid #24304b;
 
 .logo-area h1{
 
-color:#00eaff;
-
 margin:0;
+
+font-size:32px;
+
+color:#00eaff;
 
 }
 
@@ -91,6 +125,16 @@ cursor:pointer;
 
 font-weight:bold;
 
+transition:.3s;
+
+}
+
+
+
+button:hover{
+
+transform:translateY(-3px);
+
 }
 
 
@@ -100,6 +144,9 @@ font-weight:bold;
 background:#00eaff;
 
 color:#001018;
+
+box-shadow:
+0 0 20px rgba(0,234,255,.4);
 
 }
 
@@ -116,11 +163,18 @@ color:white;
 
 
 
+
+
+/* ===============================
+   CONTAINER
+================================ */
+
+
 .conquistas-container{
 
 width:90%;
 
-max-width:1200px;
+max-width:1300px;
 
 margin:40px auto;
 
@@ -133,16 +187,23 @@ margin:40px auto;
 .perfil-conquista,
 .painel-conquistas{
 
-
-background:#111827;
+background:
+linear-gradient(
+145deg,
+#111827,
+#0f172a
+);
 
 border:1px solid #24304b;
 
-border-radius:22px;
+border-radius:25px;
 
-padding:30px;
+padding:35px;
 
-margin-bottom:30px;
+margin-bottom:35px;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.3);
 
 }
 
@@ -155,19 +216,76 @@ margin-bottom:30px;
 
 color:#00eaff;
 
+margin-top:0;
+
 }
 
 
 
 
 
+/* ===============================
+   CATEGORIAS
+================================ */
+
+
 #lista-conquistas{
 
+display:flex;
+
+flex-direction:column;
+
+gap:35px;
+
+}
+
+
+
+
+
+.categoria-conquistas{
+
+background:
+rgba(255,255,255,.03);
+
+border:
+
+1px solid #24304b;
+
+border-radius:22px;
+
+padding:25px;
+
+}
+
+
+
+
+
+.categoria-conquistas h2{
+
+font-size:24px;
+
+margin-bottom:25px;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+
+
+
+
+.categoria-conquistas > div{
 
 display:grid;
 
 grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
+repeat(auto-fit,minmax(250px,1fr));
 
 gap:20px;
 
@@ -177,19 +295,35 @@ gap:20px;
 
 
 
+/* ===============================
+   CARDS
+================================ */
+
+
 .achievement-card{
 
 
-background:#182338;
+background:
+linear-gradient(
+145deg,
+#182338,
+#131c2e
+);
+
 
 border:1px solid #304261;
 
 border-radius:18px;
 
-padding:25px;
+padding:22px;
+
+min-height:170px;
 
 transition:.3s;
 
+position:relative;
+
+overflow:hidden;
 
 }
 
@@ -197,44 +331,182 @@ transition:.3s;
 
 .achievement-card:hover{
 
-
-transform:translateY(-5px);
+transform:
+translateY(-6px);
 
 border-color:#00eaff;
 
+box-shadow:
+0 0 25px rgba(0,234,255,.15);
 
 }
 
+
+
+
+
+.achievement-card h3{
+
+margin-top:0;
+
+font-size:19px;
+
+color:white;
+
+}
+
+
+
+
+
+.achievement-card p{
+
+color:#aeb8cc;
+
+line-height:1.5;
+
+}
+
+
+
+
+
+
+/* ===============================
+   DESBLOQUEADAS
+================================ */
+
+
 .desbloqueada{
 
-margin-top:15px;
+margin-top:20px;
 
-padding:10px;
+padding:12px;
 
-border-radius:10px;
+border-radius:12px;
 
-background:rgba(0,255,136,.15);
+background:
+rgba(0,255,136,.12);
+
+border:
+1px solid rgba(0,255,136,.3);
 
 color:#00ff88;
 
 font-weight:bold;
 
+text-align:center;
+
 }
 
 
 
+
+
+/* ===============================
+   BLOQUEADAS
+================================ */
+
+
 .bloqueada{
 
-margin-top:15px;
+margin-top:20px;
 
-padding:10px;
+padding:12px;
 
-border-radius:10px;
+border-radius:12px;
 
-background:rgba(255,255,255,.05);
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid #303b52;
 
 color:#8892a8;
 
 font-weight:bold;
+
+text-align:center;
+
+}
+
+
+
+
+
+
+/* ===============================
+   ELITE DESTACADO
+================================ */
+
+
+#categoria-elite{
+
+position:relative;
+
+}
+
+
+
+#categoria-elite .achievement-card{
+
+border-color:#b26cff;
+
+background:
+linear-gradient(
+145deg,
+#25163d,
+#171126
+);
+
+}
+
+
+
+#categoria-elite .achievement-card:hover{
+
+border-color:#dca8ff;
+
+box-shadow:
+0 0 30px rgba(178,108,255,.3);
+
+}
+
+
+
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+
+@media(max-width:700px){
+
+
+.topbar{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+
+.conquistas-container{
+
+width:95%;
+
+}
+
+
+
+.perfil-conquista,
+.painel-conquistas{
+
+padding:20px;
+
+}
+
 
 }
