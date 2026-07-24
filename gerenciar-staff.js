@@ -1,7 +1,15 @@
+// ==========================================
+// FUTURYCRAFT
+// GERENCIAMENTO DE STAFF
+// ==========================================
+
+
+
 async function iniciarPagina(){
 
 
     const cargo = await pegarCargo();
+
 
 
     if(
@@ -10,9 +18,12 @@ async function iniciarPagina(){
         cargo !== "admin"
     ){
 
+
         alert("Você não possui permissão");
 
+
         window.location.href="admin.html";
+
 
         return;
 
@@ -30,26 +41,46 @@ async function iniciarPagina(){
 
 
 
+
+
+
+
+
+// ==========================================
+// CARREGAR STAFF
+// ==========================================
+
+
 async function carregarStaff(){
+
 
 
     const {data,error}=await supabaseClient
 
+
     .from("usuarios_staff")
 
+
     .select("*")
+
 
     .order("cargo");
 
 
 
+
+
     if(error){
 
-        console.log("Erro ao carregar staff:",error);
+
+        console.log(error);
+
 
         return;
 
+
     }
+
 
 
 
@@ -61,31 +92,15 @@ async function carregarStaff(){
 
 
 
-    if(!data || data.length === 0){
-
-
-        html = `
-
-        <div class="loading">
-
-        Nenhum membro encontrado
-
-        </div>
-
-        `;
-
-
-    }
-
-
-
-
 
     data.forEach(staff=>{
 
 
 
-        const status = staff.status ?? "ativo";
+        const ativo =
+        staff.status === "ativo";
+
+
 
 
 
@@ -101,7 +116,7 @@ async function carregarStaff(){
 
 
 
-            <div class="staff-main">
+            <div class="staff-top">
 
 
 
@@ -114,42 +129,40 @@ async function carregarStaff(){
 
 
 
-                <p>
-
-                <b>Cargo:</b>
+                <span class="cargo">
 
                 ${formatarCargo(staff.cargo)}
 
-                </p>
-
-
-
-
-
-                <p>
-
-                <b>Status:</b>
-
-                ${
-                    status === "ativo"
-
-                    ?
-
-                    "🟢 Ativo"
-
-                    :
-
-                    "🔴 Membro"
-
-                }
-
-                </p>
+                </span>
 
 
 
             </div>
 
 
+
+
+
+
+
+            <p>
+
+            <b>Status:</b>
+
+            ${
+                ativo
+
+                ?
+
+                "🟢 Ativo"
+
+                :
+
+                "⚪ Membro"
+
+            }
+
+            </p>
 
 
 
@@ -161,26 +174,83 @@ async function carregarStaff(){
 
 
 
-
-
-                <hr>
-
+            <hr>
 
 
 
+
+
+            <p>
+
+            📅 <b>Entrada:</b>
+
+            <br>
+
+            ${
+                staff.entrou_staff
+
+                ?
+
+                new Date(
+                    staff.entrou_staff
+                )
+                .toLocaleString("pt-BR")
+
+                :
+
+                "Não registrado"
+
+            }
+
+
+            </p>
+
+
+
+
+
+
+
+            ${
+                ativo
+
+                ?
+
+                `
 
                 <p>
 
-                <b>📅 Entrada na Staff:</b>
+                ⏳ <b>Tempo:</b>
+
+                <br>
+
+                ${calcularTempoStaff(
+                    staff.entrou_staff
+                )}
+
+                </p>
+
+
+                `
+
+                :
+
+                `
+
+                <p>
+
+                📅 <b>Saída:</b>
 
                 <br>
 
                 ${
-                    staff.entrou_staff
+                    staff.saida_staff
 
                     ?
 
-                    new Date(staff.entrou_staff)
+                    new Date(
+                        staff.saida_staff
+                    )
                     .toLocaleString("pt-BR")
 
                     :
@@ -192,129 +262,73 @@ async function carregarStaff(){
                 </p>
 
 
+                `
 
+            }
 
 
 
 
 
-                ${
-                    status === "ativo"
 
-                    ?
 
-                    `
 
-                    <p>
+            <p>
 
-                    <b>⏳ Tempo na Staff:</b>
+            👤 <b>Promovido por:</b>
 
-                    <br>
+            <br>
 
-                    ${calcularTempoStaff(staff.entrou_staff)}
+            ${staff.promovido_por ?? "Sistema"}
 
-                    </p>
+            </p>
 
-                    `
 
 
-                    :
 
 
-                    `
 
-                    <p>
 
-                    <b>📅 Saiu da Staff:</b>
 
-                    <br>
+            ${
+                ativo
 
-                    ${
-                        staff.saida_staff
+                ?
 
-                        ?
+                `
 
-                        new Date(staff.saida_staff)
-                        .toLocaleString("pt-BR")
 
-                        :
+                <button
 
-                        "Não registrado"
+                class="btn-remover"
 
-                    }
+                onclick="removerStaff('${staff.id}')">
 
-                    </p>
 
+                ❌ Remover Staff
 
-                    `
 
-                }
+                </button>
 
 
 
+                `
 
+                :
 
+                ""
 
+            }
 
 
-
-                <p>
-
-                <b>👤 Promovido por:</b>
-
-                <br>
-
-                ${staff.promovido_por ?? "Sistema"}
-
-                </p>
-
-
-
-
-
-
-
-
-
-                ${
-                    status === "ativo"
-
-                    ?
-
-                    `
-
-                    <button
-
-                    class="btn-remover"
-
-                    onclick="removerStaff('${staff.id}')">
-
-                    ❌ Remover da Staff
-
-                    </button>
-
-
-                    `
-
-                    :
-
-                    `
-
-                    <div class="membro-inativo">
-
-                    👤 Sem cargo na equipe
-
-                    </div>
-
-                    `
-
-                }
 
 
 
 
 
             </div>
+
+
 
 
 
@@ -336,7 +350,11 @@ async function carregarStaff(){
 
 
 
-    document.getElementById("listaStaff").innerHTML = html;
+    document.getElementById(
+        "listaStaff"
+    ).innerHTML = html;
+
+
 
 
 
@@ -347,18 +365,12 @@ async function carregarStaff(){
 
 
 
-    document.getElementById("listaStaff").innerHTML = html;
 
 
 
-}
-
-
-
-
-
-
-
+// ==========================================
+// CARREGAR USUARIOS
+// ==========================================
 
 
 async function carregarUsuarios(){
@@ -366,7 +378,10 @@ async function carregarUsuarios(){
 
 
     const select =
-    document.getElementById("usuarioStaff");
+    document.getElementById(
+        "usuarioStaff"
+    );
+
 
 
 
@@ -374,7 +389,9 @@ async function carregarUsuarios(){
 
     const {data,error}=await supabaseClient
 
+
     .from("usuarios_staff")
+
 
     .select("*");
 
@@ -384,7 +401,9 @@ async function carregarUsuarios(){
 
     if(error){
 
+
         console.log(error);
+
 
         return;
 
@@ -417,7 +436,6 @@ async function carregarUsuarios(){
         `;
 
 
-
     });
 
 
@@ -432,17 +450,28 @@ async function carregarUsuarios(){
 
 
 
+// ==========================================
+// ADICIONAR / PROMOVER STAFF
+// ==========================================
+
+
 async function adicionarStaff(){
 
 
 
     const usuario_id =
-    document.getElementById("usuarioStaff").value;
+    document.getElementById(
+        "usuarioStaff"
+    ).value;
+
+
 
 
 
     const cargo =
-    document.getElementById("cargoStaff").value;
+    document.getElementById(
+        "cargoStaff"
+    ).value;
 
 
 
@@ -450,11 +479,17 @@ async function adicionarStaff(){
 
     if(!usuario_id){
 
-        alert("Selecione um usuário");
+
+        alert(
+        "Selecione um jogador"
+        );
+
 
         return;
 
+
     }
+
 
 
 
@@ -468,8 +503,10 @@ async function adicionarStaff(){
 
 
 
-    const emailAdmin =
+
+    const email =
     usuarioLogado.data.user.email;
+
 
 
 
@@ -478,13 +515,19 @@ async function adicionarStaff(){
 
     const {data:admin}=await supabaseClient
 
+
     .from("usuarios_staff")
+
 
     .select("nick")
 
-    .eq("email",emailAdmin)
+
+    .eq("email",email)
+
 
     .single();
+
+
 
 
 
@@ -503,14 +546,20 @@ async function adicionarStaff(){
 
     const {data:atual}=await supabaseClient
 
+
     .from("usuarios_staff")
+
 
     .select("entrou_staff")
 
-    .eq("usuario_id",usuario_id)
+
+    .eq(
+        "usuario_id",
+        usuario_id
+    )
+
 
     .single();
-
 
 
 
@@ -546,13 +595,15 @@ async function adicionarStaff(){
 
 
 
-    if(!atual.entrou_staff){
+    if(!atual?.entrou_staff){
 
 
-        dados.entrou_staff = new Date();
+        dados.entrou_staff =
+        new Date();
 
 
     }
+
 
 
 
@@ -563,11 +614,17 @@ async function adicionarStaff(){
 
     const {error}=await supabaseClient
 
+
     .from("usuarios_staff")
+
 
     .update(dados)
 
-    .eq("usuario_id",usuario_id);
+
+    .eq(
+        "usuario_id",
+        usuario_id
+    );
 
 
 
@@ -578,11 +635,17 @@ async function adicionarStaff(){
 
     if(error){
 
+
         console.log(error);
 
-        alert("Erro ao adicionar staff");
+
+        alert(
+        "Erro ao adicionar"
+        );
+
 
         return;
+
 
     }
 
@@ -592,7 +655,9 @@ async function adicionarStaff(){
 
 
 
-    alert("Membro adicionado à Staff!");
+    alert(
+    "Staff atualizado!"
+    );
 
 
 
@@ -610,7 +675,14 @@ async function adicionarStaff(){
 
 
 
+// ==========================================
+// REMOVER STAFF
+// ==========================================
+
+
 async function removerStaff(id){
+
+
 
 
 
@@ -625,12 +697,13 @@ async function removerStaff(id){
 
 
         alert(
-        "Somente o Fundador pode remover membros"
+        "Somente o Fundador pode remover Staff"
         );
 
 
         return;
 
+
     }
 
 
@@ -638,14 +711,17 @@ async function removerStaff(id){
 
 
 
-    if(!confirm(
-    "Deseja remover este membro da Staff?"
-    )){
 
+    if(
+    !confirm(
+    "Remover este membro da Staff?"
+    )
+    ){
 
         return;
 
     }
+
 
 
 
@@ -670,13 +746,19 @@ async function removerStaff(id){
 
     const {data:admin}=await supabaseClient
 
+
     .from("usuarios_staff")
+
 
     .select("nick")
 
+
     .eq("email",email)
 
+
     .single();
+
+
 
 
 
@@ -692,25 +774,34 @@ async function removerStaff(id){
 
 
 
-
     const {error}=await supabaseClient
+
 
     .from("usuarios_staff")
 
+
     .update({
+
 
         cargo:"membro",
 
+
         status:"inativo",
+
 
         saida_staff:new Date(),
 
+
         removido_por:nickAdmin
+
 
     })
 
-    .eq("id",id);
 
+    .eq(
+        "id",
+        id
+    );
 
 
 
@@ -723,7 +814,11 @@ async function removerStaff(id){
 
         console.log(error);
 
-        alert("Erro ao remover");
+
+        alert(
+        "Erro ao remover"
+        );
+
 
         return;
 
@@ -735,8 +830,9 @@ async function removerStaff(id){
 
 
 
-
-    alert("Membro removido da Staff!");
+    alert(
+    "Cargo removido!"
+    );
 
 
 
@@ -754,14 +850,18 @@ async function removerStaff(id){
 
 
 
+// ==========================================
+// TEMPO STAFF
+// ==========================================
+
+
 function calcularTempoStaff(data){
 
 
-    if(!data){
+
+    if(!data)
 
         return "Não registrado";
-
-    }
 
 
 
@@ -778,6 +878,7 @@ function calcularTempoStaff(data){
 
 
 
+
     let segundos =
     Math.floor(
         (agora - inicio) / 1000
@@ -788,27 +889,33 @@ function calcularTempoStaff(data){
 
 
     const dias =
-    Math.floor(segundos / 86400);
+    Math.floor(
+        segundos / 86400
+    );
 
 
-    segundos %= 86400;
-
+    segundos %=86400;
 
 
 
 
     const horas =
-    Math.floor(segundos / 3600);
+    Math.floor(
+        segundos / 3600
+    );
 
 
-    segundos %= 3600;
+    segundos %=3600;
 
 
 
 
 
     const minutos =
-    Math.floor(segundos / 60);
+    Math.floor(
+        segundos / 60
+    );
+
 
 
 
@@ -831,7 +938,7 @@ function calcularTempoStaff(data){
 function formatarCargo(cargo){
 
 
-    const cargos = {
+    const cargos={
 
 
         fundador:"👑 Fundador",
@@ -853,14 +960,11 @@ function formatarCargo(cargo){
 
 
 
-
-
     return cargos[cargo] ?? cargo;
 
 
 
 }
-
 
 
 
