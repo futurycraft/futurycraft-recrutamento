@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>Gerenciamento de Staff | FuturyCraft</title>
+<title>Staff Manager | FuturyCraft</title>
 
 
 <link rel="stylesheet" href="style.css">
@@ -20,39 +20,42 @@
 <body>
 
 
+<div class="page">
 
-<div class="staff-container">
 
 
+    <header class="top-header">
 
 
+        <div class="header-icon">
+            🛡️
+        </div>
 
-<header class="staff-header">
 
+        <div>
 
-<div class="staff-logo">
+            <h1>
+                Gerenciamento de Staff
+            </h1>
 
-🛡️
 
-</div>
+            <p>
+                Administração da equipe FuturyCraft
+            </p>
 
 
-<h1>
+        </div>
 
-Gerenciamento de Staff
 
-</h1>
+    </header>
 
 
-<p>
 
-Controle de cargos, permissões e membros da equipe FuturyCraft
 
-</p>
 
 
 
-</header>
+    <main class="dashboard">
 
 
 
@@ -60,153 +63,173 @@ Controle de cargos, permissões e membros da equipe FuturyCraft
 
 
 
-<section class="staff-content">
+        <!-- CONTROLE -->
 
+        <section class="panel add-panel">
 
 
+            <div class="panel-header">
 
 
+                <h2>
+                    Adicionar Staff
+                </h2>
 
 
-<!-- ADICIONAR MEMBRO -->
+                <span>
+                    CONTROLE
+                </span>
 
-<div class="staff-box">
 
+            </div>
 
 
-<div class="staff-title">
 
-<h2>
 
-Adicionar membro
 
-</h2>
+            <div class="form-group">
 
 
-<span>
+                <label>
+                    Selecionar jogador
+                </label>
 
-STAFF
 
-</span>
+                <select id="usuarioStaff">
 
 
-</div>
+                    <option>
+                        Carregando usuários...
+                    </option>
 
 
+                </select>
 
 
+            </div>
 
 
-<label>
 
-Usuário
 
-</label>
 
 
 
-<select id="usuarioStaff">
+            <div class="form-group">
 
 
-<option>
+                <label>
+                    Cargo
+                </label>
 
-Carregando usuários...
 
-</option>
+                <select id="cargoStaff">
 
 
-</select>
+                    <option value="fundador">
+                        👑 Fundador
+                    </option>
 
 
+                    <option value="diretor">
+                        ⭐ Diretor
+                    </option>
 
 
+                    <option value="gerente">
+                        🔷 Gerente
+                    </option>
 
 
+                    <option value="admin">
+                        🛡 Admin
+                    </option>
 
-<label>
 
-Cargo
+                    <option value="moderador">
+                        🔨 Moderador
+                    </option>
 
-</label>
 
+                    <option value="ajudante">
+                        💬 Ajudante
+                    </option>
 
 
-<select id="cargoStaff">
+                </select>
 
 
+            </div>
 
-<option value="fundador">
 
-👑 Fundador
 
-</option>
 
 
+            <button onclick="adicionarStaff()" class="btn-primary">
 
-<option value="diretor">
+                Adicionar membro
 
-⭐ Diretor
+            </button>
 
-</option>
 
 
+        </section>
 
-<option value="gerente">
 
-🔷 Gerente
 
-</option>
 
 
 
-<option value="admin">
 
-🛡 Admin
 
-</option>
 
+        <!-- EQUIPE -->
 
+        <section class="panel team-panel">
 
-<option value="moderador">
 
-🔨 Moderador
 
-</option>
+            <div class="panel-header">
 
 
+                <h2>
+                    Equipe Atual
+                </h2>
 
-<option value="ajudante">
 
-💬 Ajudante
+                <span>
+                    STAFF
+                </span>
 
-</option>
 
+            </div>
 
 
-</select>
 
 
 
+            <div id="listaStaff" class="staff-grid">
 
 
+                <div class="loading">
 
+                    Carregando equipe...
 
-<button onclick="adicionarStaff()">
+                </div>
 
-Adicionar Staff
 
-</button>
 
+            </div>
 
 
 
 
-</div>
+        </section>
 
 
 
 
 
+    </main>
 
 
 
@@ -214,83 +237,17 @@ Adicionar Staff
 
 
 
-<!-- LISTA STAFF -->
 
-<div class="staff-box">
 
+    <button class="btn-back"
 
+    onclick="window.location.href='admin.html'">
 
-<div class="staff-title">
 
+        ← Voltar ao painel
 
-<h2>
 
-Equipe Atual
-
-</h2>
-
-
-
-<span>
-
-GERENCIAR
-
-</span>
-
-
-
-</div>
-
-
-
-
-
-
-<div id="listaStaff" class="staff-list">
-
-
-
-<div class="loading">
-
-Carregando equipe...
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-</section>
-
-
-
-
-
-
-
-<button class="voltar"
-
-onclick="window.location.href='admin.html'">
-
-
-← Voltar ao painel
-
-
-</button>
-
-
+    </button>
 
 
 
@@ -305,26 +262,18 @@ onclick="window.location.href='admin.html'">
 
 
 
-
-<!-- SCRIPTS -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script src="auth.js"></script>
 
-
 <script src="permissoes.js"></script>
-
 
 <script src="gerenciar-staff.js"></script>
 
 
 
-
-
 </body>
-
 
 </html>
