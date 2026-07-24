@@ -853,3 +853,102 @@ body{
     font-size:14px;
 
 }
+
+
+/* ==========================================
+   RANKING STAFF
+========================================== */
+
+
+.ranking-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:18px;
+
+    margin-top:12px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #131c2c,
+        #1a2538
+    );
+
+    border:1px solid #263550;
+
+    border-radius:16px;
+
+    transition:.25s;
+
+}
+
+
+.ranking-item:hover{
+
+    transform:translateX(5px);
+
+    border-color:#00eaff;
+
+}
+
+
+
+.ranking-posicao{
+
+    font-size:25px;
+
+    width:45px;
+
+}
+
+
+
+.ranking-nome{
+
+    flex:1;
+
+    margin-left:15px;
+
+}
+
+
+
+.ranking-nome strong{
+
+    display:block;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+
+
+.ranking-nome span{
+
+    color:#8b98ad;
+
+    font-size:13px;
+
+}
+
+
+
+.ranking-tempo{
+
+    color:#00eaff;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
