@@ -417,7 +417,11 @@ Number(tempo.tempo_online) / 3600;
 
 await liberarConquista(
 nick,
-1
+{
+nome:"Primeiros Passos",
+descricao:"Entrou para a equipe Staff FuturyCraft",
+icone:"🌱"
+}
 );
 
 
@@ -431,7 +435,11 @@ if(horas >= 50){
 
 await liberarConquista(
 nick,
-2
+{
+nome:"50 Horas Online",
+descricao:"Alcançou 50 horas jogadas no servidor",
+icone:"⏱"
+}
 );
 
 }
@@ -446,7 +454,11 @@ if(horas >= 100){
 
 await liberarConquista(
 nick,
-3
+{
+nome:"100 Horas Online",
+descricao:"Alcançou 100 horas jogadas no servidor",
+icone:"⭐"
+}
 );
 
 }
@@ -483,79 +495,81 @@ error
 
 
 async function liberarConquista(
-nick,
-conquista_id
+    nick,
+    conquista
 ){
 
 
+    // verifica se já possui
 
-const {data:existe}=
+    const {data:existe}=
 
-await supabaseClient
+    await supabaseClient
 
-.from("conquistas_staff")
+    .from("conquistas_staff")
 
-.select("*")
+    .select("*")
 
-.eq(
-"nick",
-nick
-)
+    .eq(
+        "nick",
+        nick
+    )
 
-.eq(
-"conquista_id",
-conquista_id
-)
+    .eq(
+        "conquista",
+        conquista.nome
+    )
 
-.maybeSingle();
-
-
-
+    .maybeSingle();
 
 
-if(existe)
-return;
 
 
+    if(existe)
+        return;
 
 
 
 
 
-const {error}=
+    const {error}=
 
-await supabaseClient
+    await supabaseClient
 
-.from("conquistas_staff")
+    .from("conquistas_staff")
 
-.insert({
+    .insert({
 
-nick:nick,
+        nick:nick,
 
-conquista_id:conquista_id
+        conquista:conquista.nome,
 
-});
+        descricao:conquista.descricao,
+
+        icone:conquista.icone
+
+    });
 
 
 
 
 
-if(error){
+    if(error){
 
-console.error(
-"Erro liberar conquista:",
-error
-);
+        console.error(
+            "Erro liberar conquista:",
+            error
+        );
 
-}
-else{
+    }
+    else{
 
-console.log(
-"Conquista liberada:",
-conquista_id
-);
+        console.log(
+            "Conquista desbloqueada:",
+            conquista.nome
+        );
 
-}
+    }
 
 
 }
