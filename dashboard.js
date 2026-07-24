@@ -232,7 +232,7 @@ async function carregarTempoStaff(nick){
         await supabaseClient
         .from("skyblock_tempo")
         .select(
-            "horas_online,nick"
+            "tempo_online,nick"
         )
         .eq(
             "nick",
