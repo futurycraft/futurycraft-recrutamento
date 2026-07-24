@@ -9,7 +9,9 @@
 
 <title>Gerenciamento de Staff | FuturyCraft</title>
 
+
 <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -17,29 +19,48 @@
 <body>
 
 
+
 <div class="staff-container">
+
 
 
     <div class="staff-header">
 
-        <div class="staff-icon">
+
+        <div class="staff-logo">
+
             🛡️
+
         </div>
 
+
         <h1>
+
             Gerenciamento de Staff
+
         </h1>
 
+
         <p>
-            Controle de cargos, membros e evolução da equipe FuturyCraft
+
+            Controle de cargos, permissões e evolução da equipe FuturyCraft
+
         </p>
+
+
 
     </div>
 
 
 
 
-    <div class="staff-grid">
+
+
+
+
+    <div class="staff-content">
+
+
 
 
 
@@ -48,75 +69,123 @@
         <div class="staff-box">
 
 
-            <div class="box-title">
+            <div class="staff-title">
+
 
                 <h2>
+
                     Adicionar membro
+
                 </h2>
 
+
                 <span>
-                    + STAFF
+
+                    STAFF
+
                 </span>
+
+
 
             </div>
 
 
 
+
+
             <label>
+
                 Usuário
+
             </label>
 
 
             <select id="usuarioStaff">
 
+
                 <option>
+
                     Carregando usuários...
+
                 </option>
 
+
+
             </select>
+
+
+
+
 
 
 
 
             <label>
+
                 Cargo
+
             </label>
+
 
 
             <select id="cargoStaff">
 
 
+
                 <option value="fundador">
+
                     👑 Fundador
+
                 </option>
+
 
 
                 <option value="diretor">
+
                     ⭐ Diretor
+
                 </option>
+
 
 
                 <option value="gerente">
+
                     🔷 Gerente
+
                 </option>
+
 
 
                 <option value="admin">
+
                     🛡 Admin
+
                 </option>
+
 
 
                 <option value="moderador">
+
                     🔨 Moderador
+
                 </option>
+
 
 
                 <option value="ajudante">
+
                     💬 Ajudante
+
                 </option>
 
 
+
             </select>
+
+
+
+
+
 
 
 
@@ -128,6 +197,7 @@
 
 
 
+
         </div>
 
 
@@ -137,42 +207,63 @@
 
 
 
-        <!-- LISTA STAFF -->
-
-        <div class="staff-box equipe-box">
 
 
-            <div class="box-title">
+
+
+        <!-- LISTA DE STAFF -->
+
+        <div class="staff-box">
+
+
+            <div class="staff-title">
+
 
                 <h2>
+
                     Equipe Atual
+
                 </h2>
 
 
                 <span>
-                    STAFF
+
+                    ONLINE
+
                 </span>
+
 
 
             </div>
 
 
 
-            <div id="listaStaff">
+
+
+            <div id="listaStaff" class="staff-list">
+
 
 
                 <div class="loading">
 
+
                     Carregando equipe...
 
+
                 </div>
+
+
 
 
             </div>
 
 
 
+
+
         </div>
+
+
 
 
 
@@ -184,7 +275,10 @@
 
 
 
+
+
     <button class="voltar"
+
     onclick="window.location.href='admin.html'">
 
 
@@ -192,6 +286,9 @@
 
 
     </button>
+
+
+
 
 
 
@@ -204,13 +301,20 @@
 
 
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script src="auth.js"></script>
 
+
 <script src="permissoes.js"></script>
 
+
 <script src="gerenciar-staff.js"></script>
+
+
 
 
 </body>
