@@ -705,7 +705,35 @@ async function carregarAvisos(){
 
 
 
+// ==========================================
+// SEMANA ATUAL
+// ==========================================
 
+
+function pegarInicioSemana(){
+
+
+    let hoje = new Date();
+
+
+    let dia = hoje.getDay();
+
+
+    let diferenca = hoje.getDate() - dia + (dia === 0 ? -6 : 1);
+
+
+
+    let segunda = new Date(
+        hoje.setDate(diferenca)
+    );
+
+
+    return segunda
+    .toISOString()
+    .split("T")[0];
+
+
+}
 
 
 // ==========================================
@@ -932,7 +960,14 @@ async function carregarMetasStaff(nick, cargo){
     try{
 
 
-        // Busca metas do cargo
+        area.innerHTML = "";
+
+
+
+        // ======================================
+        // BUSCAR META DO CARGO
+        // ======================================
+
 
         const {data:meta,error:erroMeta}=
 
@@ -967,6 +1002,193 @@ async function carregarMetasStaff(nick, cargo){
 
         }
 
+
+
+
+
+
+        // ======================================
+        // HORAS ONLINE
+        // ======================================
+
+
+        const {data:tempo,error:erroTempo}=
+
+        await supabaseClient
+
+        .from("skyblock_tempo")
+
+        .select("tempo_online")
+
+        .eq("nick",nick)
+
+        .maybeSingle();
+
+
+
+
+
+        let segundos = Number(
+            tempo?.tempo_online || 0
+        );
+
+
+
+        let horas = Math.floor(
+            segundos / 3600
+        );
+
+
+
+
+
+
+
+        // ======================================
+        // AVALIAÇÕES
+        // ======================================
+
+
+        const {count:avaliacoes,error:erroAvaliacao}=
+
+        await supabaseClient
+
+        .from("candidatos")
+
+        .select(
+            "*",
+            {
+                count:"exact",
+                head:true
+            }
+        )
+
+        .eq(
+            "avaliador",
+            nick
+        );
+
+
+
+
+
+
+        let totalAvaliacoes =
+        avaliacoes || 0;
+
+
+
+
+
+
+        // ======================================
+        // ATIVIDADES
+        // ======================================
+
+
+        let atividades =
+        totalAvaliacoes;
+
+
+
+
+
+
+
+
+        // ======================================
+        // SALVAR HISTÓRICO DA SEMANA
+        // ======================================
+
+
+        await salvarHistoricoStaff(
+
+            nick,
+
+            horas,
+
+            totalAvaliacoes,
+
+            atividades
+
+        );
+
+
+
+
+
+
+
+
+        // ======================================
+        // MOSTRAR METAS
+        // ======================================
+
+
+        criarMeta(
+
+            "⏱ Tempo Online",
+
+            horas,
+
+            meta.meta_horas,
+
+            "h"
+
+        );
+
+
+
+
+        criarMeta(
+
+            "📝 Avaliações",
+
+            totalAvaliacoes,
+
+            meta.meta_avaliacoes,
+
+            ""
+
+        );
+
+
+
+
+
+        criarMeta(
+
+            "⭐ Atividades Staff",
+
+            atividades,
+
+            meta.meta_atividades,
+
+            ""
+
+        );
+
+
+
+
+
+
+    }catch(error){
+
+
+        console.error(
+
+            "Erro metas staff:",
+
+            error
+
+        );
+
+
+    }
+
+
+}
 
 
 
