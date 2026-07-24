@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Conquistas Staff - FuturyCraft</title>
+
+<link rel="stylesheet" href="conquistas.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="background-glow"></div>
+
+
+<header class="topbar">
+
+
+<div class="logo-area">
+
+<h1>FUTURYCRAFT</h1>
+
+<span>Conquistas Staff</span>
+
+</div>
+
+
+
+<div class="topbar-actions">
+
+
+<button class="btn-primary"
+onclick="window.location.href='dashboard.html'">
+
+⬅ Voltar Dashboard
+
+</button>
+
+
+
+<button class="btn-danger"
+onclick="logout()">
+
+Sair
+
+</button>
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+<main class="conquistas-container">
+
+
+
+<section class="perfil-conquista">
+
+
+<h2>
+
+🏅 Minhas Conquistas
+
+</h2>
+
+
+<p>
+
+Staff:
+
+<strong id="nick-staff">
+
+Carregando...
+
+</strong>
+
+</p>
+
+
+
+<p>
+
+Cargo:
+
+<strong id="cargo-staff">
+
+Carregando...
+
+</strong>
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section class="painel-conquistas">
+
+
+<h2>
+
+⭐ Conquistas Desbloqueadas
+
+</h2>
+
+
+
+<div id="lista-conquistas">
+
+
+<div class="achievement-card">
+
+Carregando conquistas...
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="auth.js"></script>
+
+<script src="conquistas.js"></script>
+
+
+</body>
+
+</html>
