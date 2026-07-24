@@ -32,14 +32,21 @@ async function iniciarPagina(){
 
 
 
+
+
 async function carregarStaff(){
+
 
 
     const {data,error}=await supabaseClient
 
     .from("usuarios_staff")
 
-    .select("*");
+    .select("*")
+
+    .order("cargo");
+
+
 
 
 
@@ -53,52 +60,137 @@ async function carregarStaff(){
 
 
 
+
+
     let html="";
 
 
 
-    data.forEach(staff=>{
 
 
-        html += `
-
-        <div class="staff-card">
+    if(!data || data.length === 0){
 
 
-            <p>
-            <b>Nick:</b>
-            ${staff.nick ?? "Sem nick"}
-            </p>
+        html=`
 
+        <div class="loading">
 
-
-            <p>
-            <b>Email:</b>
-            ${staff.email ?? "Sem email"}
-            </p>
-
-
-
-            <p>
-            <b>Cargo:</b>
-            ${staff.cargo ?? "Sem cargo"}
-            </p>
-
-
+        Nenhum membro na equipe
 
         </div>
 
         `;
 
 
+    }
+
+
+
+
+
+    data.forEach(staff=>{
+
+
+
+        html += `
+
+
+        <div class="staff-card">
+
+
+
+            <h3>
+
+            🛡 ${staff.nick ?? "Sem nick"}
+
+            </h3>
+
+
+
+
+            <p>
+
+            <b>Cargo:</b>
+
+            ${formatarCargo(staff.cargo)}
+
+            </p>
+
+
+
+
+
+            <p>
+
+            <b>📅 Entrou na Staff:</b><br>
+
+            ${
+                staff.entrou_staff
+
+                ?
+
+                new Date(staff.entrou_staff)
+                .toLocaleString("pt-BR")
+
+                :
+
+                "Data não registrada"
+
+            }
+
+            </p>
+
+
+
+
+
+
+            <p>
+
+            <b>⏳ Tempo na Staff:</b><br>
+
+            ${calcularTempoStaff(staff.entrou_staff)}
+
+            </p>
+
+
+
+
+
+
+
+            <p>
+
+            <b>👤 Promovido por:</b>
+
+            ${staff.promovido_por ?? "Sistema"}
+
+            </p>
+
+
+
+
+        </div>
+
+
+
+        `;
+
+
+
     });
+
+
 
 
 
     document.getElementById("listaStaff").innerHTML = html;
 
 
+
 }
+
+
 
 
 
@@ -110,7 +202,11 @@ async function carregarUsuarios(){
 
 
 
+
+
     const select = document.getElementById("usuarioStaff");
+
+
 
 
 
@@ -122,13 +218,21 @@ async function carregarUsuarios(){
 
 
 
+
+
+
     if(error){
+
 
         console.log(error);
 
         return;
 
+
     }
+
+
+
 
 
 
@@ -136,16 +240,24 @@ async function carregarUsuarios(){
 
 
 
+
+
+
     data.forEach(usuario=>{
+
 
 
         select.innerHTML += `
 
+
         <option value="${usuario.usuario_id}">
+
 
         ${usuario.nick ?? usuario.email}
 
+
         </option>
+
 
         `;
 
@@ -168,24 +280,150 @@ async function adicionarStaff(){
 
 
 
+
+
     const usuario_id =
+
     document.getElementById("usuarioStaff").value;
 
 
 
+
+
+
     const cargo =
+
     document.getElementById("cargoStaff").value;
+
+
+
+
 
 
 
 
     if(!usuario_id){
 
+
+
         alert("Selecione um usuário");
+
 
         return;
 
+
     }
+
+
+
+
+
+
+
+
+
+    // pega usuário logado
+
+    const usuarioLogado =
+
+    await supabaseClient.auth.getUser();
+
+
+
+
+
+    const emailAdmin =
+
+    usuarioLogado.data.user.email;
+
+
+
+
+
+
+
+
+
+    // pega nick do administrador
+
+    const {data:admin}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("nick")
+
+    .eq("email",emailAdmin)
+
+    .single();
+
+
+
+
+
+
+    const nickAdmin =
+
+    admin?.nick ?? "Sistema";
+
+
+
+
+
+
+
+
+
+    // verifica se já possui cargo
+
+    const {data:atual}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("cargo,entrou_staff")
+
+    .eq("usuario_id",usuario_id)
+
+    .single();
+
+
+
+
+
+
+
+
+
+    let dados = {
+
+
+        cargo:cargo,
+
+        promovido_por:nickAdmin
+
+
+    };
+
+
+
+
+
+
+
+
+
+    // somente coloca a data se for a primeira entrada
+
+    if(!atual?.entrou_staff){
+
+
+        dados.entrou_staff = new Date();
+
+
+    }
+
+
+
+
 
 
 
@@ -194,13 +432,12 @@ async function adicionarStaff(){
 
     .from("usuarios_staff")
 
-    .update({
-
-        cargo:cargo
-
-    })
+    .update(dados)
 
     .eq("usuario_id",usuario_id);
+
+
+
 
 
 
@@ -209,9 +446,12 @@ async function adicionarStaff(){
     if(error){
 
 
+
         console.log(error);
 
+
         alert("Erro ao alterar cargo");
+
 
         return;
 
@@ -221,11 +461,19 @@ async function adicionarStaff(){
 
 
 
+
+
+
+
     alert("Cargo atualizado com sucesso!");
 
 
 
+
+
     carregarStaff();
+
+
 
 
 
@@ -243,22 +491,38 @@ async function removerStaff(id){
 
 
 
+
+
     const cargoAtual = await pegarCargo();
+
+
+
+
 
 
 
     if(cargoAtual !== "fundador"){
 
 
+
         alert(
+
         "Somente o Fundador pode remover cargos"
+
         );
+
 
 
         return;
 
 
+
     }
+
+
+
+
+
 
 
 
@@ -270,6 +534,10 @@ async function removerStaff(id){
 
 
     }
+
+
+
+
 
 
 
@@ -286,10 +554,15 @@ async function removerStaff(id){
 
 
 
+
+
+
     if(error){
 
 
+
         console.log(error);
+
 
         alert("Erro ao remover");
 
@@ -302,7 +575,13 @@ async function removerStaff(id){
 
 
 
+
+
+
+
     alert("Membro removido");
+
+
 
 
 
@@ -310,7 +589,142 @@ async function removerStaff(id){
 
 
 
+
+
 }
+
+
+
+
+
+
+
+
+
+function calcularTempoStaff(data){
+
+
+
+
+
+    if(!data){
+
+
+        return "Não registrado";
+
+
+    }
+
+
+
+
+
+
+
+    const inicio = new Date(data);
+
+
+    const agora = new Date();
+
+
+
+
+
+
+    let segundos = Math.floor(
+
+        (agora - inicio) / 1000
+
+    );
+
+
+
+
+
+
+
+    const dias = Math.floor(segundos / 86400);
+
+
+
+    segundos %= 86400;
+
+
+
+
+
+
+    const horas = Math.floor(segundos / 3600);
+
+
+
+    segundos %= 3600;
+
+
+
+
+
+
+
+    const minutos = Math.floor(segundos / 60);
+
+
+
+
+
+
+
+
+    return `${dias}d ${horas}h ${minutos}m`;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function formatarCargo(cargo){
+
+
+
+    const cargos={
+
+
+        fundador:"👑 Fundador",
+
+        diretor:"⭐ Diretor",
+
+        gerente:"🔷 Gerente",
+
+        admin:"🛡 Admin",
+
+        moderador:"🔨 Moderador",
+
+        ajudante:"💬 Ajudante"
+
+
+    };
+
+
+
+
+
+    return cargos[cargo] ?? cargo;
+
+
+
+}
+
+
+
 
 
 
