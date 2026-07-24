@@ -58,9 +58,15 @@ async function carregarCandidatos() {
 
 }
 
-// ======================================================
+// ==========================================
 // DASHBOARD
-// ======================================================
+// ==========================================
+
+function abrirDashboard() {
+
+    window.location.href = "dashboard.html";
+
+}
 
 function atualizarDashboard() {
 
