@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="conquistas.css">
 
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -20,6 +20,8 @@
 
 
 <div class="background-glow"></div>
+<div class="background-grid"></div>
+
 
 
 <header class="topbar">
@@ -27,27 +29,46 @@
 
 <div class="logo-area">
 
-<h1>FUTURYCRAFT</h1>
 
-<span>Conquistas Staff</span>
+<div class="logo-icon">
+⭐
+</div>
+
+
+<div>
+
+<h1>
+FUTURYCRAFT
+</h1>
+
+<span>
+Central de Conquistas Staff
+</span>
 
 </div>
+
+
+</div>
+
+
 
 
 
 <div class="topbar-actions">
 
 
-<button class="btn-primary"
+<button 
+class="btn-primary"
 onclick="window.location.href='dashboard.html'">
 
-⬅ Voltar Dashboard
+⬅ Dashboard
 
 </button>
 
 
 
-<button class="btn-danger"
+<button 
+class="btn-danger"
 onclick="logout()">
 
 Sair
@@ -64,23 +85,68 @@ Sair
 
 
 
+
+
 <main class="conquistas-container">
+
+
 
 
 
 <section class="perfil-conquista">
 
 
+
+<div class="perfil-header">
+
+
+<div class="avatar-staff">
+
+⭐
+
+</div>
+
+
+
+<div>
+
+
 <h2>
 
-🏅 Minhas Conquistas
+Perfil Staff
 
 </h2>
 
 
 <p>
 
-Staff:
+Acompanhe sua evolução dentro da equipe FuturyCraft
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="perfil-info">
+
+
+
+<div class="info-box">
+
+
+<span>
+
+Nick
+
+</span>
+
 
 <strong id="nick-staff">
 
@@ -88,13 +154,22 @@ Carregando...
 
 </strong>
 
-</p>
+
+</div>
 
 
 
-<p>
 
-Cargo:
+
+<div class="info-box">
+
+
+<span>
+
+Cargo
+
+</span>
+
 
 <strong id="cargo-staff">
 
@@ -102,11 +177,42 @@ Carregando...
 
 </strong>
 
-</p>
+
+</div>
+
+
+
+
+
+<div class="info-box">
+
+
+<span>
+
+Status
+
+</span>
+
+
+<strong class="ativo">
+
+● Ativo
+
+</strong>
+
+
+</div>
+
+
+
+</div>
+
 
 
 
 </section>
+
+
 
 
 
@@ -117,25 +223,81 @@ Carregando...
 <section class="painel-conquistas">
 
 
+
+
+
+<div class="titulo-conquistas">
+
+
+<div>
+
+
 <h2>
 
-⭐ Conquistas Desbloqueadas
+⭐ Minhas Conquistas
 
 </h2>
+
+
+<p>
+
+Desbloqueie conquistas conforme sua dedicação na Staff
+
+</p>
+
+
+</div>
+
+
+
+<div class="contador">
+
+
+<span>
+
+Conquistas
+
+</span>
+
+
+<strong id="contador-conquistas">
+
+0
+
+</strong>
+
+
+</div>
+
+
+</div>
+
+
+
+
 
 
 
 <div id="lista-conquistas">
 
 
-<div class="achievement-card">
+
+<div class="loading-card">
+
+
+<div class="loader"></div>
+
 
 Carregando conquistas...
 
+
 </div>
 
 
+
 </div>
+
+
 
 
 
@@ -146,7 +308,11 @@ Carregando conquistas...
 
 
 
+
 </main>
+
+
+
 
 
 
