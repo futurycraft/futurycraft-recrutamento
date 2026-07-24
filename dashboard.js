@@ -550,7 +550,107 @@ async function carregarTopStaff(){
 
 
 
+// ==========================================
+// RETORNA SEGUNDA-FEIRA DA SEMANA
+// ==========================================
 
+
+function pegarInicioSemana(){
+
+
+    let hoje = new Date();
+
+
+    let dia = hoje.getDay();
+
+
+    let diferenca = hoje.getDate() - dia + (dia === 0 ? -6 : 1);
+
+
+
+    let segunda = new Date(
+        hoje.setDate(diferenca)
+    );
+
+
+
+    return segunda
+    .toISOString()
+    .split("T")[0];
+
+
+}
+
+
+
+
+
+
+
+// ==========================================
+// SALVAR HISTÓRICO STAFF
+// ==========================================
+
+
+async function salvarHistoricoStaff(
+nick,
+horas,
+avaliacoes,
+atividades
+){
+
+
+    const semana =
+    pegarInicioSemana();
+
+
+
+
+    const {error}=
+
+    await supabaseClient
+
+    .from("historico_staff")
+
+    .upsert({
+
+        nick:nick,
+
+        semana_inicio:semana,
+
+        horas_online:horas,
+
+        avaliacoes:avaliacoes,
+
+        atividades:atividades
+
+    },
+
+    {
+
+        onConflict:
+        "nick,semana_inicio"
+
+    });
+
+
+
+    if(error){
+
+
+        console.error(
+
+            "Erro salvar histórico:",
+
+            error
+
+        );
+
+
+    }
+
+
+}
 
 // ==========================================
 // CARREGAR AVISOS
