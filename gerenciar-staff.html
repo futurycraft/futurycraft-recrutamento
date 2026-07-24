@@ -8,10 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>Staff Manager | FuturyCraft</title>
+<title>Gerenciamento de Staff | FuturyCraft</title>
 
 
-<link rel="stylesheet" href="gerenciar-staff.css">
+<link rel="stylesheet" href="style.css">
 
 
 </head>
@@ -20,34 +20,94 @@
 <body>
 
 
+
 <div class="page">
 
 
 
-    <header class="top-header">
 
 
-        <div class="header-icon">
-            🛡️
-        </div>
+
+
+<header class="top-header">
+
+
+
+    <div class="header-icon">
+
+        🛡️
+
+    </div>
+
+
+
+    <div class="header-info">
+
+
+        <h1>
+
+            Gerenciamento de Staff
+
+        </h1>
+
+
+        <p>
+
+            Controle de cargos, permissões e evolução da equipe FuturyCraft
+
+        </p>
+
+
+    </div>
+
+
+
+</header>
+
+
+
+
+
+
+
+
+
+<!-- ESTATISTICAS -->
+
+<section class="stats">
+
+
+
+    <div class="stat-card">
+
+
+        <span>
+
+        🛡️
+
+        </span>
 
 
         <div>
 
-            <h1>
-                Gerenciamento de Staff
-            </h1>
+            <h3 id="totalStaff">
+
+            0
+
+            </h3>
 
 
             <p>
-                Administração da equipe FuturyCraft
+
+            Total Staff
+
             </p>
 
 
         </div>
 
 
-    </header>
+    </div>
 
 
 
@@ -55,199 +115,338 @@
 
 
 
-    <main class="dashboard">
+    <div class="stat-card">
 
 
+        <span>
 
+        🟢
 
+        </span>
 
 
+        <div>
 
-        <!-- CONTROLE -->
+            <h3 id="staffAtivo">
 
-        <section class="panel add-panel">
+            0
 
+            </h3>
 
-            <div class="panel-header">
 
+            <p>
 
-                <h2>
-                    Adicionar Staff
-                </h2>
+            Ativos
 
+            </p>
 
-                <span>
-                    CONTROLE
-                </span>
 
+        </div>
 
-            </div>
 
+    </div>
 
 
 
 
-            <div class="form-group">
 
 
-                <label>
-                    Selecionar jogador
-                </label>
 
+    <div class="stat-card">
 
-                <select id="usuarioStaff">
 
+        <span>
 
-                    <option>
-                        Carregando usuários...
-                    </option>
+        👤
 
+        </span>
 
-                </select>
 
+        <div>
 
-            </div>
+            <h3 id="staffMembro">
 
+            0
 
+            </h3>
 
 
+            <p>
 
+            Membros
 
+            </p>
 
-            <div class="form-group">
 
+        </div>
 
-                <label>
-                    Cargo
-                </label>
 
+    </div>
 
-                <select id="cargoStaff">
 
 
-                    <option value="fundador">
-                        👑 Fundador
-                    </option>
 
 
-                    <option value="diretor">
-                        ⭐ Diretor
-                    </option>
+</section>
 
 
-                    <option value="gerente">
-                        🔷 Gerente
-                    </option>
 
 
-                    <option value="admin">
-                        🛡 Admin
-                    </option>
 
 
-                    <option value="moderador">
-                        🔨 Moderador
-                    </option>
 
 
-                    <option value="ajudante">
-                        💬 Ajudante
-                    </option>
 
+<main class="dashboard">
 
-                </select>
 
 
-            </div>
 
 
 
 
+<!-- ADICIONAR -->
 
-            <button onclick="adicionarStaff()" class="btn-primary">
 
-                Adicionar membro
+<section class="panel add-panel">
 
-            </button>
 
 
+<div class="panel-header">
 
-        </section>
 
+<h2>
 
+Adicionar Staff
 
+</h2>
 
 
+<span>
 
+CONTROLE
 
+</span>
 
 
-        <!-- EQUIPE -->
+</div>
 
-        <section class="panel team-panel">
 
 
 
-            <div class="panel-header">
 
 
-                <h2>
-                    Equipe Atual
-                </h2>
+<div class="form-group">
 
 
-                <span>
-                    STAFF
-                </span>
+<label>
 
+Jogador
 
-            </div>
+</label>
 
 
 
+<select id="usuarioStaff">
 
 
-            <div id="listaStaff" class="staff-grid">
+<option>
 
+Carregando usuários...
 
-                <div class="loading">
+</option>
 
-                    Carregando equipe...
 
-                </div>
+</select>
 
 
 
-            </div>
+</div>
 
 
 
 
-        </section>
 
 
 
 
+<div class="form-group">
 
-    </main>
 
+<label>
 
+Novo cargo
 
+</label>
 
 
 
+<select id="cargoStaff">
 
 
+<option value="fundador">
 
-    <button class="btn-back"
+👑 Fundador
 
-    onclick="window.location.href='admin.html'">
+</option>
 
 
-        ← Voltar ao painel
+<option value="diretor">
 
+⭐ Diretor
 
-    </button>
+</option>
+
+
+<option value="gerente">
+
+🔷 Gerente
+
+</option>
+
+
+<option value="admin">
+
+🛡 Admin
+
+</option>
+
+
+<option value="moderador">
+
+🔨 Moderador
+
+</option>
+
+
+<option value="ajudante">
+
+💬 Ajudante
+
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+
+<button
+
+onclick="adicionarStaff()"
+
+class="btn-primary">
+
+
+Adicionar membro
+
+
+</button>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- EQUIPE -->
+
+<section class="panel team-panel">
+
+
+
+<div class="panel-header">
+
+
+<h2>
+
+Equipe Atual
+
+</h2>
+
+
+
+<span>
+
+STAFF
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div id="listaStaff" class="staff-grid">
+
+
+
+<div class="loading">
+
+
+Carregando equipe...
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+<button
+
+class="btn-back"
+
+onclick="window.location.href='admin.html'">
+
+
+← Voltar ao painel
+
+
+</button>
+
+
 
 
 
@@ -263,17 +462,20 @@
 
 
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script src="auth.js"></script>
 
+
 <script src="permissoes.js"></script>
+
 
 <script src="gerenciar-staff.js"></script>
 
 
 
 </body>
+
 
 </html>
