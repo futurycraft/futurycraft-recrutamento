@@ -42,7 +42,7 @@ async function carregarPerfil(){
         .from("usuarios_staff")
         .select("*")
         .eq("email", email)
-        .single();
+        .maybeSingle();
 
 
 
