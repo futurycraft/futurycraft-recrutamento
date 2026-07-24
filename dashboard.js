@@ -230,7 +230,7 @@ async function carregarTempoStaff(nick){
 
         const {data,error} =
         await supabaseClient
-        .from("staff_ranking")
+        .from("skyblock_tempo")
         .select(
             "horas_online,nick"
         )
