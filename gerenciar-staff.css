@@ -1,35 +1,41 @@
 /* ==========================================
-   FUTURYCRAFT - GERENCIAMENTO STAFF
-   STYLE CSS
+   FUTURYCRAFT
+   STAFF MANAGEMENT PANEL
 ========================================== */
 
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
+    font-family:"Segoe UI",Arial,sans-serif;
 
+}
 
 
 
 body{
 
+
     min-height:100vh;
+
 
     background:
 
     radial-gradient(
         circle at top,
-        #182b52,
-        #050814 70%
+        #152c55 0%,
+        #070b18 45%,
+        #02040b 100%
     );
 
 
     color:white;
 
+
     padding:40px;
+
 
 }
 
@@ -37,32 +43,17 @@ body{
 
 
 
+/* PAGINA */
 
-/* CONTAINER */
+
+.page{
 
 
-.staff-container{
+    max-width:1500px;
 
-    max-width:1400px;
 
     margin:auto;
 
-}
-
-
-
-
-
-
-
-/* CABEÇALHO */
-
-
-.staff-header{
-
-    text-align:center;
-
-    margin-bottom:45px;
 
 }
 
@@ -70,24 +61,77 @@ body{
 
 
 
-.staff-logo{
 
-    width:90px;
+/* HEADER */
 
-    height:90px;
+
+.top-header{
+
 
     display:flex;
 
-    justify-content:center;
 
     align-items:center;
 
-    margin:auto;
 
-    border-radius:50%;
+    gap:25px;
+
+
+    margin-bottom:45px;
+
+
+    padding:25px;
 
 
     background:
+
+
+    rgba(12,20,40,.75);
+
+
+    border:
+
+
+    1px solid rgba(0,234,255,.2);
+
+
+    border-radius:22px;
+
+
+    backdrop-filter:blur(15px);
+
+
+}
+
+
+
+
+.header-icon{
+
+
+    width:90px;
+
+
+    height:90px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    font-size:45px;
+
+
+    border-radius:25px;
+
+
+    background:
+
 
     linear-gradient(
         135deg,
@@ -96,12 +140,11 @@ body{
     );
 
 
-    font-size:45px;
-
-
     box-shadow:
 
-    0 0 35px #00eaff;
+
+    0 0 35px rgba(0,234,255,.7);
+
 
 }
 
@@ -109,12 +152,11 @@ body{
 
 
 
-.staff-header h1{
+.top-header h1{
 
 
-    margin-top:20px;
+    font-size:38px;
 
-    font-size:42px;
 
     letter-spacing:1px;
 
@@ -123,14 +165,14 @@ body{
 
 
 
+.top-header p{
 
 
-.staff-header p{
+    margin-top:8px;
 
 
-    margin-top:10px;
+    color:#9da9c8;
 
-    color:#9ca9c9;
 
     font-size:16px;
 
@@ -143,15 +185,19 @@ body{
 
 
 
-/* CONTEUDO */
 
 
-.staff-content{
+/* DASHBOARD */
+
+
+.dashboard{
 
 
     display:grid;
 
+
     grid-template-columns:380px 1fr;
+
 
     gap:30px;
 
@@ -165,34 +211,37 @@ body{
 
 
 
-/* BOX PRINCIPAL */
+/* PAINEL */
 
 
-.staff-box{
+.panel{
 
 
     background:
 
-    rgba(10,18,38,.85);
+
+    rgba(9,16,34,.85);
 
 
     border:
 
-    1px solid rgba(0,234,255,.18);
+
+    1px solid rgba(0,234,255,.15);
 
 
-    border-radius:20px;
+    border-radius:24px;
 
 
-    padding:28px;
+    padding:30px;
+
+
+    backdrop-filter:blur(20px);
 
 
     box-shadow:
 
-    0 0 35px rgba(0,0,0,.5);
 
-
-    backdrop-filter:blur(15px);
+    0 20px 50px rgba(0,0,0,.45);
 
 
     transition:.3s;
@@ -203,7 +252,8 @@ body{
 
 
 
-.staff-box:hover{
+
+.panel:hover{
 
 
     border-color:#00eaff;
@@ -218,28 +268,29 @@ body{
 
 
 
-/* TITULO */
+/* TITULOS */
 
 
-.staff-title{
+.panel-header{
 
 
     display:flex;
 
+
     justify-content:space-between;
+
 
     align-items:center;
 
 
-    margin-bottom:25px;
+    margin-bottom:30px;
 
 
 }
 
 
 
-
-.staff-title h2{
+.panel-header h2{
 
 
     font-size:24px;
@@ -249,20 +300,28 @@ body{
 
 
 
-
-.staff-title span{
-
-
-    background:#00eaff;
+.panel-header span{
 
 
-    color:#00131f;
+    background:
 
 
-    padding:6px 14px;
+    rgba(0,234,255,.15);
 
 
-    border-radius:20px;
+    border:
+
+
+    1px solid #00eaff;
+
+
+    color:#00eaff;
+
+
+    padding:7px 15px;
+
+
+    border-radius:30px;
 
 
     font-size:12px;
@@ -280,7 +339,17 @@ body{
 
 
 
-/* LABEL */
+/* FORM */
+
+
+.form-group{
+
+
+    margin-bottom:22px;
+
+
+}
+
 
 
 label{
@@ -289,13 +358,13 @@ label{
     display:block;
 
 
-    margin-top:18px;
+    margin-bottom:9px;
 
 
-    margin-bottom:8px;
+    color:#b5c1df;
 
 
-    color:#b8c5e4;
+    font-size:14px;
 
 
 }
@@ -304,9 +373,6 @@ label{
 
 
 
-
-
-/* SELECT */
 
 
 select{
@@ -315,21 +381,22 @@ select{
     width:100%;
 
 
-    padding:14px;
+    padding:15px;
 
 
-    border-radius:12px;
+    border-radius:14px;
 
 
-    background:#070d1c;
+    background:#060b18;
+
+
+    color:white;
 
 
     border:
 
-    1px solid #263557;
 
-
-    color:white;
+    1px solid #263554;
 
 
     outline:none;
@@ -338,30 +405,27 @@ select{
     cursor:pointer;
 
 
-}
-
-
-
-
-
-select:hover{
-
-
-    border-color:#00eaff;
+    font-size:15px;
 
 
 }
 
 
 
+
+select:hover,
 
 
 select:focus{
 
 
+    border-color:#00eaff;
+
+
     box-shadow:
 
-    0 0 15px rgba(0,234,255,.4);
+
+    0 0 15px rgba(0,234,255,.3);
 
 
 }
@@ -373,34 +437,34 @@ select:focus{
 
 
 
-/* BOTÕES */
+/* BOTAO PRINCIPAL */
 
 
-button{
+.btn-primary{
 
 
     width:100%;
 
 
-    margin-top:25px;
-
-
-    padding:15px;
+    padding:16px;
 
 
     border:none;
 
 
-    border-radius:14px;
+    border-radius:15px;
 
 
     cursor:pointer;
 
 
+    color:white;
+
+
     font-weight:bold;
 
 
-    color:white;
+    font-size:15px;
 
 
     background:
@@ -421,8 +485,7 @@ button{
 
 
 
-
-button:hover{
+.btn-primary:hover{
 
 
     transform:translateY(-3px);
@@ -430,7 +493,8 @@ button:hover{
 
     box-shadow:
 
-    0 0 25px #00eaff;
+
+    0 0 30px #00eaff;
 
 
 }
@@ -442,16 +506,18 @@ button:hover{
 
 
 
-/* LISTA */
+
+/* LISTA STAFF */
 
 
-.staff-list{
+.staff-grid{
 
 
     display:grid;
 
 
     grid-template-columns:
+
 
     repeat(auto-fit,minmax(280px,1fr));
 
@@ -468,10 +534,16 @@ button:hover{
 
 
 
-/* CARD STAFF */
+/* CARD */
 
 
 .staff-card{
+
+
+    position:relative;
+
+
+    overflow:hidden;
 
 
     background:
@@ -479,12 +551,12 @@ button:hover{
 
     linear-gradient(
         145deg,
-        rgba(25,38,70,.95),
-        rgba(5,10,25,.95)
+        #172746,
+        #080d1c
     );
 
 
-    border-radius:18px;
+    border-radius:22px;
 
 
     padding:25px;
@@ -492,13 +564,8 @@ button:hover{
 
     border:
 
+
     1px solid rgba(255,255,255,.08);
-
-
-    position:relative;
-
-
-    overflow:hidden;
 
 
     transition:.3s;
@@ -510,7 +577,8 @@ button:hover{
 
 
 
-.staff-card::before{
+
+.staff-card:before{
 
 
     content:"";
@@ -521,16 +589,18 @@ button:hover{
 
     top:0;
 
+
     left:0;
 
 
     width:100%;
 
 
-    height:3px;
+    height:4px;
 
 
     background:
+
 
     linear-gradient(
         90deg,
@@ -546,19 +616,20 @@ button:hover{
 
 
 
+
 .staff-card:hover{
 
 
-    transform:translateY(-6px);
+    transform:translateY(-7px);
 
 
     box-shadow:
 
-    0 0 30px rgba(0,234,255,.25);
+
+    0 0 35px rgba(0,234,255,.25);
 
 
 }
-
 
 
 
@@ -585,22 +656,19 @@ button:hover{
 
 
 
-
 .staff-card p{
 
 
     margin-top:13px;
 
 
-    color:#d6def5;
+    color:#d9e2ff;
 
 
     line-height:1.5;
 
 
 }
-
-
 
 
 
@@ -618,14 +686,13 @@ button:hover{
 
 
 
-
 /* BOTAO REMOVER */
 
 
 .btn-remover{
 
 
-    margin-top:22px;
+    margin-top:20px;
 
 
     background:
@@ -634,7 +701,7 @@ button:hover{
     linear-gradient(
         135deg,
         #ff3b3b,
-        #9b0000
+        #990000
     );
 
 
@@ -647,6 +714,7 @@ button:hover{
 
     box-shadow:
 
+
     0 0 25px rgba(255,0,0,.6);
 
 
@@ -658,21 +726,25 @@ button:hover{
 
 
 
-
-
 /* VOLTAR */
 
 
-.voltar{
+.btn-back{
 
 
-    width:auto;
+    margin-top:35px;
 
 
     padding:14px 35px;
 
 
-    margin-top:35px;
+    border-radius:14px;
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.2);
 
 
     background:
@@ -681,9 +753,13 @@ button:hover{
     rgba(255,255,255,.08);
 
 
-    border:
+    color:white;
 
-    1px solid rgba(255,255,255,.15);
+
+    cursor:pointer;
+
+
+    font-weight:bold;
 
 
 }
@@ -691,21 +767,16 @@ button:hover{
 
 
 
-
-.voltar:hover{
+.btn-back:hover{
 
 
     background:
 
+
     rgba(255,255,255,.15);
 
 
-    box-shadow:none;
-
-
 }
-
-
 
 
 
@@ -719,13 +790,13 @@ button:hover{
 .loading{
 
 
-    padding:30px;
+    color:#9da9c8;
 
 
     text-align:center;
 
 
-    color:#9ca9c9;
+    padding:40px;
 
 
 }
@@ -741,7 +812,7 @@ button:hover{
 /* RESPONSIVO */
 
 
-@media(max-width:950px){
+@media(max-width:1000px){
 
 
 
@@ -755,7 +826,7 @@ button:hover{
 
 
 
-    .staff-content{
+    .dashboard{
 
 
         grid-template-columns:1fr;
@@ -767,14 +838,28 @@ button:hover{
 
 
 
-    .staff-header h1{
+    .top-header{
+
+
+        flex-direction:column;
+
+
+        text-align:center;
+
+
+    }
+
+
+
+
+
+    .top-header h1{
 
 
         font-size:30px;
 
 
     }
-
 
 
 }
