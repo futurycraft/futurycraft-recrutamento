@@ -13,76 +13,121 @@ let staffAtual = null;
 async function carregarPerfil(){
 
 
-    const {data:user} =
-    await supabaseClient.auth.getUser();
+    try{
+
+
+        const {data:user} =
+        await supabaseClient.auth.getUser();
 
 
 
-    if(!user.user){
+        if(!user.user){
 
-        window.location.href="login.html";
-        return;
+            window.location.href="login.html";
+            return;
+
+        }
+
+
+
+        const email =
+        user.user.email;
+
+
+
+
+        const {data,error} =
+        await supabaseClient
+
+        .from("usuarios_staff")
+
+        .select("*")
+
+        .eq(
+            "email",
+            email
+        )
+
+        .maybeSingle();
+
+
+
+
+
+        if(error || !data){
+
+            console.error(
+                "Erro buscando staff:",
+                error
+            );
+
+            return;
+
+        }
+
+
+
+        staffAtual = data;
+
+
+
+        document.getElementById(
+            "nick-staff"
+        ).innerHTML =
+        data.nick;
+
+
+
+        document.getElementById(
+            "cargo-staff"
+        ).innerHTML =
+        data.cargo;
+
+
+
+
+
+        // CARREGAR CONQUISTAS NA TELA
+
+        await carregarConquistas(
+            data.nick
+        );
+
+
+
+
+
+        // VERIFICAR SE GANHOU NOVAS CONQUISTAS
+
+        await verificarConquistasAutomaticas(
+            data.nick
+        );
+
+
+
+
+
+        // ATUALIZA A LISTA NOVAMENTE
+        // PARA MOSTRAR AS NOVAS CONQUISTAS
+
+        await carregarConquistas(
+            data.nick
+        );
+
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Erro carregar perfil:",
+            error
+        );
+
 
     }
 
-
-
-    const email =
-    user.user.email;
-
-
-
-
-    const {data,error} =
-    await supabaseClient
-
-    .from("usuarios_staff")
-
-    .select("*")
-
-    .eq(
-        "email",
-        email
-    )
-
-    .maybeSingle();
-
-
-
-
-
-    if(error || !data){
-
-        console.error(error);
-
-        return;
-
-    }
-
-
-
-    staffAtual = data;
-
-
-
-    document.getElementById(
-        "nick-staff"
-    ).innerHTML =
-    data.nick;
-
-
-
-    document.getElementById(
-        "cargo-staff"
-    ).innerHTML =
-    data.cargo;
-
-
-
-
-    await carregarConquistas(
-        data.nick
-    );
 
 }
 
