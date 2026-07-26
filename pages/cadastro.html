@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Cadastro Staff</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="user-card">
+
+
+<h1>
+Cadastro Staff
+</h1>
+
+
+<input 
+id="nick"
+placeholder="Nick Minecraft">
+
+
+<input 
+id="nome"
+placeholder="Nome">
+
+
+<input 
+id="email"
+placeholder="Email">
+
+
+<input 
+type="date"
+id="nascimento">
+
+
+<input 
+type="password"
+id="senha"
+placeholder="Senha">
+
+
+<button onclick="cadastrarStaff()">
+
+Criar conta
+
+</button>
+
+
+
+<button onclick="window.location.href='login.html'">
+
+Voltar
+
+</button>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="auth.js"></script>
+
+<script src="cadastro.js"></script>
+
+
+</body>
+
+</html>

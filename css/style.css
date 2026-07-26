@@ -1,0 +1,2897 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('./fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('./fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('./fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('./fonts/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root {
+
+    --dark-bg: #101010;
+    --card-bg: #171618;
+    --card-support: #252127;
+
+    --primary-purple: #D321DC;
+    --primary-purple-hover: #E04DE8;
+    --primary-purple-light: rgba(211,33,220,.12);
+
+    --yellow: #ffcd00;
+
+    --text-white: #ffffff;
+    --text-gray: #a1a1aa;
+    --text-muted: #71717a;
+
+    --border: rgba(255,255,255,.06);
+    --border-hover: rgba(255,255,255,.12);
+
+    --radius-sm: 4px;
+    --radius-md: 6px;
+
+    --transition: all .15s ease;
+
+    --shadow:
+    0 8px 24px rgba(0,0,0,.4);
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.08);
+    border-radius: 4px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,.16);
+}
+
+
+
+* {
+
+    margin:0;
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:
+    Montserrat,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+
+    scrollbar-width:thin;
+    scrollbar-color:
+    rgba(255,255,255,.08)
+    transparent;
+}
+
+
+
+html {
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+body {
+
+    background:
+    var(--dark-bg);
+
+    color:
+    var(--text-white);
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    line-height:1.5;
+
+    -webkit-font-smoothing:antialiased;
+
+}
+
+
+
+a {
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+
+button,
+input,
+textarea,
+select {
+
+    font-family:inherit;
+
+}
+
+
+
+.particles {
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-1;
+
+}
+
+
+
+.particle {
+
+    position:absolute;
+
+    border-radius:50%;
+
+}
+
+
+
+@keyframes float {
+
+    from {
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+    }
+
+
+    to {
+
+        transform:
+        translateY(-100vh)
+        rotate(360deg);
+
+    }
+
+}
+
+
+
+.container {
+
+    width:100%;
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:30px 20px;
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+
+/* ==========================
+   FORMULÁRIO STYLE NEON
+========================== */
+
+
+.tf-body {
+
+    margin:0;
+
+    background:
+    var(--dark-bg);
+
+    color:
+    var(--text-white);
+
+    font-family:
+    Montserrat,
+    sans-serif;
+
+    overflow:hidden;
+
+}
+
+
+
+.tf-app {
+
+    position:relative;
+
+    width:100vw;
+
+    height:100vh;
+
+    background:
+    var(--dark-bg);
+
+    overflow:hidden;
+
+}
+
+
+
+.tf-logo img {
+
+    width:56px;
+
+    height:auto;
+
+    display:block;
+
+    user-select:none;
+
+}
+
+
+
+.tf-logo--global {
+
+    position:absolute;
+
+    top:24px;
+
+    left:24px;
+
+    z-index:10;
+
+}
+
+
+
+.tf-logo--inline {
+
+    display:none;
+
+}
+
+
+
+.tf-form {
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+
+
+.tf-step {
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+    24px 8vw;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    overflow-y:auto;
+
+    transition:
+
+    transform .65s cubic-bezier(.65,0,.35,1),
+    opacity .3s;
+
+}
+
+
+
+.tf-step--past {
+
+    transform:
+    translateY(-100%);
+
+}
+
+
+
+.tf-step--future {
+
+    transform:
+    translateY(100%);
+
+}
+
+
+
+.tf-step.is-active {
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:none;
+
+}
+
+
+
+.tf-step-content {
+
+    width:100%;
+
+    max-width:880px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+
+.tf-step-content--centered {
+
+    max-width:720px;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+
+.tf-title {
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+    color:
+    var(--text-white);
+
+    line-height:1.25;
+
+}
+
+
+
+.tf-text {
+
+    font-size:1rem;
+
+    color:
+    var(--text-gray);
+
+    line-height:1.7;
+
+    max-width:72ch;
+
+}
+
+
+
+.tf-link {
+
+    color:
+    var(--primary-purple);
+
+    text-decoration:underline;
+
+    transition:
+    var(--transition);
+
+}
+
+
+
+.tf-link:hover {
+
+    color:
+    var(--primary-purple-hover);
+
+}
+
+
+
+.tf-hint {
+
+    color:
+    var(--text-gray);
+
+    font-size:.85rem;
+
+}
+
+
+
+.tf-hint strong {
+
+    color:
+    var(--text-white);
+
+}
+
+
+
+.tf-bullets {
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    color:
+    var(--text-gray);
+
+}
+
+
+.tf-bullets li {
+
+    position:relative;
+
+    padding-left:22px;
+
+}
+
+
+
+.tf-bullets li::before {
+
+    content:"•";
+
+    position:absolute;
+
+    left:5px;
+
+    color:
+    var(--primary-purple);
+
+}
+
+
+/* ================================
+   FORMULÁRIO / CANDIDATURA
+================================ */
+
+.form-container {
+    background: var(--card-support);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,.05);
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--primary-purple);
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.form-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #35353d;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.form-icon img,
+.form-icon svg {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.form-title {
+    flex: 1;
+}
+
+.form-title h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: var(--primary-purple);
+}
+
+
+/* ================================
+   CARGO DISPONÍVEL
+================================ */
+
+.vacancy-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    background: rgba(211,33,220,.12);
+    color: var(--primary-purple);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border: 1px solid rgba(211,33,220,.3);
+}
+
+.vacancy-badge i,
+.vacancy-badge svg {
+    margin-right: 8px;
+}
+
+
+/* ================================
+   TEXTO DO FORMULÁRIO
+================================ */
+
+.form-description {
+    color: var(--text-gray);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+
+/* ================================
+   RESPONSABILIDADES
+================================ */
+
+.responsibilities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 30px;
+    margin-bottom: 30px;
+}
+
+.responsibility-item {
+    display: flex;
+    align-items: center;
+}
+
+.check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-sm);
+    background: rgba(211,33,220,.12);
+    color: var(--primary-purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.check-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+.responsibility-text {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+
+/* ================================
+   BOTÃO PRINCIPAL
+================================ */
+
+.submit-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+    padding: 14px 20px;
+
+    background: var(--primary-purple);
+
+    color: #fff;
+
+    border: 2px solid rgba(255,255,255,.15);
+    border-radius: var(--radius-sm);
+
+    font-family: inherit;
+    font-size: .85rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: .06em;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 3px 0 rgba(0,0,0,.25);
+}
+
+
+.submit-button:hover {
+
+    filter: brightness(1.15);
+
+    transform: translateY(-1px);
+
+}
+
+
+.submit-button:active {
+
+    transform: translateY(2px);
+
+    box-shadow:none;
+
+}
+
+
+/* ================================
+   BENEFÍCIOS
+================================ */
+
+
+.benefits {
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+    margin-top:50px;
+
+}
+
+
+
+.benefit-item {
+
+    background:
+    rgba(255,255,255,.02);
+
+    border-radius:var(--border-radius);
+
+    padding:25px;
+
+    text-align:center;
+
+    border:
+    1px solid rgba(255,255,255,.03);
+
+    transition:.15s;
+
+}
+
+
+
+.benefit-item:hover {
+
+    transform:translateY(-5px);
+
+    background:
+    rgba(255,255,255,.04);
+
+}
+
+
+
+.benefit-icon {
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    background:
+    rgba(211,33,220,.12);
+
+    color:
+    var(--primary-purple);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:
+    0 auto 15px;
+
+}
+
+
+
+.benefit-icon svg {
+
+    width:24px;
+
+    height:24px;
+
+}
+
+
+
+.benefit-title {
+
+    font-size:15px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.benefit-description {
+
+    color:
+    var(--text-gray);
+
+    font-size:13px;
+
+}
+
+
+
+/* ================================
+   FOOTER
+================================ */
+
+
+footer {
+
+    padding:30px 0;
+
+    text-align:center;
+
+    border-top:
+    1px solid rgba(255,255,255,.03);
+
+}
+
+
+
+.footer-text {
+
+    color:
+    var(--text-gray);
+
+    font-size:14px;
+
+    max-width:600px;
+
+    margin:
+    0 auto 20px;
+
+}
+
+
+
+.social-links {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.social-link {
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:8px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    transition:.15s;
+
+}
+
+
+
+.social-link:hover {
+
+    background:
+    rgba(211,33,220,.12);
+
+    color:
+    var(--primary-purple);
+
+    transform:
+    translateY(-3px);
+
+}
+
+
+
+.social-link svg {
+
+    width:20px;
+
+    height:20px;
+
+}
+
+
+
+.copyright {
+
+    font-size:12px;
+
+    color:
+    var(--text-gray);
+
+}
+
+
+/* ================================
+   TYPEFORM STYLE
+================================ */
+
+
+.tf-body {
+
+    margin:0;
+
+    background:
+    var(--dark-bg);
+
+    color:
+    var(--text-white);
+
+    font-family:
+    Montserrat,sans-serif;
+
+    overflow:hidden;
+
+}
+
+
+
+.tf-app {
+
+    position:relative;
+
+    width:100vw;
+
+    height:100vh;
+
+    background:
+    var(--dark-bg);
+
+    overflow:hidden;
+
+}
+
+
+
+/* LOGO */
+
+.tf-logo img {
+
+    width:56px;
+
+    height:auto;
+
+    user-select:none;
+
+}
+
+
+
+.tf-logo--global {
+
+    position:absolute;
+
+    top:24px;
+
+    left:24px;
+
+    z-index:10;
+
+}
+
+
+
+/* ================================
+   ETAPAS
+================================ */
+
+
+.tf-form {
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+
+
+.tf-step {
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+    24px 8vw;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    overflow-y:auto;
+
+    transition:
+
+    transform .65s cubic-bezier(.65,0,.35,1),
+    opacity .3s;
+
+}
+
+
+
+.tf-step--past {
+
+    transform:
+    translateY(-100%);
+
+}
+
+
+
+.tf-step--future {
+
+    transform:
+    translateY(100%);
+
+}
+
+
+
+.tf-step.is-active {
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:none;
+
+}
+
+
+
+.tf-step-content {
+
+    width:100%;
+
+    max-width:880px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+
+/* ================================
+   TEXTOS
+================================ */
+
+
+.tf-title {
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+    line-height:1.25;
+
+}
+
+
+
+.tf-text {
+
+    font-size:1rem;
+
+    color:
+    var(--text-gray);
+
+    line-height:1.7;
+
+}
+
+
+
+.tf-hint {
+
+    color:
+    var(--text-gray);
+
+    font-size:.85rem;
+
+}
+
+
+
+.tf-hint strong {
+
+    color:white;
+
+}
+
+
+
+/* LISTAS */
+
+.tf-bullets {
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    color:
+    var(--text-gray);
+
+}
+
+
+
+.tf-bullets li {
+
+    padding-left:20px;
+
+    position:relative;
+
+}
+
+
+
+.tf-bullets li::before {
+
+    content:"•";
+
+    position:absolute;
+
+    left:0;
+
+    color:
+    var(--primary-purple);
+
+}
+
+
+
+/* ================================
+   CAMPOS
+================================ */
+
+
+.tf-field {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+
+.tf-label {
+
+    font-size:1rem;
+
+    font-weight:600;
+
+}
+
+
+
+.tf-input {
+
+    background:transparent;
+
+    border:none;
+
+    border-bottom:
+
+    1px solid rgba(255,255,255,.18);
+
+    padding:10px 0;
+
+    color:white;
+
+    font-size:1.05rem;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+
+
+.tf-input:focus {
+
+    border-color:
+    var(--primary-purple);
+
+}
+
+
+
+.tf-input::placeholder {
+
+    color:
+    rgba(255,255,255,.35);
+
+}
+
+
+
+.tf-textarea {
+
+    background:
+    var(--card-support);
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:
+
+    var(--border-radius);
+
+    padding:15px;
+
+    min-height:140px;
+
+    color:white;
+
+    resize:vertical;
+
+    outline:none;
+
+}
+
+
+
+.tf-textarea:focus {
+
+    border-color:
+    var(--primary-purple);
+
+}
+
+
+
+/* ================================
+   ESCOLHAS
+================================ */
+
+
+.tf-choices {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+
+
+.tf-choice {
+
+    padding:
+    12px 24px;
+
+    background:
+    var(--card-support);
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:8px;
+
+    color:
+    var(--text-gray);
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+.tf-choice:hover {
+
+    border-color:
+    var(--primary-purple);
+
+    color:white;
+
+}
+
+
+
+.tf-choice:has(input:checked) {
+
+    background:
+    rgba(211,33,220,.15);
+
+    border-color:
+    var(--primary-purple);
+
+    color:white;
+
+}
+
+
+
+.tf-choice input {
+
+    display:none;
+
+}
+
+
+
+/* ================================
+   BOTÕES
+================================ */
+
+
+.tf-actions {
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.tf-cta {
+
+    padding:
+    14px 28px;
+
+    border-radius:
+    var(--radius-sm);
+
+    border:none;
+
+    background:
+    var(--primary-purple);
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+
+.tf-cta:hover {
+
+    filter:
+    brightness(1.15);
+
+    transform:
+    translateY(-2px);
+
+}
+
+
+
+.tf-cta--ghost {
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:
+    var(--text-gray);
+
+}
+
+
+
+.tf-cta--ghost:hover {
+
+    background:
+    rgba(255,255,255,.1);
+
+    color:white;
+
+}
+
+
+
+/* ================================
+   PROGRESSO
+================================ */
+
+
+.tf-footer {
+
+    position:fixed;
+
+    right:24px;
+
+    bottom:24px;
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+}
+
+
+
+.tf-progress {
+
+    color:
+    var(--text-gray);
+
+}
+
+
+
+.tf-progress-percent {
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+
+
+.tf-nav {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+
+.tf-nav-btn {
+
+    width:38px;
+
+    height:30px;
+
+    border:none;
+
+    background:
+    var(--primary-purple);
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+
+.tf-nav-btn:first-child {
+
+    border-radius:
+
+    6px 6px 0 0;
+
+}
+
+
+
+.tf-nav-btn:last-child {
+
+    border-radius:
+
+    0 0 6px 6px;
+
+}
+
+
+
+/* ================================
+   STATUS
+================================ */
+
+
+.tf-status {
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:80px;
+
+    transform:
+    translateX(-50%);
+
+    background:
+    var(--card-bg);
+
+    padding:
+    10px 18px;
+
+    border-radius:8px;
+
+    font-size:.9rem;
+
+    opacity:0;
+
+}
+
+
+
+.tf-status.is-visible {
+
+    opacity:1;
+
+}
+
+
+
+.tf-status.status-success {
+
+    color:#5fffa1;
+
+}
+
+
+
+.tf-status.status-error {
+
+    color:#ff5555;
+
+}
+
+
+
+/* ================================
+   MOBILE
+================================ */
+
+
+@media(max-width:768px){
+
+
+.tf-logo--global {
+
+    display:none;
+
+}
+
+
+
+.tf-step {
+
+    padding:
+
+    22px;
+
+    align-items:flex-start;
+
+}
+
+
+
+.tf-step-content {
+
+    margin:auto 0;
+
+}
+
+
+
+.tf-title {
+
+    font-size:1.35rem;
+
+}
+
+
+
+.tf-text {
+
+    font-size:.95rem;
+
+}
+
+
+
+.tf-actions {
+
+    flex-direction:column;
+
+}
+
+
+
+.tf-cta {
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+
+
+.tf-footer {
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    padding:
+
+    15px;
+
+    background:#171618;
+
+    justify-content:space-between;
+
+}
+
+
+
+.tf-nav {
+
+    flex-direction:row;
+
+}
+
+
+
+.tf-nav-btn {
+
+    border-radius:6px!important;
+
+}
+
+
+}
+
+/* FUNDO ESCURO ATRÁS DO MODAL */
+
+#overlay {
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.75);
+
+backdrop-filter:blur(5px);
+
+z-index:9998;
+
+}
+
+
+
+#overlay{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.75);
+
+z-index:9998;
+
+}
+
+
+.role-info{
+
+display:none;
+
+position:fixed;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:600px;
+
+max-width:90%;
+
+background:#111;
+
+padding:40px;
+
+border-radius:25px;
+
+border:2px solid #ff9900;
+
+color:white;
+
+z-index:9999;
+
+
+}
+
+
+
+.role-info.active{
+
+display:block;
+
+}
+
+/* ================================
+   ÁREA DOS CARGOS STAFF
+================================ */
+
+
+.staff-buttons {
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    gap:45px;
+
+    margin:50px auto;
+
+    width:100%;
+
+}
+
+
+
+.staff-role {
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+}
+
+
+
+/* BOTÃO REDONDO */
+
+.staff-button {
+
+
+    width:85px;
+
+    height:85px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #202020,
+        #090909
+    );
+
+
+    border:
+
+    2px solid rgba(255,153,0,.5);
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    cursor:pointer;
+
+
+    padding:0;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+/* IMAGEM DO CARGO */
+
+.staff-button img {
+
+
+    width:55px;
+
+    height:55px;
+
+
+    object-fit:contain;
+
+
+}
+
+
+
+/* NOME DO CARGO */
+
+.staff-role span {
+
+
+    color:white;
+
+
+    font-size:14px;
+
+
+    font-weight:700;
+
+
+    text-align:center;
+
+
+}
+
+
+
+/* EFEITO */
+
+.staff-button:hover {
+
+
+    transform:translateY(-8px);
+
+
+    border-color:#ff9900;
+
+
+    box-shadow:
+
+    0 0 25px rgba(255,153,0,.5);
+
+
+}
+
+
+
+/* ================================
+   MODAL DOS CARGOS
+================================ */
+
+
+.role-info {
+
+    display:none;
+
+    position:fixed;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%, -50%);
+
+    width:850px;
+    max-width:90vw;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    background:
+    linear-gradient(
+        145deg,
+        #181818,
+        #090909
+    );
+
+    padding:35px 45px;
+
+    border-radius:25px;
+
+    border:2px solid #ff9900;
+
+    color:white;
+
+    z-index:9999;
+
+    box-shadow:
+    0 0 50px rgba(255,153,0,.35);
+
+    animation:modalShow .25s ease;
+
+}
+
+
+
+/* BOTÃO FECHAR */
+
+
+.close-modal {
+
+
+    position:absolute;
+
+
+    top:12px;
+
+
+    right:12px;
+
+
+    width:32px;
+
+
+    height:32px;
+
+
+    border-radius:50%;
+
+
+    background:#ff9900;
+
+
+    border:none;
+
+
+    color:white;
+
+
+    font-size:22px;
+
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    transition:.3s;
+
+
+}
+
+
+.close-modal:hover {
+
+
+    background:#ff5500;
+
+
+    transform:rotate(90deg);
+
+
+}
+
+
+
+
+/* IMAGEM DO CARGO */
+
+
+.modal-icon {
+
+
+    width:70px;
+
+    height:70px;
+
+
+    margin:0 auto 15px;
+
+
+    border-radius:50%;
+
+
+    background:#222;
+
+
+    border:
+
+    2px solid #ff9900;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+
+
+
+.modal-icon img {
+
+
+    width:45px;
+
+    height:45px;
+
+
+    object-fit:contain;
+
+
+}
+
+
+
+
+/* TITULO */
+
+
+.role-info h2 {
+
+    text-align:center;
+
+    color:#ff9900;
+
+    font-size:30px;
+
+    margin-bottom:5px;
+
+}
+
+
+.modal-level {
+
+    display:block;
+
+    text-align:center;
+
+    color:#aaa;
+
+    margin-bottom:25px;
+
+}
+
+
+.role-info p {
+
+    color:#ccc;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+
+}
+
+
+.role-info h3 {
+
+    color:#ff9900;
+
+    margin-top:20px;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+
+}
+
+
+.role-info ul {
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px 30px;
+
+    list-style:none;
+
+}
+
+
+.role-info li {
+
+    background:
+    rgba(255,153,0,.08);
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    color:#ddd;
+
+    font-size:14px;
+
+}
+
+
+
+/* MOBILE */
+
+
+@media(max-width:600px){
+
+
+.role-info {
+
+
+    width:90%;
+
+
+    padding:25px;
+
+
+}
+
+
+.role-info h2 {
+
+
+    font-size:22px;
+
+
+}
+
+
+}
+
+
+/* estilo geral estilo */
+
+/* =====================================
+   CONTAINER PRINCIPAL FUTURYCRAFT
+===================================== */
+
+.main-card {
+
+    background:
+    #151515;
+
+    width:100%;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+
+    0 20px 60px rgba(0,0,0,.7);
+
+    margin-top:80px;
+
+    overflow:hidden;
+
+}
+
+
+
+/* EFEITO DE BRILHO NO TOPO */
+
+.main-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:60%;
+
+    height:2px;
+
+
+    background:
+
+    linear-gradient(
+    90deg,
+    transparent,
+    #ff9900,
+    transparent
+    );
+
+    opacity:.8;
+
+}
+
+
+
+.main-card {
+
+    position:relative;
+
+}
+
+
+
+/* AJUSTE DO HEADER */
+
+.card-header {
+
+    background:
+
+    rgba(255,255,255,.02);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:
+
+    1px solid rgba(255,255,255,.04);
+
+    margin-bottom:40px;
+
+}
+
+
+
+/* BOTÕES DOS CARGOS */
+
+.staff-buttons {
+
+    background:
+
+    rgba(0,0,0,.25);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:
+
+    1px solid rgba(255,255,255,.04);
+
+}
+
+
+
+/* FORMULÁRIO */
+
+.form-container {
+
+
+    background:
+
+    #101010;
+
+
+    border-radius:25px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.06);
+
+
+    padding:45px;
+
+
+}
+
+
+
+/* BENEFÍCIOS */
+
+.benefits {
+
+
+    background:
+
+    rgba(0,0,0,.25);
+
+
+    padding:35px;
+
+
+    border-radius:25px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.04);
+
+
+}
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+
+.main-card {
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+
+.card-header {
+
+    padding:20px;
+
+}
+
+
+.form-container {
+
+    padding:25px;
+
+}
+
+
+}
+
+body{
+
+    background:#0d0d0f;
+
+    color:white;
+
+    font-family:Arial, sans-serif;
+
+}
+
+
+
+.painel{
+
+    width:90%;
+
+    max-width:1000px;
+
+    margin:40px auto;
+
+}
+
+
+
+.topo{
+
+    text-align:center;
+
+}
+
+
+
+.topo h1{
+
+    color:#00ffff;
+
+}
+
+
+
+
+
+.card{
+
+    background:#17171c;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    margin-top:25px;
+
+    border:1px solid #292929;
+
+}
+
+
+
+
+
+.card h3{
+
+    margin-top:0;
+
+    color:#00ffff;
+
+}
+
+
+
+
+
+textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    background:#0b0b0d;
+
+    color:white;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    resize:none;
+
+}
+
+
+
+
+
+.botao,
+.voltar{
+
+
+    background:#00ffff;
+
+    color:black;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.botao:hover,
+.voltar:hover{
+
+
+    opacity:.8;
+
+
+}
+
+
+
+
+
+.avaliacao{
+
+
+    background:#101014;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    margin-top:15px;
+
+    border-left:4px solid #00ffff;
+
+}
+
+
+.staff-card{
+
+background:#171717;
+
+padding:20px;
+
+margin-top:15px;
+
+border-radius:10px;
+
+border:1px solid #333;
+
+}
+
+
+.staff-card button{
+
+background:#d33;
+
+color:white;
+
+border:none;
+
+padding:10px;
+
+border-radius:5px;
+
+cursor:pointer;
+
+}
+
+
+
+/* ===============================
+GERENCIAMENTO STAFF
+================================ */
+
+
+.staff-container{
+
+min-height:100vh;
+
+padding:40px;
+
+background:#0d0d0f;
+
+color:white;
+
+}
+
+
+
+.staff-header{
+
+text-align:center;
+
+margin-bottom:40px;
+
+}
+
+
+
+.staff-header h1{
+
+font-size:32px;
+
+}
+
+
+
+.staff-header p{
+
+color:#999;
+
+}
+
+
+
+
+
+
+.staff-actions{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:30px;
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+
+
+
+
+
+.staff-box{
+
+background:#17171c;
+
+border:1px solid #292929;
+
+border-radius:15px;
+
+padding:25px;
+
+box-shadow:0 0 20px rgba(0,0,0,.4);
+
+}
+
+
+
+
+
+.staff-box h2{
+
+margin-bottom:20px;
+
+}
+
+
+
+
+
+.staff-box label{
+
+display:block;
+
+margin-top:15px;
+
+color:#aaa;
+
+}
+
+
+
+
+
+.staff-box select{
+
+width:100%;
+
+padding:12px;
+
+margin-top:8px;
+
+background:#0f0f12;
+
+border:1px solid #333;
+
+border-radius:8px;
+
+color:white;
+
+}
+
+
+
+
+
+.staff-box button{
+
+width:100%;
+
+margin-top:25px;
+
+padding:13px;
+
+background:#5865f2;
+
+border:none;
+
+border-radius:8px;
+
+color:white;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+.staff-box button:hover{
+
+opacity:.8;
+
+}
+
+
+
+
+
+.staff-card{
+
+background:#111;
+
+padding:18px;
+
+border-radius:10px;
+
+margin-bottom:15px;
+
+border:1px solid #333;
+
+}
+
+
+
+
+
+.staff-card .cargo{
+
+display:inline-block;
+
+padding:5px 12px;
+
+border-radius:20px;
+
+background:#5865f2;
+
+font-size:13px;
+
+}
+
+
+
+
+
+.voltar{
+
+display:block;
+
+margin:40px auto 0;
+
+padding:12px 30px;
+
+background:#222;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+
+
+
+
+.loading{
+
+text-align:center;
+
+color:#888;
+
+}
+
+
+
+
+@media(max-width:900px){
+
+.staff-actions{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+.user-container{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:#0d0d0f;
+
+}
+
+
+
+.user-card{
+
+width:400px;
+
+background:#17171c;
+
+padding:30px;
+
+border-radius:15px;
+
+color:white;
+
+}
+
+
+
+.user-card input{
+
+width:100%;
+
+padding:12px;
+
+margin-top:8px;
+
+background:#0f0f12;
+
+border:1px solid #333;
+
+border-radius:8px;
+
+color:white;
+
+}
+
+
+
+.user-card button{
+
+width:100%;
+
+padding:12px;
+
+margin-top:15px;
+
+background:#5865f2;
+
+border:none;
+
+border-radius:8px;
+
+color:white;
+
+cursor:pointer;
+
+}

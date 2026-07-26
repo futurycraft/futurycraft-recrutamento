@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Candidatura - FuturyCraft</title>
+
+
+<link rel="stylesheet" href="candidatos.css">
+
+</head>
+
+
+<body>
+
+
+<div class="recruit-container">
+
+
+<div class="recruit-card">
+
+
+<h1>
+FuturyCraft
+</h1>
+
+
+<h2>
+Candidatura Staff
+</h2>
+
+
+<p>
+Preencha seus dados corretamente para iniciar sua candidatura.
+</p>
+
+
+
+<form id="form-candidatos">
+
+
+
+<div id="pagina1">
+
+
+
+<div class="form-group">
+
+<label>
+Nome completo
+</label>
+
+
+<input 
+type="text"
+id="nome_completo"
+placeholder="Exemplo: João Silva"
+required>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Nick no Minecraft
+</label>
+
+
+<input 
+type="text"
+id="nick"
+placeholder="Exemplo: Joao123"
+required>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Usuário do Discord
+</label>
+
+
+<input 
+type="text"
+id="discord"
+placeholder="Exemplo: joao#0000"
+required>
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+
+<label>
+Qual é sua idade?
+</label>
+
+
+
+<input
+type="range"
+id="idade"
+min="10"
+max="60"
+value="15"
+oninput="mostrarIdade(this.value)"
+>
+
+
+
+<div class="idade-valor">
+
+Idade:
+<strong id="valorIdade">
+15
+</strong>
+anos
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+
+<label>
+Qual é sua data de nascimento?
+</label>
+
+
+
+<input
+type="date"
+id="data_nascimento"
+required
+>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+
+
+<label>
+Como você prefere ser identificado?
+</label>
+
+
+
+<div class="sexo-container">
+
+
+
+<button 
+type="button"
+class="sexo-btn"
+onclick="selecionarSexo(this,'Masculino')">
+
+Masculino
+
+</button>
+
+
+
+
+<button 
+type="button"
+class="sexo-btn"
+onclick="selecionarSexo(this,'Feminino')">
+
+Feminino
+
+</button>
+
+
+
+
+
+<button 
+type="button"
+class="sexo-btn"
+onclick="selecionarSexo(this,'Outro')">
+
+Outro
+
+</button>
+
+
+
+</div>
+
+
+
+<input 
+type="hidden"
+id="genero"
+required
+>
+
+
+</div>
+
+
+
+
+
+
+<button 
+type="button"
+class="recruit-button"
+onclick="mostrarPagina2()">
+
+INICIAR FORMULÁRIO
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div id="pagina2" style="display:none;">
+
+
+
+<h2>
+Experiência e Disponibilidade
+</h2>
+
+
+
+<p>
+Conte um pouco sobre sua experiência e como você pode ajudar a equipe FuturyCraft.
+</p>
+
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Há quanto tempo você joga no FuturyCraft?
+</label>
+
+
+<input
+type="range"
+id="tempo"
+min="1"
+max="60"
+value="1"
+oninput="mostrarTempo(this.value)"
+>
+
+
+
+<div class="tempo-valor">
+
+Tempo:
+<strong id="valorTempo">
+1 mês
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Qual sua disponibilidade diária?
+</label>
+
+
+<textarea
+id="disponibilidade"
+placeholder="Exemplo: Todos os dias das 18h às 23h"
+required></textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Por que deseja entrar para a equipe?
+</label>
+
+
+<textarea
+id="motivo"
+placeholder="Explique seus motivos..."
+required></textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Como você ajudaria o servidor?
+</label>
+
+
+<textarea
+id="ajuda"
+placeholder="Conte suas ideias e como poderia contribuir..."
+required></textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+
+<label>
+O que faria ao suspeitar de um jogador utilizando hack?
+</label>
+
+
+<textarea
+id="hack"
+placeholder="Explique como você agiria nessa situação..."
+required></textarea>
+
+
+</div>
+
+
+
+
+
+
+<button 
+type="submit"
+class="botao">
+
+Enviar Candidatura
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function mostrarIdade(valor){
+
+document.getElementById("valorIdade").innerHTML = valor;
+
+}
+
+
+
+
+
+function selecionarSexo(botao,valor){
+
+
+
+document.querySelectorAll(".sexo-btn")
+.forEach(btn=>{
+
+btn.classList.remove("selecionado");
+
+});
+
+
+
+botao.classList.add("selecionado");
+
+
+
+document.getElementById("genero").value = valor;
+
+
+
+}
+
+
+</script>
+
+<script>
+
+
+function mostrarTempo(valor){
+
+
+valor = Number(valor);
+
+
+
+let texto;
+
+
+
+if(valor < 12){
+
+
+texto = valor + (valor == 1 ? " mês" : " meses");
+
+
+}else{
+
+
+let anos = Math.floor(valor / 12);
+
+let meses = valor % 12;
+
+
+
+if(meses == 0){
+
+
+texto = anos + (anos == 1 ? " ano" : " anos");
+
+
+}else{
+
+
+texto =
+anos + (anos == 1 ? " ano " : " anos ")
++
+meses + " meses";
+
+
+}
+
+
+}
+
+
+
+document.getElementById("valorTempo").innerHTML = texto;
+
+
+
+}
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+
+
+</body>
+
+</html>

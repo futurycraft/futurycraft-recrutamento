@@ -1,0 +1,541 @@
+/* ===================================
+   RECRUTAMENTO FUTURYCRAFT
+=================================== */
+
+
+.recruit-container {
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px 20px;
+
+}
+
+
+
+/* CARD PRINCIPAL */
+
+.recruit-card {
+
+    width:100%;
+
+    max-width:850px;
+
+    padding:35px;
+
+    background:#171618;
+
+    border-radius:20px;
+
+}
+
+
+
+
+
+/* LOGO */
+
+.recruit-logo {
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+
+
+.recruit-logo img {
+
+    width:55px;
+
+    height:55px;
+
+    object-fit:contain;
+
+    display:block;
+
+    user-select:none;
+
+}
+
+
+
+
+
+
+/* TITULO */
+
+
+.recruit-card h1 {
+
+    font-size:38px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.recruit-card h1 span {
+
+
+    color:#ff9900;
+
+
+    display:block;
+
+
+    font-size:20px;
+
+
+    margin-top:3px;
+
+
+}
+
+
+
+
+
+
+/* DESCRIÇÃO */
+
+
+.recruit-description {
+
+
+    max-width:560px;
+
+
+    margin:
+
+    0 auto 25px;
+
+
+    color:#a1a1aa;
+
+
+    font-size:14px;
+
+
+    line-height:1.6;
+
+
+}
+
+
+
+
+
+/* BOXES */
+
+
+.recruit-box {
+
+    width:100%;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+.recruit-box h2 {
+
+
+    font-size:15px;
+
+
+    font-weight:700;
+
+
+    color:#ff9900;
+
+
+    text-align:center;
+
+
+    margin-bottom:12px;
+
+
+}
+
+
+
+
+
+.recruit-box ul {
+
+
+    padding:0;
+
+    margin:0;
+
+
+    list-style:none;
+
+
+}
+
+
+
+.recruit-box li {
+
+
+    font-size:13px;
+
+
+    color:#c4c4c8;
+
+
+    padding:7px 0 7px 25px;
+
+
+    position:relative;
+
+
+}
+
+
+
+.recruit-box li::before {
+
+
+    content:"✓";
+
+
+    position:absolute;
+
+
+    left:0;
+
+
+    color:#ff9900;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+
+
+/* BOTÃO */
+
+
+.recruit-button {
+
+
+    width:100%;
+
+
+    max-width:420px;
+
+
+    height:55px;
+
+
+    margin:
+
+    25px auto 0;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    border-radius:10px;
+
+
+    background:
+
+
+    linear-gradient(
+    135deg,
+    #ff9900,
+    #ff6500
+    );
+
+
+    color:white;
+
+
+    font-size:15px;
+
+
+    font-weight:800;
+
+
+    letter-spacing:.06em;
+
+
+    text-decoration:none;
+
+
+    transition:.25s;
+
+
+}
+
+
+
+.recruit-button:hover {
+
+
+    transform:translateY(-3px);
+
+
+    filter:brightness(1.12);
+
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:700px){
+
+
+.recruit-card {
+
+
+    padding:30px 20px;
+
+
+}
+
+
+
+.recruit-card::before {
+
+
+    width:80px;
+
+    height:80px;
+
+
+}
+
+
+
+.recruit-card h1 {
+
+
+    font-size:22px;
+
+
+}
+
+
+}
+/* recrutamenteo css*/
+
+/* ESCONDE A SEGUNDA ETAPA */
+
+#introducao {
+
+    display:none;
+
+}
+
+
+/* MOSTRA APÓS CLICAR */
+
+#introducao.active {
+
+    display:block;
+
+}
+
+
+
+.recruit-button {
+
+    cursor:pointer;
+
+}
+
+/* SEGUNDA ETAPA RECRUTAMENTO */
+
+#introducao {
+
+    max-width:650px;
+
+    margin:auto;
+
+}
+
+
+#introducao h1 {
+
+    text-align:center;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+#introducao .recruit-description {
+
+    text-align:center;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+#introducao .recruit-box {
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+#introducao .recruit-box h2 {
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+#introducao li {
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+
+/* LOGO TOPO ESQUERDO */
+
+.top-logo {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 25px;
+
+    z-index: 100;
+
+}
+
+
+.top-logo img {
+
+    width: 55px;
+
+    height: auto;
+
+    display: block;
+
+}
+
+/* ================================
+   CONTROLE DAS ETAPAS
+================================ */
+
+
+/* SEGUNDA TELA ESCONDIDA AO ABRIR */
+
+#introducao {
+
+    display: none !important;
+
+}
+
+
+
+/* SEGUNDA TELA APÓS CLICAR */
+
+#introducao.active {
+
+    display: block !important;
+
+}
+
+/* ================================
+   REQUISITOS LADO A LADO
+================================ */
+
+
+.recruit-columns {
+
+    display:flex;
+
+    gap:20px;
+
+    width:100%;
+
+}
+
+
+
+.recruit-columns .recruit-box {
+
+    flex:1;
+
+    width:auto;
+
+    margin-bottom:0;
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .recruit-columns {
+
+        flex-direction:column;
+
+    }
+
+}

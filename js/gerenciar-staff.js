@@ -1,0 +1,941 @@
+// ==========================================
+// FUTURYCRAFT
+// GERENCIAMENTO DE STAFF
+// ==========================================
+
+
+async function iniciarPagina(){
+
+
+    const cargo = await pegarCargo();
+
+
+    if(
+        cargo !== "fundador" &&
+        cargo !== "diretor" &&
+        cargo !== "admin"
+    ){
+
+        alert("Você não possui permissão");
+
+        window.location.href="admin.html";
+
+        return;
+
+    }
+
+
+
+    carregarStaff();
+
+    carregarUsuarios();
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// LISTAR STAFF
+// ==========================================
+
+
+async function carregarStaff(){
+
+
+    const {data,error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("*")
+
+    .order("cargo");
+
+
+
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
+
+
+
+    let html="";
+
+
+
+
+
+    data.forEach(staff=>{
+
+
+
+        const ativo = 
+        staff.status === "ativo";
+
+
+
+
+
+        html += `
+
+
+
+        <div class="staff-card">
+
+
+
+
+
+            <div class="staff-top">
+
+
+                <h3>
+
+                🛡 ${staff.nick ?? "Sem nick"}
+
+                </h3>
+
+
+
+                <span class="cargo">
+
+                ${formatarCargo(staff.cargo)}
+
+                </span>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <p>
+
+            <b>Status:</b>
+
+            ${
+                ativo
+
+                ?
+
+                "🟢 Ativo"
+
+                :
+
+                "⚪ Membro"
+
+            }
+
+            </p>
+
+
+
+
+
+
+
+
+
+            <div class="staff-extra">
+
+
+            <hr>
+
+
+
+
+
+            <p>
+
+            📅 <b>Entrou na Staff:</b>
+
+            <br>
+
+
+            ${
+                staff.entrou_staff
+
+                ?
+
+                new Date(
+                    staff.entrou_staff
+                )
+                .toLocaleString("pt-BR")
+
+                :
+
+                "Não registrado"
+
+            }
+
+
+            </p>
+
+
+
+
+
+
+
+            ${
+                ativo
+
+                ?
+
+                `
+
+                <p>
+
+                ⏳ <b>Tempo na Staff:</b>
+
+                <br>
+
+                ${calcularTempoStaff(
+                    staff.entrou_staff
+                )}
+
+                </p>
+
+                `
+
+                :
+
+                `
+
+                <p>
+
+                📅 <b>Saiu da Staff:</b>
+
+                <br>
+
+                ${
+                    staff.saida_staff
+
+                    ?
+
+                    new Date(
+                        staff.saida_staff
+                    )
+                    .toLocaleString("pt-BR")
+
+                    :
+
+                    "Não registrado"
+
+                }
+
+                </p>
+
+                `
+
+            }
+
+
+
+
+
+
+
+
+            <p>
+
+            👤 <b>Promovido por:</b>
+
+            <br>
+
+            ${staff.promovido_por ?? "Sistema"}
+
+            </p>
+
+
+
+
+
+
+
+
+            ${
+                staff.removido_por
+
+                ?
+
+                `
+
+                <p>
+
+                🚪 <b>Removido por:</b>
+
+                <br>
+
+                ${staff.removido_por}
+
+                </p>
+
+                `
+
+                :
+
+                ""
+
+            }
+
+
+
+
+
+
+
+
+
+            ${
+                ativo
+
+                ?
+
+                `
+
+
+                <button
+
+                class="btn-remover"
+
+                onclick="removerStaff('${staff.id}')">
+
+
+                ❌ Remover Staff
+
+                <br>
+
+                Tornar Membro
+
+
+                </button>
+
+
+                `
+
+                :
+
+                ""
+
+            }
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+        `;
+
+
+
+    });
+
+
+
+
+
+
+    document.getElementById(
+        "listaStaff"
+    ).innerHTML = html;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// CARREGAR JOGADORES
+// ==========================================
+
+
+async function carregarUsuarios(){
+
+
+
+    const select =
+    document.getElementById(
+        "usuarioStaff"
+    );
+
+
+
+
+
+    const {data,error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("*");
+
+
+
+
+
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
+
+
+
+
+
+
+    select.innerHTML="";
+
+
+
+
+
+
+    data.forEach(usuario=>{
+
+
+        select.innerHTML += `
+
+
+        <option value="${usuario.usuario_id}">
+
+
+        ${usuario.nick ?? usuario.email}
+
+
+        </option>
+
+
+        `;
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// PROMOVER STAFF
+// ==========================================
+
+
+async function adicionarStaff(){
+
+
+
+    const usuario_id =
+    document.getElementById(
+        "usuarioStaff"
+    ).value;
+
+
+
+
+    const cargo =
+    document.getElementById(
+        "cargoStaff"
+    ).value;
+
+
+
+
+
+    if(!usuario_id){
+
+        alert(
+        "Selecione um jogador"
+        );
+
+        return;
+
+    }
+
+
+
+
+
+
+    const user =
+    await supabaseClient.auth.getUser();
+
+
+
+
+    const email =
+    user.data.user.email;
+
+
+
+
+
+
+
+
+    const {data:admin}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("nick")
+
+    .eq("email",email)
+
+    .single();
+
+
+
+
+
+
+    const nickAdmin =
+    admin?.nick ?? "Sistema";
+
+
+
+
+
+
+
+
+    const {data:atual}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("entrou_staff")
+
+    .eq(
+        "usuario_id",
+        usuario_id
+    )
+
+    .single();
+
+
+
+
+
+
+
+
+    let dados={
+
+
+        cargo:cargo,
+
+
+        status:"ativo",
+
+
+        promovido_por:nickAdmin,
+
+
+        saida_staff:null,
+
+
+        removido_por:null
+
+
+    };
+
+
+
+
+
+
+
+    if(!atual?.entrou_staff){
+
+
+        dados.entrou_staff =
+        new Date();
+
+
+    }
+
+
+
+
+
+
+
+    const {error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .update(dados)
+
+    .eq(
+        "usuario_id",
+        usuario_id
+    );
+
+
+
+
+
+
+    if(error){
+
+
+        console.log(error);
+
+        alert(
+        "Erro ao promover"
+        );
+
+        return;
+
+
+    }
+
+
+
+
+
+
+    alert(
+    "Staff atualizado!"
+    );
+
+
+
+    carregarStaff();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// REMOVER STAFF
+// ==========================================
+
+
+async function removerStaff(id){
+
+
+
+    const cargo =
+    await pegarCargo();
+
+
+
+
+
+    if(cargo !== "fundador"){
+
+
+        alert(
+        "Somente o Fundador pode remover Staff"
+        );
+
+
+        return;
+
+    }
+
+
+
+
+
+
+
+    if(
+        !confirm(
+        "Remover cargo Staff e tornar membro?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+
+
+
+
+
+
+    const user =
+    await supabaseClient.auth.getUser();
+
+
+
+
+
+
+    const email =
+    user.data.user.email;
+
+
+
+
+
+
+
+
+    const {data:admin}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .select("nick")
+
+    .eq("email",email)
+
+    .single();
+
+
+
+
+
+
+
+    const nickAdmin =
+    admin?.nick ?? "Sistema";
+
+
+
+
+
+
+
+    const {error}=await supabaseClient
+
+    .from("usuarios_staff")
+
+    .update({
+
+        cargo:"membro",
+
+        status:"inativo",
+
+        saida_staff:new Date(),
+
+        removido_por:nickAdmin
+
+
+    })
+
+    .eq(
+        "id",
+        id
+    );
+
+
+
+
+
+
+
+    if(error){
+
+
+        console.log(error);
+
+        alert(
+        "Erro ao remover"
+        );
+
+        return;
+
+
+    }
+
+
+
+
+
+
+    alert(
+    "Membro voltou para cargo Membro!"
+    );
+
+
+
+    carregarStaff();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// TEMPO NA STAFF
+// ==========================================
+
+
+function calcularTempoStaff(data){
+
+
+    if(!data)
+
+        return "Não registrado";
+
+
+
+
+
+    const inicio =
+    new Date(data);
+
+
+
+    const agora =
+    new Date();
+
+
+
+
+
+    let segundos =
+    Math.floor(
+        (agora - inicio) / 1000
+    );
+
+
+
+
+
+    const dias =
+    Math.floor(
+        segundos / 86400
+    );
+
+
+    segundos %=86400;
+
+
+
+
+
+    const horas =
+    Math.floor(
+        segundos / 3600
+    );
+
+
+    segundos %=3600;
+
+
+
+
+
+    const minutos =
+    Math.floor(
+        segundos / 60
+    );
+
+
+
+
+
+    return `${dias}d ${horas}h ${minutos}m`;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function formatarCargo(cargo){
+
+
+    const cargos={
+
+
+        fundador:"👑 Fundador",
+
+        diretor:"⭐ Diretor",
+
+        gerente:"🔷 Gerente",
+
+        admin:"🛡 Admin",
+
+        moderador:"🔨 Moderador",
+
+        ajudante:"💬 Ajudante",
+
+        membro:"👤 Membro"
+
+
+    };
+
+
+
+    return cargos[cargo] ?? cargo;
+
+
+
+}
+
+
+
+
+
+
+iniciarPagina();

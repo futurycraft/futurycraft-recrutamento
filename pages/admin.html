@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FuturyCraft • Painel Staff</title>
+
+    <link rel="stylesheet" href="painel.css">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- ========================================= -->
+    <!-- TOPO -->
+    <!-- ========================================= -->
+
+    <header class="admin-topo">
+
+        <div class="acoes-topo">
+
+    <button class="perfil-btn" onclick="abrirDashboard()">
+
+    🏠 Início
+
+    </button>
+
+    <button class="perfil-btn" onclick="abrirStaff()">
+
+    🛡️ Gerenciar Staff
+
+    </button>
+            
+    <button class="perfil-btn" onclick="abrirUsuario()">
+
+        👤 Minha Conta
+
+    </button>
+
+    <button class="logout" onclick="logout()">
+
+        🚪 Sair
+
+    </button>
+
+</div>
+
+    </header>
+
+
+
+    <!-- ========================================= -->
+    <!-- MENU -->
+    <!-- ========================================= -->
+
+    <nav class="menu-painel">
+
+        <button class="menu-btn ativo" onclick="filtrar('Pendente', this)">
+
+            📋 Pendentes
+
+        </button>
+
+        <button class="menu-btn" onclick="filtrar('Aprovado', this)">
+
+            ✅ Aprovados
+
+        </button>
+
+        <button class="menu-btn" onclick="filtrar('Recusado', this)">
+
+            ❌ Reprovados
+
+        </button>
+
+        <button class="menu-btn" onclick="filtrar('Todos', this)">
+
+            📂 Todos
+
+        </button>
+
+    </nav>
+
+
+
+    <!-- ========================================= -->
+    <!-- ESTATÍSTICAS -->
+    <!-- ========================================= -->
+
+    <section class="estatisticas">
+
+        <div class="mini-card pendente">
+
+            <strong id="pendentes">
+
+                0
+
+            </strong>
+
+            <span>Pendentes</span>
+
+        </div>
+
+        <div class="mini-card aprovado">
+
+            <strong id="aprovados">
+
+                0
+
+            </strong>
+
+            <span>Aprovados</span>
+
+        </div>
+
+        <div class="mini-card recusado">
+
+            <strong id="recusados">
+
+                0
+
+            </strong>
+
+            <span>Reprovados</span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- RESUMO -->
+    <!-- ========================================= -->
+
+    <section class="painel-info">
+
+        <div class="titulo-area">
+
+            <h2 id="titulo-lista">
+
+                Candidaturas Pendentes
+
+            </h2>
+
+            <p id="descricao-lista">
+
+                Analise primeiro os candidatos que aguardam avaliação da equipe.
+
+            </p>
+
+        </div>
+
+        <div class="resumo-fila">
+
+            <div class="info-box">
+
+                <strong id="hoje">
+
+                    0
+
+                </strong>
+
+                <span>Recebidos Hoje</span>
+
+            </div>
+
+            <div class="info-box">
+
+                <strong id="semana">
+
+                    0
+
+                </strong>
+
+                <span>Esta Semana</span>
+
+            </div>
+
+            <div class="info-box">
+
+                <strong id="atrasados">
+
+                    0
+
+                </strong>
+
+                <span>Aguardando +7 Dias</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- GRID -->
+    <!-- ========================================= -->
+
+    <section class="area-candidatos">
+
+        <div id="lista-candidatos" class="grid-candidatos">
+
+            <div class="loading">
+
+                Carregando candidatos...
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- RODAPÉ -->
+    <!-- ========================================= -->
+
+    <footer class="footer-painel">
+
+        <h3>FuturyCraft Panel</h3>
+
+        <p>Sistema de Recrutamento Staff</p>
+
+        <span>Versão 2.0</span>
+
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="auth.js"></script>
+
+<script src="proteger.js"></script>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
