@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+
 <head>
 
+
 <meta charset="UTF-8">
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+
 <title>
-Candidatura Staff • FuturyCraft
+FuturyCraft • Recrutamento Staff
 </title>
 
 
@@ -26,7 +30,10 @@ Candidatura Staff • FuturyCraft
 
 
 
+
 <div class="recruit-container">
+
+
 
 
 
@@ -34,7 +41,23 @@ Candidatura Staff • FuturyCraft
 
 
 
-<div class="recruit-header">
+
+
+
+<header class="recruit-header">
+
+
+
+
+
+<img 
+src="./img/logo.png"
+class="recruit-logo"
+alt="FuturyCraft">
+
+
+
+
 
 
 <h1>
@@ -42,17 +65,78 @@ FuturyCraft
 </h1>
 
 
+
+
+
 <h2>
-Candidatura Staff
+Recrutamento Staff
 </h2>
 
 
+
+
+
 <p>
-Preencha seus dados corretamente para iniciar sua candidatura.
+Preencha sua candidatura e faça parte da equipe FuturyCraft.
 </p>
 
 
+
+
+
+</header>
+
+
+
+
+
+
+
+
+<div class="etapas">
+
+
+
+<div class="etapa ativa">
+
+<span>
+01
+</span>
+
+
+Dados pessoais
+
+
 </div>
+
+
+
+
+
+<div class="linha-etapa"></div>
+
+
+
+
+
+<div class="etapa">
+
+<span>
+02
+</span>
+
+
+Experiência
+
+
+</div>
+
+
+
+
+</div>
+
+
 
 
 
@@ -65,14 +149,9 @@ Preencha seus dados corretamente para iniciar sua candidatura.
 
 
 
-<!-- ======================
-     PRIMEIRA ETAPA
-======================= -->
 
 
-<div id="pagina1">
-
-
+<section id="pagina1">
 
 
 
@@ -92,11 +171,7 @@ placeholder="Exemplo: João Silva"
 required>
 
 
-
 </div>
-
-
-
 
 
 
@@ -111,18 +186,14 @@ Nick no Minecraft
 
 
 
-<input 
+<input
 type="text"
 id="nick"
 placeholder="Exemplo: Joao123"
 required>
 
 
-
 </div>
-
-
-
 
 
 
@@ -137,22 +208,14 @@ Usuário do Discord
 
 
 
-<input 
+<input
 type="text"
 id="discord"
 placeholder="Exemplo: joao#0000"
 required>
 
 
-
 </div>
-
-
-
-
-
-
-
 
 <div class="form-group">
 
@@ -160,6 +223,7 @@ required>
 <label>
 Qual é sua idade?
 </label>
+
 
 
 
@@ -172,6 +236,8 @@ max="60"
 value="15"
 oninput="mostrarIdade(this.value)"
 >
+
+
 
 
 
@@ -210,6 +276,8 @@ Qual é sua data de nascimento?
 
 
 
+
+
 <input
 type="date"
 id="data_nascimento"
@@ -218,7 +286,9 @@ required
 
 
 
+
 </div>
+
 
 
 
@@ -238,11 +308,15 @@ Como você prefere ser identificado?
 
 
 
+
 <div class="sexo-container">
 
 
 
-<button 
+
+
+
+<button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Masculino')">
@@ -255,7 +329,9 @@ Masculino
 
 
 
-<button 
+
+
+<button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Feminino')">
@@ -268,7 +344,9 @@ Feminino
 
 
 
-<button 
+
+
+<button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Outro')">
@@ -279,6 +357,8 @@ Outro
 
 
 
+
+
 </div>
 
 
@@ -286,7 +366,8 @@ Outro
 
 
 
-<input 
+
+<input
 type="hidden"
 id="genero"
 required
@@ -294,6 +375,8 @@ required
 
 
 
+
+
 </div>
 
 
@@ -303,12 +386,15 @@ required
 
 
 
-<button 
+
+<button
 type="button"
 class="recruit-button"
 onclick="mostrarPagina2()">
 
-INICIAR FORMULÁRIO
+
+CONTINUAR
+
 
 </button>
 
@@ -316,16 +402,37 @@ INICIAR FORMULÁRIO
 
 
 
-</div>
 
-<!-- ======================
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
      SEGUNDA ETAPA
-======================= -->
+========================== -->
 
 
-<div id="pagina2" style="display:none;">
 
 
+
+
+<section 
+id="pagina2"
+style="display:none;">
+
+
+
+
+
+
+
+<div class="pagina-header">
 
 
 
@@ -337,15 +444,12 @@ Experiência e Disponibilidade
 
 
 <p>
-Conte um pouco sobre sua experiência e como você pode ajudar a equipe FuturyCraft.
+Conte como você pode ajudar a equipe FuturyCraft.
 </p>
 
 
 
-
-
-
-
+</div>
 
 <div class="form-group">
 
@@ -353,6 +457,7 @@ Conte um pouco sobre sua experiência e como você pode ajudar a equipe FuturyCr
 <label>
 Há quanto tempo você joga no FuturyCraft?
 </label>
+
 
 
 
@@ -370,6 +475,8 @@ oninput="mostrarTempo(this.value)"
 
 
 
+
+
 <div class="tempo-valor">
 
 
@@ -382,6 +489,8 @@ Tempo:
 
 
 </div>
+
+
 
 
 
@@ -405,11 +514,15 @@ Qual sua disponibilidade diária?
 
 
 
+
+
 <textarea
 id="disponibilidade"
 placeholder="Exemplo: Todos os dias das 18h às 23h"
 required>
 </textarea>
+
+
 
 
 
@@ -433,11 +546,15 @@ Por que deseja entrar para a equipe?
 
 
 
+
+
 <textarea
 id="motivo"
 placeholder="Explique seus motivos..."
 required>
 </textarea>
+
+
 
 
 
@@ -461,11 +578,15 @@ Como você ajudaria o servidor?
 
 
 
+
+
 <textarea
 id="ajuda"
 placeholder="Conte suas ideias e como poderia contribuir..."
 required>
 </textarea>
+
+
 
 
 
@@ -489,6 +610,8 @@ O que faria ao suspeitar de um jogador utilizando hack?
 
 
 
+
+
 <textarea
 id="hack"
 placeholder="Explique como você agiria nessa situação..."
@@ -497,6 +620,8 @@ required>
 
 
 
+
+
 </div>
 
 
@@ -507,11 +632,13 @@ required>
 
 
 
-<button 
+<button
 type="submit"
 class="botao">
 
-Enviar Candidatura
+
+ENVIAR CANDIDATURA
+
 
 </button>
 
@@ -520,7 +647,10 @@ Enviar Candidatura
 
 
 
-</div>
+
+</section>
+
+
 
 
 
@@ -528,6 +658,7 @@ Enviar Candidatura
 
 
 </form>
+
 
 
 
@@ -590,6 +721,9 @@ document.getElementById("genero").value = valor;
 
 
 
+
+
+
 function mostrarTempo(valor){
 
 
@@ -628,6 +762,7 @@ let meses = valor % 12;
 
 
 
+
 if(meses == 0){
 
 
@@ -658,6 +793,7 @@ meses + " meses";
 
 
 
+
 document.getElementById("valorTempo").innerHTML = texto;
 
 
@@ -673,7 +809,11 @@ document.getElementById("valorTempo").innerHTML = texto;
 
 
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 
 
@@ -683,7 +823,10 @@ document.getElementById("valorTempo").innerHTML = texto;
 
 
 
+
+
+
 </body>
 
-</html>
 
+</html>
