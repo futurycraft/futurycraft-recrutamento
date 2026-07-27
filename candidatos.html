@@ -7,21 +7,34 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Candidatura - FuturyCraft</title>
+
+<title>
+Candidatura Staff • FuturyCraft
+</title>
+
 
 
 <link rel="stylesheet" href="./css/candidatos.css">
 
+
+
 </head>
+
 
 
 <body>
 
 
+
 <div class="recruit-container">
 
 
+
 <div class="recruit-card">
+
+
+
+<div class="recruit-header">
 
 
 <h1>
@@ -39,20 +52,37 @@ Preencha seus dados corretamente para iniciar sua candidatura.
 </p>
 
 
+</div>
+
+
+
+
+
 
 <form id="form-candidatos">
 
+
+
+
+
+<!-- ======================
+     PRIMEIRA ETAPA
+======================= -->
 
 
 <div id="pagina1">
 
 
 
+
+
 <div class="form-group">
+
 
 <label>
 Nome completo
 </label>
+
 
 
 <input 
@@ -61,16 +91,24 @@ id="nome_completo"
 placeholder="Exemplo: João Silva"
 required>
 
+
+
 </div>
+
+
+
+
 
 
 
 
 <div class="form-group">
 
+
 <label>
 Nick no Minecraft
 </label>
+
 
 
 <input 
@@ -79,16 +117,24 @@ id="nick"
 placeholder="Exemplo: Joao123"
 required>
 
+
+
 </div>
+
+
+
+
 
 
 
 
 <div class="form-group">
 
+
 <label>
 Usuário do Discord
 </label>
+
 
 
 <input 
@@ -97,7 +143,12 @@ id="discord"
 placeholder="Exemplo: joao#0000"
 required>
 
+
+
 </div>
+
+
+
 
 
 
@@ -112,6 +163,7 @@ Qual é sua idade?
 
 
 
+
 <input
 type="range"
 id="idade"
@@ -123,19 +175,26 @@ oninput="mostrarIdade(this.value)"
 
 
 
+
 <div class="idade-valor">
 
+
 Idade:
+
 <strong id="valorIdade">
 15
 </strong>
+
 anos
 
+
+</div>
+
+
+
 </div>
 
 
-
-</div>
 
 
 
@@ -158,7 +217,9 @@ required
 >
 
 
+
 </div>
+
 
 
 
@@ -175,6 +236,8 @@ Como você prefere ser identificado?
 
 
 
+
+
 <div class="sexo-container">
 
 
@@ -187,6 +250,7 @@ onclick="selecionarSexo(this,'Masculino')">
 Masculino
 
 </button>
+
 
 
 
@@ -219,6 +283,9 @@ Outro
 
 
 
+
+
+
 <input 
 type="hidden"
 id="genero"
@@ -226,7 +293,10 @@ required
 >
 
 
+
 </div>
+
+
 
 
 
@@ -244,23 +314,25 @@ INICIAR FORMULÁRIO
 
 
 
+
+
 </div>
 
-
-
-
-
-
-
+<!-- ======================
+     SEGUNDA ETAPA
+======================= -->
 
 
 <div id="pagina2" style="display:none;">
 
 
 
+
+
 <h2>
 Experiência e Disponibilidade
 </h2>
+
 
 
 
@@ -273,11 +345,16 @@ Conte um pouco sobre sua experiência e como você pode ajudar a equipe FuturyCr
 
 
 
+
+
 <div class="form-group">
+
 
 <label>
 Há quanto tempo você joga no FuturyCraft?
 </label>
+
+
 
 
 <input
@@ -291,17 +368,27 @@ oninput="mostrarTempo(this.value)"
 
 
 
+
+
 <div class="tempo-valor">
 
+
 Tempo:
+
 <strong id="valorTempo">
 1 mês
 </strong>
 
-</div>
 
 
 </div>
+
+
+
+</div>
+
+
+
 
 
 
@@ -309,16 +396,21 @@ Tempo:
 
 
 <div class="form-group">
+
 
 <label>
 Qual sua disponibilidade diária?
 </label>
 
 
+
+
 <textarea
 id="disponibilidade"
 placeholder="Exemplo: Todos os dias das 18h às 23h"
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
@@ -329,17 +421,24 @@ required></textarea>
 
 
 
+
+
 <div class="form-group">
+
 
 <label>
 Por que deseja entrar para a equipe?
 </label>
 
 
+
+
 <textarea
 id="motivo"
 placeholder="Explique seus motivos..."
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
@@ -350,20 +449,29 @@ required></textarea>
 
 
 
+
+
 <div class="form-group">
+
 
 <label>
 Como você ajudaria o servidor?
 </label>
 
 
+
+
 <textarea
 id="ajuda"
 placeholder="Conte suas ideias e como poderia contribuir..."
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
+
+
 
 
 
@@ -373,18 +481,26 @@ required></textarea>
 
 <div class="form-group">
 
+
 <label>
 O que faria ao suspeitar de um jogador utilizando hack?
 </label>
 
 
+
+
 <textarea
 id="hack"
 placeholder="Explique como você agiria nessa situação..."
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
+
+
+
 
 
 
@@ -401,7 +517,11 @@ Enviar Candidatura
 
 
 
+
+
+
 </div>
+
 
 
 
@@ -410,23 +530,27 @@ Enviar Candidatura
 </form>
 
 
+
+
+
 </div>
 
 
 </div>
-
-
-
-
 
 <script>
 
 
 function mostrarIdade(valor){
 
+
 document.getElementById("valorIdade").innerHTML = valor;
 
+
 }
+
+
+
 
 
 
@@ -439,13 +563,19 @@ function selecionarSexo(botao,valor){
 document.querySelectorAll(".sexo-btn")
 .forEach(btn=>{
 
+
 btn.classList.remove("selecionado");
+
 
 });
 
 
 
+
+
 botao.classList.add("selecionado");
+
+
 
 
 
@@ -456,15 +586,16 @@ document.getElementById("genero").value = valor;
 }
 
 
-</script>
 
-<script>
+
 
 
 function mostrarTempo(valor){
 
 
+
 valor = Number(valor);
+
 
 
 
@@ -472,28 +603,41 @@ let texto;
 
 
 
+
+
 if(valor < 12){
+
 
 
 texto = valor + (valor == 1 ? " mês" : " meses");
 
 
+
 }else{
+
 
 
 let anos = Math.floor(valor / 12);
 
+
+
 let meses = valor % 12;
+
+
+
 
 
 
 if(meses == 0){
 
 
+
 texto = anos + (anos == 1 ? " ano" : " anos");
 
 
+
 }else{
+
 
 
 texto =
@@ -502,10 +646,15 @@ anos + (anos == 1 ? " ano " : " anos ")
 meses + " meses";
 
 
+
 }
 
 
+
 }
+
+
+
 
 
 
@@ -516,14 +665,25 @@ document.getElementById("valorTempo").innerHTML = texto;
 }
 
 
+
 </script>
+
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
+
+
 <script src="./js/script.js"></script>
+
 
 
 
 </body>
 
 </html>
+
