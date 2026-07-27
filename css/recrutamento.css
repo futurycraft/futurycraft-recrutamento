@@ -1068,17 +1068,17 @@ margin:auto;
 flex-direction:column;
 
 
-justify-content:center;
+justify-content:flex-start;
 
-
-/* corrigido para não forçar scroll */
 
 min-height:auto;
 
 
+transform:translateY(-60px);
+
+
 
 }
-
 
 
 
@@ -1106,7 +1106,7 @@ margin-bottom:8px;
 #segunda-etapa .recruit-badge{
 
 
-margin-bottom:25px;
+margin-bottom:8px;
 
 
 
