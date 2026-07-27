@@ -1,244 +1,685 @@
-// ==========================================
-// FUTURYCRAFT - SISTEMA DE CANDIDATURA STAFF
-// ==========================================
+/* ===========================================
+   FUTURYCRAFT - RECRUTAMENTO STAFF
+   SCRIPT.JS
+=========================================== */
 
 
-// Conexão Supabase final2
+/* ===========================================
+   DADOS DOS CARGOS
+=========================================== */
 
-const SUPABASE_URL = "https://jssscxlnzytmwzbabvhu.supabase.co";
 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzc3NjeGxuenl0bXd6YmFidmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NzE2NzcsImV4cCI6MjEwMDA0NzY3N30.Ku_HJdFQYyEmLmjkynye90l0bpM0MbbFVJPZDMCEOXQ";
+const roles = {
 
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+ajudante:{
 
 
-console.log("Supabase FuturyCraft conectado!");
+name:"Ajudante",
 
 
+level:"Nível 1",
 
-// ==========================================
-// ENVIO DA CANDIDATURA
-// ==========================================
 
+image:"./assets/staff/ajudante.png",
 
-const formulario = document.querySelector("#form-candidatos");
 
+description:
 
-if(formulario){
+"Primeiro cargo da equipe. Responsável por auxiliar jogadores, responder dúvidas e ajudar na organização inicial da comunidade.",
 
 
-    formulario.addEventListener("submit", async (e)=>{
+permissions:[
 
+"Atendimento aos jogadores",
 
-        e.preventDefault();
+"Auxílio em dúvidas básicas",
 
+"Reportar problemas para superiores",
 
+"Ajudar novos membros"
 
-        const dados = {
+]
 
 
-            // Página 1
+},
 
-            nome_completo:
-            document.querySelector("#nome_completo").value,
 
 
-            nick:
-            document.querySelector("#nick").value,
 
+moderador:{
 
-            discord:
-            document.querySelector("#discord").value,
 
+name:"Moderador",
 
-            idade:
-            document.querySelector("#idade").value,
 
+level:"Nível 2",
 
-            data_nascimento:
-            document.querySelector("#data_nascimento").value,
 
+image:"./assets/staff/moderador.png",
 
-            genero:
-            document.querySelector("#genero").value,
 
+description:
 
+"Responsável por manter a organização da comunidade e garantir que as regras sejam cumpridas.",
 
-            // Página 2
 
-            tempo:
-            document.querySelector("#tempo").value,
+permissions:[
 
+"Moderação do chat",
 
-            disponibilidade:
-            document.querySelector("#disponibilidade").value,
+"Aplicação de punições",
 
+"Análise de denúncias",
 
-            motivo:
-            document.querySelector("#motivo").value,
+"Organização da comunidade"
 
+]
 
-            ajuda:
-            document.querySelector("#ajuda").value,
 
+},
 
-            hack:
-            document.querySelector("#hack").value,
 
 
 
-            status:"Pendente"
+admin:{
 
 
-        };
+name:"Administrador",
 
 
+level:"Nível 3",
 
-        console.log("Enviando candidatura:", dados);
 
+image:"./assets/staff/admin.png",
 
 
-        const {data,error} = await supabaseClient
+description:
 
-        .from("candidatos")
+"Atua na administração operacional do servidor, ajudando no controle dos sistemas e da equipe.",
 
-        .insert([dados]);
 
+permissions:[
 
+"Gerenciamento de sistemas",
 
-        if(error){
+"Suporte avançado",
 
+"Auxílio aos cargos superiores",
 
-            console.error("Erro Supabase:", error);
+"Organização interna"
 
+]
 
-            alert("Erro ao enviar candidatura!");
 
-            return;
+},
 
 
-        }
 
 
+gerente:{
 
-        alert("Candidatura enviada com sucesso!");
 
+name:"Gerente",
 
 
-        formulario.reset();
+level:"Nível 4",
 
 
+image:"./assets/staff/gerente.png",
 
-    });
+
+description:
+
+"Coordena equipes e acompanha o desempenho dos membros da Staff.",
+
+
+permissions:[
+
+"Gerenciamento de equipes",
+
+"Avaliação de membros",
+
+"Planejamento de melhorias",
+
+"Organização de projetos"
+
+]
+
+
+},
+
+
+
+
+diretor:{
+
+
+name:"Diretor",
+
+
+level:"Nível 5",
+
+
+image:"./assets/staff/diretor.png",
+
+
+description:
+
+"Maior nível da hierarquia operacional. Responsável pela liderança e decisões importantes do projeto.",
+
+
+permissions:[
+
+"Liderança da equipe",
+
+"Decisões administrativas",
+
+"Planejamento do servidor",
+
+"Gestão geral do projeto"
+
+]
 
 
 }
 
-//novo botao index
+
+};
+
+
+
+
+/* ===========================================
+   ABRIR CARGO
+=========================================== */
+
 
 function openRole(role){
 
-    console.log("Abrindo cargo:", role);
 
 
-    let modal = document.getElementById(role);
-    let overlay = document.getElementById("overlay");
+const data = roles[role];
 
 
-    if(!modal){
+if(!data){
 
-        console.log("Modal não encontrado");
+console.error(
+"Cargo não encontrado:",
+role
+);
 
-        return;
-
-    }
-
-
-    modal.classList.add("active");
-
-    overlay.style.display = "block";
+return;
 
 }
 
+
+
+
+// CARD PRINCIPAL
+
+
+const image = document.getElementById(
+"roleImage"
+);
+
+
+const title = document.getElementById(
+"roleTitle"
+);
+
+
+const level = document.getElementById(
+"roleLevel"
+);
+
+
+const description = document.getElementById(
+"roleDescription"
+);
+
+
+const list = document.getElementById(
+"roleList"
+);
+
+
+
+
+if(image)
+image.src = data.image;
+
+
+
+if(title)
+title.innerText = data.name;
+
+
+
+if(level)
+level.innerText = data.level;
+
+
+
+if(description)
+description.innerText = data.description;
+
+
+
+
+if(list){
+
+
+list.innerHTML="";
+
+
+data.permissions.forEach(item=>{
+
+
+const li=document.createElement(
+"li"
+);
+
+
+li.innerText=item;
+
+
+list.appendChild(li);
+
+
+});
+
+
+}
+
+
+
+
+// MODAL
+
+
+const modal =
+document.getElementById(
+"roleModal"
+);
+
+
+
+const modalImage =
+document.getElementById(
+"modalRoleImage"
+);
+
+
+
+const modalTitle =
+document.getElementById(
+"modalRoleTitle"
+);
+
+
+
+const modalLevel =
+document.getElementById(
+"modalRoleLevel"
+);
+
+
+
+const modalText =
+document.getElementById(
+"modalRoleText"
+);
+
+
+
+const modalList =
+document.getElementById(
+"modalRoleList"
+);
+
+
+
+if(modalImage)
+modalImage.src=data.image;
+
+
+
+if(modalTitle)
+modalTitle.innerText=data.name;
+
+
+
+if(modalLevel)
+modalLevel.innerText=data.level;
+
+
+
+if(modalText)
+modalText.innerText=data.description;
+
+
+
+if(modalList){
+
+
+modalList.innerHTML="";
+
+
+data.permissions.forEach(item=>{
+
+
+const li=document.createElement(
+"li"
+);
+
+
+li.innerText=item;
+
+
+modalList.appendChild(li);
+
+
+});
+
+
+}
+
+
+
+if(modal){
+
+modal.classList.add(
+"active"
+);
+
+}
+
+
+
+}
+
+/* ===========================================
+   FECHAR MODAL
+=========================================== */
 
 
 function closeRole(){
 
 
-    let modais = document.querySelectorAll(".role-info");
+const modal = document.getElementById(
+"roleModal"
+);
 
 
-    modais.forEach(function(modal){
 
-        modal.classList.remove("active");
+if(modal){
 
-    });
-
-
-    let overlay = document.getElementById("overlay");
-
-
-    overlay.style.display="none";
-
-
-}
-
-//1111
-
-// ==========================================
-// NAVEGAÇÃO ENTRE PÁGINAS
-// ==========================================
-
-function mostrarPagina2(){
-
-    console.log("Mudando para página 2");
-    
-    const pagina1 = document.getElementById("pagina1");
-    const pagina2 = document.getElementById("pagina2");
-
-
-    if(pagina1 && pagina2){
-
-        pagina1.style.display = "none";
-
-        pagina2.style.display = "block";
-
-    }
+modal.classList.remove(
+"active"
+);
 
 }
 
 
-/*teste anuncio*/
-
-console.log("SCRIPT FUTURYCRAFT CARREGADO");
-
-// FECHAR AO CLICAR NO FUNDO ESCURO
-
-const overlay = document.getElementById("overlay");
-
-if(overlay){
-
-    overlay.addEventListener("click", function(){
-
-        closeRole();
-
-    });
-
 }
 
 
-// FECHAR COM ESC
 
-document.addEventListener("keydown", function(event){
 
-    if(event.key === "Escape"){
 
-        closeRole();
+/* ===========================================
+   FECHAR COM TECLA ESC
+=========================================== */
 
-    }
+
+document.addEventListener(
+"keydown",
+(event)=>{
+
+
+if(event.key === "Escape"){
+
+
+closeRole();
+
+
+}
+
 
 });
+
+
+
+
+
+
+
+/* ===========================================
+   ANIMAÇÃO DOS ELEMENTOS
+=========================================== */
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+
+const elements = document.querySelectorAll(
+".staff-role, .requirement-card, .benefit-card, .timeline-item, .hero-stat"
+);
+
+
+
+elements.forEach(
+(element,index)=>{
+
+
+element.style.opacity="0";
+
+
+element.style.transform=
+"translateY(30px)";
+
+
+
+setTimeout(()=>{
+
+
+element.style.transition=
+"all .6s ease";
+
+
+element.style.opacity="1";
+
+
+element.style.transform=
+"translateY(0)";
+
+
+
+},index * 100);
+
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+/* ===========================================
+   EFEITO PARALLAX SUAVE
+=========================================== */
+
+
+document.addEventListener(
+"mousemove",
+(event)=>{
+
+
+
+const image =
+document.querySelector(
+".ImagemPrincipal"
+);
+
+
+
+if(!image)
+return;
+
+
+
+const x =
+(event.clientX /
+window.innerWidth - .5)
+* 10;
+
+
+
+const y =
+(event.clientY /
+window.innerHeight - .5)
+* 10;
+
+
+
+
+image.style.transform =
+`
+translate(${x}px, ${y}px)
+`;
+
+
+
+});
+
+
+
+
+
+
+
+/* ===========================================
+   SCROLL SUAVE NOS BOTÕES
+=========================================== */
+
+
+const scrollButtons =
+document.querySelectorAll(
+"[data-scroll]"
+);
+
+
+
+scrollButtons.forEach(
+(button)=>{
+
+
+button.addEventListener(
+"click",
+()=>{
+
+
+const target =
+document.querySelector(
+button.dataset.scroll
+);
+
+
+
+if(target){
+
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+
+}
+
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+/* ===========================================
+   FALLBACK DE IMAGENS
+=========================================== */
+
+
+document.querySelectorAll(
+"img"
+)
+.forEach(
+(img)=>{
+
+
+img.addEventListener(
+"error",
+()=>{
+
+
+console.warn(
+"Imagem não encontrada:",
+img.src
+);
+
+
+
+img.style.opacity=".3";
+
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+/* ===========================================
+   ANO AUTOMÁTICO FOOTER
+=========================================== */
+
+
+const year =
+document.querySelector(
+"#currentYear"
+);
+
+
+
+if(year){
+
+
+year.innerText =
+new Date()
+.getFullYear();
+
+
+}
+
