@@ -32,84 +32,38 @@ body{
     min-height:100vh;
 
 
-
     font-family:
     'Montserrat',
     Arial,
     sans-serif;
 
 
-
     color:white;
-
 
 
     background:
 
 
     radial-gradient(
-        circle at top,
-        #162b4a 0%,
-        #080d18 35%,
+        circle at 50% 0%,
+        #18345a 0%,
+        #08111f 35%,
         #020308 80%
     );
-
 
 
     overflow-x:hidden;
 
 
-
-}
-
-
-
-
-
-
-
-/* partículas / brilho do fundo */
-
-
-body::before{
-
-
-    content:"";
-
-
-
-    position:fixed;
-
-
-
-    inset:0;
-
-
-
-    background:
-
-
-    radial-gradient(
-        circle,
-        rgba(0,234,255,.15) 1px,
-        transparent 1px
-    );
-
-
-
-    background-size:45px 45px;
-
-
-
-    opacity:.25;
-
-
-
-    pointer-events:none;
-
+    position:relative;
 
 
 }
+
+
+
+
+
 
 
 
@@ -129,21 +83,16 @@ body::before{
     min-height:100vh;
 
 
-
     display:flex;
-
 
 
     justify-content:center;
 
 
-
     align-items:center;
 
 
-
-    padding:60px 25px;
-
+    padding:80px 40px;
 
 
 }
@@ -166,54 +115,47 @@ body::before{
     width:100%;
 
 
-
-    max-width:760px;
-
+    max-width:680px;
 
 
-    padding:35px;
+    padding:30px;
 
 
 
     background:
 
 
-    rgba(10,18,32,.88);
+    linear-gradient(
+        145deg,
+        rgba(12,22,38,.92),
+        rgba(3,8,16,.92)
+    );
 
 
 
-    border-radius:24px;
+    border-radius:22px;
 
 
 
-    border:1px solid rgba(0,234,255,.18);
+    border:1px solid rgba(0,234,255,.25);
 
 
 
     box-shadow:
 
 
-
-    0 0 45px rgba(0,234,255,.12),
-
+    0 0 35px rgba(0,234,255,.12),
 
 
-    inset 0 0 40px rgba(255,255,255,.02);
+    inset 0 0 25px rgba(255,255,255,.03);
 
 
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(12px);
 
 
 
     position:relative;
-
-
-
-    animation:
-
-    aparecer .6s ease;
-
 
 
 }
@@ -353,11 +295,11 @@ body::before{
 .recruit-logo{
 
 
-    width:110px;
+    width:90px;
 
 
 
-    height:110px;
+    height:90px;
 
 
 
