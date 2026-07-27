@@ -30,8 +30,23 @@ FuturyCraft • Recrutamento Staff
 
 
 
+<div class="particles">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+
+
+
 
 <div class="recruit-container">
+
 
 
 
@@ -44,27 +59,36 @@ FuturyCraft • Recrutamento Staff
 
 
 
+
 <header class="recruit-header">
 
 
 
 
 
-<img 
+<div class="logo-area">
+
+
+<img
 src="./assets/logo.png"
 class="recruit-logo"
 alt="FuturyCraft">
 
 
+</div>
 
 
+
+
+
+
+
+<div class="header-text">
 
 
 <h1>
 FuturyCraft
 </h1>
-
-
 
 
 
@@ -74,11 +98,12 @@ Recrutamento Staff
 
 
 
-
-
 <p>
-Preencha sua candidatura e faça parte da equipe FuturyCraft.
+Faça parte da equipe que constrói o futuro do servidor.
 </p>
+
+
+</div>
 
 
 
@@ -93,21 +118,43 @@ Preencha sua candidatura e faça parte da equipe FuturyCraft.
 
 
 
+
 <div class="etapas">
+
+
+
 
 
 
 <div class="etapa ativa">
 
-<span>
+
+<div class="numero">
 01
-</span>
+</div>
 
 
+<div>
+
+<strong>
 Dados pessoais
+</strong>
+
+
+<small>
+Informações básicas
+</small>
 
 
 </div>
+
+
+
+</div>
+
+
+
+
 
 
 
@@ -119,14 +166,33 @@ Dados pessoais
 
 
 
+
+
+
+
 <div class="etapa">
 
-<span>
+
+<div class="numero">
 02
-</span>
+</div>
 
 
+<div>
+
+
+<strong>
 Experiência
+</strong>
+
+
+<small>
+Perfil da equipe
+</small>
+
+
+</div>
+
 
 
 </div>
@@ -134,7 +200,9 @@ Experiência
 
 
 
+
 </div>
+
 
 
 
@@ -151,7 +219,41 @@ Experiência
 
 
 
+
 <section id="pagina1">
+
+
+
+
+
+<div class="section-title">
+
+
+<h3>
+Informações pessoais
+</h3>
+
+
+<p>
+Preencha seus dados para iniciar sua candidatura.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="form-grid">
+
+
+
+
 
 
 
@@ -164,7 +266,7 @@ Nome completo
 
 
 
-<input 
+<input
 type="text"
 id="nome_completo"
 placeholder="Exemplo: João Silva"
@@ -172,6 +274,9 @@ required>
 
 
 </div>
+
+
+
 
 
 
@@ -199,6 +304,9 @@ required>
 
 
 
+
+
+
 <div class="form-group">
 
 
@@ -217,14 +325,19 @@ required>
 
 </div>
 
+
+
+
+
+
+
+
 <div class="form-group">
 
 
 <label>
-Qual é sua idade?
+Qual sua idade?
 </label>
-
-
 
 
 
@@ -239,10 +352,7 @@ oninput="mostrarIdade(this.value)"
 
 
 
-
-
-
-<div class="idade-valor">
+<div class="range-value">
 
 
 Idade:
@@ -257,8 +367,8 @@ anos
 </div>
 
 
-
 </div>
+
 
 
 
@@ -271,10 +381,8 @@ anos
 
 
 <label>
-Qual é sua data de nascimento?
+Data de nascimento
 </label>
-
-
 
 
 
@@ -286,6 +394,13 @@ required
 
 
 
+</div>
+
+
+
+
+
+
 
 </div>
 
@@ -301,9 +416,8 @@ required
 
 
 <label>
-Como você prefere ser identificado?
+Como prefere ser identificado?
 </label>
-
 
 
 
@@ -313,19 +427,16 @@ Como você prefere ser identificado?
 
 
 
-
-
-
 <button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Masculino')">
 
+
 Masculino
 
+
 </button>
-
-
 
 
 
@@ -336,11 +447,11 @@ type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Feminino')">
 
+
 Feminino
 
+
 </button>
-
-
 
 
 
@@ -351,17 +462,15 @@ type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Outro')">
 
+
 Outro
+
 
 </button>
 
 
 
-
-
 </div>
-
-
 
 
 
@@ -375,11 +484,7 @@ required
 
 
 
-
-
 </div>
-
-
 
 
 
@@ -396,7 +501,14 @@ onclick="mostrarPagina2()">
 CONTINUAR
 
 
+<span>
+→
+</span>
+
+
 </button>
+
+
 
 
 
@@ -405,20 +517,9 @@ CONTINUAR
 
 </section>
 
-
-
-
-
-
-
-
-
 <!-- ==========================
      SEGUNDA ETAPA
 ========================== -->
-
-
-
 
 
 
@@ -431,25 +532,28 @@ style="display:none;">
 
 
 
-
-<div class="pagina-header">
-
+<div class="section-title">
 
 
-<h2>
-Experiência e Disponibilidade
-</h2>
-
-
+<h3>
+Experiência e disponibilidade
+</h3>
 
 
 <p>
-Conte como você pode ajudar a equipe FuturyCraft.
+Conte como você pode contribuir para a equipe FuturyCraft.
 </p>
 
 
-
 </div>
+
+
+
+
+
+
+
+
 
 <div class="form-group">
 
@@ -475,22 +579,18 @@ oninput="mostrarTempo(this.value)"
 
 
 
-
-
-<div class="tempo-valor">
+<div class="range-value">
 
 
 Tempo:
+
 
 <strong id="valorTempo">
 1 mês
 </strong>
 
 
-
 </div>
-
-
 
 
 
@@ -514,15 +614,10 @@ Qual sua disponibilidade diária?
 
 
 
-
-
 <textarea
 id="disponibilidade"
 placeholder="Exemplo: Todos os dias das 18h às 23h"
-required>
-</textarea>
-
-
+required></textarea>
 
 
 
@@ -546,15 +641,10 @@ Por que deseja entrar para a equipe?
 
 
 
-
-
 <textarea
 id="motivo"
-placeholder="Explique seus motivos..."
-required>
-</textarea>
-
-
+placeholder="Explique seus motivos para querer fazer parte da Staff..."
+required></textarea>
 
 
 
@@ -578,15 +668,10 @@ Como você ajudaria o servidor?
 
 
 
-
-
 <textarea
 id="ajuda"
-placeholder="Conte suas ideias e como poderia contribuir..."
-required>
-</textarea>
-
-
+placeholder="Conte suas ideias e como poderia contribuir para o crescimento do FuturyCraft..."
+required></textarea>
 
 
 
@@ -610,21 +695,43 @@ O que faria ao suspeitar de um jogador utilizando hack?
 
 
 
-
-
 <textarea
 id="hack"
-placeholder="Explique como você agiria nessa situação..."
-required>
-</textarea>
-
-
+placeholder="Explique como você investigaria e resolveria essa situação..."
+required></textarea>
 
 
 
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+<div class="buttons-area">
+
+
+
+
+
+<button
+type="button"
+class="back-button"
+onclick="voltarPagina1()">
+
+
+← VOLTAR
+
+
+</button>
 
 
 
@@ -646,10 +753,15 @@ ENVIAR CANDIDATURA
 
 
 
+</div>
+
+
+
+
+
 
 
 </section>
-
 
 
 
@@ -664,7 +776,15 @@ ENVIAR CANDIDATURA
 
 
 
+
+
 </div>
+
+
+
+
+
+
 
 
 </div>
@@ -687,11 +807,13 @@ document.getElementById("valorIdade").innerHTML = valor;
 
 
 
+
 function selecionarSexo(botao,valor){
 
 
 
-document.querySelectorAll(".sexo-btn")
+document
+.querySelectorAll(".sexo-btn")
 .forEach(btn=>{
 
 
@@ -699,6 +821,7 @@ btn.classList.remove("selecionado");
 
 
 });
+
 
 
 
@@ -732,7 +855,6 @@ valor = Number(valor);
 
 
 
-
 let texto;
 
 
@@ -752,7 +874,6 @@ texto = valor + (valor == 1 ? " mês" : " meses");
 
 
 let anos = Math.floor(valor / 12);
-
 
 
 let meses = valor % 12;
@@ -802,6 +923,126 @@ document.getElementById("valorTempo").innerHTML = texto;
 
 
 
+
+
+
+
+
+
+
+
+
+
+function mostrarPagina2(){
+
+
+
+let pagina1 = document.getElementById("pagina1");
+
+let pagina2 = document.getElementById("pagina2");
+
+
+
+
+
+pagina1.style.display = "none";
+
+
+pagina2.style.display = "block";
+
+
+
+
+
+document.querySelectorAll(".etapa")[0]
+.classList.remove("ativa");
+
+
+
+document.querySelectorAll(".etapa")[1]
+.classList.add("ativa");
+
+
+
+
+
+
+window.scrollTo({
+
+
+top:0,
+
+
+behavior:"smooth"
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function voltarPagina1(){
+
+
+
+let pagina1 = document.getElementById("pagina1");
+
+let pagina2 = document.getElementById("pagina2");
+
+
+
+
+pagina2.style.display = "none";
+
+
+pagina1.style.display = "block";
+
+
+
+
+
+document.querySelectorAll(".etapa")[1]
+.classList.remove("ativa");
+
+
+
+document.querySelectorAll(".etapa")[0]
+.classList.add("ativa");
+
+
+
+
+
+
+window.scrollTo({
+
+
+top:0,
+
+
+behavior:"smooth"
+
+
+});
+
+
+
+}
+
+
+
+
+
+
 </script>
 
 
@@ -819,6 +1060,7 @@ document.getElementById("valorTempo").innerHTML = texto;
 
 
 <script src="./js/script.js"></script>
+
 
 
 
