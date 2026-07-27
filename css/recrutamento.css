@@ -1,109 +1,65 @@
-/* ===================================
-   RECRUTAMENTO FUTURYCRAFT
-=================================== */
+/* ===========================================
+   FUTURYCRAFT - RECRUTAMENTO STAFF
+   RECRUTAMENTO.CSS
+=========================================== */
 
 
-.recruit-container {
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:30px 20px;
-
-}
+/* ===========================================
+   RESET
+=========================================== */
 
 
+*{
 
-/* CARD PRINCIPAL */
+margin:0;
+padding:0;
+box-sizing:border-box;
 
-.recruit-card {
-
-    width:100%;
-
-    max-width:850px;
-
-    padding:35px;
-
-    background:#171618;
-
-    border-radius:20px;
+font-family:'Montserrat',sans-serif;
 
 }
 
 
 
 
+html{
 
-/* LOGO */
-
-.recruit-logo {
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    margin-bottom:18px;
-
-}
-
-
-
-.recruit-logo img {
-
-    width:55px;
-
-    height:55px;
-
-    object-fit:contain;
-
-    display:block;
-
-    user-select:none;
+scroll-behavior:smooth;
 
 }
 
 
 
 
+body{
 
 
-/* TITULO */
+min-height:100vh;
 
 
-.recruit-card h1 {
-
-    font-size:38px;
-
-    text-align:center;
-
-    margin-bottom:15px;
-
-}
+background:
 
 
-
-.recruit-card h1 span {
-
-
-    color:#ff9900;
-
-
-    display:block;
+radial-gradient(
+circle at top,
+rgba(0,217,255,.18),
+transparent 35%
+),
 
 
-    font-size:20px;
+linear-gradient(
+135deg,
+#030712,
+#050816 60%,
+#02030a
+);
 
 
-    margin-top:3px;
+
+color:#fff;
+
+
+overflow-x:hidden;
 
 
 }
@@ -113,27 +69,46 @@
 
 
 
-/* DESCRIÇÃO */
+
+/* ===========================================
+   LOGO SUPERIOR
+=========================================== */
 
 
-.recruit-description {
+.page-logo{
 
 
-    max-width:560px;
+position:absolute;
 
 
-    margin:
-
-    0 auto 25px;
+top:25px;
 
 
-    color:#a1a1aa;
+left:50%;
 
 
-    font-size:14px;
+transform:translateX(-50%);
 
 
-    line-height:1.6;
+z-index:10;
+
+
+}
+
+
+
+.page-logo img{
+
+
+width:140px;
+
+
+filter:
+
+
+drop-shadow(
+0 0 30px rgba(0,217,255,.8)
+);
 
 
 }
@@ -142,39 +117,30 @@
 
 
 
-/* BOXES */
-
-
-.recruit-box {
-
-    width:100%;
-
-    padding:20px;
-
-    margin-bottom:20px;
-
-}
 
 
 
+/* ===========================================
+   PARTÍCULAS
+=========================================== */
 
 
-.recruit-box h2 {
+.particles{
 
 
-    font-size:15px;
+position:fixed;
 
 
-    font-weight:700;
+inset:0;
 
 
-    color:#ff9900;
+overflow:hidden;
 
 
-    text-align:center;
+pointer-events:none;
 
 
-    margin-bottom:12px;
+z-index:0;
 
 
 }
@@ -183,56 +149,30 @@
 
 
 
-.recruit-box ul {
+.particle{
 
 
-    padding:0;
-
-    margin:0;
+position:absolute;
 
 
-    list-style:none;
+width:4px;
 
 
-}
+height:4px;
 
 
-
-.recruit-box li {
-
-
-    font-size:13px;
+background:#00d9ff;
 
 
-    color:#c4c4c8;
+border-radius:50%;
 
 
-    padding:7px 0 7px 25px;
+opacity:.5;
 
 
-    position:relative;
+animation:
 
-
-}
-
-
-
-.recruit-box li::before {
-
-
-    content:"✓";
-
-
-    position:absolute;
-
-
-    left:0;
-
-
-    color:#ff9900;
-
-
-    font-weight:bold;
+particleMove 12s infinite linear;
 
 
 }
@@ -241,78 +181,61 @@
 
 
 
-/* BOTÃO */
+.particle:nth-child(1){
 
+left:10%;
 
-.recruit-button {
+top:90%;
 
-
-    width:100%;
-
-
-    max-width:420px;
-
-
-    height:55px;
-
-
-    margin:
-
-    25px auto 0;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    border-radius:10px;
-
-
-    background:
-
-
-    linear-gradient(
-    135deg,
-    #ff9900,
-    #ff6500
-    );
-
-
-    color:white;
-
-
-    font-size:15px;
-
-
-    font-weight:800;
-
-
-    letter-spacing:.06em;
-
-
-    text-decoration:none;
-
-
-    transition:.25s;
-
+animation-delay:0s;
 
 }
 
 
 
-.recruit-button:hover {
+.particle:nth-child(2){
+
+left:35%;
+
+top:80%;
+
+animation-delay:3s;
+
+}
 
 
-    transform:translateY(-3px);
+
+.particle:nth-child(3){
+
+left:60%;
+
+top:95%;
+
+animation-delay:6s;
+
+}
 
 
-    filter:brightness(1.12);
 
+.particle:nth-child(4){
+
+left:80%;
+
+top:75%;
+
+animation-delay:2s;
+
+}
+
+
+
+.particle:nth-child(5){
+
+left:90%;
+
+top:90%;
+
+animation-delay:5s;
 
 }
 
@@ -320,222 +243,1561 @@
 
 
 
-/* MOBILE */
+@keyframes particleMove{
+
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+
+
+30%{
+
+opacity:1;
+
+}
+
+
+
+100%{
+
+transform:translateY(-120vh);
+
+opacity:0;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   CONTAINER PRINCIPAL
+=========================================== */
+
+
+.recruit-container{
+
+
+position:relative;
+
+
+z-index:2;
+
+
+min-height:100vh;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+padding:110px 25px 40px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   CARD PRINCIPAL
+=========================================== */
+
+
+.recruit-card{
+
+
+width:100%;
+
+
+max-width:1050px;
+
+
+padding:45px;
+
+
+border-radius:35px;
+
+
+
+background:
+
+
+rgba(7,13,28,.85);
+
+
+
+
+border:
+
+
+1px solid rgba(0,217,255,.18);
+
+
+
+
+backdrop-filter:blur(15px);
+
+
+
+
+box-shadow:
+
+
+0 0 70px rgba(0,180,255,.15);
+
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   HEADER
+=========================================== */
+
+
+.recruit-header{
+
+
+text-align:center;
+
+
+max-width:850px;
+
+
+margin:auto;
+
+
+}
+
+
+
+
+
+.recruit-badge{
+
+
+display:inline-flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:10px;
+
+
+
+padding:10px 22px;
+
+
+
+border-radius:30px;
+
+
+
+background:
+
+
+rgba(0,217,255,.12);
+
+
+
+border:
+
+
+1px solid rgba(0,217,255,.3);
+
+
+
+color:#00d9ff;
+
+
+
+font-size:13px;
+
+
+
+font-weight:700;
+
+
+
+letter-spacing:1px;
+
+
+
+margin-bottom:25px;
+
+
+
+}
+
+
+
+
+.recruit-header h1{
+
+
+font-size:52px;
+
+
+line-height:1.1;
+
+
+font-weight:800;
+
+
+margin-bottom:25px;
+
+
+}
+
+
+
+
+.recruit-header h1 span{
+
+
+display:block;
+
+
+background:
+
+
+linear-gradient(
+90deg,
+#00d9ff,
+#7b5cff
+);
+
+
+
+-webkit-background-clip:text;
+
+
+-webkit-text-fill-color:transparent;
+
+
+}
+
+
+
+
+.recruit-description{
+
+
+max-width:750px;
+
+
+margin:0 auto 40px;
+
+
+
+font-size:17px;
+
+
+
+line-height:1.8;
+
+
+
+color:#aebbd0;
+
+
+
+}
+
+/* ===========================================
+   GRID DE INFORMAÇÕES
+=========================================== */
+
+
+.recruit-grid{
+
+
+display:grid;
+
+
+grid-template-columns:repeat(2,1fr);
+
+
+gap:25px;
+
+
+width:100%;
+
+
+margin-bottom:35px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   CARD DE INFORMAÇÃO
+=========================================== */
+
+
+.info-card{
+
+
+padding:30px;
+
+
+
+background:
+
+
+rgba(255,255,255,.04);
+
+
+
+
+border:
+
+
+1px solid rgba(255,255,255,.10);
+
+
+
+
+border-radius:25px;
+
+
+
+text-align:left;
+
+
+
+transition:.35s;
+
+
+
+}
+
+
+
+
+
+.info-card:hover{
+
+
+transform:translateY(-8px);
+
+
+
+border-color:
+
+
+rgba(0,217,255,.45);
+
+
+
+
+box-shadow:
+
+
+0 15px 40px rgba(0,217,255,.12);
+
+
+
+}
+
+
+
+
+
+
+
+.info-card h2{
+
+
+text-align:center;
+
+
+font-size:18px;
+
+
+font-weight:800;
+
+
+margin-bottom:25px;
+
+
+
+background:
+
+
+linear-gradient(
+90deg,
+#00d9ff,
+#7b5cff
+);
+
+
+
+-webkit-background-clip:text;
+
+
+-webkit-text-fill-color:transparent;
+
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   LISTAS
+=========================================== */
+
+
+.info-card ul{
+
+
+list-style:none;
+
+
+padding:0;
+
+
+}
+
+
+
+
+
+.info-card li{
+
+
+position:relative;
+
+
+padding:10px 0 10px 30px;
+
+
+
+font-size:14px;
+
+
+
+line-height:1.6;
+
+
+
+color:#cbd5e1;
+
+
+
+}
+
+
+
+
+
+.info-card li::before{
+
+
+content:"✓";
+
+
+position:absolute;
+
+
+left:0;
+
+
+top:10px;
+
+
+
+color:#00d9ff;
+
+
+
+font-weight:900;
+
+
+
+font-size:16px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   BOTÃO PRINCIPAL
+=========================================== */
+
+
+.recruit-button{
+
+
+width:100%;
+
+
+max-width:420px;
+
+
+
+height:58px;
+
+
+
+margin:10px auto 0;
+
+
+
+display:flex;
+
+
+
+align-items:center;
+
+
+
+justify-content:center;
+
+
+
+
+border-radius:16px;
+
+
+
+border:none;
+
+
+
+cursor:pointer;
+
+
+
+background:
+
+
+linear-gradient(
+135deg,
+#00d9ff,
+#006eff
+);
+
+
+
+
+color:white;
+
+
+
+font-size:15px;
+
+
+
+font-weight:800;
+
+
+
+letter-spacing:.08em;
+
+
+
+text-decoration:none;
+
+
+
+transition:.35s;
+
+
+
+box-shadow:
+
+
+0 10px 35px rgba(0,217,255,.35);
+
+
+
+}
+
+
+
+
+
+.recruit-button:hover{
+
+
+transform:translateY(-6px);
+
+
+
+box-shadow:
+
+
+0 20px 45px rgba(0,217,255,.5);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   SEGUNDA ETAPA
+=========================================== */
+
+
+.hidden-step{
+
+
+display:none;
+
+
+}
+
+
+
+
+
+
+
+#segunda-etapa{
+
+
+text-align:center;
+
+
+max-width:750px;
+
+
+margin:auto;
+
+
+
+}
+
+
+
+
+
+#segunda-etapa .recruit-description{
+
+
+margin-bottom:35px;
+
+
+}
+
+
+
+
+
+#segunda-etapa .recruit-badge{
+
+
+margin-bottom:25px;
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   ANIMAÇÕES DAS ETAPAS
+=========================================== */
+
+
+.fade-out{
+
+
+opacity:0;
+
+
+transform:translateY(-20px);
+
+
+
+transition:.4s ease;
+
+
+
+}
+
+
+
+
+
+.fade-in{
+
+
+animation:
+
+
+showStep .5s ease forwards;
+
+
+
+}
+
+
+
+
+
+@keyframes showStep{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:translateY(25px);
+
+
+}
+
+
+
+to{
+
+
+opacity:1;
+
+
+transform:translateY(0);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   EFEITO CARD ENTRADA
+=========================================== */
+
+
+.recruit-card{
+
+
+animation:
+
+
+cardEnter .8s ease;
+
+
+
+}
+
+
+
+
+@keyframes cardEnter{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:translateY(30px);
+
+
+
+}
+
+
+
+to{
+
+
+opacity:1;
+
+
+transform:translateY(0);
+
+
+
+}
+
+
+
+}
+
+/* ===========================================
+   AJUSTES DE TELA PRINCIPAL
+=========================================== */
+
+
+/*
+   Mantém o conteúdo centralizado
+   sem criar rolagem desnecessária
+*/
+
+
+@media(min-width:1000px){
+
+
+.recruit-container{
+
+
+padding-top:90px;
+
+
+padding-bottom:30px;
+
+
+
+}
+
+
+
+
+
+.recruit-card{
+
+
+padding:40px;
+
+
+
+}
+
+
+
+
+
+.recruit-header h1{
+
+
+font-size:48px;
+
+
+
+}
+
+
+
+
+
+.recruit-description{
+
+
+margin-bottom:30px;
+
+
+
+}
+
+
+
+
+
+.info-card{
+
+
+padding:25px;
+
+
+
+}
+
+
+
+
+
+.info-card li{
+
+
+padding-top:8px;
+
+
+padding-bottom:8px;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   TABLET
+=========================================== */
+
+
+@media(max-width:1000px){
+
+
+
+.recruit-container{
+
+
+padding:100px 20px 40px;
+
+
+
+}
+
+
+
+
+.recruit-card{
+
+
+max-width:850px;
+
+
+padding:35px;
+
+
+
+}
+
+
+
+
+
+.recruit-header h1{
+
+
+font-size:42px;
+
+
+
+}
+
+
+
+
+
+.recruit-grid{
+
+
+grid-template-columns:1fr;
+
+
+
+}
+
+
+
+
+.info-card{
+
+
+text-align:left;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===========================================
+   MOBILE
+=========================================== */
 
 
 @media(max-width:700px){
 
 
-.recruit-card {
+
+.page-logo{
 
 
-    padding:30px 20px;
+top:20px;
+
 
 
 }
 
 
 
-.recruit-card::before {
+.page-logo img{
 
 
-    width:80px;
+width:100px;
 
-    height:80px;
 
 
 }
 
 
 
-.recruit-card h1 {
 
 
-    font-size:22px;
+
+.recruit-container{
+
+
+padding:90px 15px 30px;
+
 
 
 }
 
 
-}
-/* recrutamenteo css*/
-
-/* ESCONDE A SEGUNDA ETAPA */
-
-#introducao {
-
-    display:none;
-
-}
 
 
-/* MOSTRA APÓS CLICAR */
+.recruit-card{
 
-#introducao.active {
 
-    display:block;
+padding:25px 20px;
+
+
+border-radius:25px;
+
+
 
 }
 
 
 
-.recruit-button {
-
-    cursor:pointer;
-
-}
-
-/* SEGUNDA ETAPA RECRUTAMENTO */
-
-#introducao {
-
-    max-width:650px;
-
-    margin:auto;
-
-}
 
 
-#introducao h1 {
+.recruit-header h1{
 
-    text-align:center;
 
-    font-size:32px;
+font-size:32px;
 
-    margin-bottom:20px;
+
+line-height:1.2;
+
+
 
 }
 
 
 
-#introducao .recruit-description {
 
-    text-align:center;
 
-    line-height:1.7;
+.recruit-badge{
 
-    font-size:15px;
 
-    margin-bottom:25px;
+font-size:11px;
+
+
+
+padding:8px 16px;
+
+
 
 }
 
 
 
-#introducao .recruit-box {
 
-    padding:20px;
 
-    margin-bottom:25px;
+.recruit-description{
+
+
+font-size:15px;
+
+
+
+line-height:1.6;
+
+
+
+margin-bottom:25px;
+
+
 
 }
 
 
 
-#introducao .recruit-box h2 {
 
-    font-size:18px;
 
-    margin-bottom:15px;
+.recruit-grid{
+
+
+grid-template-columns:1fr;
+
+
+
+gap:18px;
+
+
 
 }
 
 
 
-#introducao li {
-
-    margin-bottom:8px;
-
-    font-size:14px;
-
-}
 
 
-/* LOGO TOPO ESQUERDO */
-
-.top-logo {
-
-    position: fixed;
-
-    top: 20px;
-
-    left: 25px;
-
-    z-index: 100;
-
-}
+.info-card{
 
 
-.top-logo img {
-
-    width: 55px;
-
-    height: auto;
-
-    display: block;
-
-}
-
-/* ================================
-   CONTROLE DAS ETAPAS
-================================ */
+padding:22px;
 
 
-/* SEGUNDA TELA ESCONDIDA AO ABRIR */
 
-#introducao {
+border-radius:20px;
 
-    display: none !important;
+
 
 }
 
 
 
-/* SEGUNDA TELA APÓS CLICAR */
-
-#introducao.active {
-
-    display: block !important;
-
-}
-
-/* ================================
-   REQUISITOS LADO A LADO
-================================ */
 
 
-.recruit-columns {
+.info-card h2{
 
-    display:flex;
 
-    gap:20px;
+font-size:16px;
 
-    width:100%;
+
 
 }
 
 
 
-.recruit-columns .recruit-box {
 
-    flex:1;
 
-    width:auto;
+.info-card li{
 
-    margin-bottom:0;
+
+font-size:13px;
+
+
+
+padding-left:28px;
+
+
 
 }
 
 
 
-/* MOBILE */
 
-@media(max-width:700px){
 
-    .recruit-columns {
+.recruit-button{
 
-        flex-direction:column;
 
-    }
+height:52px;
+
+
+
+font-size:13px;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+/* ===========================================
+   CELULARES PEQUENOS
+=========================================== */
+
+
+@media(max-width:400px){
+
+
+
+.recruit-header h1{
+
+
+font-size:28px;
+
+
+
+}
+
+
+
+
+.recruit-card{
+
+
+padding:20px 15px;
+
+
+
+}
+
+
+
+
+
+.info-card{
+
+
+padding:18px;
+
+
+
+}
+
+
+
+}
+
+/* ===========================================
+   DETALHES FUTURISTAS
+=========================================== */
+
+
+/* brilho suave no card */
+
+.recruit-card::before{
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:0;
+
+
+border-radius:35px;
+
+
+background:
+
+
+linear-gradient(
+135deg,
+rgba(0,217,255,.12),
+transparent 40%
+);
+
+
+
+pointer-events:none;
+
+
+
+}
+
+
+
+
+
+.recruit-card{
+
+
+position:relative;
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   FOCO DOS ELEMENTOS
+=========================================== */
+
+
+.recruit-button:focus{
+
+
+outline:none;
+
+
+box-shadow:
+
+
+0 0 0 3px rgba(0,217,255,.35),
+0 15px 40px rgba(0,217,255,.35);
+
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   LINKS
+=========================================== */
+
+
+a{
+
+
+color:inherit;
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   SELEÇÃO DE TEXTO
+=========================================== */
+
+
+::selection{
+
+
+background:#00d9ff;
+
+
+color:#001018;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   ANIMAÇÃO SUAVE DO BOTÃO
+=========================================== */
+
+
+.recruit-button{
+
+
+position:relative;
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+
+
+.recruit-button::after{
+
+
+content:"";
+
+
+position:absolute;
+
+
+top:0;
+
+
+left:-100%;
+
+
+
+width:100%;
+
+
+height:100%;
+
+
+
+background:
+
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.25),
+transparent
+);
+
+
+
+transition:.6s;
+
+
+
+}
+
+
+
+
+
+.recruit-button:hover::after{
+
+
+left:100%;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   MELHORIAS PARA GRANDES TELAS
+=========================================== */
+
+
+@media(min-width:1400px){
+
+
+
+.recruit-card{
+
+
+max-width:1150px;
+
+
+
+}
+
+
+
+
+.recruit-header h1{
+
+
+font-size:55px;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+/* ===========================================
+   REDUÇÃO DE MOVIMENTO
+=========================================== */
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+
+*{
+
+
+animation-duration:.01ms!important;
+
+
+animation-iteration-count:1!important;
+
+
+transition-duration:.01ms!important;
+
+
+
+}
+
+
 
 }
