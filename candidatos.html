@@ -7,10 +7,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Candidatura - FuturyCraft</title>
+
+<title>
+Candidatura Staff • FuturyCraft
+</title>
 
 
 <link rel="stylesheet" href="./css/candidatos.css">
+
 
 </head>
 
@@ -18,10 +22,18 @@
 <body>
 
 
+
 <div class="recruit-container">
 
 
+
 <div class="recruit-card">
+
+
+
+<!-- HEADER -->
+
+<div class="recruit-header">
 
 
 <h1>
@@ -39,20 +51,81 @@ Preencha seus dados corretamente para iniciar sua candidatura.
 </p>
 
 
+</div>
+
+
+
+
+
+<!-- PROGRESSO -->
+
+
+<div class="form-progress">
+
+
+<div class="progress-step active">
+
+<span>
+1
+</span>
+
+<p>
+Dados pessoais
+</p>
+
+</div>
+
+
+
+<div class="progress-line"></div>
+
+
+
+<div class="progress-step">
+
+<span>
+2
+</span>
+
+<p>
+Experiência
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
 
 <form id="form-candidatos">
 
 
 
-<div id="pagina1">
+
+
+<!-- ======================
+     PAGINA 1
+======================= -->
+
+
+<div id="pagina1" class="form-page">
+
+
 
 
 
 <div class="form-group">
 
+
 <label>
 Nome completo
 </label>
+
 
 
 <input 
@@ -61,43 +134,60 @@ id="nome_completo"
 placeholder="Exemplo: João Silva"
 required>
 
+
 </div>
 
 
 
 
+
+
+
+
 <div class="form-group">
+
 
 <label>
 Nick no Minecraft
 </label>
 
 
-<input 
+
+<input
 type="text"
 id="nick"
 placeholder="Exemplo: Joao123"
 required>
 
+
 </div>
+
+
+
 
 
 
 
 <div class="form-group">
 
+
 <label>
 Usuário do Discord
 </label>
 
 
-<input 
+
+<input
 type="text"
 id="discord"
 placeholder="Exemplo: joao#0000"
 required>
 
+
 </div>
+
+
+
 
 
 
@@ -112,6 +202,7 @@ Qual é sua idade?
 
 
 
+
 <input
 type="range"
 id="idade"
@@ -123,12 +214,16 @@ oninput="mostrarIdade(this.value)"
 
 
 
+
+
 <div class="idade-valor">
 
 Idade:
+
 <strong id="valorIdade">
 15
 </strong>
+
 anos
 
 </div>
@@ -136,6 +231,8 @@ anos
 
 
 </div>
+
+
 
 
 
@@ -151,6 +248,7 @@ Qual é sua data de nascimento?
 
 
 
+
 <input
 type="date"
 id="data_nascimento"
@@ -158,7 +256,9 @@ required
 >
 
 
+
 </div>
+
 
 
 
@@ -175,11 +275,13 @@ Como você prefere ser identificado?
 
 
 
+
+
 <div class="sexo-container">
 
 
 
-<button 
+<button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Masculino')">
@@ -191,7 +293,8 @@ Masculino
 
 
 
-<button 
+
+<button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Feminino')">
@@ -204,7 +307,8 @@ Feminino
 
 
 
-<button 
+
+<button
 type="button"
 class="sexo-btn"
 onclick="selecionarSexo(this,'Outro')">
@@ -219,11 +323,14 @@ Outro
 
 
 
-<input 
+
+
+<input
 type="hidden"
 id="genero"
 required
 >
+
 
 
 </div>
@@ -233,7 +340,7 @@ required
 
 
 
-<button 
+<button
 type="button"
 class="recruit-button"
 onclick="mostrarPagina2()">
@@ -244,18 +351,22 @@ INICIAR FORMULÁRIO
 
 
 
+
+
 </div>
 
+<!-- ======================
+     PAGINA 2
+======================= -->
+
+
+<div id="pagina2" class="form-page">
 
 
 
 
 
-
-
-
-<div id="pagina2" style="display:none;">
-
+<div class="page-title">
 
 
 <h2>
@@ -270,14 +381,24 @@ Conte um pouco sobre sua experiência e como você pode ajudar a equipe FuturyCr
 
 
 
+</div>
+
+
+
+
+
+
 
 
 
 <div class="form-group">
 
+
 <label>
 Há quanto tempo você joga no FuturyCraft?
 </label>
+
+
 
 
 <input
@@ -291,17 +412,26 @@ oninput="mostrarTempo(this.value)"
 
 
 
+
+
 <div class="tempo-valor">
 
+
 Tempo:
+
 <strong id="valorTempo">
 1 mês
 </strong>
 
+
 </div>
 
 
+
 </div>
+
+
+
 
 
 
@@ -309,16 +439,21 @@ Tempo:
 
 
 <div class="form-group">
+
 
 <label>
 Qual sua disponibilidade diária?
 </label>
 
 
+
+
 <textarea
 id="disponibilidade"
 placeholder="Exemplo: Todos os dias das 18h às 23h"
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
@@ -329,17 +464,24 @@ required></textarea>
 
 
 
+
+
 <div class="form-group">
+
 
 <label>
 Por que deseja entrar para a equipe?
 </label>
 
 
+
+
 <textarea
 id="motivo"
 placeholder="Explique seus motivos..."
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
@@ -350,20 +492,29 @@ required></textarea>
 
 
 
+
+
 <div class="form-group">
+
 
 <label>
 Como você ajudaria o servidor?
 </label>
 
 
+
+
 <textarea
 id="ajuda"
 placeholder="Conte suas ideias e como poderia contribuir..."
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
+
+
 
 
 
@@ -373,15 +524,20 @@ required></textarea>
 
 <div class="form-group">
 
+
 <label>
 O que faria ao suspeitar de um jogador utilizando hack?
 </label>
 
 
+
+
 <textarea
 id="hack"
 placeholder="Explique como você agiria nessa situação..."
-required></textarea>
+required>
+</textarea>
+
 
 
 </div>
@@ -391,7 +547,9 @@ required></textarea>
 
 
 
-<button 
+
+
+<button
 type="submit"
 class="botao">
 
@@ -401,7 +559,12 @@ Enviar Candidatura
 
 
 
+
+
+
 </div>
+
+
 
 
 
@@ -410,6 +573,10 @@ Enviar Candidatura
 </form>
 
 
+
+
+
+
 </div>
 
 
@@ -418,15 +585,22 @@ Enviar Candidatura
 
 
 
+
+
+<!-- FUNÇÕES EXISTENTES MANTIDAS -->
 
 <script>
 
 
 function mostrarIdade(valor){
 
+
 document.getElementById("valorIdade").innerHTML = valor;
 
+
 }
+
+
 
 
 
@@ -439,13 +613,19 @@ function selecionarSexo(botao,valor){
 document.querySelectorAll(".sexo-btn")
 .forEach(btn=>{
 
+
 btn.classList.remove("selecionado");
+
 
 });
 
 
 
+
+
 botao.classList.add("selecionado");
+
+
 
 
 
@@ -454,6 +634,9 @@ document.getElementById("genero").value = valor;
 
 
 }
+
+
+
 
 
 </script>
@@ -472,28 +655,39 @@ let texto;
 
 
 
+
+
 if(valor < 12){
+
 
 
 texto = valor + (valor == 1 ? " mês" : " meses");
 
 
+
 }else{
+
 
 
 let anos = Math.floor(valor / 12);
 
+
 let meses = valor % 12;
+
+
 
 
 
 if(meses == 0){
 
 
+
 texto = anos + (anos == 1 ? " ano" : " anos");
 
 
+
 }else{
+
 
 
 texto =
@@ -502,10 +696,14 @@ anos + (anos == 1 ? " ano " : " anos ")
 meses + " meses";
 
 
+
 }
 
 
+
 }
+
+
 
 
 
@@ -516,11 +714,30 @@ document.getElementById("valorTempo").innerHTML = texto;
 }
 
 
+
 </script>
+
+
+
+
+
+
+
+<!-- SUPABASE -->
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
+
+
+<!-- SCRIPT PRINCIPAL -->
+
+
 <script src="./js/script.js"></script>
+
+
+
 
 
 
