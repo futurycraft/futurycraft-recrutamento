@@ -1109,11 +1109,14 @@ margin-bottom:8px;
 margin-bottom:8px;
 
 
-
 }
 
 
+#segunda-etapa{
 
+transform:translateY(-120px);
+
+}
 
 
 
@@ -1178,7 +1181,7 @@ from{
 opacity:0;
 
 
-transform:translateY(25px);
+transform:translateY(10px);
 
 
 
@@ -1272,8 +1275,9 @@ padding-top:25px;
 padding-bottom:15px;
 
 
+#segunda-etapa{
 
-}
+transform:translateY(-160px);
 
 
 
@@ -1500,6 +1504,10 @@ transform:translateX(-50%);
 z-index:999;
 
 
+
+#segunda-etapa{
+
+transform:translateY(-80px);
 
 }
 
