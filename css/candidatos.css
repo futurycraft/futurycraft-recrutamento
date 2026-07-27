@@ -1,9 +1,6 @@
 /* ==========================================
-   FUTURYCRAFT
-   STAFF APPLICATION SYSTEM
-   HOLOGRAPHIC UI
+   FUTURYCRAFT - CANDIDATURA STAFF
 ========================================== */
-
 
 
 *{
@@ -18,48 +15,20 @@
 
 body{
 
-
     min-height:100vh;
 
-
     background:
-
-
-    radial-gradient(
-        circle at 50% -20%,
-        #16345c 0%,
-        #07101d 40%,
-        #020409 100%
-    );
-
-
-
-    font-family:
-    'Montserrat',
-    Arial,
-    sans-serif;
-
-
+    radial-gradient(circle at top,#172033,#050505 70%);
 
     color:white;
 
-
-
-    overflow-x:hidden;
-
-
+    font-family:Arial, Helvetica, sans-serif;
 
 }
 
 
 
-
-
-
-
-/* ==========================================
-   CONTAINER
-========================================== */
+/* CONTAINER PRINCIPAL */
 
 
 .recruit-container{
@@ -67,32 +36,20 @@ body{
 
     min-height:100vh;
 
-
     display:flex;
-
 
     justify-content:center;
 
-
     align-items:center;
 
-
-
-    padding:60px 20px;
-
+    padding:40px 20px;
 
 
 }
 
 
 
-
-
-
-
-/* ==========================================
-   CARD PRINCIPAL
-========================================== */
+/* CARD */
 
 
 .recruit-card{
@@ -100,50 +57,19 @@ body{
 
     width:100%;
 
+    max-width:850px;
 
-    max-width:900px;
+    background:#101622;
 
+    border:1px solid #24314a;
 
+    border-radius:20px;
 
-    position:relative;
-
-
-
-    padding:45px;
-
-
-
-    background:
-
-
-    linear-gradient(
-        145deg,
-        rgba(13,25,45,.95),
-        rgba(2,7,15,.95)
-    );
-
-
-
-    border-radius:28px;
-
-
-
-    border:1px solid rgba(0,234,255,.25);
-
-
+    padding:40px;
 
     box-shadow:
 
-
-    0 0 60px rgba(0,234,255,.15),
-
-
-    inset 0 0 50px rgba(0,0,0,.4);
-
-
-
-    backdrop-filter:blur(15px);
-
+    0 0 30px rgba(0,234,255,.15);
 
 
 }
@@ -152,97 +78,26 @@ body{
 
 
 
-
-
-/* brilho lateral */
-
-
-.recruit-card::after{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    inset:0;
-
-
-
-    border-radius:28px;
-
-
-
-    background:
-
-
-    linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(0,234,255,.12),
-        transparent 70%
-    );
-
-
-
-    pointer-events:none;
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ==========================================
-   TITULO
-========================================== */
+/* TITULOS */
 
 
 .recruit-card h1{
 
 
-    position:relative;
-
-
     text-align:center;
 
+    font-size:42px;
 
-    font-size:52px;
-
-
-
-    letter-spacing:8px;
-
-
+    letter-spacing:4px;
 
     color:#00eaff;
 
-
-
-    text-transform:uppercase;
-
-
-
     text-shadow:
 
-
-    0 0 10px #00eaff,
-
-
-    0 0 35px rgba(0,234,255,.8);
-
+    0 0 15px #00eaff;
 
 
 }
-
-
-
 
 
 
@@ -251,178 +106,60 @@ body{
 
     text-align:center;
 
+    margin-top:10px;
 
-    margin-top:15px;
-
-
-
-    font-size:28px;
-
-
+    margin-bottom:15px;
 
     color:white;
 
 
-
-    font-weight:700;
-
-
-
 }
-
 
 
 
 .recruit-card p{
 
 
+    color:#aaa;
+
     text-align:center;
 
-
-
-    color:#8d9bb2;
-
-
-
-    margin-top:15px;
-
-
-
-    line-height:1.6;
-
-
-
-}
-
-/* ==========================================
-   ÁREA DO FORMULÁRIO
-========================================== */
-
-
-form{
-
-
-    position:relative;
-
-
-    z-index:2;
-
+    margin-bottom:25px;
 
 
 }
 
 
 
-
-
+/* CAMPOS */
 
 
 .form-group{
 
 
-    margin-bottom:30px;
-
+    margin-bottom:25px;
 
 
 }
 
-
-
-
-
-
-
-
-/* LABELS */
 
 
 .form-group label{
 
 
-    display:flex;
+    display:block;
 
-
-    align-items:center;
-
-
-
-    gap:8px;
-
-
-
-    margin-bottom:12px;
-
-
+    margin-bottom:10px;
 
     color:#00eaff;
 
-
-
-    font-size:14px;
-
-
-
-    font-weight:700;
-
-
-
-    letter-spacing:.8px;
-
-
-
-    text-transform:uppercase;
-
+    font-weight:bold;
 
 
 }
 
 
 
-
-
-
-
-
-.form-group label::before{
-
-
-    content:"";
-
-
-    width:8px;
-
-
-    height:8px;
-
-
-
-    background:#00eaff;
-
-
-
-    border-radius:50%;
-
-
-
-    box-shadow:
-
-
-    0 0 10px #00eaff;
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ==========================================
-   INPUTS FUTURISTAS
-========================================== */
 
 
 input,
@@ -432,82 +169,36 @@ select{
 
     width:100%;
 
+    padding:15px;
 
+    background:#080d16;
 
-    padding:18px;
+    border:1px solid #27344d;
 
-
-
-    background:
-
-
-    rgba(1,8,18,.85);
-
-
-
-    border:1px solid #1b3855;
-
-
-
-    border-radius:16px;
-
-
+    border-radius:12px;
 
     color:white;
 
-
+    outline:none;
 
     font-size:15px;
 
-
-
-    outline:none;
-
-
-
-    transition:.35s;
-
+    transition:.3s;
 
 
 }
 
 
 
+textarea{
 
 
+    min-height:130px;
 
-
-input::placeholder,
-textarea::placeholder{
-
-
-    color:#52627a;
-
+    resize:none;
 
 
 }
-
-
-
-
-
-
-
-
-input:hover,
-textarea:hover{
-
-
-    border-color:#007d9c;
-
-
-
-}
-
-
-
-
-
 
 
 
@@ -518,23 +209,9 @@ select:focus{
 
     border-color:#00eaff;
 
-
-
-    background:
-
-
-    rgba(0,15,30,.95);
-
-
-
     box-shadow:
 
-
-    0 0 0 3px rgba(0,234,255,.12),
-
-
-    0 0 25px rgba(0,234,255,.2);
-
+    0 0 15px rgba(0,234,255,.3);
 
 
 }
@@ -543,252 +220,90 @@ select:focus{
 
 
 
+/* BARRA DE IDADE */
 
 
+#idade{
 
-textarea{
 
+    width:100%;
 
-    height:150px;
-
-
-
-    resize:none;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   SLIDERS
-========================================== */
-
-
-#idade,
-#tempo{
-
-
-    appearance:none;
-
-
-    height:10px;
-
-
-
-    padding:0;
-
-
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        #00eaff,
-        #144d70
-    );
-
-
-
-    border-radius:20px;
-
-
-
-}
-
-
-
-
-
-
-
-#idade::-webkit-slider-thumb,
-#tempo::-webkit-slider-thumb{
-
-
-    appearance:none;
-
-
-
-    width:25px;
-
-
-
-    height:25px;
-
-
-
-    border-radius:50%;
-
-
-
-    background:#00eaff;
-
-
-
-    border:3px solid #06121f;
-
-
+    height:8px;
 
     cursor:pointer;
 
-
-
-    box-shadow:
-
-
-    0 0 15px #00eaff;
-
+    accent-color:#00eaff;
 
 
 }
 
 
 
-
-
-
-
-.idade-valor,
-.tempo-valor{
-
-
-    margin-top:15px;
-
+.idade-valor{
 
 
     text-align:center;
 
+    margin-top:15px;
 
-
-    color:#8292aa;
-
-
-
-    font-size:15px;
-
+    color:#aaa;
 
 
 }
 
 
 
-
-
-
-
-.idade-valor strong,
-.tempo-valor strong{
+.idade-valor strong{
 
 
     color:#00eaff;
 
-
-
-    font-size:28px;
-
-
-
-    text-shadow:
-
-
-    0 0 15px rgba(0,234,255,.7);
-
+    font-size:25px;
 
 
 }
 
-/* ==========================================
-   SELEÇÃO DE GÊNERO
-========================================== */
+
+
+
+
+/* SEXO */
 
 
 .sexo-container{
 
 
-    display:grid;
-
-
-    grid-template-columns:repeat(3,1fr);
-
-
+    display:flex;
 
     gap:15px;
 
-
-
 }
-
-
-
-
 
 
 
 .sexo-btn{
 
 
-    position:relative;
+    flex:1;
 
+    padding:15px;
 
+    background:#080d16;
 
-    padding:18px;
+    border:1px solid #27344d;
 
-
-
-    background:
-
-
-    linear-gradient(
-        145deg,
-        rgba(10,22,38,.9),
-        rgba(3,8,15,.9)
-    );
-
-
-
-    border:1px solid #1b3855;
-
-
-
-    border-radius:16px;
-
-
+    border-radius:12px;
 
     color:white;
 
-
-
-    font-size:15px;
-
-
-
-    font-weight:700;
-
-
-
     cursor:pointer;
 
+    font-weight:bold;
 
-
-    transition:.35s;
-
+    transition:.25s;
 
 
 }
-
-
-
-
-
 
 
 
@@ -798,54 +313,22 @@ textarea{
     border-color:#00eaff;
 
 
-
-    transform:translateY(-4px);
-
-
-
-    box-shadow:
-
-
-    0 10px 25px rgba(0,234,255,.15);
-
-
-
 }
-
-
-
-
-
 
 
 
 .sexo-btn.selecionado{
 
 
-    background:
+    background:#00eaff;
 
-
-    linear-gradient(
-        135deg,
-        #00eaff,
-        #007cff
-    );
-
-
-
-    color:#001018;
-
-
+    color:#000;
 
     border-color:#00eaff;
 
-
-
     box-shadow:
 
-
-    0 0 30px rgba(0,234,255,.6);
-
+    0 0 15px #00eaff;
 
 
 }
@@ -854,12 +337,7 @@ textarea{
 
 
 
-
-
-
-/* ==========================================
-   BOTÕES PRINCIPAIS
-========================================== */
+/* BOTÕES */
 
 
 .recruit-button,
@@ -868,142 +346,28 @@ textarea{
 
     width:100%;
 
+    margin-top:20px;
 
-
-    margin-top:30px;
-
-
-
-    padding:20px;
-
-
+    padding:16px;
 
     border:none;
 
+    border-radius:12px;
 
+    background:#00eaff;
 
-    border-radius:18px;
+    color:#000;
 
-
-
-    background:
-
-
-    linear-gradient(
-        135deg,
-        #00eaff,
-        #007cff
-    );
-
-
-
-    color:#001018;
-
-
+    font-weight:bold;
 
     font-size:16px;
 
-
-
-    font-weight:900;
-
-
-
-    letter-spacing:2px;
-
-
-
     cursor:pointer;
 
-
-
-    text-transform:uppercase;
-
-
-
-    position:relative;
-
-
-
-    overflow:hidden;
-
-
-
-    transition:.35s;
-
+    transition:.3s;
 
 
 }
-
-
-
-
-
-
-
-
-.recruit-button::before,
-.botao::before{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-
-    top:0;
-
-
-    left:-100%;
-
-
-
-    width:100%;
-
-
-    height:100%;
-
-
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.5),
-        transparent
-    );
-
-
-
-    transition:.5s;
-
-
-
-}
-
-
-
-
-
-
-
-
-.recruit-button:hover::before,
-.botao:hover::before{
-
-
-    left:100%;
-
-
-
-}
-
-
-
 
 
 
@@ -1012,15 +376,12 @@ textarea{
 .botao:hover{
 
 
-    transform:translateY(-5px);
-
+    transform:translateY(-3px);
 
 
     box-shadow:
 
-
-    0 0 35px rgba(0,234,255,.7);
-
+    0 0 25px #00eaff;
 
 
 }
@@ -1028,30 +389,7 @@ textarea{
 
 
 
-
-
-
-
-/* ==========================================
-   SEGUNDA ETAPA
-========================================== */
-
-
-#pagina2{
-
-
-    animation:
-
-
-    entradaPagina .45s ease;
-
-
-
-}
-
-
-
-
+/* SEGUNDA PÁGINA */
 
 
 #pagina2 h2{
@@ -1059,25 +397,7 @@ textarea{
 
     color:#00eaff;
 
-
-
-    font-size:30px;
-
-
-
-    text-align:center;
-
-
-
-    margin-bottom:15px;
-
-
-
-    text-shadow:
-
-
-    0 0 15px rgba(0,234,255,.5);
-
+    margin-bottom:25px;
 
 
 }
@@ -1085,399 +405,83 @@ textarea{
 
 
 
-
-
-
-#pagina2 p{
-
-
-    color:#8d9bb2;
-
-
-
-    margin-bottom:35px;
-
-
-
-}
-
-
-
-
-
-
-
-@keyframes entradaPagina{
-
-
-    from{
-
-
-        opacity:0;
-
-
-        transform:translateX(30px);
-
-
-
-    }
-
-
-
-    to{
-
-
-        opacity:1;
-
-
-        transform:translateX(0);
-
-
-
-    }
-
-
-}
-
-/* ==========================================
-   RESPONSIVIDADE
-========================================== */
-
-
-@media(max-width:900px){
-
-
-
-    .recruit-container{
-
-
-        padding:35px 15px;
-
-
-
-    }
-
-
-
-
-
-
-    .recruit-card{
-
-
-        padding:35px 25px;
-
-
-
-    }
-
-
-
-
-
-}
-
-
-
-
-
-
-
+/* RESPONSIVO */
 
 
 @media(max-width:700px){
 
 
+.recruit-card{
 
-    .recruit-card{
 
-
-        border-radius:22px;
-
-
-
-        padding:28px 18px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-card h1{
-
-
-        font-size:36px;
-
-
-
-        letter-spacing:4px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-card h2{
-
-
-        font-size:22px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .sexo-container{
-
-
-        grid-template-columns:1fr;
-
-
-
-    }
-
-
-
-
-
-
-
-    input,
-    textarea{
-
-
-        padding:15px;
-
-
-
-    }
-
-
-
-
-
-
-    .recruit-button,
-    .botao{
-
-
-        padding:17px;
-
-
-
-        font-size:14px;
-
-
-
-    }
-
+    padding:25px;
 
 
 }
 
 
 
+.recruit-card h1{
 
 
-
-
-
-
-@media(max-width:420px){
-
-
-
-    .recruit-card h1{
-
-
-        font-size:28px;
-
-
-
-        letter-spacing:3px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-card{
-
-
-        padding:22px 14px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .form-group label{
-
-
-        font-size:12px;
-
-
-
-    }
-
+    font-size:32px;
 
 
 }
 
 
 
+.sexo-container{
+
+
+    flex-direction:column;
+
+
+}
 
 
 
-
+}
 
 /* ==========================================
-   SCROLLBAR FUTURYCRAFT
+   BARRA DE TEMPO DE SERVIDOR
 ========================================== */
 
 
-::-webkit-scrollbar{
-
-
-    width:10px;
-
-
-
-}
-
-
-
-
-
-::-webkit-scrollbar-track{
-
-
-    background:#020409;
-
-
-
-}
-
-
-
-
-
-
-
-::-webkit-scrollbar-thumb{
-
-
-    background:
-
-
-    linear-gradient(
-        #00eaff,
-        #007cff
-    );
-
-
-
-    border-radius:20px;
-
-
-
-}
-
-
-
-
-
-
-
-::-webkit-scrollbar-thumb:hover{
-
-
-    background:#00eaff;
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ==========================================
-   AJUSTES EXTRAS DAS ETAPAS
-========================================== */
-
-
-#pagina1,
-#pagina2{
-
+#tempo{
 
     width:100%;
 
+    height:8px;
+
+    cursor:pointer;
+
+    accent-color:#00eaff;
+
+}
+
+
+
+.tempo-valor{
+
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#aaa;
 
 
 }
 
 
 
+.tempo-valor strong{
 
 
+    color:#00eaff;
 
-
-#pagina2{
-
-
-    position:relative;
-
-
-
-}
-
-
-
-
-
-
-
-
-/* evita cortes em telas pequenas */
-
-
-.recruit-card,
-input,
-textarea,
-button{
-
-
-    max-width:100%;
-
+    font-size:25px;
 
 
 }
