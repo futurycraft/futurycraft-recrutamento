@@ -81,7 +81,7 @@ display:flex;
 
 justify-content:center;
 
-margin-bottom:5px;
+margin-bottom:0;
 
 }
 
@@ -299,7 +299,7 @@ justify-content:center;
 align-items:center;
 
 
-padding:60px 20px 15px;
+padding:10px 20px 15px;
 
 
 
@@ -1267,7 +1267,7 @@ transform:translateY(0);
 .recruit-container{
 
 
-padding-top:60px;
+padding-top:25px;
 
 padding-bottom:15px;
 
@@ -1529,7 +1529,7 @@ width:110px;
 
 
 
-padding:90px 15px 30px;
+padding:60px 15px 30px;
 
 
 
