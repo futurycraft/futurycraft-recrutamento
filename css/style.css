@@ -309,13 +309,15 @@ box-shadow:
 
 display:flex;
 
-align-items:center;
+align-items:flex-start;
 
 justify-content:space-between;
 
-gap:80px;
+gap:60px;
 
-padding-top:80px;
+position:relative;
+
+padding-top:20px;
 
 }
 
@@ -325,6 +327,8 @@ padding-top:80px;
 
 
 max-width:650px;
+
+padding-top:20px;
 
 
 }
@@ -376,6 +380,12 @@ letter-spacing:1px;
 margin-bottom:25px;
 
 margin-top:20px;
+
+position:absolute;
+
+top:0;
+
+right:0;
 
 }
 
