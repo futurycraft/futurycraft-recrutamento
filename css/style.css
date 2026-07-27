@@ -206,9 +206,11 @@ opacity:0;
 
 position:absolute;
 
-top:25px;
+top:20px;
 
-left:35px;
+left:50%;
+
+transform:translateX(-50%);
 
 z-index:10;
 
@@ -304,13 +306,7 @@ box-shadow:
 
 .card-header{
 
-display:flex;
-
-align-items:flex-start;
-
-justify-content:space-between;
-
-gap:60px;
+display:block;
 
 position:relative;
 
@@ -322,16 +318,22 @@ padding-top:20px;
 
 .header-content{
 
+max-width:800px;
 
-max-width:650px;
+margin:auto;
 
 padding-top:20px;
 
+text-align:center;
 
 }
 
 
+.hero-buttons{
 
+justify-content:center;
+
+}
 
 
 .hero-badge{
@@ -379,6 +381,9 @@ margin-bottom:25px;
 margin-top:20px;
 
 position:relative;
+
+margin-left:auto;
+margin-right:auto;
 
 }
 
