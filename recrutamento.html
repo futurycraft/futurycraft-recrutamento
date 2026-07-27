@@ -7,33 +7,46 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FuturyCraft | Recrutamento</title>
 
-<link rel="stylesheet" href="./css/style.css">
+<title>
+FuturyCraft | Recrutamento Staff
+</title>
+
 
 <link rel="stylesheet" href="./css/recrutamento.css">
 
+
 </head>
+
 
 
 <body>
 
 
-<div class="tf-logo tf-logo--global">
+
+<!-- LOGO -->
+
+<header class="page-logo">
 
 <img 
 src="./assets/logo.png"
 alt="FuturyCraft">
 
-</div>
+</header>
+
+
+
 
 
 <!-- PARTÍCULAS -->
+
 <div class="particles">
 
 <span class="particle"></span>
 <span class="particle"></span>
 <span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
 
 </div>
 
@@ -41,24 +54,46 @@ alt="FuturyCraft">
 
 
 
-<div class="recruit-container">
 
 
-<div class="recruit-card">
+
+<main class="recruit-container">
 
 
-<!-- TITULO -->
+
+<section class="recruit-card">
+
+
+
+
+
+
+<!-- PRIMEIRA ETAPA -->
+
+<div id="primeira-etapa">
+
+
+
+<div class="recruit-header">
+
+
+<div class="recruit-badge">
+
+🛡 RECRUTAMENTO OFICIAL
+
+</div>
+
+
 
 
 <h1>
 
-INICIE SUA JORNADA
+FAÇA PARTE DA EQUIPE
 
 <span>
-
 FUTURYCRAFT
-
 </span>
+
 
 </h1>
 
@@ -67,32 +102,37 @@ FUTURYCRAFT
 
 <p class="recruit-description">
 
-Estamos procurando novos membros para fazer parte
-da equipe FuturyCraft.
-
-Se você possui dedicação, responsabilidade e vontade
-de ajudar jogadores, essa é sua oportunidade.
+Estamos procurando pessoas comprometidas,
+responsáveis e apaixonadas por Minecraft para
+ajudar a construir a melhor comunidade futurista.
 
 </p>
 
 
 
+</div>
 
 
 
 
-<!-- REQUISITOS -->
 
 
-<div class="recruit-columns">
+
+<div class="recruit-grid">
 
 
-<div class="recruit-box">
+
+
+
+<div class="info-card">
 
 
 <h2>
+
 REQUISITOS PARA AJUDANTE
+
 </h2>
+
 
 
 <ul>
@@ -101,22 +141,27 @@ REQUISITOS PARA AJUDANTE
 Conhecer as regras do servidor
 </li>
 
+
 <li>
 Ter boa comunicação com jogadores
 </li>
+
 
 <li>
 Ser respeitoso e responsável
 </li>
 
+
 <li>
 Possuir vontade de aprender
 </li>
+
 
 <li>
 Ter disponibilidade para auxiliar a comunidade
 </li>
 
+
 </ul>
 
 
@@ -126,35 +171,48 @@ Ter disponibilidade para auxiliar a comunidade
 
 
 
-<div class="recruit-box">
+
+
+
+
+<div class="info-card">
 
 
 <h2>
+
 O QUE ESPERAMOS DO STAFF
+
 </h2>
 
 
+
 <ul>
+
 
 <li>
 Atender jogadores com educação
 </li>
 
+
 <li>
 Auxiliar novos membros da comunidade
 </li>
+
 
 <li>
 Trabalhar em equipe com outros staffs
 </li>
 
+
 <li>
 Manter uma postura profissional
 </li>
 
+
 <li>
 Representar a FuturyCraft positivamente
 </li>
+
 
 </ul>
 
@@ -162,6 +220,10 @@ Representar a FuturyCraft positivamente
 </div>
 
 
+
+
+
+
 </div>
 
 
@@ -169,18 +231,50 @@ Representar a FuturyCraft positivamente
 
 
 
-<!-- BOTAO -->
-
-
-<button class="recruit-button" onclick="mostrarIntroducao()">
+<button 
+class="recruit-button"
+id="start-button">
 
 INICIAR FORMULÁRIO
 
 </button>
 
-  
 
-<div id="introducao" class="hidden-step">
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- SEGUNDA ETAPA -->
+
+
+
+<div 
+id="segunda-etapa"
+class="hidden-step">
+
+
+
+
+
+<div class="recruit-header">
+
+
+
+<div class="recruit-badge">
+
+🚀 PRÓXIMA ETAPA
+
+</div>
+
+
 
 
 <h1>
@@ -193,35 +287,56 @@ FUTURYCRAFT
 
 </span>
 
+
 </h1>
+
 
 
 
 
 <p class="recruit-description">
 
-Queremos mostrar rapidamente o que significa fazer parte da equipe Staff da FuturyCraft.
+Queremos mostrar rapidamente o que significa
+fazer parte da equipe Staff da FuturyCraft.
 
 
-Ser Staff é uma oportunidade para ajudar nossa comunidade,
-auxiliar jogadores e contribuir para o crescimento do servidor.
+<br><br>
+
+
+Ser Staff é uma oportunidade para ajudar nossa
+comunidade, auxiliar jogadores e contribuir para
+o crescimento do servidor.
+
+
+<br><br>
 
 
 Buscamos pessoas que gostam da FuturyCraft,
-possuem dedicação e querem fazer parte da evolução da nossa comunidade.
+possuem dedicação e querem fazer parte da evolução
+da nossa comunidade.
 
 
 </p>
 
 
-<a href="./candidatos.html" class="recruit-button">
+
+</div>
+
+
+
+
+
+
+
+<a 
+href="./candidatos.html"
+class="recruit-button">
 
 PARTIR PARA O FORMULÁRIO
 
 </a>
 
 
-</div>
 
 
 </div>
@@ -231,38 +346,23 @@ PARTIR PARA O FORMULÁRIO
 
 
 
-<script src="./script.js"></script>
-
-<script>
-
-function mostrarIntroducao(){
-
-
-const primeiraTela = document.querySelectorAll(
-".recruit-card > *:not(#introducao)"
-);
+</section>
 
 
 
-primeiraTela.forEach(item=>{
 
-item.style.display="none";
-
-});
+</main>
 
 
 
-const segundaTela = document.getElementById("introducao");
 
 
-segundaTela.classList.add("active");
 
 
-}
+<script src="./js/recrutamento.js"></script>
 
 
-</script>
-  
+
 </body>
 
 </html>
