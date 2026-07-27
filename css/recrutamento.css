@@ -279,32 +279,23 @@ opacity:0;
 
 .recruit-container{
 
-
 position:relative;
 
 z-index:2;
-
-
-/* corrigido para não criar scroll desnecessário */
 
 min-height:100vh;
 
 height:auto;
 
-
 display:flex;
 
 justify-content:center;
 
-align-items:center;
+align-items:flex-start;
 
-
-padding:10px 20px 15px;
-
-
+padding:20px 15px 30px;
 
 }
-
 
 
 
