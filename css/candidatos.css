@@ -1,61 +1,215 @@
 /* ==========================================
    FUTURYCRAFT
    RECRUTAMENTO STAFF
-   MAIN DESIGN
+   CANDIDATOS CSS
 ========================================== */
 
 
-/* RESET */
+/* ==========================================
+   RESET
+========================================== */
+
 
 *{
 
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:'Montserrat',Arial,sans-serif;
 
 }
 
 
 
 
+html{
+
+    scroll-behavior:smooth;
+
+}
 
 
 
-/* ==========================================
-   BODY
-========================================== */
 
 
 body{
 
-
     min-height:100vh;
-
-
-    font-family:
-    'Montserrat',
-    Arial,
-    sans-serif;
-
-
-    color:white;
-
 
     background:
 
+    radial-gradient(circle at top,#132447 0%,#050914 45%,#020308 100%);
 
-    radial-gradient(
-        circle at 50% 0%,
-        #18345a 0%,
-        #08111f 35%,
-        #020308 80%
-    );
-
+    color:#fff;
 
     overflow-x:hidden;
 
+}
 
-    position:relative;
+
+
+
+
+
+
+/* ==========================================
+   PARTICULAS DE FUNDO
+========================================== */
+
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+
+
+
+.particles span{
+
+
+    position:absolute;
+
+    width:6px;
+
+    height:6px;
+
+    background:#00d9ff;
+
+    border-radius:50%;
+
+    opacity:.35;
+
+    animation:subir 15s linear infinite;
+
+
+}
+
+
+
+
+
+
+.particles span:nth-child(1){
+
+    left:10%;
+
+    animation-duration:12s;
+
+}
+
+
+
+.particles span:nth-child(2){
+
+    left:30%;
+
+    animation-duration:18s;
+
+    width:4px;
+
+    height:4px;
+
+}
+
+
+
+
+.particles span:nth-child(3){
+
+    left:50%;
+
+    animation-duration:14s;
+
+}
+
+
+
+
+.particles span:nth-child(4){
+
+    left:70%;
+
+    animation-duration:20s;
+
+    width:8px;
+
+    height:8px;
+
+}
+
+
+
+
+.particles span:nth-child(5){
+
+    left:85%;
+
+    animation-duration:16s;
+
+}
+
+
+
+
+.particles span:nth-child(6){
+
+    left:95%;
+
+    animation-duration:22s;
+
+}
+
+
+
+
+
+
+
+@keyframes subir{
+
+
+0%{
+
+
+transform:translateY(110vh);
+
+opacity:0;
+
+
+}
+
+
+
+20%{
+
+
+opacity:.5;
+
+
+}
+
+
+
+100%{
+
+
+transform:translateY(-20vh);
+
+opacity:0;
+
+
+}
+
 
 
 }
@@ -68,12 +222,8 @@ body{
 
 
 
-
-
-
-
 /* ==========================================
-   CONTAINER
+   CONTAINER PRINCIPAL
 ========================================== */
 
 
@@ -82,21 +232,20 @@ body{
 
     min-height:100vh;
 
-
     display:flex;
-
 
     justify-content:center;
 
-
     align-items:center;
 
+    padding:40px 20px;
 
-    padding:80px 40px;
+    position:relative;
+
+    z-index:1;
 
 
 }
-
 
 
 
@@ -114,52 +263,37 @@ body{
 
     width:100%;
 
-
-    max-width:680px;
-
-
-    padding:30px;
-
+    max-width:850px;
 
 
     background:
 
-
-    linear-gradient(
-        145deg,
-        rgba(12,22,38,.92),
-        rgba(3,8,16,.92)
-    );
+    rgba(8,15,30,.92);
 
 
-
-    border-radius:22px;
-
+    border:1px solid rgba(0,217,255,.25);
 
 
-    border:1px solid rgba(0,234,255,.25);
+    border-radius:24px;
 
+
+    padding:35px;
 
 
     box-shadow:
 
 
-    0 0 35px rgba(0,234,255,.12),
+    0 0 40px rgba(0,217,255,.12),
 
 
-    inset 0 0 25px rgba(255,255,255,.03);
+    inset 0 0 25px rgba(255,255,255,.02);
 
 
 
     backdrop-filter:blur(12px);
 
 
-
-    position:relative;
-
-
 }
-
 
 
 
@@ -173,41 +307,21 @@ body{
     content:"";
 
 
-
     position:absolute;
 
 
+    width:250px;
 
-    top:0;
-
-
-
-    left:50%;
+    height:250px;
 
 
-
-    transform:translateX(-50%);
-
+    background:#00d9ff;
 
 
-    width:70%;
+    filter:blur(130px);
 
 
-
-    height:2px;
-
-
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        transparent,
-        #00eaff,
-        transparent
-    );
-
+    opacity:.15;
 
 
 }
@@ -218,43 +332,6 @@ body{
 
 
 
-
-/* ==========================================
-   ANIMAÇÃO
-========================================== */
-
-
-@keyframes aparecer{
-
-
-    from{
-
-
-        opacity:0;
-
-
-        transform:translateY(30px);
-
-
-
-    }
-
-
-
-    to{
-
-
-        opacity:1;
-
-
-        transform:translateY(0);
-
-
-
-    }
-
-
-}
 
 /* ==========================================
    HEADER
@@ -267,17 +344,7 @@ body{
     text-align:center;
 
 
-
-    position:relative;
-
-
-
-    z-index:2;
-
-
-
     margin-bottom:35px;
-
 
 
 }
@@ -288,46 +355,36 @@ body{
 
 
 
+.logo-area{
 
-/* LOGO */
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
 
 
 .recruit-logo{
 
 
-    width:90px;
+    width:110px;
 
-
-
-    height:90px;
-
-
+    height:110px;
 
     object-fit:contain;
 
 
-
-    margin:0 auto 15px;
-
-
-
-    display:block;
-
-
-
     filter:
 
-
-    drop-shadow(
-        0 0 20px rgba(0,234,255,.7)
-    );
-
-
-
-    animation:
-
-    logoPulse 3s infinite;
-
+    drop-shadow(0 0 15px rgba(0,217,255,.5));
 
 
 }
@@ -337,150 +394,54 @@ body{
 
 
 
+.header-text h1{
 
 
-@keyframes logoPulse{
+    font-size:38px;
 
 
-    0%{
+    letter-spacing:2px;
 
 
-        transform:scale(1);
-
-
-
-    }
-
-
-
-    50%{
-
-
-        transform:scale(1.05);
-
-
-
-    }
-
-
-
-    100%{
-
-
-        transform:scale(1);
-
-
-
-    }
+    color:#fff;
 
 
 }
 
 
 
+.header-text h2{
 
 
+    margin-top:5px;
 
 
-
-/* TITULO PRINCIPAL */
-
-
-.recruit-header h1{
+    font-size:22px;
 
 
-    font-size:42px;
-
-
-
-    letter-spacing:5px;
-
-
-
-    text-transform:uppercase;
-
-
-
-    color:#00eaff;
-
-
-
-    text-shadow:
-
-
-    0 0 12px #00eaff,
-
-
-
-    0 0 35px rgba(0,234,255,.6);
-
+    color:#00d9ff;
 
 
 }
 
 
 
+.header-text p{
 
 
+    margin-top:12px;
 
 
-.recruit-header h2{
+    color:#aab5cc;
 
 
-    margin-top:10px;
-
-
-
-    font-size:24px;
-
-
-
-    color:white;
-
-
-
-    font-weight:700;
-
+    font-size:15px;
 
 
 }
-
-
-
-
-
-
-
-.recruit-header p{
-
-
-    margin-top:15px;
-
-
-
-    color:#8795aa;
-
-
-
-    font-size:14px;
-
-
-
-    line-height:1.6;
-
-
-
-}
-
-
-
-
-
-
-
 
 /* ==========================================
-   ETAPAS
+   ETAPAS DO FORMULÁRIO
 ========================================== */
 
 
@@ -489,27 +450,16 @@ body{
 
     display:flex;
 
-
-
     align-items:center;
-
-
 
     justify-content:center;
 
-
-
     gap:15px;
-
-
 
     margin-bottom:35px;
 
 
-
 }
-
-
 
 
 
@@ -521,82 +471,27 @@ body{
 
     display:flex;
 
-
-
     align-items:center;
 
+    gap:12px;
 
 
-    gap:8px;
+    padding:12px 18px;
 
 
-
-    color:#65748b;
-
+    border-radius:14px;
 
 
-    font-size:13px;
+    background:rgba(255,255,255,.04);
 
 
-
-    font-weight:700;
-
+    border:1px solid rgba(255,255,255,.08);
 
 
-    text-transform:uppercase;
-
+    transition:.3s;
 
 
 }
-
-
-
-
-
-
-
-
-.etapa span{
-
-
-    width:35px;
-
-
-
-    height:35px;
-
-
-
-    display:flex;
-
-
-
-    justify-content:center;
-
-
-
-    align-items:center;
-
-
-
-    border-radius:50%;
-
-
-
-    background:#111c2c;
-
-
-
-    border:1px solid #26364d;
-
-
-
-    color:#718198;
-
-
-
-}
-
 
 
 
@@ -607,43 +502,92 @@ body{
 .etapa.ativa{
 
 
-    color:#00eaff;
+    border-color:#00d9ff;
 
 
-
-}
-
-
-
-
-
-
-
-
-.etapa.ativa span{
-
-
-    background:#00eaff;
-
-
-
-    color:#001018;
-
-
-
-    border-color:#00eaff;
-
+    background:rgba(0,217,255,.10);
 
 
     box-shadow:
 
-
-    0 0 18px rgba(0,234,255,.6);
-
+    0 0 20px rgba(0,217,255,.15);
 
 
 }
 
+
+
+
+
+
+
+.numero{
+
+
+    width:38px;
+
+    height:38px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:50%;
+
+
+    background:#101b32;
+
+
+    border:1px solid rgba(0,217,255,.4);
+
+
+    color:#00d9ff;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+
+.etapa strong{
+
+
+    display:block;
+
+
+    font-size:14px;
+
+
+    color:#fff;
+
+
+}
+
+
+
+
+
+.etapa small{
+
+
+    color:#8491aa;
+
+
+    font-size:12px;
+
+
+}
 
 
 
@@ -654,41 +598,70 @@ body{
 .linha-etapa{
 
 
-    width:80px;
-
+    width:70px;
 
 
     height:2px;
 
 
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        #00eaff,
-        #26364d
-    );
-
+    background:rgba(0,217,255,.25);
 
 
 }
 
+
+
+
+
+
+
+
 /* ==========================================
-   FORMULÁRIO
+   TITULOS DAS SEÇÕES
 ========================================== */
 
 
-form{
+.section-title{
 
 
-    position:relative;
+    margin-bottom:25px;
+
+
+    padding-bottom:15px;
+
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+
+}
 
 
 
-    z-index:2;
 
+.section-title h3{
+
+
+    font-size:22px;
+
+
+    color:#fff;
+
+
+    margin-bottom:6px;
+
+
+}
+
+
+
+
+.section-title p{
+
+
+    color:#94a3bb;
+
+
+    font-size:14px;
 
 
 }
@@ -697,13 +670,45 @@ form{
 
 
 
+
+
+
+
+/* ==========================================
+   GRID DOS CAMPOS
+========================================== */
+
+
+.form-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(2,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   FORMULÁRIOS
+========================================== */
 
 
 .form-group{
 
 
-    margin-bottom:20px;
-
+    margin-bottom:22px;
 
 
 }
@@ -711,11 +716,6 @@ form{
 
 
 
-
-
-
-
-/* LABELS */
 
 
 .form-group label{
@@ -724,29 +724,16 @@ form{
     display:block;
 
 
-
-    margin-bottom:10px;
-
+    margin-bottom:9px;
 
 
-    color:#00eaff;
+    color:#dce5f5;
 
 
-
-    font-size:13px;
-
+    font-size:14px;
 
 
-    font-weight:700;
-
-
-
-    letter-spacing:.8px;
-
-
-
-    text-transform:uppercase;
-
+    font-weight:600;
 
 
 }
@@ -757,53 +744,38 @@ form{
 
 
 
-/* ==========================================
-   INPUTS
-========================================== */
-
-
 input,
-textarea,
-select{
+textarea{
 
 
     width:100%;
 
 
-
-    padding:15px 17px;
-
-
-
     background:
 
 
-    rgba(3,10,20,.85);
+    rgba(255,255,255,.05);
 
 
-
-    border:1px solid #243650;
-
+    border:1px solid rgba(255,255,255,.12);
 
 
-    border-radius:14px;
+    border-radius:12px;
 
 
-
-    color:white;
-
+    padding:14px;
 
 
-    font-size:15px;
-
+    color:#fff;
 
 
     outline:none;
 
 
+    font-size:14px;
+
 
     transition:.3s;
-
 
 
 }
@@ -818,29 +790,10 @@ input::placeholder,
 textarea::placeholder{
 
 
-    color:#65748b;
-
-
-
-}
-
-
-
-
-
-
-
-
-input:hover,
-textarea:hover{
-
-
-    border-color:#00a8c8;
-
+    color:#73819b;
 
 
 }
-
 
 
 
@@ -852,23 +805,19 @@ input:focus,
 textarea:focus{
 
 
-    border-color:#00eaff;
-
+    border-color:#00d9ff;
 
 
     box-shadow:
 
 
-    0 0 0 3px rgba(0,234,255,.12),
+    0 0 15px rgba(0,217,255,.18);
 
 
-    0 0 20px rgba(0,234,255,.25);
-
+    background:rgba(0,217,255,.06);
 
 
 }
-
-
 
 
 
@@ -878,16 +827,10 @@ textarea:focus{
 textarea{
 
 
-    min-height:130px;
+    min-height:120px;
 
 
-
-    resize:none;
-
-
-
-    line-height:1.5;
-
+    resize:vertical;
 
 
 }
@@ -898,50 +841,30 @@ textarea{
 
 
 
-
-
 /* ==========================================
-   SLIDER IDADE / TEMPO
+   RANGE IDADE / TEMPO
 ========================================== */
 
 
-#idade,
-#tempo{
-
-
-    width:100%;
-
-
-
-    height:8px;
-
+input[type="range"]{
 
 
     appearance:none;
 
+
+    height:6px;
 
 
     padding:0;
 
 
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        #00eaff,
-        #20364d
-    );
-
+    background:#1a2945;
 
 
     border-radius:20px;
 
 
-
     cursor:pointer;
-
 
 
 }
@@ -950,45 +873,25 @@ textarea{
 
 
 
-
-
-#idade::-webkit-slider-thumb,
-#tempo::-webkit-slider-thumb{
+input[type="range"]::-webkit-slider-thumb{
 
 
     appearance:none;
 
 
-
-    width:22px;
-
+    width:18px;
 
 
-    height:22px;
-
-
-
-    background:#00eaff;
-
+    height:18px;
 
 
     border-radius:50%;
 
 
-
-    border:3px solid #07111f;
-
+    background:#00d9ff;
 
 
-    cursor:pointer;
-
-
-
-    box-shadow:
-
-
-    0 0 15px #00eaff;
-
+    box-shadow:0 0 12px rgba(0,217,255,.8);
 
 
 }
@@ -999,182 +902,54 @@ textarea{
 
 
 
-.idade-valor,
-.tempo-valor{
+
+.range-value{
 
 
     margin-top:12px;
 
 
-
     text-align:center;
 
 
-
-    color:#8795aa;
-
+    color:#9aa9c2;
 
 
     font-size:14px;
 
 
-
 }
 
 
 
 
 
+.range-value strong{
 
 
-.idade-valor strong,
-.tempo-valor strong{
+    color:#00d9ff;
 
 
-    color:#00eaff;
-
-
-
-    font-size:24px;
-
-
-
-    margin:0 5px;
-
-
-
-}
-
-
-
-
-
-
-/* ==========================================
-   PAGINA 2
-========================================== */
-
-
-#pagina2{
-
-
-    animation:
-
-
-    aparecerPagina .4s ease;
-
-
-
-}
-
-
-
-
-
-
-
-#pagina2 h2{
-
-
-    color:#00eaff;
-
-
-
-    text-align:center;
-
-
-
-    font-size:25px;
-
-
-
-    margin-bottom:10px;
-
-
-
-}
-
-
-
-
-
-
-
-#pagina2 .pagina-header p{
-
-
-    text-align:center;
-
-
-
-    color:#8795aa;
-
-
-
-    margin-bottom:30px;
-
-
-
-}
-
-
-
-
-
-
-
-
-@keyframes aparecerPagina{
-
-
-    from{
-
-
-        opacity:0;
-
-
-        transform:translateX(25px);
-
-
-
-    }
-
-
-
-    to{
-
-
-        opacity:1;
-
-
-
-        transform:translateX(0);
-
-
-
-    }
+    font-size:18px;
 
 
 }
 
 /* ==========================================
-   BOTÕES DE GÊNERO
+   SELEÇÃO DE GÊNERO
 ========================================== */
 
 
 .sexo-container{
 
 
-    display:grid;
-
-
-
-    grid-template-columns:repeat(3,1fr);
-
+    display:flex;
 
 
     gap:12px;
 
+
+    flex-wrap:wrap;
 
 
 }
@@ -1188,39 +963,34 @@ textarea{
 .sexo-btn{
 
 
-    padding:15px;
+    flex:1;
 
 
-
-    background:
-
-
-    rgba(5,14,26,.9);
+    min-width:120px;
 
 
-
-    border:1px solid #243650;
-
+    padding:13px 20px;
 
 
-    border-radius:14px;
+    border-radius:12px;
 
 
-
-    color:white;
-
+    border:1px solid rgba(255,255,255,.12);
 
 
-    font-weight:700;
+    background:rgba(255,255,255,.04);
 
+
+    color:#cdd8ea;
 
 
     cursor:pointer;
 
 
-
     transition:.3s;
 
+
+    font-weight:600;
 
 
 }
@@ -1234,19 +1004,13 @@ textarea{
 .sexo-btn:hover{
 
 
-    border-color:#00eaff;
+    border-color:#00d9ff;
 
 
-
-    transform:translateY(-3px);
-
+    color:#fff;
 
 
-    box-shadow:
-
-
-    0 0 15px rgba(0,234,255,.25);
-
+    transform:translateY(-2px);
 
 
 }
@@ -1260,33 +1024,23 @@ textarea{
 .sexo-btn.selecionado{
 
 
-    background:
+    background:rgba(0,217,255,.12);
 
 
-    linear-gradient(
-        135deg,
-        #00eaff,
-        #007cff
-    );
+    border-color:#00d9ff;
 
 
-
-    color:#001018;
-
-
-
-    border-color:#00eaff;
-
+    color:#00d9ff;
 
 
     box-shadow:
 
 
-    0 0 25px rgba(0,234,255,.6);
-
+    0 0 18px rgba(0,217,255,.2);
 
 
 }
+
 
 
 
@@ -1296,151 +1050,91 @@ textarea{
 
 
 /* ==========================================
-   BOTÕES PRINCIPAIS
+   ÁREA DOS BOTÕES
 ========================================== */
+
+
+.buttons-area{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    gap:15px;
+
+
+    margin-top:30px;
+
+
+}
+
+
+
+
+
+
+
+
+.recruit-button,
+.botao,
+.back-button{
+
+
+    border:none;
+
+
+    border-radius:14px;
+
+
+    padding:15px 28px;
+
+
+    font-size:14px;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+    letter-spacing:.5px;
+
+
+}
+
+
+
+
+
 
 
 .recruit-button,
 .botao{
 
 
-    width:100%;
-
-
-
-    margin-top:20px;
-
-
-
-    padding:17px;
-
-
-
-    border:none;
-
-
-
-    border-radius:15px;
-
-
-
     background:
 
 
-    linear-gradient(
-        135deg,
-        #00eaff,
-        #007cff
-    );
+    linear-gradient(135deg,#00d9ff,#006eff);
 
 
-
-    color:#001018;
-
+    color:#fff;
 
 
-    font-size:15px;
+    box-shadow:
 
 
-
-    font-weight:900;
-
-
-
-    letter-spacing:1.5px;
-
-
-
-    text-transform:uppercase;
-
-
-
-    cursor:pointer;
-
-
-
-    transition:.3s;
-
-
-
-    position:relative;
-
-
-
-    overflow:hidden;
-
+    0 0 25px rgba(0,217,255,.25);
 
 
 }
-
-
-
-
-
-
-
-.recruit-button::before,
-.botao::before{
-
-
-    content:"";
-
-
-
-    position:absolute;
-
-
-
-    top:0;
-
-
-
-    left:-120%;
-
-
-
-    width:100%;
-
-
-
-    height:100%;
-
-
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.5),
-        transparent
-    );
-
-
-
-    transition:.5s;
-
-
-
-}
-
-
-
-
-
-
-
-.recruit-button:hover::before,
-.botao:hover::before{
-
-
-    left:120%;
-
-
-
-}
-
 
 
 
@@ -1455,12 +1149,25 @@ textarea{
     transform:translateY(-3px);
 
 
-
     box-shadow:
 
 
-    0 0 30px rgba(0,234,255,.7);
+    0 0 35px rgba(0,217,255,.45);
 
+
+}
+
+
+
+
+
+
+
+
+.recruit-button span{
+
+
+    margin-left:8px;
 
 
 }
@@ -1471,15 +1178,38 @@ textarea{
 
 
 
-.recruit-button:active,
-.botao:active{
+
+.back-button{
 
 
-    transform:scale(.97);
+    background:rgba(255,255,255,.06);
 
+
+    color:#b7c4d8;
+
+
+    border:1px solid rgba(255,255,255,.12);
 
 
 }
+
+
+
+
+
+
+
+.back-button:hover{
+
+
+    border-color:#00d9ff;
+
+
+    color:#fff;
+
+
+}
+
 
 
 
@@ -1489,43 +1219,126 @@ textarea{
 
 
 /* ==========================================
-   SEPARADORES
+   ANIMAÇÃO DAS PÁGINAS
 ========================================== */
 
 
-#pagina1::after,
-#pagina2::after{
+#pagina1,
+#pagina2{
+
+
+    animation:entrada .45s ease;
+
+
+}
+
+
+
+
+
+
+@keyframes entrada{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:translateY(15px);
+
+
+}
+
+
+
+to{
+
+
+opacity:1;
+
+
+transform:translateY(0);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   EFEITO DE BORDA FUTURISTA
+========================================== */
+
+
+.recruit-card{
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+
+.recruit-card::after{
 
 
     content:"";
 
 
-
-    display:block;
-
+    position:absolute;
 
 
-    margin-top:30px;
+    inset:0;
 
 
+    border-radius:24px;
 
-    height:1px;
 
+    padding:1px;
 
 
     background:
 
 
     linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,234,255,.35),
-        transparent
+
+    120deg,
+
+    transparent,
+
+    rgba(0,217,255,.4),
+
+    transparent
+
     );
 
 
+    pointer-events:none;
+
+
+    opacity:.4;
+
 
 }
+
 
 
 
@@ -1535,26 +1348,41 @@ textarea{
 
 
 /* ==========================================
-   PEQUENOS DETALHES
+   SCROLL
 ========================================== */
 
 
-input[type="date"]{
+::-webkit-scrollbar{
 
 
-    color-scheme:dark;
-
+    width:8px;
 
 
 }
 
 
 
-button{
 
 
-    font-family:inherit;
+::-webkit-scrollbar-track{
 
+
+    background:#050914;
+
+
+}
+
+
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+    background:#00d9ff;
+
+
+    border-radius:20px;
 
 
 }
@@ -1564,64 +1392,20 @@ button{
 ========================================== */
 
 
+
 @media(max-width:900px){
 
 
-    .recruit-container{
-
-
-        padding:40px 20px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-card{
-
-
-        max-width:700px;
-
-
-
-        padding:30px;
-
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:700px){
-
-
 
     .recruit-container{
+
+
+        padding:25px 15px;
 
 
         align-items:flex-start;
 
 
-
-        padding:30px 15px;
-
-
-
     }
 
 
@@ -1629,18 +1413,15 @@ button{
 
 
 
-
     .recruit-card{
+
+
+        padding:25px;
 
 
         border-radius:20px;
 
 
-
-        padding:25px 18px;
-
-
-
     }
 
 
@@ -1648,188 +1429,10 @@ button{
 
 
 
-
-    .recruit-logo{
-
-
-        width:90px;
-
-
-
-        height:90px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-header h1{
-
-
-        font-size:30px;
-
-
-
-        letter-spacing:3px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-header h2{
-
-
-        font-size:20px;
-
-
-
-    }
-
-
-
-
-
-
-
-
-    .etapas{
-
-
-        gap:8px;
-
-
-
-    }
-
-
-
-
-
-
-
-
-    .etapa{
-
-
-        font-size:11px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .linha-etapa{
-
-
-        width:35px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .sexo-container{
+    .form-grid{
 
 
         grid-template-columns:1fr;
-
-
-
-    }
-
-
-
-
-
-
-
-    input,
-    textarea{
-
-
-        padding:14px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-button,
-    .botao{
-
-
-        padding:15px;
-
-
-
-        font-size:13px;
-
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:420px){
-
-
-
-    .recruit-card{
-
-
-        padding:20px 14px;
-
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-header h1{
-
-
-        font-size:25px;
-
 
 
     }
@@ -1846,9 +1449,10 @@ button{
         flex-direction:column;
 
 
+        gap:12px;
+
 
     }
-
 
 
 
@@ -1861,9 +1465,181 @@ button{
         width:2px;
 
 
+        height:35px;
 
-        height:25px;
 
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+@media(max-width:600px){
+
+
+
+
+
+    .recruit-card{
+
+
+        padding:20px;
+
+
+    }
+
+
+
+
+
+
+
+    .recruit-logo{
+
+
+        width:85px;
+
+
+        height:85px;
+
+
+    }
+
+
+
+
+
+
+
+    .header-text h1{
+
+
+        font-size:30px;
+
+
+    }
+
+
+
+
+
+
+
+    .header-text h2{
+
+
+        font-size:18px;
+
+
+    }
+
+
+
+
+
+
+
+    .header-text p{
+
+
+        font-size:13px;
+
+
+    }
+
+
+
+
+
+
+
+    .etapa{
+
+
+        width:100%;
+
+
+        justify-content:flex-start;
+
+
+    }
+
+
+
+
+
+
+
+    .sexo-container{
+
+
+        flex-direction:column;
+
+
+    }
+
+
+
+
+
+
+
+    .sexo-btn{
+
+
+        width:100%;
+
+
+    }
+
+
+
+
+
+
+
+    .buttons-area{
+
+
+        flex-direction:column;
+
+
+    }
+
+
+
+
+
+
+
+    .recruit-button,
+    .botao,
+    .back-button{
+
+
+        width:100%;
+
+
+    }
+
+
+
+
+
+
+
+    textarea{
+
+
+        min-height:100px;
 
 
     }
@@ -1880,29 +1656,19 @@ button{
 
 
 
+
 /* ==========================================
-   SCROLLBAR FUTURYCRAFT
+   PEQUENOS AJUSTES VISUAIS
 ========================================== */
 
 
-::-webkit-scrollbar{
-
-
-    width:10px;
 
 
 
-}
+input[type="date"]{
 
 
-
-
-
-::-webkit-scrollbar-track{
-
-
-    background:#020308;
-
+    color-scheme:dark;
 
 
 }
@@ -1913,21 +1679,10 @@ button{
 
 
 
-::-webkit-scrollbar-thumb{
+strong{
 
 
-    background:
-
-
-    linear-gradient(
-        #00eaff,
-        #007cff
-    );
-
-
-
-    border-radius:20px;
-
+    font-weight:700;
 
 
 }
@@ -1939,14 +1694,14 @@ button{
 
 
 
-::-webkit-scrollbar-thumb:hover{
+button:active{
 
 
-    background:#00eaff;
-
+    transform:scale(.97);
 
 
 }
+
 
 
 
@@ -1956,33 +1711,21 @@ button{
 
 
 /* ==========================================
-   SEGURANÇA DE LAYOUT
+   GARANTIA DE CENTRALIZAÇÃO
 ========================================== */
 
 
-.recruit-card,
-form,
-input,
-textarea,
-button{
+
+.recruit-header,
+.section-title,
+.etapas{
 
 
-    max-width:100%;
-
-
-
-}
-
-
-
-
-
-#pagina1,
-#pagina2{
-
-
-    width:100%;
-
+    user-select:none;
 
 
 }
+
+
+
+
