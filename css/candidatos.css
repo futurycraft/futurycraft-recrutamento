@@ -1,10 +1,10 @@
 /* ==========================================
-   FUTURYCRAFT - CANDIDATURA STAFF
-   FUTURISTIC DESIGN
+   FUTURYCRAFT
+   STAFF APPLICATION SYSTEM
+   HOLOGRAPHIC UI
 ========================================== */
 
 
-/* RESET */
 
 *{
 
@@ -16,10 +16,6 @@
 
 
 
-
-
-/* BODY */
-
 body{
 
 
@@ -28,24 +24,33 @@ body{
 
     background:
 
+
     radial-gradient(
-        circle at top,
-        #18263d,
-        #05070c 65%
+        circle at 50% -20%,
+        #16345c 0%,
+        #07101d 40%,
+        #020409 100%
     );
 
-
-    color:white;
 
 
     font-family:
     'Montserrat',
     Arial,
-    Helvetica,
     sans-serif;
 
 
+
+    color:white;
+
+
+
+    overflow-x:hidden;
+
+
+
 }
+
 
 
 
@@ -72,11 +77,13 @@ body{
     align-items:center;
 
 
-    padding:50px 20px;
+
+    padding:60px 20px;
 
 
 
 }
+
 
 
 
@@ -94,7 +101,15 @@ body{
     width:100%;
 
 
-    max-width:850px;
+    max-width:900px;
+
+
+
+    position:relative;
+
+
+
+    padding:45px;
 
 
 
@@ -103,9 +118,13 @@ body{
 
     linear-gradient(
         145deg,
-        rgba(18,28,45,.95),
-        rgba(5,10,18,.95)
+        rgba(13,25,45,.95),
+        rgba(2,7,15,.95)
     );
+
+
+
+    border-radius:28px;
 
 
 
@@ -113,29 +132,66 @@ body{
 
 
 
-    border-radius:24px;
-
-
-
-    padding:45px;
-
-
-
     box-shadow:
 
 
-    0 0 40px rgba(0,234,255,.12),
+    0 0 60px rgba(0,234,255,.15),
 
 
-    inset 0 0 30px rgba(255,255,255,.02);
+    inset 0 0 50px rgba(0,0,0,.4);
 
 
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(15px);
 
 
 
 }
+
+
+
+
+
+
+
+/* brilho lateral */
+
+
+.recruit-card::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    border-radius:28px;
+
+
+
+    background:
+
+
+    linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(0,234,255,.12),
+        transparent 70%
+    );
+
+
+
+    pointer-events:none;
+
+
+
+}
+
 
 
 
@@ -144,41 +200,42 @@ body{
 
 
 /* ==========================================
-   CABEÇALHO
+   TITULO
 ========================================== */
 
 
-.recruit-header{
+.recruit-card h1{
+
+
+    position:relative;
 
 
     text-align:center;
 
 
-    margin-bottom:35px;
+    font-size:52px;
 
 
 
-}
+    letter-spacing:8px;
 
-
-
-.recruit-header h1{
-
-
-    font-size:44px;
-
-
-    letter-spacing:5px;
 
 
     color:#00eaff;
+
+
+
+    text-transform:uppercase;
 
 
 
     text-shadow:
 
 
-    0 0 15px rgba(0,234,255,.9);
+    0 0 10px #00eaff,
+
+
+    0 0 35px rgba(0,234,255,.8);
 
 
 
@@ -187,48 +244,69 @@ body{
 
 
 
-.recruit-header h2{
 
 
-    margin-top:12px;
+.recruit-card h2{
 
 
-    font-size:24px;
+    text-align:center;
+
+
+    margin-top:15px;
+
+
+
+    font-size:28px;
+
 
 
     color:white;
 
 
 
+    font-weight:700;
+
+
+
 }
 
 
 
 
-.recruit-header p{
+.recruit-card p{
+
+
+    text-align:center;
+
+
+
+    color:#8d9bb2;
+
 
 
     margin-top:15px;
 
 
-    color:#9ca8bb;
 
-
-    font-size:15px;
+    line-height:1.6;
 
 
 
 }
 
 /* ==========================================
-   FORMULÁRIO
+   ÁREA DO FORMULÁRIO
 ========================================== */
 
 
-.form-group{
+form{
 
 
-    margin-bottom:28px;
+    position:relative;
+
+
+    z-index:2;
+
 
 
 }
@@ -236,26 +314,63 @@ body{
 
 
 
+
+
+
+.form-group{
+
+
+    margin-bottom:30px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* LABELS */
+
+
 .form-group label{
 
 
-    display:block;
+    display:flex;
+
+
+    align-items:center;
+
+
+
+    gap:8px;
+
 
 
     margin-bottom:12px;
 
 
+
     color:#00eaff;
 
 
+
     font-size:14px;
+
 
 
     font-weight:700;
 
 
 
-    letter-spacing:.5px;
+    letter-spacing:.8px;
+
+
+
+    text-transform:uppercase;
 
 
 
@@ -267,8 +382,46 @@ body{
 
 
 
+
+.form-group label::before{
+
+
+    content:"";
+
+
+    width:8px;
+
+
+    height:8px;
+
+
+
+    background:#00eaff;
+
+
+
+    border-radius:50%;
+
+
+
+    box-shadow:
+
+
+    0 0 10px #00eaff;
+
+
+
+}
+
+
+
+
+
+
+
+
 /* ==========================================
-   INPUTS
+   INPUTS FUTURISTAS
 ========================================== */
 
 
@@ -280,22 +433,23 @@ select{
     width:100%;
 
 
-    padding:16px 18px;
+
+    padding:18px;
 
 
 
     background:
 
 
-    rgba(5,12,22,.85);
+    rgba(1,8,18,.85);
 
 
 
-    border:1px solid #263650;
+    border:1px solid #1b3855;
 
 
 
-    border-radius:14px;
+    border-radius:16px;
 
 
 
@@ -303,19 +457,21 @@ select{
 
 
 
-    outline:none;
-
-
-
     font-size:15px;
 
 
 
-    transition:.3s;
+    outline:none;
+
+
+
+    transition:.35s;
 
 
 
 }
+
+
 
 
 
@@ -325,31 +481,14 @@ input::placeholder,
 textarea::placeholder{
 
 
-    color:#667085;
-
-
-}
-
-
-
-
-
-
-textarea{
-
-
-    min-height:140px;
-
-
-    resize:none;
-
-
-
-    line-height:1.5;
+    color:#52627a;
 
 
 
 }
+
+
+
 
 
 
@@ -359,11 +498,12 @@ input:hover,
 textarea:hover{
 
 
-    border-color:#00aeca;
+    border-color:#007d9c;
 
 
 
 }
+
 
 
 
@@ -380,10 +520,20 @@ select:focus{
 
 
 
+    background:
+
+
+    rgba(0,15,30,.95);
+
+
+
     box-shadow:
 
 
-    0 0 18px rgba(0,234,255,.25);
+    0 0 0 3px rgba(0,234,255,.12),
+
+
+    0 0 25px rgba(0,234,255,.2);
 
 
 
@@ -396,8 +546,29 @@ select:focus{
 
 
 
+textarea{
+
+
+    height:150px;
+
+
+
+    resize:none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
 /* ==========================================
-   SLIDER IDADE
+   SLIDERS
 ========================================== */
 
 
@@ -405,23 +576,29 @@ select:focus{
 #tempo{
 
 
-    width:100%;
-
-
-    height:8px;
-
-
-
     appearance:none;
 
 
-    background:#263650;
+    height:10px;
+
+
+
+    padding:0;
+
+
+
+    background:
+
+
+    linear-gradient(
+        90deg,
+        #00eaff,
+        #144d70
+    );
+
 
 
     border-radius:20px;
-
-
-    cursor:pointer;
 
 
 
@@ -441,10 +618,11 @@ select:focus{
 
 
 
-    width:22px;
+    width:25px;
 
 
-    height:22px;
+
+    height:25px;
 
 
 
@@ -456,10 +634,7 @@ select:focus{
 
 
 
-    box-shadow:
-
-
-    0 0 15px #00eaff;
+    border:3px solid #06121f;
 
 
 
@@ -467,8 +642,14 @@ select:focus{
 
 
 
-}
+    box-shadow:
 
+
+    0 0 15px #00eaff;
+
+
+
+}
 
 
 
@@ -480,17 +661,26 @@ select:focus{
 .tempo-valor{
 
 
-    text-align:center;
-
-
     margin-top:15px;
 
 
-    color:#9ca8bb;
+
+    text-align:center;
+
+
+
+    color:#8292aa;
+
+
+
+    font-size:15px;
 
 
 
 }
+
+
+
 
 
 
@@ -499,35 +689,36 @@ select:focus{
 .tempo-valor strong{
 
 
-    display:inline-block;
-
-
-    margin:0 5px;
-
-
     color:#00eaff;
 
 
-    font-size:26px;
+
+    font-size:28px;
+
+
+
+    text-shadow:
+
+
+    0 0 15px rgba(0,234,255,.7);
+
 
 
 }
 
-
-
-
-
-
-
 /* ==========================================
-   ESCOLHA DE SEXO
+   SELEÇÃO DE GÊNERO
 ========================================== */
 
 
 .sexo-container{
 
 
-    display:flex;
+    display:grid;
+
+
+    grid-template-columns:repeat(3,1fr);
+
 
 
     gap:15px;
@@ -540,29 +731,35 @@ select:focus{
 
 
 
+
+
 .sexo-btn{
 
 
-    flex:1;
+    position:relative;
 
 
 
-    padding:16px;
+    padding:18px;
 
 
 
     background:
 
 
-    rgba(5,12,22,.85);
+    linear-gradient(
+        145deg,
+        rgba(10,22,38,.9),
+        rgba(3,8,15,.9)
+    );
 
 
 
-    border:1px solid #263650;
+    border:1px solid #1b3855;
 
 
 
-    border-radius:14px;
+    border-radius:16px;
 
 
 
@@ -570,7 +767,11 @@ select:focus{
 
 
 
-    font-weight:bold;
+    font-size:15px;
+
+
+
+    font-weight:700;
 
 
 
@@ -578,11 +779,14 @@ select:focus{
 
 
 
-    transition:.3s;
+    transition:.35s;
 
 
 
 }
+
+
+
 
 
 
@@ -594,7 +798,15 @@ select:focus{
     border-color:#00eaff;
 
 
-    transform:translateY(-2px);
+
+    transform:translateY(-4px);
+
+
+
+    box-shadow:
+
+
+    0 10px 25px rgba(0,234,255,.15);
 
 
 
@@ -605,10 +817,20 @@ select:focus{
 
 
 
+
+
 .sexo-btn.selecionado{
 
 
-    background:#00eaff;
+    background:
+
+
+    linear-gradient(
+        135deg,
+        #00eaff,
+        #007cff
+    );
+
 
 
     color:#001018;
@@ -622,11 +844,18 @@ select:focus{
     box-shadow:
 
 
-    0 0 20px rgba(0,234,255,.7);
+    0 0 30px rgba(0,234,255,.6);
 
 
 
 }
+
+
+
+
+
+
+
 
 /* ==========================================
    BOTÕES PRINCIPAIS
@@ -641,11 +870,11 @@ select:focus{
 
 
 
-    margin-top:25px;
+    margin-top:30px;
 
 
 
-    padding:17px;
+    padding:20px;
 
 
 
@@ -653,7 +882,7 @@ select:focus{
 
 
 
-    border-radius:14px;
+    border-radius:18px;
 
 
 
@@ -663,7 +892,7 @@ select:focus{
     linear-gradient(
         135deg,
         #00eaff,
-        #008cff
+        #007cff
     );
 
 
@@ -676,11 +905,11 @@ select:focus{
 
 
 
-    font-weight:800;
+    font-weight:900;
 
 
 
-    letter-spacing:1px;
+    letter-spacing:2px;
 
 
 
@@ -688,11 +917,92 @@ select:focus{
 
 
 
-    transition:.3s;
+    text-transform:uppercase;
+
+
+
+    position:relative;
+
+
+
+    overflow:hidden;
+
+
+
+    transition:.35s;
 
 
 
 }
+
+
+
+
+
+
+
+
+.recruit-button::before,
+.botao::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+
+    top:0;
+
+
+    left:-100%;
+
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+
+    background:
+
+
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.5),
+        transparent
+    );
+
+
+
+    transition:.5s;
+
+
+
+}
+
+
+
+
+
+
+
+
+.recruit-button:hover::before,
+.botao:hover::before{
+
+
+    left:100%;
+
+
+
+}
+
+
 
 
 
@@ -702,32 +1012,19 @@ select:focus{
 .botao:hover{
 
 
-    transform:translateY(-3px);
+    transform:translateY(-5px);
 
 
 
     box-shadow:
 
 
-    0 0 25px rgba(0,234,255,.8);
+    0 0 35px rgba(0,234,255,.7);
 
 
 
 }
 
-
-
-
-
-.recruit-button:active,
-.botao:active{
-
-
-    transform:scale(.98);
-
-
-
-}
 
 
 
@@ -746,11 +1043,12 @@ select:focus{
     animation:
 
 
-    aparecerPagina .4s ease;
+    entradaPagina .45s ease;
 
 
 
 }
+
 
 
 
@@ -759,15 +1057,15 @@ select:focus{
 #pagina2 h2{
 
 
-    text-align:center;
-
-
-
     color:#00eaff;
 
 
 
-    font-size:26px;
+    font-size:30px;
+
+
+
+    text-align:center;
 
 
 
@@ -775,7 +1073,16 @@ select:focus{
 
 
 
+    text-shadow:
+
+
+    0 0 15px rgba(0,234,255,.5);
+
+
+
 }
+
+
 
 
 
@@ -784,15 +1091,11 @@ select:focus{
 #pagina2 p{
 
 
-    text-align:center;
+    color:#8d9bb2;
 
 
 
-    color:#9ca8bb;
-
-
-
-    margin-bottom:30px;
+    margin-bottom:35px;
 
 
 
@@ -804,12 +1107,7 @@ select:focus{
 
 
 
-/* ==========================================
-   ANIMAÇÃO LEVE DAS ETAPAS
-========================================== */
-
-
-@keyframes aparecerPagina{
+@keyframes entradaPagina{
 
 
     from{
@@ -818,7 +1116,7 @@ select:focus{
         opacity:0;
 
 
-        transform:translateY(15px);
+        transform:translateX(30px);
 
 
 
@@ -832,83 +1130,11 @@ select:focus{
         opacity:1;
 
 
-        transform:translateY(0);
+        transform:translateX(0);
 
 
 
     }
-
-
-}
-
-
-
-
-
-
-
-
-/* ==========================================
-   ESPAÇAMENTO DO FORMULÁRIO
-========================================== */
-
-
-#pagina1,
-#pagina2{
-
-
-    width:100%;
-
-
-
-}
-
-
-
-
-
-
-/* ==========================================
-   BORDAS INTERNAS FUTURISTAS
-========================================== */
-
-
-.recruit-card::before{
-
-
-    content:"";
-
-
-    display:block;
-
-
-
-    width:100%;
-
-
-
-    height:2px;
-
-
-
-    margin-bottom:30px;
-
-
-
-    background:
-
-
-    linear-gradient(
-        90deg,
-        transparent,
-        #00eaff,
-        transparent
-    );
-
-
-
-    opacity:.7;
-
 
 
 }
@@ -925,7 +1151,7 @@ select:focus{
     .recruit-container{
 
 
-        padding:30px 15px;
+        padding:35px 15px;
 
 
 
@@ -947,7 +1173,10 @@ select:focus{
 
 
 
+
+
 }
+
 
 
 
@@ -963,10 +1192,30 @@ select:focus{
     .recruit-card{
 
 
-        border-radius:18px;
+        border-radius:22px;
 
 
-        padding:25px 18px;
+
+        padding:28px 18px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .recruit-card h1{
+
+
+        font-size:36px;
+
+
+
+        letter-spacing:4px;
 
 
 
@@ -977,30 +1226,16 @@ select:focus{
 
 
 
-    .recruit-header h1{
+
+    .recruit-card h2{
 
 
-        font-size:34px;
-
-
-        letter-spacing:3px;
-
-
-
-    }
-
-
-
-
-
-    .recruit-header h2{
-
-
-        font-size:21px;
+        font-size:22px;
 
 
 
     }
+
 
 
 
@@ -1010,25 +1245,12 @@ select:focus{
     .sexo-container{
 
 
-        flex-direction:column;
+        grid-template-columns:1fr;
 
 
 
     }
 
-
-
-
-
-
-    .sexo-btn{
-
-
-        width:100%;
-
-
-
-    }
 
 
 
@@ -1036,76 +1258,10 @@ select:focus{
 
 
     input,
-    textarea,
-    select{
-
-
-        padding:14px;
-
-
-
-    }
-
-
-
-
-
-
     textarea{
 
 
-        min-height:120px;
-
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-@media(max-width:420px){
-
-
-
-    .recruit-card{
-
-
-        padding:20px 15px;
-
-
-
-    }
-
-
-
-
-
-
-    .recruit-header h1{
-
-
-        font-size:28px;
-
-
-
-    }
-
-
-
-
-
-
-    .recruit-header p{
-
-
-        font-size:13px;
+        padding:15px;
 
 
 
@@ -1120,17 +1276,79 @@ select:focus{
     .botao{
 
 
+        padding:17px;
+
+
+
         font-size:14px;
-
-
-        padding:15px;
 
 
 
     }
 
 
+
 }
+
+
+
+
+
+
+
+
+
+@media(max-width:420px){
+
+
+
+    .recruit-card h1{
+
+
+        font-size:28px;
+
+
+
+        letter-spacing:3px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .recruit-card{
+
+
+        padding:22px 14px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .form-group label{
+
+
+        font-size:12px;
+
+
+
+    }
+
+
+
+}
+
 
 
 
@@ -1154,10 +1372,12 @@ select:focus{
 
 
 
+
+
 ::-webkit-scrollbar-track{
 
 
-    background:#05070c;
+    background:#020409;
 
 
 
@@ -1165,10 +1385,20 @@ select:focus{
 
 
 
+
+
+
+
 ::-webkit-scrollbar-thumb{
 
 
-    background:#00eaff;
+    background:
+
+
+    linear-gradient(
+        #00eaff,
+        #007cff
+    );
 
 
 
@@ -1182,10 +1412,71 @@ select:focus{
 
 
 
+
+
 ::-webkit-scrollbar-thumb:hover{
 
 
-    background:#008cff;
+    background:#00eaff;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   AJUSTES EXTRAS DAS ETAPAS
+========================================== */
+
+
+#pagina1,
+#pagina2{
+
+
+    width:100%;
+
+
+
+}
+
+
+
+
+
+
+
+#pagina2{
+
+
+    position:relative;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* evita cortes em telas pequenas */
+
+
+.recruit-card,
+input,
+textarea,
+button{
+
+
+    max-width:100%;
 
 
 
