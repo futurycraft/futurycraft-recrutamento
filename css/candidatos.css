@@ -1,7 +1,10 @@
 /* ==========================================
    FUTURYCRAFT - CANDIDATURA STAFF
+   FUTURISTIC DESIGN
 ========================================== */
 
+
+/* RESET */
 
 *{
 
@@ -13,22 +16,45 @@
 
 
 
+
+
+/* BODY */
+
 body{
+
 
     min-height:100vh;
 
+
     background:
-    radial-gradient(circle at top,#172033,#050505 70%);
+
+    radial-gradient(
+        circle at top,
+        #18263d,
+        #05070c 65%
+    );
+
 
     color:white;
 
-    font-family:Arial, Helvetica, sans-serif;
+
+    font-family:
+    'Montserrat',
+    Arial,
+    Helvetica,
+    sans-serif;
+
 
 }
 
 
 
-/* CONTAINER PRINCIPAL */
+
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
 
 
 .recruit-container{
@@ -36,20 +62,30 @@ body{
 
     min-height:100vh;
 
+
     display:flex;
+
 
     justify-content:center;
 
+
     align-items:center;
 
-    padding:40px 20px;
+
+    padding:50px 20px;
+
 
 
 }
 
 
 
-/* CARD */
+
+
+
+/* ==========================================
+   CARD PRINCIPAL
+========================================== */
 
 
 .recruit-card{
@@ -57,19 +93,46 @@ body{
 
     width:100%;
 
+
     max-width:850px;
 
-    background:#101622;
 
-    border:1px solid #24314a;
 
-    border-radius:20px;
+    background:
 
-    padding:40px;
+
+    linear-gradient(
+        145deg,
+        rgba(18,28,45,.95),
+        rgba(5,10,18,.95)
+    );
+
+
+
+    border:1px solid rgba(0,234,255,.25);
+
+
+
+    border-radius:24px;
+
+
+
+    padding:45px;
+
+
 
     box-shadow:
 
-    0 0 30px rgba(0,234,255,.15);
+
+    0 0 40px rgba(0,234,255,.12),
+
+
+    inset 0 0 30px rgba(255,255,255,.02);
+
+
+
+    backdrop-filter:blur(10px);
+
 
 
 }
@@ -78,69 +141,98 @@ body{
 
 
 
-/* TITULOS */
 
 
-.recruit-card h1{
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+
+.recruit-header{
 
 
     text-align:center;
 
-    font-size:42px;
 
-    letter-spacing:4px;
+    margin-bottom:35px;
+
+
+
+}
+
+
+
+.recruit-header h1{
+
+
+    font-size:44px;
+
+
+    letter-spacing:5px;
+
 
     color:#00eaff;
 
+
+
     text-shadow:
 
-    0 0 15px #00eaff;
+
+    0 0 15px rgba(0,234,255,.9);
+
 
 
 }
 
 
 
-.recruit-card h2{
+
+.recruit-header h2{
 
 
-    text-align:center;
+    margin-top:12px;
 
-    margin-top:10px;
 
-    margin-bottom:15px;
+    font-size:24px;
+
 
     color:white;
 
 
-}
-
-
-
-.recruit-card p{
-
-
-    color:#aaa;
-
-    text-align:center;
-
-    margin-bottom:25px;
-
 
 }
 
 
 
-/* CAMPOS */
+
+.recruit-header p{
+
+
+    margin-top:15px;
+
+
+    color:#9ca8bb;
+
+
+    font-size:15px;
+
+
+
+}
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
 
 
 .form-group{
 
 
-    margin-bottom:25px;
+    margin-bottom:28px;
 
 
 }
+
 
 
 
@@ -149,17 +241,35 @@ body{
 
     display:block;
 
-    margin-bottom:10px;
+
+    margin-bottom:12px;
+
 
     color:#00eaff;
 
-    font-weight:bold;
+
+    font-size:14px;
+
+
+    font-weight:700;
+
+
+
+    letter-spacing:.5px;
+
 
 
 }
 
 
 
+
+
+
+
+/* ==========================================
+   INPUTS
+========================================== */
 
 
 input,
@@ -169,36 +279,95 @@ select{
 
     width:100%;
 
-    padding:15px;
 
-    background:#080d16;
+    padding:16px 18px;
 
-    border:1px solid #27344d;
 
-    border-radius:12px;
+
+    background:
+
+
+    rgba(5,12,22,.85);
+
+
+
+    border:1px solid #263650;
+
+
+
+    border-radius:14px;
+
+
 
     color:white;
 
+
+
     outline:none;
 
+
+
     font-size:15px;
+
+
 
     transition:.3s;
 
 
+
 }
+
+
+
+
+
+input::placeholder,
+textarea::placeholder{
+
+
+    color:#667085;
+
+
+}
+
+
+
 
 
 
 textarea{
 
 
-    min-height:130px;
+    min-height:140px;
+
 
     resize:none;
 
 
+
+    line-height:1.5;
+
+
+
 }
+
+
+
+
+
+input:hover,
+textarea:hover{
+
+
+    border-color:#00aeca;
+
+
+
+}
+
+
+
+
 
 
 
@@ -209,9 +378,13 @@ select:focus{
 
     border-color:#00eaff;
 
+
+
     box-shadow:
 
-    0 0 15px rgba(0,234,255,.3);
+
+    0 0 18px rgba(0,234,255,.25);
+
 
 
 }
@@ -220,45 +393,122 @@ select:focus{
 
 
 
-/* BARRA DE IDADE */
 
 
-#idade{
+
+/* ==========================================
+   SLIDER IDADE
+========================================== */
+
+
+#idade,
+#tempo{
 
 
     width:100%;
 
+
     height:8px;
+
+
+
+    appearance:none;
+
+
+    background:#263650;
+
+
+    border-radius:20px;
+
 
     cursor:pointer;
 
-    accent-color:#00eaff;
 
 
 }
 
 
 
-.idade-valor{
+
+
+
+
+#idade::-webkit-slider-thumb,
+#tempo::-webkit-slider-thumb{
+
+
+    appearance:none;
+
+
+
+    width:22px;
+
+
+    height:22px;
+
+
+
+    border-radius:50%;
+
+
+
+    background:#00eaff;
+
+
+
+    box-shadow:
+
+
+    0 0 15px #00eaff;
+
+
+
+    cursor:pointer;
+
+
+
+}
+
+
+
+
+
+
+
+
+.idade-valor,
+.tempo-valor{
 
 
     text-align:center;
 
+
     margin-top:15px;
 
-    color:#aaa;
+
+    color:#9ca8bb;
+
 
 
 }
 
 
 
-.idade-valor strong{
+
+.idade-valor strong,
+.tempo-valor strong{
+
+
+    display:inline-block;
+
+
+    margin:0 5px;
 
 
     color:#00eaff;
 
-    font-size:25px;
+
+    font-size:26px;
 
 
 }
@@ -267,7 +517,11 @@ select:focus{
 
 
 
-/* SEXO */
+
+
+/* ==========================================
+   ESCOLHA DE SEXO
+========================================== */
 
 
 .sexo-container{
@@ -275,9 +529,14 @@ select:focus{
 
     display:flex;
 
+
     gap:15px;
 
+
+
 }
+
+
 
 
 
@@ -286,24 +545,46 @@ select:focus{
 
     flex:1;
 
-    padding:15px;
 
-    background:#080d16;
 
-    border:1px solid #27344d;
+    padding:16px;
 
-    border-radius:12px;
+
+
+    background:
+
+
+    rgba(5,12,22,.85);
+
+
+
+    border:1px solid #263650;
+
+
+
+    border-radius:14px;
+
+
 
     color:white;
 
-    cursor:pointer;
+
 
     font-weight:bold;
 
-    transition:.25s;
+
+
+    cursor:pointer;
+
+
+
+    transition:.3s;
+
 
 
 }
+
+
 
 
 
@@ -313,7 +594,14 @@ select:focus{
     border-color:#00eaff;
 
 
+    transform:translateY(-2px);
+
+
+
 }
+
+
+
 
 
 
@@ -322,22 +610,27 @@ select:focus{
 
     background:#00eaff;
 
-    color:#000;
+
+    color:#001018;
+
+
 
     border-color:#00eaff;
 
+
+
     box-shadow:
 
-    0 0 15px #00eaff;
+
+    0 0 20px rgba(0,234,255,.7);
+
 
 
 }
 
-
-
-
-
-/* BOTÕES */
+/* ==========================================
+   BOTÕES PRINCIPAIS
+========================================== */
 
 
 .recruit-button,
@@ -346,28 +639,61 @@ select:focus{
 
     width:100%;
 
-    margin-top:20px;
 
-    padding:16px;
+
+    margin-top:25px;
+
+
+
+    padding:17px;
+
+
 
     border:none;
 
-    border-radius:12px;
 
-    background:#00eaff;
 
-    color:#000;
+    border-radius:14px;
 
-    font-weight:bold;
+
+
+    background:
+
+
+    linear-gradient(
+        135deg,
+        #00eaff,
+        #008cff
+    );
+
+
+
+    color:#001018;
+
+
 
     font-size:16px;
 
+
+
+    font-weight:800;
+
+
+
+    letter-spacing:1px;
+
+
+
     cursor:pointer;
+
+
 
     transition:.3s;
 
 
+
 }
+
 
 
 
@@ -379,9 +705,12 @@ select:focus{
     transform:translateY(-3px);
 
 
+
     box-shadow:
 
-    0 0 25px #00eaff;
+
+    0 0 25px rgba(0,234,255,.8);
+
 
 
 }
@@ -389,15 +718,61 @@ select:focus{
 
 
 
-/* SEGUNDA PÁGINA */
+
+.recruit-button:active,
+.botao:active{
+
+
+    transform:scale(.98);
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   SEGUNDA ETAPA
+========================================== */
+
+
+#pagina2{
+
+
+    animation:
+
+
+    aparecerPagina .4s ease;
+
+
+
+}
+
+
+
 
 
 #pagina2 h2{
 
 
+    text-align:center;
+
+
+
     color:#00eaff;
 
-    margin-bottom:25px;
+
+
+    font-size:26px;
+
+
+
+    margin-bottom:15px;
+
 
 
 }
@@ -405,83 +780,413 @@ select:focus{
 
 
 
-/* RESPONSIVO */
+
+#pagina2 p{
 
 
-@media(max-width:700px){
+    text-align:center;
 
 
-.recruit-card{
+
+    color:#9ca8bb;
 
 
-    padding:25px;
+
+    margin-bottom:30px;
+
 
 
 }
 
 
 
-.recruit-card h1{
 
 
-    font-size:32px;
+
+
+/* ==========================================
+   ANIMAÇÃO LEVE DAS ETAPAS
+========================================== */
+
+
+@keyframes aparecerPagina{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:translateY(15px);
+
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:translateY(0);
+
+
+
+    }
 
 
 }
 
 
 
-.sexo-container{
 
 
-    flex-direction:column;
+
+
+
+/* ==========================================
+   ESPAÇAMENTO DO FORMULÁRIO
+========================================== */
+
+
+#pagina1,
+#pagina2{
+
+
+    width:100%;
+
 
 
 }
+
+
+
+
+
+
+/* ==========================================
+   BORDAS INTERNAS FUTURISTAS
+========================================== */
+
+
+.recruit-card::before{
+
+
+    content:"";
+
+
+    display:block;
+
+
+
+    width:100%;
+
+
+
+    height:2px;
+
+
+
+    margin-bottom:30px;
+
+
+
+    background:
+
+
+    linear-gradient(
+        90deg,
+        transparent,
+        #00eaff,
+        transparent
+    );
+
+
+
+    opacity:.7;
 
 
 
 }
 
 /* ==========================================
-   BARRA DE TEMPO DE SERVIDOR
+   RESPONSIVIDADE
 ========================================== */
 
 
-#tempo{
+@media(max-width:900px){
 
-    width:100%;
 
-    height:8px;
 
-    cursor:pointer;
+    .recruit-container{
 
-    accent-color:#00eaff;
+
+        padding:30px 15px;
+
+
+
+    }
+
+
+
+
+
+
+    .recruit-card{
+
+
+        padding:35px 25px;
+
+
+
+    }
+
+
 
 }
 
 
 
-.tempo-valor{
 
 
-    text-align:center;
 
-    margin-top:15px;
 
-    color:#aaa;
+
+@media(max-width:700px){
+
+
+
+    .recruit-card{
+
+
+        border-radius:18px;
+
+
+        padding:25px 18px;
+
+
+
+    }
+
+
+
+
+
+
+    .recruit-header h1{
+
+
+        font-size:34px;
+
+
+        letter-spacing:3px;
+
+
+
+    }
+
+
+
+
+
+    .recruit-header h2{
+
+
+        font-size:21px;
+
+
+
+    }
+
+
+
+
+
+
+    .sexo-container{
+
+
+        flex-direction:column;
+
+
+
+    }
+
+
+
+
+
+
+    .sexo-btn{
+
+
+        width:100%;
+
+
+
+    }
+
+
+
+
+
+
+    input,
+    textarea,
+    select{
+
+
+        padding:14px;
+
+
+
+    }
+
+
+
+
+
+
+    textarea{
+
+
+        min-height:120px;
+
+
+
+    }
+
 
 
 }
 
 
 
-.tempo-valor strong{
 
 
-    color:#00eaff;
 
-    font-size:25px;
+
+@media(max-width:420px){
+
+
+
+    .recruit-card{
+
+
+        padding:20px 15px;
+
+
+
+    }
+
+
+
+
+
+
+    .recruit-header h1{
+
+
+        font-size:28px;
+
+
+
+    }
+
+
+
+
+
+
+    .recruit-header p{
+
+
+        font-size:13px;
+
+
+
+    }
+
+
+
+
+
+
+    .recruit-button,
+    .botao{
+
+
+        font-size:14px;
+
+
+        padding:15px;
+
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================
+   SCROLLBAR FUTURYCRAFT
+========================================== */
+
+
+::-webkit-scrollbar{
+
+
+    width:10px;
+
+
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+
+    background:#05070c;
+
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+    background:#00eaff;
+
+
+
+    border-radius:20px;
+
+
+
+}
+
+
+
+
+
+::-webkit-scrollbar-thumb:hover{
+
+
+    background:#008cff;
+
 
 
 }
