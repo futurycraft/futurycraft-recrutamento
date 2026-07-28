@@ -681,15 +681,13 @@ opacity:0;
 
 .form-grid{
 
+    display:flex;
 
-    display:grid;
-
-
-    grid-template-columns:repeat(2,1fr);
-
+    flex-direction:column;
 
     gap:20px;
 
+    width:100%;
 
 }
 
