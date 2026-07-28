@@ -60,6 +60,7 @@ FuturyCraft • Recrutamento Staff
 
 
 
+
 <header class="recruit-header">
 
 
@@ -251,12 +252,6 @@ Preencha seus dados para iniciar sua candidatura.
 
 <div class="form-grid">
 
-
-
-
-
-
-
 <div class="form-group">
 
 
@@ -274,6 +269,7 @@ required>
 
 
 </div>
+
 
 
 
@@ -307,6 +303,7 @@ required>
 
 
 
+
 <div class="form-group">
 
 
@@ -332,6 +329,7 @@ required>
 
 
 
+
 <div class="form-group">
 
 
@@ -347,7 +345,6 @@ id="idade"
 min="10"
 max="60"
 value="15"
-oninput="mostrarIdade(this.value)"
 >
 
 
@@ -427,6 +424,8 @@ Como prefere ser identificado?
 
 
 
+
+
 <button
 type="button"
 class="sexo-btn"
@@ -437,6 +436,8 @@ Masculino
 
 
 </button>
+
+
 
 
 
@@ -457,6 +458,8 @@ Feminino
 
 
 
+
+
 <button
 type="button"
 class="sexo-btn"
@@ -470,7 +473,11 @@ Outro
 
 
 
+
+
 </div>
+
+
 
 
 
@@ -485,6 +492,7 @@ required
 
 
 </div>
+
 
 
 
@@ -514,8 +522,11 @@ CONTINUAR
 
 
 
-
 </section>
+
+
+
+
 
 <!-- ==========================
      SEGUNDA ETAPA
@@ -523,9 +534,14 @@ CONTINUAR
 
 
 
+
+
+
 <section 
 id="pagina2"
 style="display:none;">
+
+
 
 
 
@@ -572,7 +588,6 @@ id="tempo"
 min="1"
 max="60"
 value="1"
-oninput="mostrarTempo(this.value)"
 >
 
 
@@ -704,19 +719,8 @@ required></textarea>
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="buttons-area">
+
 
 
 
@@ -728,10 +732,13 @@ class="back-button"
 onclick="voltarPagina1()">
 
 
+
 ← VOLTAR
 
 
+
 </button>
+
 
 
 
@@ -744,10 +751,13 @@ type="submit"
 class="botao">
 
 
+
 ENVIAR CANDIDATURA
 
 
+
 </button>
+
 
 
 
@@ -762,6 +772,8 @@ ENVIAR CANDIDATURA
 
 
 </section>
+
+
 
 
 
@@ -789,279 +801,24 @@ ENVIAR CANDIDATURA
 
 </div>
 
-<script>
 
 
-function mostrarIdade(valor){
 
 
-document.getElementById("valorIdade").innerHTML = valor;
 
 
-}
-
-
-
-
-
-
-
-
-
-function selecionarSexo(botao,valor){
-
-
-
-document
-.querySelectorAll(".sexo-btn")
-.forEach(btn=>{
-
-
-btn.classList.remove("selecionado");
-
-
-});
-
-
-
-
-
-
-botao.classList.add("selecionado");
-
-
-
-
-
-document.getElementById("genero").value = valor;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function mostrarTempo(valor){
-
-
-
-valor = Number(valor);
-
-
-
-let texto;
-
-
-
-
-
-if(valor < 12){
-
-
-
-texto = valor + (valor == 1 ? " mês" : " meses");
-
-
-
-}else{
-
-
-
-let anos = Math.floor(valor / 12);
-
-
-let meses = valor % 12;
-
-
-
-
-
-
-
-if(meses == 0){
-
-
-
-texto = anos + (anos == 1 ? " ano" : " anos");
-
-
-
-}else{
-
-
-
-texto =
-anos + (anos == 1 ? " ano " : " anos ")
-+
-meses + " meses";
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-document.getElementById("valorTempo").innerHTML = texto;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-function mostrarPagina2(){
-
-
-
-let pagina1 = document.getElementById("pagina1");
-
-let pagina2 = document.getElementById("pagina2");
-
-
-
-
-
-pagina1.style.display = "none";
-
-
-pagina2.style.display = "block";
-
-
-
-
-
-document.querySelectorAll(".etapa")[0]
-.classList.remove("ativa");
-
-
-
-document.querySelectorAll(".etapa")[1]
-.classList.add("ativa");
-
-
-
-
-
-
-window.scrollTo({
-
-
-top:0,
-
-
-behavior:"smooth"
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function voltarPagina1(){
-
-
-
-let pagina1 = document.getElementById("pagina1");
-
-let pagina2 = document.getElementById("pagina2");
-
-
-
-
-pagina2.style.display = "none";
-
-
-pagina1.style.display = "block";
-
-
-
-
-
-document.querySelectorAll(".etapa")[1]
-.classList.remove("ativa");
-
-
-
-document.querySelectorAll(".etapa")[0]
-.classList.add("ativa");
-
-
-
-
-
-
-window.scrollTo({
-
-
-top:0,
-
-
-behavior:"smooth"
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
+<!-- ==========================================
+     SCRIPTS
+========================================== -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
+<script src="./js/supabase.js"></script>
 
 
-
-<script src="./js/script.js"></script>
-
-
+<script src="./js/candidatos.js"></script>
 
 
 
