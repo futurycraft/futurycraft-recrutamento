@@ -9,7 +9,7 @@
    SUPABASE
 ========================================== */
 
-const supabase = window.supabaseClient;
+const db = window.supabaseClient;
 
 /* ==========================================
    ELEMENTOS
