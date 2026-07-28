@@ -533,7 +533,7 @@ form.addEventListener("submit", async function(event){
 
     try{
 
-        const { error } = await supabase
+        const { error } = await db
         .from("candidatos")
         .insert([
 
