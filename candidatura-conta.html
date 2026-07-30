@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recrutamento • Conta | FuturyCraft</title>
+
+    <link rel="stylesheet" href="./css/candidatos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<main class="container">
+
+    <div class="progress-card">
+
+        <div class="progress-top">
+
+            <div>
+
+                <span class="step">
+                    Etapa 2 de 5
+                </span>
+
+                <h1>Conta e Servidor</h1>
+
+                <p>
+                    Conte um pouco sobre sua conta, disponibilidade e experiência no FuturyCraft.
+                </p>
+
+            </div>
+
+            <span class="percent">
+                40%
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill" style="width:40%"></div>
+
+        </div>
+
+    </div>
+
+    <form id="form-conta" class="form-card">
+
+        <!-- Conta -->
+
+        <div class="campo">
+
+            <label>Seu Minecraft é:</label>
+
+            <select id="tipo_conta" required>
+
+                <option value="">Selecione</option>
+
+                <option value="Original">Original</option>
+
+                <option value="Pirata">Pirata</option>
+
+            </select>
+
+        </div>
+
+        <!-- Plataforma -->
+
+        <div class="campo">
+
+            <label>Em qual plataforma você joga?</label>
+
+            <select id="plataforma" required>
+
+                <option value="">Selecione</option>
+
+                <option value="Java">Java</option>
+
+                <option value="Bedrock">Bedrock</option>
+
+                <option value="Ambas">Ambas</option>
+
+            </select>
+
+        </div>
+
+        <!-- Acesso -->
+
+        <div class="campo">
+
+            <label>Alguém além de você possui acesso à sua conta?</label>
+
+            <select id="acesso_conta" required>
+
+                <option value="">Selecione</option>
+
+                <option value="Não">Não</option>
+
+                <option value="Sim">Sim</option>
+
+            </select>
+
+        </div>
+
+        <!-- Tempo -->
+
+        <div class="campo">
+
+            <label>Há quanto tempo você joga no FuturyCraft?</label>
+
+            <input
+                type="text"
+                id="tempo_servidor"
+                maxlength="50"
+                placeholder="Ex: 2 anos"
+                required>
+
+        </div>
+
+        <!-- Modo -->
+
+        <div class="campo">
+
+            <label>Em qual modo você gostaria de ser ajudante?</label>
+
+            <select id="modo_interesse" required>
+
+                <option value="">Selecione</option>
+
+                <option value="Skyblock">Skyblock</option>
+
+                <option value="Rankup">Rankup</option>
+
+                <option value="Survival">Survival</option>
+
+            </select>
+
+        </div>
+
+        <!-- Horário -->
+
+        <div class="campo">
+
+            <label>Qual horário você costuma jogar?</label>
+
+            <select id="horario_jogo" required>
+
+                <option value="">Selecione</option>
+
+                <option value="Manhã">Manhã</option>
+
+                <option value="Tarde">Tarde</option>
+
+                <option value="Noite">Noite</option>
+
+                <option value="Madrugada">Madrugada</option>
+
+            </select>
+
+        </div>
+
+        <!-- Dias -->
+
+        <div class="campo">
+
+            <label>Quais dias da semana você costuma jogar?</label>
+
+            <div class="checkbox-group">
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Segunda">
+                    Segunda-feira
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Terça">
+                    Terça-feira
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Quarta">
+                    Quarta-feira
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Quinta">
+                    Quinta-feira
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Sexta">
+                    Sexta-feira
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Sábado">
+                    Sábado
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Domingo">
+                    Domingo
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="botoes">
+
+            <button
+                type="button"
+                class="btn-secundario"
+                onclick="window.location.href='candidatura.html'">
+
+                ← Voltar
+
+            </button>
+
+            <button
+                type="submit"
+                class="btn-principal">
+
+                Próxima etapa →
+
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+
+<script src="./js/candidatos-conta.js"></script>
+
+</body>
+</html>
