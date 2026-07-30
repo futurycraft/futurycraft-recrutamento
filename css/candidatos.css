@@ -1,26 +1,43 @@
-/* ==========================================
+/* ==========================================================
    FUTURYCRAFT
-   RECRUTAMENTO STAFF
-   CANDIDATOS CSS
-========================================== */
+   CANDIDATURA STAFF
+   PARTE 1
+========================================================== */
 
+:root{
 
-/* ==========================================
-   RESET
-========================================== */
+    --bg:#060b16;
+    --bg2:#0d1627;
+    --card:rgba(18,28,48,.82);
 
+    --border:rgba(255,255,255,.08);
 
-*{
+    --primary:#4cc2ff;
+    --primary-dark:#2694ff;
 
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Montserrat',Arial,sans-serif;
+    --success:#32d296;
+    --danger:#ff5c7a;
+    --warning:#ffbe3b;
+
+    --text:#ffffff;
+    --text2:#b9c8df;
+
+    --radius:18px;
+
+    --shadow:
+    0 15px 40px rgba(0,0,0,.35);
+
+    --transition:.25s;
+
+    --max-width:900px;
 
 }
 
-
-
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 html{
 
@@ -28,1702 +45,1176 @@ html{
 
 }
 
-
-
-
-
 body{
 
-    min-height:100vh;
+    font-family:'Montserrat',sans-serif;
 
     background:
+    radial-gradient(circle at top,#12213d 0%,#08111f 45%,#050911 100%);
 
-    radial-gradient(circle at top,#132447 0%,#050914 45%,#020308 100%);
+    color:var(--text);
 
-    color:#fff;
+    min-height:100vh;
 
     overflow-x:hidden;
 
 }
 
+/* ==========================================================
+BACKGROUND
+========================================================== */
 
-
-
-
-
-
-/* ==========================================
-   PARTICULAS DE FUNDO
-========================================== */
-
-
-.particles{
+.background{
 
     position:fixed;
 
     inset:0;
 
+    z-index:-5;
+
     overflow:hidden;
 
-    pointer-events:none;
-
-    z-index:0;
-
 }
 
-
-
-
-.particles span{
-
-
-    position:absolute;
-
-    width:6px;
-
-    height:6px;
-
-    background:#00d9ff;
-
-    border-radius:50%;
-
-    opacity:.35;
-
-    animation:subir 15s linear infinite;
-
-
-}
-
-
-
-
-
-
-.particles span:nth-child(1){
-
-    left:10%;
-
-    animation-duration:12s;
-
-}
-
-
-
-.particles span:nth-child(2){
-
-    left:30%;
-
-    animation-duration:18s;
-
-    width:4px;
-
-    height:4px;
-
-}
-
-
-
-
-.particles span:nth-child(3){
-
-    left:50%;
-
-    animation-duration:14s;
-
-}
-
-
-
-
-.particles span:nth-child(4){
-
-    left:70%;
-
-    animation-duration:20s;
-
-    width:8px;
-
-    height:8px;
-
-}
-
-
-
-
-.particles span:nth-child(5){
-
-    left:85%;
-
-    animation-duration:16s;
-
-}
-
-
-
-
-.particles span:nth-child(6){
-
-    left:95%;
-
-    animation-duration:22s;
-
-}
-
-
-
-
-
-
-
-@keyframes subir{
-
-
-0%{
-
-
-transform:translateY(110vh);
-
-opacity:0;
-
-
-}
-
-
-
-20%{
-
-
-opacity:.5;
-
-
-}
-
-
-
-100%{
-
-
-transform:translateY(-20vh);
-
-opacity:0;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   CONTAINER PRINCIPAL
-========================================== */
-
-
-.recruit-container{
-
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:40px 20px;
-
-    position:relative;
-
-    z-index:1;
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================
-   CARD PRINCIPAL
-========================================== */
-
-
-.recruit-card{
-
-
-    width:100%;
-
-    max-width:850px;
-
-
-    background:
-
-    rgba(8,15,30,.92);
-
-
-    border:1px solid rgba(0,217,255,.25);
-
-
-    border-radius:24px;
-
-
-    padding:35px;
-
-
-    box-shadow:
-
-
-    0 0 40px rgba(0,217,255,.12),
-
-
-    inset 0 0 25px rgba(255,255,255,.02);
-
-
-
-    backdrop-filter:blur(12px);
-
-
-}
-
-
-
-
-
-
-
-.recruit-card::before{
-
+.background::before{
 
     content:"";
 
-
     position:absolute;
 
-
-    width:250px;
-
-    height:250px;
-
-
-    background:#00d9ff;
-
-
-    filter:blur(130px);
-
-
-    opacity:.15;
-
-
-}
-
-
-
-
-
-
-
-
-/* ==========================================
-   HEADER
-========================================== */
-
-
-.recruit-header{
-
-
-    text-align:center;
-
-
-    margin-bottom:35px;
-
-
-}
-
-
-
-
-
-
-
-.logo-area{
-
-
-    display:flex;
-
-    justify-content:center;
-
-    margin-bottom:15px;
-
-
-}
-
-
-
-
-
-
-.recruit-logo{
-
-
-    width:110px;
-
-    height:110px;
-
-    object-fit:contain;
-
-
-    filter:
-
-    drop-shadow(0 0 15px rgba(0,217,255,.5));
-
-
-}
-
-
-
-
-
-
-.header-text h1{
-
-
-    font-size:38px;
-
-
-    letter-spacing:2px;
-
-
-    color:#fff;
-
-
-}
-
-
-
-.header-text h2{
-
-
-    margin-top:5px;
-
-
-    font-size:22px;
-
-
-    color:#00d9ff;
-
-
-}
-
-
-
-.header-text p{
-
-
-    margin-top:12px;
-
-
-    color:#aab5cc;
-
-
-    font-size:15px;
-
-
-}
-
-/* ==========================================
-   ETAPAS DO FORMULÁRIO
-========================================== */
-
-
-.etapas{
-
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:15px;
-
-    margin-bottom:35px;
-
-
-}
-
-
-
-
-
-
-.etapa{
-
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-
-    padding:12px 18px;
-
-
-    border-radius:14px;
-
-
-    background:rgba(255,255,255,.04);
-
-
-    border:1px solid rgba(255,255,255,.08);
-
-
-    transition:.3s;
-
-
-}
-
-
-
-
-
-
-
-.etapa.ativa{
-
-
-    border-color:#00d9ff;
-
-
-    background:rgba(0,217,255,.10);
-
-
-    box-shadow:
-
-    0 0 20px rgba(0,217,255,.15);
-
-
-}
-
-
-
-
-
-
-
-.numero{
-
-
-    width:38px;
-
-    height:38px;
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    justify-content:center;
-
+    width:700px;
+    height:700px;
 
     border-radius:50%;
 
+    background:
 
-    background:#101b32;
+    radial-gradient(circle,
+    rgba(76,194,255,.20),
+    transparent 70%);
 
+    top:-220px;
+    left:-200px;
 
-    border:1px solid rgba(0,217,255,.4);
+    animation:float1 14s linear infinite;
 
+}
 
-    color:#00d9ff;
+.background::after{
 
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(45,130,255,.16),
+    transparent 70%);
+
+    bottom:-200px;
+    right:-180px;
+
+    animation:float2 18s linear infinite;
+
+}
+
+@keyframes float1{
+
+    50%{
+
+        transform:
+        translateY(30px)
+        translateX(40px);
+
+    }
+
+}
+
+@keyframes float2{
+
+    50%{
+
+        transform:
+        translateY(-25px)
+        translateX(-40px);
+
+    }
+
+}
+
+/* ==========================================================
+CONTAINER
+========================================================== */
+
+.container{
+
+    width:min(95%,var(--max-width));
+
+    margin:auto;
+
+    padding:
+
+    45px
+    0
+    80px;
+
+}
+
+/* ==========================================================
+PROGRESSO
+========================================================== */
+
+.progress-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:var(--radius);
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+}
+
+.progress-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+}
+
+.step{
+
+    display:inline-flex;
+
+    padding:
+
+    6px
+    14px;
+
+    border-radius:999px;
+
+    background:
+
+    rgba(76,194,255,.12);
+
+    color:var(--primary);
+
+    font-size:.82rem;
 
     font-weight:700;
 
+    letter-spacing:.5px;
+
+    margin-bottom:14px;
 
 }
 
+.progress-top h1{
 
+    font-size:2rem;
 
+    font-weight:800;
 
-
-
-.etapa strong{
-
-
-    display:block;
-
-
-    font-size:14px;
-
-
-    color:#fff;
-
+    margin-bottom:8px;
 
 }
 
+.progress-top p{
 
+    color:var(--text2);
 
+    line-height:1.7;
 
-
-.etapa small{
-
-
-    color:#8491aa;
-
-
-    font-size:12px;
-
+    max-width:520px;
 
 }
 
+.percent{
 
+    font-size:2rem;
 
+    font-weight:800;
 
-
-
-
-.linha-etapa{
-
-
-    width:70px;
-
-
-    height:2px;
-
-
-    background:rgba(0,217,255,.25);
-
+    color:var(--primary);
 
 }
 
+.progress-bar{
 
+    width:100%;
 
+    height:10px;
 
+    margin-top:25px;
 
+    background:
 
+    rgba(255,255,255,.06);
 
+    border-radius:999px;
 
-/* ==========================================
-   TITULOS DAS SEÇÕES
-========================================== */
+    overflow:hidden;
 
+}
+
+.progress-fill{
+
+    width:20%;
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #38bdf8,
+        #4f46e5
+    );
+
+}
+
+/* ==========================================================
+FORM CARD
+========================================================== */
+
+.form-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:var(--radius);
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================================
+GRID
+========================================================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+    gap:22px;
+
+}
+
+/* ==========================================================
+SEÇÕES
+========================================================== */
 
 .section-title{
 
+    font-size:1.2rem;
 
-    margin-bottom:25px;
+    font-weight:700;
 
+    margin-bottom:20px;
 
-    padding-bottom:15px;
-
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
+    color:white;
 
 }
 
+.section-subtitle{
 
+    color:var(--text2);
 
+    margin-bottom:30px;
 
-.section-title h3{
-
-
-    font-size:22px;
-
-
-    color:#fff;
-
-
-    margin-bottom:6px;
-
+    line-height:1.7;
 
 }
 
+/* ==========================================================
+   FUTURYCRAFT
+   CANDIDATURA STAFF
+   PARTE 2
+========================================================== */
 
+/* ==========================================================
+CAMPOS
+========================================================== */
 
-
-.section-title p{
-
-
-    color:#94a3bb;
-
-
-    font-size:14px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   GRID DOS CAMPOS
-========================================== */
-
-
-.form-grid{
+.campo{
 
     display:flex;
 
     flex-direction:column;
 
-    gap:20px;
+    gap:10px;
 
-    width:100%;
-
-}
-
-
-
-
-
-
-
-
-/* ==========================================
-   FORMULÁRIOS
-========================================== */
-
-
-.form-group{
-
-
-    margin-bottom:22px;
-
+    margin-bottom:24px;
 
 }
 
+.campo label{
 
+    font-size:.95rem;
 
+    font-weight:700;
 
+    color:var(--text);
 
-
-.form-group label{
-
-
-    display:block;
-
-
-    margin-bottom:9px;
-
-
-    color:#dce5f5;
-
-
-    font-size:14px;
-
-
-    font-weight:600;
-
+    letter-spacing:.3px;
 
 }
 
+.campo span{
 
+    color:var(--danger);
 
+    font-size:.85rem;
 
+}
 
-
+/* ==========================================================
+INPUTS
+========================================================== */
 
 input,
+select,
 textarea{
-
 
     width:100%;
 
-
-    background:
-
-
-    rgba(255,255,255,.05);
-
-
-    border:1px solid rgba(255,255,255,.12);
-
-
-    border-radius:12px;
-
-
-    padding:14px;
-
-
-    color:#fff;
-
+    border:none;
 
     outline:none;
 
+    border-radius:14px;
 
-    font-size:14px;
+    background:rgba(255,255,255,.04);
 
+    border:1px solid rgba(255,255,255,.08);
 
-    transition:.3s;
+    color:var(--text);
 
+    font-size:.95rem;
+
+    font-family:'Montserrat',sans-serif;
+
+    transition:all .25s ease;
 
 }
 
+/* INPUT */
 
+input{
 
+    height:55px;
 
+    padding:0 18px;
 
+}
 
+/* SELECT */
+
+select{
+
+    height:55px;
+
+    padding:0 18px;
+
+    cursor:pointer;
+
+}
+
+/* TEXTAREA */
+
+textarea{
+
+    resize:vertical;
+
+    min-height:140px;
+
+    padding:16px 18px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+PLACEHOLDER
+========================================================== */
 
 input::placeholder,
 textarea::placeholder{
 
-
-    color:#73819b;
-
+    color:rgba(255,255,255,.35);
 
 }
 
-
-
-
-
-
+/* ==========================================================
+FOCUS
+========================================================== */
 
 input:focus,
+select:focus,
 textarea:focus{
 
+    border-color:var(--primary);
 
-    border-color:#00d9ff;
-
+    background:rgba(76,194,255,.05);
 
     box-shadow:
 
-
-    0 0 15px rgba(0,217,255,.18);
-
-
-    background:rgba(0,217,255,.06);
-
+    0 0 0 4px rgba(76,194,255,.12);
 
 }
 
+/* ==========================================================
+HOVER
+========================================================== */
 
+input:hover,
+select:hover,
+textarea:hover{
 
+    border-color:
 
-
-
-textarea{
-
-
-    min-height:120px;
-
-
-    resize:vertical;
-
+    rgba(76,194,255,.35);
 
 }
 
+/* ==========================================================
+DESABILITADO
+========================================================== */
 
+input:disabled,
+textarea:disabled,
+select:disabled{
 
+    opacity:.55;
 
-
-
-
-/* ==========================================
-   RANGE IDADE / TEMPO
-========================================== */
-
-
-input[type="range"]{
-
-
-    appearance:none;
-
-
-    height:6px;
-
-
-    padding:0;
-
-
-    background:#1a2945;
-
-
-    border-radius:20px;
-
-
-    cursor:pointer;
-
+    cursor:not-allowed;
 
 }
 
+/* ==========================================================
+VALIDAÇÃO
+========================================================== */
 
+.erro{
 
+    border-color:var(--danger)!important;
 
+    box-shadow:
 
-input[type="range"]::-webkit-slider-thumb{
-
-
-    appearance:none;
-
-
-    width:18px;
-
-
-    height:18px;
-
-
-    border-radius:50%;
-
-
-    background:#00d9ff;
-
-
-    box-shadow:0 0 12px rgba(0,217,255,.8);
-
+    0 0 0 4px rgba(255,92,122,.12)!important;
 
 }
 
+.sucesso{
 
+    border-color:var(--success)!important;
 
+    box-shadow:
 
-
-
-
-
-.range-value{
-
-
-    margin-top:12px;
-
-
-    text-align:center;
-
-
-    color:#9aa9c2;
-
-
-    font-size:14px;
-
+    0 0 0 4px rgba(50,210,150,.10)!important;
 
 }
 
+.mensagem-erro{
 
+    color:var(--danger);
 
+    font-size:.82rem;
 
-
-.range-value strong{
-
-
-    color:#00d9ff;
-
-
-    font-size:18px;
-
+    margin-top:-4px;
 
 }
 
-/* ==========================================
-   SELEÇÃO DE GÊNERO
-========================================== */
+.mensagem-sucesso{
 
+    color:var(--success);
 
-.sexo-container{
+    font-size:.82rem;
 
+}
+
+/* ==========================================================
+RADIOS
+========================================================== */
+
+.radio-group{
 
     display:flex;
-
-
-    gap:12px;
-
 
     flex-wrap:wrap;
 
+    gap:14px;
 
 }
 
-
-
-
-
-
-
-.sexo-btn{
-
-
-    flex:1;
-
-
-    min-width:120px;
-
-
-    padding:13px 20px;
-
-
-    border-radius:12px;
-
-
-    border:1px solid rgba(255,255,255,.12);
-
-
-    background:rgba(255,255,255,.04);
-
-
-    color:#cdd8ea;
-
-
-    cursor:pointer;
-
-
-    transition:.3s;
-
-
-    font-weight:600;
-
-
-}
-
-
-
-
-
-
-
-.sexo-btn:hover{
-
-
-    border-color:#00d9ff;
-
-
-    color:#fff;
-
-
-    transform:translateY(-2px);
-
-
-}
-
-
-
-
-
-
-
-.sexo-btn.selecionado{
-
-
-    background:rgba(0,217,255,.12);
-
-
-    border-color:#00d9ff;
-
-
-    color:#00d9ff;
-
-
-    box-shadow:
-
-
-    0 0 18px rgba(0,217,255,.2);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   ÁREA DOS BOTÕES
-========================================== */
-
-
-.buttons-area{
-
+.radio-card{
 
     display:flex;
 
+    align-items:center;
 
-    justify-content:space-between;
+    gap:10px;
 
-
-    gap:15px;
-
-
-    margin-top:30px;
-
-
-}
-
-
-
-
-
-
-
-
-.recruit-button,
-.botao,
-.back-button{
-
-
-    border:none;
-
+    padding:15px 18px;
 
     border-radius:14px;
 
+    border:1px solid rgba(255,255,255,.08);
 
-    padding:15px 28px;
-
-
-    font-size:14px;
-
-
-    font-weight:700;
-
+    background:rgba(255,255,255,.03);
 
     cursor:pointer;
 
-
-    transition:.3s;
-
-
-    letter-spacing:.5px;
-
+    transition:.25s;
 
 }
 
+.radio-card:hover{
 
+    border-color:var(--primary);
 
+    background:rgba(76,194,255,.05);
 
+}
 
+.radio-card input{
 
+    width:18px;
 
-.recruit-button,
-.botao{
+    height:18px;
 
+}
+
+/* ==========================================================
+CHECKBOX
+========================================================== */
+
+.checkbox-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.checkbox-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.25s;
+
+}
+
+.checkbox-item:hover{
+
+    border-color:var(--primary);
+
+    background:rgba(76,194,255,.04);
+
+}
+
+.checkbox-item input{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+/* ==========================================================
+BOTÕES
+========================================================== */
+
+.botoes{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:35px;
+
+}
+
+.btn-principal{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:
+
+    15px
+    34px;
+
+    border-radius:14px;
 
     background:
-
-
-    linear-gradient(135deg,#00d9ff,#006eff);
-
-
-    color:#fff;
-
-
-    box-shadow:
-
-
-    0 0 25px rgba(0,217,255,.25);
-
-
-}
-
-
-
-
-
-
-
-.recruit-button:hover,
-.botao:hover{
-
-
-    transform:translateY(-3px);
-
-
-    box-shadow:
-
-
-    0 0 35px rgba(0,217,255,.45);
-
-
-}
-
-
-
-
-
-
-
-
-.recruit-button span{
-
-
-    margin-left:8px;
-
-
-}
-
-
-
-
-
-
-
-
-.back-button{
-
-
-    background:rgba(255,255,255,.06);
-
-
-    color:#b7c4d8;
-
-
-    border:1px solid rgba(255,255,255,.12);
-
-
-}
-
-
-
-
-
-
-
-.back-button:hover{
-
-
-    border-color:#00d9ff;
-
-
-    color:#fff;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   ANIMAÇÃO DAS PÁGINAS
-========================================== */
-
-
-#pagina1,
-#pagina2{
-
-
-    animation:entrada .45s ease;
-
-
-}
-
-
-
-
-
-
-@keyframes entrada{
-
-
-from{
-
-
-opacity:0;
-
-
-transform:translateY(15px);
-
-
-}
-
-
-
-to{
-
-
-opacity:1;
-
-
-transform:translateY(0);
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   EFEITO DE BORDA FUTURISTA
-========================================== */
-
-
-.recruit-card{
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
-
-}
-
-
-
-
-
-
-.recruit-card::after{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    inset:0;
-
-
-    border-radius:24px;
-
-
-    padding:1px;
-
-
-    background:
-
 
     linear-gradient(
-
-    120deg,
-
-    transparent,
-
-    rgba(0,217,255,.4),
-
-    transparent
-
+        135deg,
+        #38bdf8,
+        #2563eb
     );
 
-
-    pointer-events:none;
-
-
-    opacity:.4;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   SCROLL
-========================================== */
-
-
-::-webkit-scrollbar{
-
-
-    width:8px;
-
-
-}
-
-
-
-
-
-::-webkit-scrollbar-track{
-
-
-    background:#050914;
-
-
-}
-
-
-
-
-
-::-webkit-scrollbar-thumb{
-
-
-    background:#00d9ff;
-
-
-    border-radius:20px;
-
-
-}
-
-/* ==========================================
-   RESPONSIVIDADE
-========================================== */
-
-
-
-@media(max-width:900px){
-
-
-
-    .recruit-container{
-
-
-        padding:25px 15px;
-
-
-        align-items:flex-start;
-
-
-    }
-
-
-
-
-
-
-    .recruit-card{
-
-
-        padding:25px;
-
-
-        border-radius:20px;
-
-
-    }
-
-
-
-
-
-
-    .form-grid{
-
-
-        grid-template-columns:1fr;
-
-
-    }
-
-
-
-
-
-
-
-    .etapas{
-
-
-        flex-direction:column;
-
-
-        gap:12px;
-
-
-    }
-
-
-
-
-
-
-    .linha-etapa{
-
-
-        width:2px;
-
-
-        height:35px;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-@media(max-width:600px){
-
-
-
-
-
-    .recruit-card{
-
-
-        padding:20px;
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-logo{
-
-
-        width:85px;
-
-
-        height:85px;
-
-
-    }
-
-
-
-
-
-
-
-    .header-text h1{
-
-
-        font-size:30px;
-
-
-    }
-
-
-
-
-
-
-
-    .header-text h2{
-
-
-        font-size:18px;
-
-
-    }
-
-
-
-
-
-
-
-    .header-text p{
-
-
-        font-size:13px;
-
-
-    }
-
-
-
-
-
-
-
-    .etapa{
-
-
-        width:100%;
-
-
-        justify-content:flex-start;
-
-
-    }
-
-
-
-
-
-
-
-    .sexo-container{
-
-
-        flex-direction:column;
-
-
-    }
-
-
-
-
-
-
-
-    .sexo-btn{
-
-
-        width:100%;
-
-
-    }
-
-
-
-
-
-
-
-    .buttons-area{
-
-
-        flex-direction:column;
-
-
-    }
-
-
-
-
-
-
-
-    .recruit-button,
-    .botao,
-    .back-button{
-
-
-        width:100%;
-
-
-    }
-
-
-
-
-
-
-
-    textarea{
-
-
-        min-height:100px;
-
-
-    }
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ==========================================
-   PEQUENOS AJUSTES VISUAIS
-========================================== */
-
-
-
-
-
-input[type="date"]{
-
-
-    color-scheme:dark;
-
-
-}
-
-
-
-
-
-
-
-strong{
-
+    color:white;
 
     font-weight:700;
 
+    font-size:.95rem;
+
+    transition:.25s;
+
+    box-shadow:
+
+    0 10px 25px rgba(37,99,235,.25);
 
 }
 
+.btn-principal:hover{
 
+    transform:translateY(-2px);
 
+    box-shadow:
 
-
-
-
-
-button:active{
-
-
-    transform:scale(.97);
-
+    0 18px 35px rgba(37,99,235,.35);
 
 }
 
+.btn-principal:active{
 
-
-
-
-
-
-
-
-/* ==========================================
-   GARANTIA DE CENTRALIZAÇÃO
-========================================== */
-
-
-
-.recruit-header,
-.section-title,
-.etapas{
-
-
-    user-select:none;
-
+    transform:scale(.98);
 
 }
 
+.btn-secundario{
 
+    border:none;
 
+    cursor:pointer;
 
+    padding:
+
+    15px
+    30px;
+
+    border-radius:14px;
+
+    background:
+
+    rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-secundario:hover{
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    border-color:rgba(255,255,255,.18);
+
+}
+
+/* ==========================================================
+ANIMAÇÕES
+========================================================== */
+
+.form-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+        translateY(0);
+
+    }
+
+}
+
+.campo{
+
+    animation:fadeCampo .45s ease;
+
+}
+
+@keyframes fadeCampo{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+        translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   FUTURYCRAFT
+   CANDIDATURA STAFF
+   PARTE 3
+========================================================== */
+
+/* ==========================================================
+SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#08111f;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        180deg,
+        #4cc2ff,
+        #3b82f6
+    );
+
+}
+
+/* ==========================================================
+SELEÇÃO
+========================================================== */
+
+::selection{
+
+    background:rgba(76,194,255,.35);
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+LINKS
+========================================================== */
+
+a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+a:hover{
+
+    color:white;
+
+}
+
+/* ==========================================================
+CARDS
+========================================================== */
+
+.progress-card,
+.form-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.progress-card::before,
+.form-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:1px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(76,194,255,.8),
+        transparent
+    );
+
+}
+
+/* ==========================================================
+INPUT AUTOFILL
+========================================================== */
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill{
+
+    -webkit-box-shadow:
+    0 0 0 1000px rgba(18,28,48,.95) inset;
+
+    -webkit-text-fill-color:white;
+
+}
+
+/* ==========================================================
+FOCUS ACESSIBILIDADE
+========================================================== */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+
+    outline:none;
+
+}
+
+/* ==========================================================
+PEQUENOS DETALHES
+========================================================== */
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    background:rgba(255,255,255,.08);
+
+    margin:35px 0;
+
+}
+
+small{
+
+    color:var(--text2);
+
+    font-size:.85rem;
+
+    line-height:1.6;
+
+}
+
+strong{
+
+    color:white;
+
+}
+
+/* ==========================================================
+LOADING
+========================================================== */
+
+.loading{
+
+    opacity:.7;
+
+    pointer-events:none;
+
+}
+
+.loading button{
+
+    cursor:wait;
+
+}
+
+/* ==========================================================
+RESPONSIVO
+========================================================== */
+
+@media (max-width:992px){
+
+    .container{
+
+        width:95%;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .progress-top{
+
+        flex-direction:column;
+
+    }
+
+    .percent{
+
+        font-size:1.5rem;
+
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .form-card{
+
+        padding:28px;
+
+    }
+
+    .progress-card{
+
+        padding:28px;
+
+    }
+
+    .progress-top h1{
+
+        font-size:1.7rem;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    body{
+
+        font-size:15px;
+
+    }
+
+    .container{
+
+        width:94%;
+
+        padding-top:25px;
+
+        padding-bottom:50px;
+
+    }
+
+    .form-card{
+
+        padding:22px;
+
+        border-radius:16px;
+
+    }
+
+    .progress-card{
+
+        padding:22px;
+
+        border-radius:16px;
+
+    }
+
+    .progress-top h1{
+
+        font-size:1.45rem;
+
+    }
+
+    .step{
+
+        font-size:.75rem;
+
+    }
+
+    input,
+    select{
+
+        height:52px;
+
+    }
+
+    textarea{
+
+        min-height:120px;
+
+    }
+
+    .botoes{
+
+        flex-direction:column-reverse;
+
+    }
+
+    .btn-principal,
+    .btn-secundario{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+@media (max-width:420px){
+
+    .progress-top h1{
+
+        font-size:1.25rem;
+
+    }
+
+    .percent{
+
+        font-size:1.2rem;
+
+    }
+
+    .step{
+
+        padding:5px 12px;
+
+    }
+
+}
+
+/* ==========================================================
+ANIMAÇÕES
+========================================================== */
+
+@keyframes pulseGlow{
+
+    0%{
+
+        box-shadow:
+
+        0 0 0 rgba(76,194,255,0);
+
+    }
+
+    50%{
+
+        box-shadow:
+
+        0 0 20px rgba(76,194,255,.30);
+
+    }
+
+    100%{
+
+        box-shadow:
+
+        0 0 0 rgba(76,194,255,0);
+
+    }
+
+}
+
+.btn-principal:hover{
+
+    animation:pulseGlow 1.4s infinite;
+
+}
+
+/* ==========================================================
+FIM
+========================================================== */
