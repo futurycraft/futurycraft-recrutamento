@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recrutamento • Feedback | FuturyCraft</title>
+
+    <link rel="stylesheet" href="./css/candidatos.css">
+    <link rel="stylesheet" href="./css/candidatura-feedback.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<main class="container">
+
+    <div class="progress-card">
+
+        <div class="progress-top">
+
+            <div>
+
+                <span class="step">
+                    Etapa 4 de 5
+                </span>
+
+                <h1>Feedback</h1>
+
+                <p>
+                    Sua opinião é muito importante para que possamos continuar evoluindo o FuturyCraft.
+                </p>
+
+            </div>
+
+            <span class="percent">
+                80%
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill" style="width:80%;"></div>
+
+        </div>
+
+    </div>
+
+    <form id="form-feedback" class="form-card">
+
+        <div class="campo">
+
+            <label>
+                Como você avalia o FuturyCraft?
+            </label>
+
+            <select id="avaliacao_servidor" required>
+
+                <option value="">Selecione</option>
+                <option value="1">⭐ Muito Ruim</option>
+                <option value="2">⭐⭐ Ruim</option>
+                <option value="3">⭐⭐⭐ Regular</option>
+                <option value="4">⭐⭐⭐⭐ Bom</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+
+            </select>
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+                Atendimento da equipe
+            </label>
+
+            <select id="avaliacao_equipe" required>
+
+                <option value="">Selecione</option>
+                <option value="1">⭐ Muito Ruim</option>
+                <option value="2">⭐⭐ Ruim</option>
+                <option value="3">⭐⭐⭐ Regular</option>
+                <option value="4">⭐⭐⭐⭐ Bom</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+
+            </select>
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+                Organização do servidor
+            </label>
+
+            <select id="avaliacao_organizacao" required>
+
+                <option value="">Selecione</option>
+                <option value="1">⭐ Muito Ruim</option>
+                <option value="2">⭐⭐ Ruim</option>
+                <option value="3">⭐⭐⭐ Regular</option>
+                <option value="4">⭐⭐⭐⭐ Bom</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+
+            </select>
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+                Eventos
+            </label>
+
+            <select id="avaliacao_eventos" required>
+
+                <option value="">Selecione</option>
+                <option value="1">⭐ Muito Ruim</option>
+                <option value="2">⭐⭐ Ruim</option>
+                <option value="3">⭐⭐⭐ Regular</option>
+                <option value="4">⭐⭐⭐⭐ Bom</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+
+            </select>
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+                Atualizações
+            </label>
+
+            <select id="avaliacao_atualizacoes" required>
+
+                <option value="">Selecione</option>
+                <option value="1">⭐ Muito Ruim</option>
+                <option value="2">⭐⭐ Ruim</option>
+                <option value="3">⭐⭐⭐ Regular</option>
+                <option value="4">⭐⭐⭐⭐ Bom</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+
+            </select>
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+                Existe algo que poderíamos melhorar?
+            </label>
+
+            <textarea
+                id="melhorias"
+                placeholder="Conte sua opinião ou dê sugestões para melhorar o servidor."></textarea>
+
+        </div>
+
+        <div class="botoes">
+
+            <button
+                type="button"
+                class="btn-secundario"
+                onclick="window.location.href='candidatura-perfil.html'">
+
+                ← Voltar
+
+            </button>
+
+            <button
+                type="submit"
+                class="btn-principal">
+
+                Próxima etapa →
+
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+
+<script src="./js/candidatura-feedback.js"></script>
+
+</body>
+
+</html>
