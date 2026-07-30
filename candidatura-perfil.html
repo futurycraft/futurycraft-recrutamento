@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recrutamento • Perfil | FuturyCraft</title>
+
+<link rel="stylesheet" href="./css/candidatura.css">
+<link rel="stylesheet" href="./css/candidatura-perfil.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="background"></div>
+
+
+<main class="container">
+
+
+<div class="progress-card">
+
+
+<div class="progress-top">
+
+
+<div>
+
+<span class="step">
+Etapa 3 de 5
+</span>
+
+
+<h1>
+Perfil e Experiência
+</h1>
+
+
+<p>
+Queremos conhecer melhor você e entender como você agiria como ajudante.
+</p>
+
+
+</div>
+
+
+<span class="percent">
+60%
+</span>
+
+
+</div>
+
+
+<div class="progress-bar">
+
+<div 
+class="progress-fill"
+style="width:60%">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<form id="form-perfil" class="form-card">
+
+
+
+<div class="campo">
+
+<label>
+Fale um pouco sobre você.
+</label>
+
+<textarea
+id="sobre_voce"
+placeholder="Conte um pouco sobre você, seus interesses e sua experiência no Minecraft..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+<label>
+O que faz você acreditar que seria um bom ajudante?
+</label>
+
+<textarea
+id="bom_ajudante"
+placeholder="Explique suas qualidades e como você ajudaria o servidor..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+<label>
+Em que você se destaca e como isso ajudaria no servidor?
+</label>
+
+<textarea
+id="destaque"
+placeholder="Ex: comunicação, organização, resolver problemas..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="divisor"></div>
+
+
+
+
+
+<h2 class="titulo-secao">
+Situações de Staff
+</h2>
+
+
+
+
+
+<div class="campo">
+
+<label>
+Um jogador está sendo muito tóxico no chat. O que você faria?
+</label>
+
+<textarea
+id="jogador_toxico"
+placeholder="Explique como você resolveria a situação..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+<label>
+Você suspeita que um jogador esteja utilizando hack, mas ainda não possui provas. Como agiria?
+</label>
+
+<textarea
+id="suspeita_hack"
+placeholder="Explique sua atitude..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+<label>
+Um amigo seu está quebrando as regras. O que faria?
+</label>
+
+<textarea
+id="amigo_regra"
+placeholder="Explique sua decisão..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+<label>
+Um jogador insiste que foi punido injustamente. Como responderia?
+</label>
+
+<textarea
+id="punicao_injusta"
+placeholder="Explique como atenderia esse jogador..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+<label>
+Um jogador novo pede ajuda enquanto você está ocupado verificando outra situação. Como organizaria seu atendimento?
+</label>
+
+<textarea
+id="novo_jogador"
+placeholder="Explique sua prioridade..."
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="divisor"></div>
+
+
+
+
+
+<div class="campo">
+
+
+<label>
+Você já fez parte da equipe de algum servidor?
+</label>
+
+
+<select id="experiencia_staff">
+
+<option value="">
+Selecione
+</option>
+
+<option value="Sim">
+Sim
+</option>
+
+<option value="Não">
+Não
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div 
+id="experiencia-box"
+class="experiencia-box escondido">
+
+
+
+<div class="campo">
+
+<label>
+Nome do servidor
+</label>
+
+<input
+id="servidor_anterior"
+type="text">
+
+</div>
+
+
+
+<div class="campo">
+
+<label>
+Cargo ocupado
+</label>
+
+<input
+id="cargo_anterior"
+type="text">
+
+</div>
+
+
+
+<div class="campo">
+
+<label>
+Quanto tempo permaneceu na equipe?
+</label>
+
+<input
+id="tempo_staff"
+type="text">
+
+</div>
+
+
+
+<div class="campo">
+
+<label>
+Por que saiu da equipe?
+</label>
+
+<textarea
+id="motivo_saida"></textarea>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="botoes">
+
+
+<button
+type="button"
+class="btn-secundario"
+onclick="window.location.href='candidatura-conta.html'">
+
+← Voltar
+
+</button>
+
+
+
+<button
+type="submit"
+class="btn-principal">
+
+Próxima etapa →
+
+</button>
+
+
+</div>
+
+
+
+
+</form>
+
+
+</main>
+
+
+
+<script src="./js/candidatura-perfil.js"></script>
+
+
+</body>
+
+</html>
