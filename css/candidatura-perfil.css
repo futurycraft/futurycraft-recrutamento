@@ -1,1 +1,346 @@
+/* ==========================================================
+   FUTURYCRAFT
+   CANDIDATURA STAFF
+   ETAPA 3 - PERFIL
+========================================================== */
 
+
+/* ==========================================================
+TÍTULOS DE SEÇÃO
+========================================================== */
+
+
+.titulo-secao{
+
+    font-size:1.35rem;
+
+    font-weight:800;
+
+    color:white;
+
+    margin:10px 0 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.titulo-secao::before{
+
+    content:"";
+
+    width:5px;
+
+    height:25px;
+
+    border-radius:10px;
+
+    background:
+
+    linear-gradient(
+        180deg,
+        #38bdf8,
+        #2563eb
+    );
+
+}
+
+
+
+/* ==========================================================
+TEXTAREAS GRANDES
+========================================================== */
+
+
+textarea{
+
+    min-height:150px;
+
+    resize:vertical;
+
+    line-height:1.8;
+
+    padding:18px;
+
+}
+
+
+textarea:focus{
+
+    border-color:var(--primary);
+
+    background:
+
+    rgba(76,194,255,.06);
+
+}
+
+
+
+/* ==========================================================
+PERGUNTAS DE SITUAÇÃO
+========================================================== */
+
+
+.campo-situacao{
+
+    background:
+
+    rgba(255,255,255,.025);
+
+    padding:22px;
+
+    border-radius:18px;
+
+    border:
+
+    1px solid rgba(255,255,255,.06);
+
+    transition:.3s;
+
+}
+
+
+.campo-situacao:hover{
+
+    border-color:
+
+    rgba(76,194,255,.35);
+
+    transform:
+
+    translateY(-2px);
+
+}
+
+
+
+/* ==========================================================
+EXPERIÊNCIA STAFF
+========================================================== */
+
+
+.experiencia-box{
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+
+    rgba(76,194,255,.04);
+
+    border:
+
+    1px solid rgba(76,194,255,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    transition:.35s;
+
+}
+
+
+
+/* esconder */
+
+
+.escondido{
+
+    display:none;
+
+}
+
+
+
+/* animação aparecer */
+
+
+.experiencia-box.mostrar{
+
+    animation:
+
+    aparecerExperiencia .4s ease;
+
+}
+
+
+
+@keyframes aparecerExperiencia{
+
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateY(-15px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+        translateY(0);
+
+    }
+
+
+}
+
+
+
+/* ==========================================================
+INPUTS EXPERIÊNCIA
+========================================================== */
+
+
+.experiencia-box input,
+.experiencia-box textarea{
+
+    background:
+
+    rgba(0,0,0,.20);
+
+}
+
+
+
+/* ==========================================================
+AVISO
+========================================================== */
+
+
+.aviso-staff{
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:
+
+    rgba(255,190,59,.08);
+
+    border:
+
+    1px solid rgba(255,190,59,.18);
+
+    color:#ffd66b;
+
+    font-size:.9rem;
+
+    line-height:1.7;
+
+}
+
+
+
+/* ==========================================================
+CONTADOR DE TEXTO
+========================================================== */
+
+
+.contador{
+
+    text-align:right;
+
+    font-size:.8rem;
+
+    color:var(--text2);
+
+    margin-top:-8px;
+
+}
+
+
+
+.contador strong{
+
+    color:var(--primary);
+
+}
+
+
+
+/* ==========================================================
+DIVISOR PERSONALIZADO
+========================================================== */
+
+
+.divisor{
+
+    margin:15px 0;
+
+    height:1px;
+
+    width:100%;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+    );
+
+}
+
+
+
+/* ==========================================================
+BOTÕES
+========================================================== */
+
+
+.botoes{
+
+    margin-top:35px;
+
+}
+
+
+
+/* ==========================================================
+RESPONSIVO
+========================================================== */
+
+
+@media(max-width:700px){
+
+
+    .titulo-secao{
+
+        font-size:1.15rem;
+
+    }
+
+
+    textarea{
+
+        min-height:130px;
+
+    }
+
+
+    .experiencia-box{
+
+        padding:18px;
+
+    }
+
+
+}
