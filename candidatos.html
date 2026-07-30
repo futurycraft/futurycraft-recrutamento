@@ -1,831 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-
 <head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Recrutamento • Dados Pessoais | FuturyCraft</title>
 
+    <link rel="stylesheet" href="./css/candidatura.css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-
-
-<title>
-FuturyCraft • Recrutamento Staff
-</title>
-
-
-
-<link rel="stylesheet" href="./css/candidatos.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
-
-
 <body>
 
+<div class="background"></div>
 
+<main class="container">
 
-<div class="particles">
+    <div class="progress-card">
 
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
+        <div class="progress-top">
 
-</div>
+            <div>
 
+                <span class="step">
+                    Etapa 1 de 5
+                </span>
 
+                <h1>Dados Pessoais</h1>
 
+                <p>
+                    Preencha suas informações básicas para iniciarmos sua candidatura.
+                </p>
 
+            </div>
 
-<div class="recruit-container">
+            <span class="percent">
+                20%
+            </span>
 
+        </div>
 
+        <div class="progress-bar">
 
+            <div class="progress-fill"></div>
 
+        </div>
 
+    </div>
 
-<div class="recruit-card">
 
+    <form id="form-dados" class="form-card">
 
+        <!-- Nome -->
 
+        <div class="campo">
 
+            <label for="nome">
+                Nome Completo *
+            </label>
 
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                maxlength="100"
+                required
+                placeholder="Digite seu nome completo">
 
+        </div>
 
 
-<header class="recruit-header">
+        <!-- Nick -->
 
+        <div class="campo">
 
+            <label for="nick">
+                Nick no Minecraft *
+            </label>
 
+            <input
+                type="text"
+                id="nick"
+                name="nick"
+                maxlength="16"
+                required
+                placeholder="Ex: FuturyPlayer">
 
+        </div>
 
-<div class="logo-area">
 
+        <!-- Discord -->
 
-<img
-src="./assets/logo.png"
-class="recruit-logo"
-alt="FuturyCraft">
+        <div class="campo">
 
+            <label for="discord">
+                Usuário do Discord *
+            </label>
 
-</div>
+            <input
+                type="text"
+                id="discord"
+                name="discord"
+                required
+                placeholder="@usuario">
 
+        </div>
 
 
+        <div class="grid">
 
+            <!-- Idade -->
 
+            <div class="campo">
 
+                <label for="idade">
+                    Idade *
+                </label>
 
-<div class="header-text">
+                <input
+                    type="number"
+                    id="idade"
+                    name="idade"
+                    min="13"
+                    max="99"
+                    required>
 
+            </div>
 
-<h1>
-FuturyCraft
-</h1>
 
+            <!-- Data -->
 
+            <div class="campo">
 
-<h2>
-Recrutamento Staff
-</h2>
+                <label for="data">
+                    Data de nascimento *
+                </label>
 
+                <input
+                    type="date"
+                    id="data"
+                    name="data"
+                    required>
 
+            </div>
 
-<p>
-Faça parte da equipe que constrói o futuro do servidor.
-</p>
+        </div>
 
 
-</div>
+        <!-- Gênero -->
 
+        <div class="campo">
 
+            <label for="genero">
+                Gênero
+            </label>
 
+            <select
+                id="genero"
+                name="genero">
 
+                <option value="">
+                    Prefiro não informar
+                </option>
 
-</header>
+                <option value="Masculino">
+                    Masculino
+                </option>
 
+                <option value="Feminino">
+                    Feminino
+                </option>
 
+                <option value="Outro">
+                    Outro
+                </option>
 
+            </select>
 
+        </div>
 
 
+        <div class="botoes">
 
+            <button
+                type="button"
+                class="btn-secundario"
+                onclick="history.back()">
 
+                Voltar
 
-<div class="etapas">
+            </button>
 
+            <button
+                type="submit"
+                class="btn-principal">
 
+                Próxima etapa →
 
+            </button>
 
+        </div>
 
+    </form>
 
-<div class="etapa ativa">
+</main>
 
-
-<div class="numero">
-01
-</div>
-
-
-<div>
-
-<strong>
-Dados pessoais
-</strong>
-
-
-<small>
-Informações básicas
-</small>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="linha-etapa"></div>
-
-
-
-
-
-
-
-
-
-<div class="etapa">
-
-
-<div class="numero">
-02
-</div>
-
-
-<div>
-
-
-<strong>
-Experiência
-</strong>
-
-
-<small>
-Perfil da equipe
-</small>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<form id="form-candidatos">
-
-
-
-
-
-
-
-
-<section id="pagina1">
-
-
-
-
-
-<div class="section-title">
-
-
-<h3>
-Informações pessoais
-</h3>
-
-
-<p>
-Preencha seus dados para iniciar sua candidatura.
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-grid">
-
-<div class="form-group">
-
-
-<label>
-Nome completo
-</label>
-
-
-
-<input
-type="text"
-id="nome_completo"
-placeholder="Exemplo: João Silva"
-required>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Nick no Minecraft
-</label>
-
-
-
-<input
-type="text"
-id="nick"
-placeholder="Exemplo: Joao123"
-required>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Usuário do Discord
-</label>
-
-
-
-<input
-type="text"
-id="discord"
-placeholder="Exemplo: joao#0000"
-required>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Qual sua idade?
-</label>
-
-
-
-<input
-type="range"
-id="idade"
-min="10"
-max="60"
-value="15"
->
-
-
-
-<div class="range-value">
-
-
-Idade:
-
-<strong id="valorIdade">
-15
-</strong>
-
-anos
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Data de nascimento
-</label>
-
-
-
-<input
-type="date"
-id="data_nascimento"
-required
->
-
-
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Como prefere ser identificado?
-</label>
-
-
-
-
-
-<div class="sexo-container">
-
-
-
-
-
-<button
-type="button"
-class="sexo-btn"
-onclick="selecionarSexo(this,'Masculino')">
-
-
-Masculino
-
-
-</button>
-
-
-
-
-
-
-
-<button
-type="button"
-class="sexo-btn"
-onclick="selecionarSexo(this,'Feminino')">
-
-
-Feminino
-
-
-</button>
-
-
-
-
-
-
-
-<button
-type="button"
-class="sexo-btn"
-onclick="selecionarSexo(this,'Outro')">
-
-
-Outro
-
-
-</button>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<input
-type="hidden"
-id="genero"
-required
->
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<button
-type="button"
-class="recruit-button"
-onclick="mostrarPagina2()">
-
-
-CONTINUAR
-
-
-<span>
-→
-</span>
-
-
-</button>
-
-
-
-
-
-
-
-</section>
-
-
-
-
-
-<!-- ==========================
-     SEGUNDA ETAPA
-========================== -->
-
-
-
-
-
-
-<section 
-id="pagina2"
-style="display:none;">
-
-
-
-
-
-
-
-
-<div class="section-title">
-
-
-<h3>
-Experiência e disponibilidade
-</h3>
-
-
-<p>
-Conte como você pode contribuir para a equipe FuturyCraft.
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Há quanto tempo você joga no FuturyCraft?
-</label>
-
-
-
-
-
-<input
-type="range"
-id="tempo"
-min="1"
-max="60"
-value="1"
->
-
-
-
-
-
-<div class="range-value">
-
-
-Tempo:
-
-
-<strong id="valorTempo">
-1 mês
-</strong>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Qual sua disponibilidade diária?
-</label>
-
-
-
-
-<textarea
-id="disponibilidade"
-placeholder="Exemplo: Todos os dias das 18h às 23h"
-required></textarea>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Por que deseja entrar para a equipe?
-</label>
-
-
-
-
-<textarea
-id="motivo"
-placeholder="Explique seus motivos para querer fazer parte da Staff..."
-required></textarea>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Como você ajudaria o servidor?
-</label>
-
-
-
-
-<textarea
-id="ajuda"
-placeholder="Conte suas ideias e como poderia contribuir para o crescimento do FuturyCraft..."
-required></textarea>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-O que faria ao suspeitar de um jogador utilizando hack?
-</label>
-
-
-
-
-<textarea
-id="hack"
-placeholder="Explique como você investigaria e resolveria essa situação..."
-required></textarea>
-
-
-
-</div>
-
-<div class="buttons-area">
-
-
-
-
-
-
-<button
-type="button"
-class="back-button"
-onclick="voltarPagina1()">
-
-
-
-← VOLTAR
-
-
-
-</button>
-
-
-
-
-
-
-
-
-<button
-type="submit"
-class="botao">
-
-
-
-ENVIAR CANDIDATURA
-
-
-
-</button>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-</form>
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<!-- ==========================================
-     SCRIPTS
-========================================== -->
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<script src="./js/supabase.js"></script>
-
-
-<script src="./js/candidatos.js"></script>
-
-
-
-
-
+<script src="./js/candidatura.js"></script>
 
 </body>
-
-
 </html>
