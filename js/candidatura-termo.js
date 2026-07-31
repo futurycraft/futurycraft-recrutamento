@@ -6,174 +6,377 @@
 
 const STORAGE = "futury_candidatura";
 
+
 document.addEventListener("DOMContentLoaded", () => {
+
 
     const form = document.getElementById("form-termo");
     const aceite = document.getElementById("aceite");
 
+
     form.addEventListener("submit", async (event) => {
+
 
         event.preventDefault();
 
+
+
         if (!aceite.checked) {
 
-            alert("Você precisa aceitar o Termo de Voluntariado.");
+
+            alert(
+                "Você precisa aceitar o Termo de Voluntariado."
+            );
+
 
             return;
 
+
         }
+
+
 
         const dados = JSON.parse(
             localStorage.getItem(STORAGE)
         );
 
+
+
         if (!dados) {
 
-            alert("Nenhuma candidatura foi encontrada.");
 
-            window.location.href = "candidatura.html";
+            alert(
+                "Nenhuma candidatura foi encontrada."
+            );
+
+
+            window.location.href =
+                "candidatura.html";
+
 
             return;
 
+
         }
+
+
 
         try {
 
+
+
             const candidatura = {
 
-                /* ==================================================
-                   ETAPA 1
-                ================================================== */
-
-                nome_completo: dados.nome || dados.nome_completo || null,
-
-                nick: dados.nick || null,
-
-                discord: dados.discord || null,
-
-                idade: dados.idade || null,
-
-                data_nascimento: dados.data || dados.data_nascimento || null,
-
-                genero: dados.genero || null,
 
 
                 /* ==================================================
-                   ETAPA 2
+                   ETAPA 1 - DADOS PESSOAIS
                 ================================================== */
 
-                tipo_conta: dados.tipo_conta || null,
 
-                plataforma: dados.plataforma || null,
+                nome_completo:
+                    dados.nome ||
+                    dados.nome_completo ||
+                    null,
 
-                acesso_conta: dados.acesso_conta || null,
 
-                tempo_servidor: dados.tempo_servidor || null,
+                nick:
+                    dados.nick ||
+                    null,
 
-                modo_interesse: dados.modo_interesse || null,
 
-                horario_jogo: dados.horario_jogo || null,
+                discord:
+                    dados.discord ||
+                    null,
 
-                dias_jogo: dados.dias_jogo || [],
+
+                idade:
+                    dados.idade ||
+                    null,
+
+
+                data_nascimento:
+                    dados.data ||
+                    dados.data_nascimento ||
+                    null,
+
+
+                genero:
+                    dados.genero ||
+                    null,
+
+
+
 
 
                 /* ==================================================
-                   ETAPA 3
+                   ETAPA 2 - CONTA
                 ================================================== */
 
-                sobre_voce: dados.sobre_voce || null,
 
-                bom_ajudante: dados.bom_ajudante || null,
+                tipo_conta:
+                    dados.tipo_conta ||
+                    null,
 
-                destaque: dados.destaque || null,
 
-                jogador_toxico: dados.jogador_toxico || null,
+                plataforma:
+                    dados.plataforma ||
+                    null,
 
-                suspeita_hack: dados.suspeita_hack || null,
 
-                amigo_regra: dados.amigo_regra || null,
+                acesso_conta:
+                    dados.acesso_conta ||
+                    null,
 
-                punicao_injusta: dados.punicao_injusta || null,
 
-                novo_jogador: dados.novo_jogador || null,
+                tempo_servidor:
+                    dados.tempo_servidor ||
+                    null,
 
-                experiencia_staff: dados.experiencia_staff || null,
 
-                servidor_anterior: dados.servidor_anterior || null,
+                modo_interesse:
+                    dados.modo_interesse ||
+                    null,
 
-                cargo_anterior: dados.cargo_anterior || null,
 
-                tempo_staff: dados.tempo_staff || null,
+                horario_jogo:
+                    dados.horario_jogo ||
+                    null,
 
-                motivo_saida: dados.motivo_saida || null,
+
+                dias_jogo:
+                    dados.dias_jogo ||
+                    [],
+
+
+
 
 
                 /* ==================================================
-                   ETAPA 4
+                   ETAPA 3 - PERFIL STAFF
                 ================================================== */
 
-                avaliacao_servidor: dados.avaliacao_servidor || null,
 
-                avaliacao_equipe: dados.avaliacao_equipe || null,
+                sobre_voce:
+                    dados.sobre_voce ||
+                    null,
 
-                avaliacao_organizacao: dados.avaliacao_organizacao || null,
 
-                avaliacao_eventos: dados.avaliacao_eventos || null,
+                bom_ajudante:
+                    dados.bom_ajudante ||
+                    null,
 
-                avaliacao_atualizacoes: dados.avaliacao_atualizacoes || null,
 
-                melhorias: dados.melhorias || null
+                destaque:
+                    dados.destaque ||
+                    null,
+
+
+                jogador_toxico:
+                    dados.jogador_toxico ||
+                    null,
+
+
+                suspeita_hack:
+                    dados.suspeita_hack ||
+                    null,
+
+
+                amigo_regra:
+                    dados.amigo_regra ||
+                    null,
+
+
+                punicao_injusta:
+                    dados.punicao_injusta ||
+                    null,
+
+
+                novo_jogador:
+                    dados.novo_jogador ||
+                    null,
+
+
+                experiencia_staff:
+                    dados.experiencia_staff ||
+                    null,
+
+
+                servidor_anterior:
+                    dados.servidor_anterior ||
+                    null,
+
+
+                cargo_anterior:
+                    dados.cargo_anterior ||
+                    null,
+
+
+                tempo_staff:
+                    dados.tempo_staff ||
+                    null,
+
+
+                motivo_saida:
+                    dados.motivo_saida ||
+                    null,
+
+
+
+
+
+                /* ==================================================
+                   ETAPA 4 - FEEDBACK
+                ================================================== */
+
+
+                avaliacao_servidor:
+                    dados.avaliacao_servidor ||
+                    null,
+
+
+                avaliacao_equipe:
+                    dados.avaliacao_equipe ||
+                    null,
+
+
+                avaliacao_organizacao:
+                    dados.avaliacao_organizacao ||
+                    null,
+
+
+                avaliacao_eventos:
+                    dados.avaliacao_eventos ||
+                    null,
+
+
+                avaliacao_atualizacoes:
+                    dados.avaliacao_atualizacoes ||
+                    null,
+
+
+                melhorias:
+                    dados.melhorias ||
+                    null
+
 
             };
 
 
-            /*
-             * Se sua variável for "supabase",
-             * troque "supabaseClient" por "supabase".
-             */
-
-            const { error } = await supabaseClient
-
-                .from("candidatos")
-
-                .insert(candidatura);
 
 
-            if (error) {
 
-                console.error(error);
+            /* ==================================================
+               ENVIAR PARA API DA VERCEL
+            ================================================== */
+
+
+            const resposta = await fetch(
+                "/api/candidatura",
+                {
+
+
+                    method: "POST",
+
+
+                    headers: {
+
+
+                        "Content-Type":
+                            "application/json"
+
+
+                    },
+
+
+                    body:
+                        JSON.stringify(candidatura)
+
+
+                }
+            );
+
+
+
+
+
+            const resultado =
+                await resposta.json();
+
+
+
+
+
+            if (!resposta.ok || !resultado.sucesso) {
+
+
+                console.error(resultado);
+
+
 
                 alert(
                     "Erro ao enviar candidatura.\n\n" +
-                    error.message
+                    resultado.erro
                 );
 
+
+
                 return;
+
 
             }
 
 
+
+
+
+
+            /* ==================================================
+               SUCESSO
+            ================================================== */
+
+
             localStorage.removeItem(STORAGE);
+
+
 
             alert(
                 "Sua candidatura foi enviada com sucesso!"
             );
 
+
+
             window.location.href =
                 "candidatura-sucesso.html";
 
+
+
+
+
         }
+
+
 
         catch (erro) {
 
+
+
             console.error(erro);
 
+
+
             alert(
-                "Ocorreu um erro inesperado."
+                "Ocorreu um erro inesperado ao enviar sua candidatura."
             );
+
+
 
         }
 
+
+
     });
+
+
 
 });
