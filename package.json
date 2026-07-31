@@ -1,0 +1,12 @@
+{
+  "name": "futurycraft-formulario",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de recrutamento da staff do FuturyCraft",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4"
+  }
+}
