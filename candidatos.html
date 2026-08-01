@@ -118,22 +118,29 @@
 
             <!-- Idade -->
 
-            <div class="campo">
+            <div class="idade-box">
 
-                <label for="idade">
-                    Idade *
-                </label>
+    <input
+        type="range"
+        id="idade"
+        name="idade"
+        min="13"
+        max="99"
+        value="18"
+        required>
 
-                <input
-                    type="number"
-                    id="idade"
-                    name="idade"
-                    min="13"
-                    max="99"
-                    required>
 
-            </div>
+    <div class="idade-valor">
 
+        <span id="idade-numero">
+            18
+        </span>
+
+        anos
+
+    </div>
+
+</div>
 
             <!-- Data -->
 
@@ -158,33 +165,61 @@
 
         <div class="campo">
 
-            <label for="genero">
-                Gênero
-            </label>
+    <label>
+        Gênero
+    </label>
 
-            <select
-                id="genero"
-                name="genero">
 
-                <option value="">
-                    Prefiro não informar
-                </option>
+    <div class="generos">
 
-                <option value="Masculino">
-                    Masculino
-                </option>
 
-                <option value="Feminino">
-                    Feminino
-                </option>
+        <label class="genero-btn">
 
-                <option value="Outro">
-                    Outro
-                </option>
+            <input
+                type="radio"
+                name="genero"
+                value="Masculino">
 
-            </select>
+            <span>
+                Masculino
+            </span>
 
-        </div>
+        </label>
+
+
+
+        <label class="genero-btn">
+
+            <input
+                type="radio"
+                name="genero"
+                value="Feminino">
+
+            <span>
+                Feminino
+            </span>
+
+        </label>
+
+
+
+        <label class="genero-btn">
+
+            <input
+                type="radio"
+                name="genero"
+                value="Outro">
+
+            <span>
+                Outro
+            </span>
+
+        </label>
+
+
+    </div>
+
+</div>
 
 
         <div class="botoes">
