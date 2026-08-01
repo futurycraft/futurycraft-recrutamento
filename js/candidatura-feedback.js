@@ -2,115 +2,209 @@
    FUTURYCRAFT
    CANDIDATURA STAFF
    ETAPA 4 - FEEDBACK
+   SISTEMA DE ESTRELAS PREMIUM
 ========================================================== */
+
 
 const STORAGE = "futury_candidatura";
 
+
 document.addEventListener("DOMContentLoaded", () => {
+
 
     carregarDados();
 
+
     configurarEventos();
 
+
+    atualizarTodasEstrelas();
+
+
 });
+
 
 
 /* ==========================================================
 ELEMENTOS
 ========================================================== */
 
-const form = document.getElementById("form-feedback");
 
-const avaliacaoServidor =
-document.getElementById("avaliacao_servidor");
+const form =
+document.getElementById("form-feedback");
 
-const avaliacaoEquipe =
-document.getElementById("avaliacao_equipe");
 
-const avaliacaoOrganizacao =
-document.getElementById("avaliacao_organizacao");
-
-const avaliacaoEventos =
-document.getElementById("avaliacao_eventos");
-
-const avaliacaoAtualizacoes =
-document.getElementById("avaliacao_atualizacoes");
 
 const melhorias =
 document.getElementById("melhorias");
+
+
+
+const avaliacoes = {
+
+
+    servidor:
+    document.querySelectorAll(
+        '[data-avaliacao="servidor"] .estrela'
+    ),
+
+
+    equipe:
+    document.querySelectorAll(
+        '[data-avaliacao="equipe"] .estrela'
+    ),
+
+
+    organizacao:
+    document.querySelectorAll(
+        '[data-avaliacao="organizacao"] .estrela'
+    ),
+
+
+    eventos:
+    document.querySelectorAll(
+        '[data-avaliacao="eventos"] .estrela'
+    ),
+
+
+    atualizacoes:
+    document.querySelectorAll(
+        '[data-avaliacao="atualizacoes"] .estrela'
+    )
+
+
+};
+
+
 
 
 /* ==========================================================
 EVENTOS
 ========================================================== */
 
+
 function configurarEventos(){
 
-    [
 
-        avaliacaoServidor,
 
-        avaliacaoEquipe,
+    Object.keys(avaliacoes)
 
-        avaliacaoOrganizacao,
+    .forEach(tipo => {
 
-        avaliacaoEventos,
 
-        avaliacaoAtualizacoes,
 
-        melhorias
+        avaliacoes[tipo]
 
-    ].forEach(campo => {
+        .forEach((estrela,index)=>{
 
-        campo.addEventListener(
-            "input",
-            salvarDados
-        );
 
-        campo.addEventListener(
-            "change",
-            salvarDados
-        );
+            estrela.addEventListener(
+                "click",
+                ()=>{
+
+
+                    selecionarEstrelas(
+                        tipo,
+                        index + 1
+                    );
+
+
+                    salvarDados();
+
+
+                }
+            );
+
+
+
+            estrela.addEventListener(
+                "mouseenter",
+                ()=>{
+
+
+                    pintarHover(
+                        tipo,
+                        index + 1
+                    );
+
+
+                }
+            );
+
+
+
+            estrela.addEventListener(
+                "mouseleave",
+                ()=>{
+
+
+                    atualizarEstrelas(
+                        tipo
+                    );
+
+
+                }
+            );
+
+
+        });
+
+
 
     });
 
-    form.addEventListener(
-        "submit",
-        enviarFormulario
+
+
+
+
+    melhorias.addEventListener(
+
+        "input",
+
+        salvarDados
+
     );
+
+
+
+
+    form.addEventListener(
+
+        "submit",
+
+        enviarFormulario
+
+    );
+
 
 }
 
 
+
+
 /* ==========================================================
-SALVAR
+SELECIONAR ESTRELAS
 ========================================================== */
 
-function salvarDados(){
 
-    const dados = JSON.parse(
+function selecionarEstrelas(tipo,valor){
+
+
+
+    const dados =
+    JSON.parse(
 
         localStorage.getItem(STORAGE)
 
     ) || {};
 
-    dados.avaliacao_servidor =
-    avaliacaoServidor.value;
 
-    dados.avaliacao_equipe =
-    avaliacaoEquipe.value;
 
-    dados.avaliacao_organizacao =
-    avaliacaoOrganizacao.value;
+    dados[
+        "avaliacao_" + tipo
+    ] = valor;
 
-    dados.avaliacao_eventos =
-    avaliacaoEventos.value;
 
-    dados.avaliacao_atualizacoes =
-    avaliacaoAtualizacoes.value;
-
-    dados.melhorias =
-    melhorias.value.trim();
 
     localStorage.setItem(
 
@@ -120,120 +214,320 @@ function salvarDados(){
 
     );
 
+
+
+    atualizarEstrelas(tipo);
+
+
 }
+
+
+
+/* ==========================================================
+ATUALIZAR VISUAL
+========================================================== */
+
+
+function atualizarEstrelas(tipo){
+
+
+
+    const dados =
+    JSON.parse(
+
+        localStorage.getItem(STORAGE)
+
+    ) || {};
+
+
+
+    const valor =
+    Number(
+
+        dados[
+            "avaliacao_" + tipo
+        ]
+
+    ) || 0;
+
+
+
+    avaliacoes[tipo]
+
+    .forEach((estrela,index)=>{
+
+
+        if(index < valor){
+
+
+            estrela.classList.add(
+                "ativo"
+            );
+
+
+        }else{
+
+
+            estrela.classList.remove(
+                "ativo"
+            );
+
+
+        }
+
+
+    });
+
+
+}
+
+
+
+
+function atualizarTodasEstrelas(){
+
+
+
+    Object.keys(avaliacoes)
+
+    .forEach(tipo=>{
+
+
+        atualizarEstrelas(tipo);
+
+
+    });
+
+
+}
+
+
+
+
+
+/* ==========================================================
+HOVER
+========================================================== */
+
+
+function pintarHover(tipo,valor){
+
+
+
+    avaliacoes[tipo]
+
+    .forEach((estrela,index)=>{
+
+
+        if(index < valor){
+
+
+            estrela.classList.add(
+                "hover"
+            );
+
+
+        }else{
+
+
+            estrela.classList.remove(
+                "hover"
+            );
+
+
+        }
+
+
+    });
+
+
+
+}
+
+
+
+
+/* ==========================================================
+SALVAR DADOS
+========================================================== */
+
+
+function salvarDados(){
+
+
+
+    const dados =
+    JSON.parse(
+
+        localStorage.getItem(STORAGE)
+
+    ) || {};
+
+
+
+    dados.melhorias =
+    melhorias.value.trim();
+
+
+
+    localStorage.setItem(
+
+        STORAGE,
+
+        JSON.stringify(dados)
+
+    );
+
+
+}
+
+
+
 
 
 /* ==========================================================
 CARREGAR
 ========================================================== */
 
+
 function carregarDados(){
 
-    const dados = JSON.parse(
+
+
+    const dados =
+    JSON.parse(
 
         localStorage.getItem(STORAGE)
 
     );
 
+
+
     if(!dados)
         return;
 
-    avaliacaoServidor.value =
-    dados.avaliacao_servidor || "";
 
-    avaliacaoEquipe.value =
-    dados.avaliacao_equipe || "";
-
-    avaliacaoOrganizacao.value =
-    dados.avaliacao_organizacao || "";
-
-    avaliacaoEventos.value =
-    dados.avaliacao_eventos || "";
-
-    avaliacaoAtualizacoes.value =
-    dados.avaliacao_atualizacoes || "";
 
     melhorias.value =
     dados.melhorias || "";
 
+
+
 }
+
 
 
 /* ==========================================================
 VALIDAÇÃO
 ========================================================== */
 
+
 function validarFormulario(){
 
-    if(!avaliacaoServidor.value){
 
-        alert("Avalie o FuturyCraft.");
 
-        avaliacaoServidor.focus();
+    const nomes = {
 
-        return false;
+
+        servidor:
+        "Avalie o FuturyCraft.",
+
+
+        equipe:
+        "Avalie o atendimento da equipe.",
+
+
+        organizacao:
+        "Avalie a organização.",
+
+
+        eventos:
+        "Avalie os eventos.",
+
+
+        atualizacoes:
+        "Avalie as atualizações."
+
+    };
+
+
+
+
+    for(let tipo in nomes){
+
+
+
+        const dados =
+        JSON.parse(
+
+            localStorage.getItem(STORAGE)
+
+        ) || {};
+
+
+
+        if(
+
+            !dados[
+                "avaliacao_" + tipo
+            ]
+
+        ){
+
+
+            alert(
+                nomes[tipo]
+            );
+
+
+            return false;
+
+
+        }
+
 
     }
 
-    if(!avaliacaoEquipe.value){
 
-        alert("Avalie o atendimento da equipe.");
-
-        avaliacaoEquipe.focus();
-
-        return false;
-
-    }
-
-    if(!avaliacaoOrganizacao.value){
-
-        alert("Avalie a organização do servidor.");
-
-        avaliacaoOrganizacao.focus();
-
-        return false;
-
-    }
-
-    if(!avaliacaoEventos.value){
-
-        alert("Avalie os eventos.");
-
-        avaliacaoEventos.focus();
-
-        return false;
-
-    }
-
-    if(!avaliacaoAtualizacoes.value){
-
-        alert("Avalie as atualizações.");
-
-        avaliacaoAtualizacoes.focus();
-
-        return false;
-
-    }
 
     return true;
 
+
 }
+
+
+
 
 
 /* ==========================================================
 ENVIAR
 ========================================================== */
 
+
 function enviarFormulario(event){
+
+
 
     event.preventDefault();
 
+
+
+
     if(!validarFormulario())
+
         return;
+
+
+
 
     salvarDados();
 
+
+
     window.location.href =
+
     "candidatura-termo.html";
+
+
 
 }
