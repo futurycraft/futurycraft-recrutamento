@@ -52,45 +52,57 @@ CAMPOS
 
 
 /* ==========================================================
-OPÇÕES RADIO
+   BOTÕES DE ESCOLHA PREMIUM
 ========================================================== */
 
 
 .opcoes{
 
-
     display:flex;
 
     flex-wrap:wrap;
 
-    gap:12px;
-
+    gap:14px;
 
 }
 
 
+
+/* caixa do botão */
 
 .opcao{
 
-
     position:relative;
-
 
 }
 
 
+
+/* esconder radio */
 
 .opcao input{
 
+    position:absolute;
 
-    display:none;
+    opacity:0;
 
+    pointer-events:none;
 
 }
 
 
 
-.opcao span{
+/* botão */
+
+.opcao label{
+
+
+    min-width:120px;
+
+    height:46px;
+
+
+    padding:0 25px;
 
 
     display:flex;
@@ -102,26 +114,24 @@ OPÇÕES RADIO
     justify-content:center;
 
 
-    min-width:110px;
+    border-radius:14px;
 
 
-    height:44px;
-
-
-    padding:0 20px;
-
-
-    border-radius:12px;
+    cursor:pointer;
 
 
     background:
 
-    rgba(255,255,255,.04);
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.03)
+    );
 
 
     border:
 
-    1px solid rgba(255,255,255,.10);
+    1px solid rgba(255,255,255,.12);
 
 
     color:#cbd5e1;
@@ -133,20 +143,22 @@ OPÇÕES RADIO
     font-weight:700;
 
 
-    cursor:pointer;
-
-
     transition:.25s;
+
+
+    user-select:none;
 
 
 }
 
 
 
-/* hover */
+/* passar mouse */
+
+.opcao label:hover{
 
 
-.opcao span:hover{
+    color:white;
 
 
     border-color:#4cc2ff;
@@ -154,10 +166,12 @@ OPÇÕES RADIO
 
     background:
 
-    rgba(76,194,255,.08);
+    rgba(76,194,255,.10);
 
 
-    transform:translateY(-2px);
+    transform:
+
+    translateY(-3px);
 
 
 }
@@ -166,14 +180,14 @@ OPÇÕES RADIO
 
 /* selecionado */
 
-
-.opcao input:checked + span{
+.opcao input:checked + label{
 
 
     color:white;
 
 
     background:
+
 
     linear-gradient(
 
@@ -191,14 +205,16 @@ OPÇÕES RADIO
 
     box-shadow:
 
-    0 8px 25px rgba(76,194,255,.30);
+
+    0 8px 25px rgba(76,194,255,.35);
 
 
-    transform:translateY(-2px);
+    transform:
+
+    translateY(-3px);
 
 
 }
-
 
 
 /* ==========================================================
