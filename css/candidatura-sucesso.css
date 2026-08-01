@@ -1,0 +1,366 @@
+/* ==========================================================
+   FUTURYCRAFT
+   CANDIDATURA SUCESSO
+========================================================== */
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+
+
+body {
+
+    min-height: 100vh;
+    background: #050816;
+    color: #ffffff;
+    overflow: hidden;
+
+}
+
+
+
+/* ==========================================================
+   BACKGROUND
+========================================================== */
+
+
+.background {
+
+    position: fixed;
+    inset: 0;
+
+    background:
+    radial-gradient(circle at top, rgba(0, 170, 255, .18), transparent 35%),
+    radial-gradient(circle at bottom, rgba(0, 80, 255, .12), transparent 40%),
+    #050816;
+
+    z-index: -1;
+
+}
+
+
+
+.background::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+    linear-gradient(
+        rgba(255,255,255,.03) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.03) 1px,
+        transparent 1px
+    );
+
+    background-size: 50px 50px;
+
+}
+
+
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+
+.sucesso-container {
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+
+.card {
+
+    width: 100%;
+    max-width: 550px;
+
+    padding: 45px 40px;
+
+    text-align: center;
+
+    background:
+    rgba(15, 23, 42, .75);
+
+    border:
+
+    1px solid rgba(0,170,255,.25);
+
+
+    border-radius: 24px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+
+    0 0 40px rgba(0,170,255,.15);
+
+    animation:
+
+    aparecer .6s ease;
+
+}
+
+
+
+/* ==========================================================
+   ICONE
+========================================================== */
+
+
+.icone {
+
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 50px;
+    font-weight: 800;
+
+
+    color: #00eaff;
+
+
+    border-radius: 50%;
+
+
+    background:
+
+    rgba(0,234,255,.12);
+
+
+    border:
+
+    2px solid rgba(0,234,255,.45);
+
+
+    box-shadow:
+
+    0 0 35px rgba(0,234,255,.45);
+
+}
+
+
+
+/* ==========================================================
+   TEXTOS
+========================================================== */
+
+
+.card h1 {
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+
+
+}
+
+
+
+.card p {
+
+    color: rgba(255,255,255,.75);
+
+    line-height: 1.7;
+
+    font-size: 15px;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
+
+.botao {
+
+
+    display: block;
+
+    margin-top: 30px;
+
+
+    padding: 15px 25px;
+
+
+    border-radius: 12px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
+
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+
+    transition: .3s;
+
+
+    box-shadow:
+
+    0 0 25px rgba(0,170,255,.35);
+
+}
+
+
+
+.botao:hover {
+
+
+    transform: translateY(-3px);
+
+    box-shadow:
+
+    0 0 40px rgba(0,170,255,.65);
+
+}
+
+
+
+
+
+.voltar {
+
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+
+    color:
+
+    rgba(255,255,255,.55);
+
+
+    text-decoration: none;
+
+
+    font-size: 14px;
+
+
+}
+
+
+
+.voltar:hover {
+
+    color:white;
+
+}
+
+
+
+/* ==========================================================
+   ANIMAÇÃO
+========================================================== */
+
+
+@keyframes aparecer {
+
+
+    from {
+
+        opacity:0;
+
+        transform:
+
+        translateY(30px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+
+        translateY(0);
+
+    }
+
+
+}
+
+
+
+/* ==========================================================
+   RESPONSIVO
+========================================================== */
+
+
+@media(max-width:600px){
+
+
+.card {
+
+    padding:35px 25px;
+
+}
+
+
+.card h1 {
+
+    font-size:26px;
+
+}
+
+
+.icone {
+
+    width:75px;
+    height:75px;
+
+    font-size:40px;
+
+}
+
+
+}
