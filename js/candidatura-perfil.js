@@ -8,15 +8,24 @@
 const STORAGE = "futury_candidatura";
 
 
-document.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
 
     carregarDados();
 
+
     configurarEventos();
 
-    configurarExperienciaStaff();
+
+    controlarExperiencia();
+
 
 });
+
+
 
 
 
@@ -25,58 +34,109 @@ ELEMENTOS
 ========================================================== */
 
 
-const form = document.getElementById("form-perfil");
+const form =
+document.getElementById(
+    "form-perfil"
+);
+
+
 
 
 const campos = {
 
+
     sobre_voce:
-    document.getElementById("sobre_voce"),
+    document.getElementById(
+        "sobre_voce"
+    ),
+
 
     bom_ajudante:
-    document.getElementById("bom_ajudante"),
+    document.getElementById(
+        "bom_ajudante"
+    ),
+
 
     destaque:
-    document.getElementById("destaque"),
+    document.getElementById(
+        "destaque"
+    ),
+
 
     jogador_toxico:
-    document.getElementById("jogador_toxico"),
+    document.getElementById(
+        "jogador_toxico"
+    ),
+
 
     suspeita_hack:
-    document.getElementById("suspeita_hack"),
+    document.getElementById(
+        "suspeita_hack"
+    ),
+
 
     amigo_regra:
-    document.getElementById("amigo_regra"),
+    document.getElementById(
+        "amigo_regra"
+    ),
+
 
     punicao_injusta:
-    document.getElementById("punicao_injusta"),
+    document.getElementById(
+        "punicao_injusta"
+    ),
+
 
     novo_jogador:
-    document.getElementById("novo_jogador"),
+    document.getElementById(
+        "novo_jogador"
+    ),
 
-    experiencia_staff:
-    document.querySelector(
-      'input[name="experiencia_staff"]:checked'
-      )?.value || "";
 
     servidor_anterior:
-    document.getElementById("servidor_anterior"),
+    document.getElementById(
+        "servidor_anterior"
+    ),
+
 
     cargo_anterior:
-    document.getElementById("cargo_anterior"),
+    document.getElementById(
+        "cargo_anterior"
+    ),
+
 
     tempo_staff:
-    document.getElementById("tempo_staff"),
+    document.getElementById(
+        "tempo_staff"
+    ),
+
 
     motivo_saida:
-    document.getElementById("motivo_saida")
+    document.getElementById(
+        "motivo_saida"
+    )
+
 
 };
 
 
 
+
+
+const experienciaRadios =
+document.querySelectorAll(
+    'input[name="experiencia_staff"]'
+);
+
+
+
+
 const experienciaBox =
-document.getElementById("experiencia-box");
+document.getElementById(
+    "experiencia-box"
+);
+
+
 
 
 
@@ -88,19 +148,22 @@ EVENTOS
 function configurarEventos(){
 
 
+
     Object.values(campos)
 
-    .forEach(campo => {
+    .forEach(campo=>{
 
 
         if(!campo)
             return;
 
 
+
         campo.addEventListener(
             "input",
             salvarDados
         );
+
 
 
         campo.addEventListener(
@@ -113,12 +176,26 @@ function configurarEventos(){
 
 
 
-    campos.experiencia_staff
 
-    .addEventListener(
-        "change",
-        controlarExperiencia
-    );
+
+
+    experienciaRadios.forEach(radio=>{
+
+
+        radio.addEventListener(
+            "change",
+            ()=>{
+                
+                controlarExperiencia();
+
+            }
+        );
+
+
+    });
+
+
+
 
 
 
@@ -132,24 +209,46 @@ function configurarEventos(){
 
 
 
+
+
+
+
 /* ==========================================================
-MOSTRAR EXPERIÊNCIA
+CONTROLAR EXPERIÊNCIA STAFF
 ========================================================== */
 
 
 function controlarExperiencia(){
 
 
+
+    const selecionado =
+
+    document.querySelector(
+
+        'input[name="experiencia_staff"]:checked'
+
+    );
+
+
+
+
     if(
-        campos.experiencia_staff.value
-        ===
-        "Sim"
+
+        selecionado
+
+        &&
+
+        selecionado.value === "Sim"
+
     ){
 
 
+
         experienciaBox.classList.remove(
             "escondido"
         );
+
 
 
         experienciaBox.classList.add(
@@ -157,7 +256,11 @@ function controlarExperiencia(){
         );
 
 
-    }else{
+
+    }
+
+    else{
+
 
 
         experienciaBox.classList.add(
@@ -165,40 +268,49 @@ function controlarExperiencia(){
         );
 
 
+
         experienciaBox.classList.remove(
             "mostrar"
         );
+
 
 
     }
 
 
 
-    salvarDados();
-
 }
 
 
 
+
+
+
+
 /* ==========================================================
-SALVAR
+SALVAR DADOS
 ========================================================== */
 
 
 function salvarDados(){
 
 
+
     const dados = JSON.parse(
 
-        localStorage.getItem(STORAGE)
+        localStorage.getItem(
+            STORAGE
+        )
 
     ) || {};
 
 
 
+
+
     Object.keys(campos)
 
-    .forEach(chave => {
+    .forEach(chave=>{
 
 
         if(campos[chave]){
@@ -216,11 +328,45 @@ function salvarDados(){
 
 
 
+
+
+
+    const experiencia =
+
+    document.querySelector(
+
+        'input[name="experiencia_staff"]:checked'
+
+    );
+
+
+
+
+
+    dados.experiencia_staff =
+
+    experiencia
+
+    ?
+
+    experiencia.value
+
+    :
+
+    "";
+
+
+
+
+
+
     localStorage.setItem(
 
         STORAGE,
 
-        JSON.stringify(dados)
+        JSON.stringify(
+            dados
+        )
 
     );
 
@@ -229,19 +375,27 @@ function salvarDados(){
 
 
 
+
+
+
+
 /* ==========================================================
-CARREGAR
+CARREGAR DADOS
 ========================================================== */
 
 
 function carregarDados(){
 
 
+
     const dados = JSON.parse(
 
-        localStorage.getItem(STORAGE)
+        localStorage.getItem(
+            STORAGE
+        )
 
     );
+
 
 
 
@@ -250,9 +404,12 @@ function carregarDados(){
 
 
 
+
+
+
     Object.keys(campos)
 
-    .forEach(chave => {
+    .forEach(chave=>{
 
 
         if(
@@ -266,23 +423,56 @@ function carregarDados(){
         ){
 
 
+
             campos[chave].value =
 
             dados[chave];
 
 
+
         }
+
 
 
     });
 
 
 
-    controlarExperiencia();
+
+
+
+
+    if(dados.experiencia_staff){
+
+
+
+        const radio =
+
+        document.querySelector(
+
+        `input[name="experiencia_staff"][value="${dados.experiencia_staff}"]`
+
+        );
+
+
+
+        if(radio){
+
+            radio.checked = true;
+
+        }
+
+
+    }
+
 
 
 
 }
+
+
+
+
 
 
 
@@ -296,6 +486,7 @@ function validarFormulario(){
 
 
     const obrigatorios = [
+
 
         "sobre_voce",
 
@@ -313,7 +504,11 @@ function validarFormulario(){
 
         "novo_jogador"
 
+
     ];
+
+
+
 
 
 
@@ -322,25 +517,27 @@ function validarFormulario(){
     ){
 
 
+
         if(
 
-            campos[campo].value.trim()
-            .length < 10
+            campos[campo].value.trim().length < 10
 
         ){
 
 
+
             alert(
-
                 "Responda todas as perguntas com mais detalhes."
-
             );
+
 
 
             campos[campo].focus();
 
 
+
             return false;
+
 
 
         }
@@ -350,11 +547,25 @@ function validarFormulario(){
 
 
 
-    if(
 
-        !campos.experiencia_staff.value
 
-    ){
+
+
+
+    const experiencia =
+
+    document.querySelector(
+
+        'input[name="experiencia_staff"]:checked'
+
+    );
+
+
+
+
+
+    if(!experiencia){
+
 
 
         alert(
@@ -364,10 +575,9 @@ function validarFormulario(){
         );
 
 
-        campos.experiencia_staff.focus();
-
 
         return false;
+
 
 
     }
@@ -375,46 +585,67 @@ function validarFormulario(){
 
 
 
+
+
+
     if(
 
-        campos.experiencia_staff.value
-        ===
-        "Sim"
+        experiencia.value === "Sim"
 
     ){
 
 
-        if(
 
-            campos.servidor_anterior.value.trim()
-            === ""
+        const camposExperiencia = [
 
-            ||
 
-            campos.cargo_anterior.value.trim()
-            === ""
+            campos.servidor_anterior,
 
-            ||
+            campos.cargo_anterior,
 
-            campos.tempo_staff.value.trim()
-            === ""
+            campos.tempo_staff,
 
-            ||
+            campos.motivo_saida
 
-            campos.motivo_saida.value.trim()
-            === ""
 
+        ];
+
+
+
+
+
+
+        for(
+            let campo of camposExperiencia
         ){
 
 
-            alert(
+
+            if(
+
+                campo.value.trim() === ""
+
+            ){
+
+
+
+                alert(
 
                 "Preencha todas as informações da experiência anterior."
 
-            );
+                );
 
 
-            return false;
+
+                campo.focus();
+
+
+
+                return false;
+
+
+
+            }
 
 
         }
@@ -424,94 +655,44 @@ function validarFormulario(){
 
 
 
+
+
+
     return true;
 
 
-}
-
-/* ==========================================================
-EXPERIÊNCIA STAFF
-========================================================== */
-
-
-function configurarExperienciaStaff(){
-
-
-    const opcoes = document.querySelectorAll(
-        'input[name="experiencia_staff"]'
-    );
-
-
-    const caixa = document.getElementById(
-        "experiencia-box"
-    );
-
-
-    if(!opcoes.length || !caixa)
-        return;
-
-
-
-    opcoes.forEach(opcao => {
-
-
-        opcao.addEventListener(
-            "change",
-            () => {
-
-
-                if(opcao.value === "Sim" && opcao.checked){
-
-
-                    caixa.classList.remove(
-                        "escondido"
-                    );
-
-
-                    caixa.classList.add(
-                        "mostrar"
-                    );
-
-
-                }else{
-
-
-                    caixa.classList.add(
-                        "escondido"
-                    );
-
-
-                    caixa.classList.remove(
-                        "mostrar"
-                    );
-
-
-                }
-
-
-            }
-        );
-
-
-    });
-
 
 }
 
+
+
+
+
+
+
 /* ==========================================================
-ENVIAR
+ENVIAR FORMULÁRIO
 ========================================================== */
 
 
 function enviarFormulario(event){
 
 
+
     event.preventDefault();
 
 
 
-    if(!validarFormulario())
+
+
+    if(
+        !validarFormulario()
+    )
+
         return;
+
+
+
 
 
 
@@ -519,9 +700,13 @@ function enviarFormulario(event){
 
 
 
+
+
+
     window.location.href =
 
     "candidatura-feedback.html";
+
 
 
 }
