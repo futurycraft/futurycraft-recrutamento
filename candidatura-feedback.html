@@ -3,436 +3,257 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Recrutamento • Feedback | FuturyCraft</title>
+    <title>Recrutamento • Feedback | FuturyCraft</title>
 
+    <link rel="stylesheet" href="./css/candidatos.css">
+    <link rel="stylesheet" href="./css/candidatura-feedback.css">
 
-<link rel="stylesheet" href="./css/candidatos.css">
-<link rel="stylesheet" href="./css/candidatura-feedback.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
-
 <body>
-
 
 <div class="background"></div>
 
-
-
 <main class="container">
 
+    <!-- ========================= -->
+    <!-- PROGRESSO -->
+    <!-- ========================= -->
 
+    <div class="progress-card">
 
-<div class="progress-card">
+        <div class="progress-top">
 
+            <div>
 
-<div class="progress-top">
+                <span class="step">
+                    Etapa 4 de 5
+                </span>
 
+                <h1>
+                    Feedback
+                </h1>
 
-<div>
+                <p>
+                    Conte para nós como foi sua experiência no FuturyCraft.
+                </p>
 
+            </div>
 
-<span class="step">
-Etapa 4 de 5
-</span>
+            <span class="percent">
+                80%
+            </span>
 
+        </div>
 
-<h1>
-Feedback
-</h1>
+        <div class="progress-bar">
 
+            <div
+                class="progress-fill"
+                style="width:80%">
+            </div>
 
-<p>
-Avalie sua experiência no FuturyCraft e ajude a melhorar nosso servidor.
-</p>
+        </div>
 
+    </div>
 
-</div>
+    <!-- ========================= -->
+    <!-- FORMULÁRIO -->
+    <!-- ========================= -->
 
+    <form
+        id="form-feedback"
+        class="form-card">
 
+        <div class="feedback-header">
 
-<span class="percent">
-80%
-</span>
+            <h2>
+                ⭐ Avaliação do Servidor
+            </h2>
 
+            <p>
+                Todas as perguntas são obrigatórias.
+            </p>
 
+        </div>
 
-</div>
+        <!-- ========================= -->
+        <!-- AVALIAÇÕES -->
+        <!-- ========================= -->
 
+        <div class="avaliacoes">
 
+            <!-- SERVIDOR -->
 
-<div class="progress-bar">
+            <div class="avaliacao-card">
 
-<div 
-class="progress-fill"
-style="width:80%">
-</div>
+                <label>
+                    Como você avalia o FuturyCraft?
+                </label>
 
-</div>
+                <div class="rating" data-name="avaliacao_servidor">
 
+                    <input type="hidden" name="avaliacao_servidor">
 
-</div>
+                    <button type="button" class="star" data-value="1">★</button>
+                    <button type="button" class="star" data-value="2">★</button>
+                    <button type="button" class="star" data-value="3">★</button>
+                    <button type="button" class="star" data-value="4">★</button>
+                    <button type="button" class="star" data-value="5">★</button>
 
+                </div>
 
+            </div>
 
+            <!-- EQUIPE -->
 
+            <div class="avaliacao-card">
 
+                <label>
+                    Atendimento da equipe
+                </label>
 
+                <div class="rating" data-name="avaliacao_equipe">
 
-<form id="form-feedback" class="form-card">
+                    <input type="hidden" name="avaliacao_equipe">
 
+                    <button type="button" class="star" data-value="1">★</button>
+                    <button type="button" class="star" data-value="2">★</button>
+                    <button type="button" class="star" data-value="3">★</button>
+                    <button type="button" class="star" data-value="4">★</button>
+                    <button type="button" class="star" data-value="5">★</button>
 
+                </div>
 
+            </div>
 
+            <!-- ORGANIZAÇÃO -->
 
-<div class="feedback-header">
+            <div class="avaliacao-card">
 
+                <label>
+                    Organização do servidor
+                </label>
 
-<h2>
-⭐ Sua avaliação
-</h2>
+                <div class="rating" data-name="avaliacao_organizacao">
 
+                    <input type="hidden" name="avaliacao_organizacao">
 
-<p>
-Sua opinião ajuda nossa equipe a evoluir cada vez mais.
-</p>
+                    <button type="button" class="star" data-value="1">★</button>
+                    <button type="button" class="star" data-value="2">★</button>
+                    <button type="button" class="star" data-value="3">★</button>
+                    <button type="button" class="star" data-value="4">★</button>
+                    <button type="button" class="star" data-value="5">★</button>
 
+                </div>
 
-</div>
+            </div>
 
+            <!-- EVENTOS -->
 
+            <div class="avaliacao-card">
 
+                <label>
+                    Eventos do servidor
+                </label>
 
+                <div class="rating" data-name="avaliacao_eventos">
 
+                    <input type="hidden" name="avaliacao_eventos">
 
+                    <button type="button" class="star" data-value="1">★</button>
+                    <button type="button" class="star" data-value="2">★</button>
+                    <button type="button" class="star" data-value="3">★</button>
+                    <button type="button" class="star" data-value="4">★</button>
+                    <button type="button" class="star" data-value="5">★</button>
 
+                </div>
 
+            </div>
 
-<!-- ==================================================
-AVALIAÇÕES
-================================================== -->
+            <!-- ATUALIZAÇÕES -->
 
+            <div class="avaliacao-card">
 
+                <label>
+                    Atualizações do servidor
+                </label>
 
-<div class="avaliacoes">
+                <div class="rating" data-name="avaliacao_atualizacoes">
 
+                    <input type="hidden" name="avaliacao_atualizacoes">
 
+                    <button type="button" class="star" data-value="1">★</button>
+                    <button type="button" class="star" data-value="2">★</button>
+                    <button type="button" class="star" data-value="3">★</button>
+                    <button type="button" class="star" data-value="4">★</button>
+                    <button type="button" class="star" data-value="5">★</button>
 
+                </div>
 
+            </div>
 
-<div class="avaliacao-card">
+        </div>
 
+        <!-- ========================= -->
+        <!-- MELHORIAS -->
+        <!-- ========================= -->
 
-<label>
-Como você avalia o FuturyCraft?
-</label>
+        <div class="campo">
 
+            <label for="melhorias">
+                O que podemos melhorar?
+            </label>
 
-<div 
-class="estrelas"
-data-input="avaliacao_servidor">
+            <textarea
+                id="melhorias"
+                maxlength="800"
+                placeholder="Conte para nós quais melhorias você gostaria de ver no FuturyCraft..."></textarea>
 
+            <small id="contador">
+                0 / 800
+            </small>
 
-<input id="servidor1" type="radio" name="avaliacao_servidor" value="1">
-<label for="servidor1">★</label>
+        </div>
 
+        <!-- ========================= -->
+        <!-- BOTÕES -->
+        <!-- ========================= -->
 
-<input id="servidor2" type="radio" name="avaliacao_servidor" value="2">
-<label for="servidor2">★</label>
+        <div class="botoes">
 
+            <button
+                type="button"
+                class="btn-secundario"
+                onclick="window.location.href='candidatura-perfil.html'">
 
-<input id="servidor3" type="radio" name="avaliacao_servidor" value="3">
-<label for="servidor3">★</label>
+                ← Voltar
 
+            </button>
 
-<input id="servidor4" type="radio" name="avaliacao_servidor" value="4">
-<label for="servidor4">★</label>
+            <button
+                type="submit"
+                class="btn-principal">
 
+                Continuar →
 
-<input id="servidor5" type="radio" name="avaliacao_servidor" value="5">
-<label for="servidor5">★</label>
+            </button>
 
+        </div>
 
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="avaliacao-card">
-
-
-<label>
-Atendimento da equipe
-</label>
-
-
-<div class="estrelas" data-input="avaliacao_equipe">
-
-
-<input id="equipe1" type="radio" name="avaliacao_equipe" value="1">
-<label for="equipe1">★</label>
-
-
-<input id="equipe2" type="radio" name="avaliacao_equipe" value="2">
-<label for="equipe2">★</label>
-
-
-<input id="equipe3" type="radio" name="avaliacao_equipe" value="3">
-<label for="equipe3">★</label>
-
-
-<input id="equipe4" type="radio" name="avaliacao_equipe" value="4">
-<label for="equipe4">★</label>
-
-
-<input id="equipe5" type="radio" name="avaliacao_equipe" value="5">
-<label for="equipe5">★</label>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="avaliacao-card">
-
-
-<label>
-Organização do servidor
-</label>
-
-
-<div class="estrelas" data-input="avaliacao_organizacao">
-
-
-<input id="org1" type="radio" name="avaliacao_organizacao" value="1">
-<label for="org1">★</label>
-
-
-<input id="org2" type="radio" name="avaliacao_organizacao" value="2">
-<label for="org2">★</label>
-
-
-<input id="org3" type="radio" name="avaliacao_organizacao" value="3">
-<label for="org3">★</label>
-
-
-<input id="org4" type="radio" name="avaliacao_organizacao" value="4">
-<label for="org4">★</label>
-
-
-<input id="org5" type="radio" name="avaliacao_organizacao" value="5">
-<label for="org5">★</label>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="avaliacao-card">
-
-
-<label>
-Eventos
-</label>
-
-
-<div class="estrelas" data-input="avaliacao_eventos">
-
-
-<input id="eventos1" type="radio" name="avaliacao_eventos" value="1">
-<label for="eventos1">★</label>
-
-
-<input id="eventos2" type="radio" name="avaliacao_eventos" value="2">
-<label for="eventos2">★</label>
-
-
-<input id="eventos3" type="radio" name="avaliacao_eventos" value="3">
-<label for="eventos3">★</label>
-
-
-<input id="eventos4" type="radio" name="avaliacao_eventos" value="4">
-<label for="eventos4">★</label>
-
-
-<input id="eventos5" type="radio" name="avaliacao_eventos" value="5">
-<label for="eventos5">★</label>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="avaliacao-card">
-
-
-<label>
-Atualizações
-</label>
-
-
-<div class="estrelas" data-input="avaliacao_atualizacoes">
-
-
-<input id="update1" type="radio" name="avaliacao_atualizacoes" value="1">
-<label for="update1">★</label>
-
-
-<input id="update2" type="radio" name="avaliacao_atualizacoes" value="2">
-<label for="update2">★</label>
-
-
-<input id="update3" type="radio" name="avaliacao_atualizacoes" value="3">
-<label for="update3">★</label>
-
-
-<input id="update4" type="radio" name="avaliacao_atualizacoes" value="4">
-<label for="update4">★</label>
-
-
-<input id="update5" type="radio" name="avaliacao_atualizacoes" value="5">
-<label for="update5">★</label>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="campo">
-
-
-<label>
-O que podemos melhorar?
-</label>
-
-
-<textarea
-
-id="melhorias"
-
-maxlength="800"
-
-placeholder="Deixe sugestões, críticas ou ideias para melhorar o FuturyCraft...">
-
-</textarea>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="botoes">
-
-
-<button
-
-type="button"
-
-class="btn-secundario"
-
-onclick="window.location.href='candidatura-perfil.html'">
-
-← Voltar
-
-</button>
-
-
-
-
-
-<button
-
-type="submit"
-
-class="btn-principal">
-
-Finalizar candidatura →
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-</form>
-
-
-
+    </form>
 
 </main>
 
-
-
-
-
 <script src="./js/candidatura-feedback.js"></script>
 
-
 </body>
-
-
 </html>
