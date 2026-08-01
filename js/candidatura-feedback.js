@@ -2,7 +2,7 @@
    FUTURYCRAFT
    CANDIDATURA STAFF
    ETAPA 4 - FEEDBACK
-   SISTEMA DE ESTRELAS PREMIUM
+   SISTEMA DE ESTRELAS
 ========================================================== */
 
 
@@ -18,10 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarEventos();
 
 
-    atualizarTodasEstrelas();
-
-
 });
+
+
 
 
 
@@ -30,8 +29,31 @@ ELEMENTOS
 ========================================================== */
 
 
-const form =
-document.getElementById("form-feedback");
+const form = document.getElementById(
+    "form-feedback"
+);
+
+
+
+const camposEstrelas = [
+
+
+    "avaliacao_servidor",
+
+
+    "avaliacao_equipe",
+
+
+    "avaliacao_organizacao",
+
+
+    "avaliacao_eventos",
+
+
+    "avaliacao_atualizacoes"
+
+
+];
 
 
 
@@ -40,40 +62,6 @@ document.getElementById("melhorias");
 
 
 
-const avaliacoes = {
-
-
-    servidor:
-    document.querySelectorAll(
-        '[data-avaliacao="servidor"] .estrela'
-    ),
-
-
-    equipe:
-    document.querySelectorAll(
-        '[data-avaliacao="equipe"] .estrela'
-    ),
-
-
-    organizacao:
-    document.querySelectorAll(
-        '[data-avaliacao="organizacao"] .estrela'
-    ),
-
-
-    eventos:
-    document.querySelectorAll(
-        '[data-avaliacao="eventos"] .estrela'
-    ),
-
-
-    atualizacoes:
-    document.querySelectorAll(
-        '[data-avaliacao="atualizacoes"] .estrela'
-    )
-
-
-};
 
 
 
@@ -87,64 +75,30 @@ function configurarEventos(){
 
 
 
-    Object.keys(avaliacoes)
-
-    .forEach(tipo => {
+    camposEstrelas.forEach(nome => {
 
 
 
-        avaliacoes[tipo]
+        const radios = document.querySelectorAll(
 
-        .forEach((estrela,index)=>{
+            `input[name="${nome}"]`
 
-
-            estrela.addEventListener(
-                "click",
-                ()=>{
+        );
 
 
-                    selecionarEstrelas(
-                        tipo,
-                        index + 1
-                    );
+
+        radios.forEach(radio => {
 
 
-                    salvarDados();
 
+            radio.addEventListener(
 
-                }
+                "change",
+
+                salvarDados
+
             );
 
-
-
-            estrela.addEventListener(
-                "mouseenter",
-                ()=>{
-
-
-                    pintarHover(
-                        tipo,
-                        index + 1
-                    );
-
-
-                }
-            );
-
-
-
-            estrela.addEventListener(
-                "mouseleave",
-                ()=>{
-
-
-                    atualizarEstrelas(
-                        tipo
-                    );
-
-
-                }
-            );
 
 
         });
@@ -152,7 +106,6 @@ function configurarEventos(){
 
 
     });
-
 
 
 
@@ -177,172 +130,43 @@ function configurarEventos(){
     );
 
 
+
 }
 
 
 
 
+
+
+
 /* ==========================================================
-SELECIONAR ESTRELAS
+PEGAR ESTRELA SELECIONADA
 ========================================================== */
 
 
-function selecionarEstrelas(tipo,valor){
+function pegarAvaliacao(nome){
 
 
 
-    const dados =
-    JSON.parse(
+    const selecionado = document.querySelector(
 
-        localStorage.getItem(STORAGE)
-
-    ) || {};
-
-
-
-    dados[
-        "avaliacao_" + tipo
-    ] = valor;
-
-
-
-    localStorage.setItem(
-
-        STORAGE,
-
-        JSON.stringify(dados)
+        `input[name="${nome}"]:checked`
 
     );
 
 
 
-    atualizarEstrelas(tipo);
+    return selecionado ?
+
+    selecionado.value :
+
+    "";
+
 
 
 }
 
 
-
-/* ==========================================================
-ATUALIZAR VISUAL
-========================================================== */
-
-
-function atualizarEstrelas(tipo){
-
-
-
-    const dados =
-    JSON.parse(
-
-        localStorage.getItem(STORAGE)
-
-    ) || {};
-
-
-
-    const valor =
-    Number(
-
-        dados[
-            "avaliacao_" + tipo
-        ]
-
-    ) || 0;
-
-
-
-    avaliacoes[tipo]
-
-    .forEach((estrela,index)=>{
-
-
-        if(index < valor){
-
-
-            estrela.classList.add(
-                "ativo"
-            );
-
-
-        }else{
-
-
-            estrela.classList.remove(
-                "ativo"
-            );
-
-
-        }
-
-
-    });
-
-
-}
-
-
-
-
-function atualizarTodasEstrelas(){
-
-
-
-    Object.keys(avaliacoes)
-
-    .forEach(tipo=>{
-
-
-        atualizarEstrelas(tipo);
-
-
-    });
-
-
-}
-
-
-
-
-
-/* ==========================================================
-HOVER
-========================================================== */
-
-
-function pintarHover(tipo,valor){
-
-
-
-    avaliacoes[tipo]
-
-    .forEach((estrela,index)=>{
-
-
-        if(index < valor){
-
-
-            estrela.classList.add(
-                "hover"
-            );
-
-
-        }else{
-
-
-            estrela.classList.remove(
-                "hover"
-            );
-
-
-        }
-
-
-    });
-
-
-
-}
 
 
 
@@ -356,8 +180,7 @@ function salvarDados(){
 
 
 
-    const dados =
-    JSON.parse(
+    const dados = JSON.parse(
 
         localStorage.getItem(STORAGE)
 
@@ -365,8 +188,27 @@ function salvarDados(){
 
 
 
+
+
+    camposEstrelas.forEach(nome => {
+
+
+
+        dados[nome] = pegarAvaliacao(nome);
+
+
+
+    });
+
+
+
+
+
     dados.melhorias =
+
     melhorias.value.trim();
+
+
 
 
 
@@ -379,14 +221,17 @@ function salvarDados(){
     );
 
 
+
 }
 
 
 
 
 
+
+
 /* ==========================================================
-CARREGAR
+CARREGAR DADOS
 ========================================================== */
 
 
@@ -394,8 +239,7 @@ function carregarDados(){
 
 
 
-    const dados =
-    JSON.parse(
+    const dados = JSON.parse(
 
         localStorage.getItem(STORAGE)
 
@@ -404,16 +248,61 @@ function carregarDados(){
 
 
     if(!dados)
+
         return;
 
 
 
+
+
+    camposEstrelas.forEach(nome => {
+
+
+
+        if(!dados[nome])
+
+            return;
+
+
+
+
+
+        const radio = document.querySelector(
+
+            `input[name="${nome}"][value="${dados[nome]}"]`
+
+        );
+
+
+
+        if(radio){
+
+
+            radio.checked = true;
+
+
+        }
+
+
+
+    });
+
+
+
+
+
     melhorias.value =
+
     dados.melhorias || "";
 
 
 
 }
+
+
+
+
+
 
 
 
@@ -426,64 +315,46 @@ function validarFormulario(){
 
 
 
-    const nomes = {
-
-
-        servidor:
-        "Avalie o FuturyCraft.",
-
-
-        equipe:
-        "Avalie o atendimento da equipe.",
-
-
-        organizacao:
-        "Avalie a organização.",
-
-
-        eventos:
-        "Avalie os eventos.",
-
-
-        atualizacoes:
-        "Avalie as atualizações."
-
-    };
+    for(let campo of camposEstrelas){
 
 
 
-
-    for(let tipo in nomes){
-
-
-
-        const dados =
-        JSON.parse(
-
-            localStorage.getItem(STORAGE)
-
-        ) || {};
+        const valor = pegarAvaliacao(campo);
 
 
 
-        if(
+        if(!valor){
 
-            !dados[
-                "avaliacao_" + tipo
-            ]
-
-        ){
 
 
             alert(
-                nomes[tipo]
+
+                "Por favor avalie todas as categorias com estrelas."
+
             );
+
+
+
+            const primeiro = document.querySelector(
+
+                `input[name="${campo}"]`
+
+            );
+
+
+
+            if(primeiro)
+
+                primeiro.focus();
+
 
 
             return false;
 
 
+
         }
+
 
 
     }
@@ -493,7 +364,11 @@ function validarFormulario(){
     return true;
 
 
+
 }
+
+
+
 
 
 
@@ -513,6 +388,7 @@ function enviarFormulario(event){
 
 
 
+
     if(!validarFormulario())
 
         return;
@@ -520,7 +396,10 @@ function enviarFormulario(event){
 
 
 
+
     salvarDados();
+
+
 
 
 
