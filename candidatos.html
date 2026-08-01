@@ -146,19 +146,47 @@
 
             <div class="campo">
 
-                <label for="data">
-                    Data de nascimento *
-                </label>
+    <label>
+        Data de nascimento *
+    </label>
 
-                <input
-                    type="date"
-                    id="data"
-                    name="data"
-                    required>
 
-            </div>
+    <div class="data-nascimento">
 
-        </div>
+
+        <input
+            type="number"
+            id="dia"
+            placeholder="Dia"
+            min="1"
+            max="31"
+            required>
+
+
+
+        <input
+            type="number"
+            id="mes"
+            placeholder="Mês"
+            min="1"
+            max="12"
+            required>
+
+
+
+        <input
+            type="number"
+            id="ano"
+            placeholder="Ano"
+            min="1900"
+            max="2026"
+            required>
+
+
+    </div>
+
+
+</div>
 
 
         <!-- Gênero -->
