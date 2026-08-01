@@ -429,7 +429,74 @@ function validarFormulario(){
 
 }
 
+/* ==========================================================
+EXPERIÊNCIA STAFF
+========================================================== */
 
+
+function configurarExperienciaStaff(){
+
+
+    const opcoes = document.querySelectorAll(
+        'input[name="experiencia_staff"]'
+    );
+
+
+    const caixa = document.getElementById(
+        "experiencia-box"
+    );
+
+
+    if(!opcoes.length || !caixa)
+        return;
+
+
+
+    opcoes.forEach(opcao => {
+
+
+        opcao.addEventListener(
+            "change",
+            () => {
+
+
+                if(opcao.value === "Sim" && opcao.checked){
+
+
+                    caixa.classList.remove(
+                        "escondido"
+                    );
+
+
+                    caixa.classList.add(
+                        "mostrar"
+                    );
+
+
+                }else{
+
+
+                    caixa.classList.add(
+                        "escondido"
+                    );
+
+
+                    caixa.classList.remove(
+                        "mostrar"
+                    );
+
+
+                }
+
+
+            }
+        );
+
+
+    });
+
+
+}
 
 /* ==========================================================
 ENVIAR
