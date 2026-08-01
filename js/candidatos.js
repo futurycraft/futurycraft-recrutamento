@@ -14,7 +14,7 @@ INICIAR
 ========================================================== */
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
 
     carregarDados();
@@ -42,9 +42,12 @@ const nick = document.getElementById("nick");
 
 const discord = document.getElementById("discord");
 
+
 const idade = document.getElementById("idade");
 
 const idadeNumero = document.getElementById("idade-numero");
+
+
 
 const dia = document.getElementById("dia");
 
@@ -56,8 +59,10 @@ const ano = document.getElementById("ano");
 
 
 
+
+
 /* ==========================================================
-CONFIGURAR EVENTOS
+EVENTOS
 ========================================================== */
 
 
@@ -68,17 +73,14 @@ function configurarEventos(){
     [
 
         nome,
-
         nick,
-
         discord,
-
         idade,
+        dia,
+        mes,
+        ano
 
-        data
-
-
-    ].forEach(campo => {
+    ].forEach(campo=>{
 
 
         if(campo){
@@ -104,11 +106,62 @@ function configurarEventos(){
 
 
 
+    if(idade){
+
+
+        idade.addEventListener(
+            "input",
+            ()=>{
+
+
+                atualizarNumeroIdade();
+
+
+                salvarDados();
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+    [
+
+        dia,
+        mes,
+        ano
+
+    ].forEach(campo=>{
+
+
+        if(campo){
+
+
+            campo.addEventListener(
+                "input",
+                atualizarIdade
+            );
+
+
+        }
+
+
+    });
+
+
+
+
+
+
     document
     .querySelectorAll(
         'input[name="genero"]'
     )
-    .forEach(radio => {
+    .forEach(radio=>{
 
 
         radio.addEventListener(
@@ -120,45 +173,6 @@ function configurarEventos(){
     });
 
 
-
-
-
-    if(idade){
-
-
-        idade.addEventListener(
-            "input",
-            atualizarNumeroIdade
-        );
-
-
-    }
-
-
-
-
-
-   [
-    dia,
-    mes,
-    ano
-
-].forEach(campo => {
-
-
-    if(campo){
-
-
-        campo.addEventListener(
-            "input",
-            atualizarIdade
-        );
-
-
-    }
-
-
-});
 
 
 
@@ -178,8 +192,9 @@ function configurarEventos(){
 
 
 
+
 /* ==========================================================
-SALVAR DADOS
+SALVAR
 ========================================================== */
 
 
@@ -195,51 +210,42 @@ function salvarDados(){
 
 
 
-
     dados.nome_completo =
-
     nome.value.trim();
 
 
 
 
-
     dados.nick =
-
     nick.value.trim();
 
 
 
 
-
     dados.discord =
-
     discord.value.trim();
 
 
 
 
-
     dados.idade =
-
     idade.value;
 
 
 
 
 
-    dados.data_nascimento = montarData();
+    dados.data_nascimento =
+    montarData();
+
 
 
 
 
     const generoSelecionado =
-
     document.querySelector(
         'input[name="genero"]:checked'
     );
-
-
 
 
 
@@ -254,7 +260,6 @@ function salvarDados(){
     :
 
     "";
-
 
 
 
@@ -277,133 +282,6 @@ function salvarDados(){
 
 
 
-/* ==========================================================
-CARREGAR DADOS
-========================================================== */
-
-
-function carregarDados(){
-
-
-    const dados = JSON.parse(
-
-        localStorage.getItem(STORAGE)
-
-    );
-
-
-
-    if(!dados) return;
-
-
-
-
-
-    nome.value =
-
-    dados.nome_completo || "";
-
-
-
-
-
-    nick.value =
-
-    dados.nick || "";
-
-
-
-
-
-    discord.value =
-
-    dados.discord || "";
-
-
-
-
-
-    idade.value =
-
-    dados.idade || 18;
-
-
-
-
-
-    if(dados.data_nascimento){
-
-
-    const partes = dados.data_nascimento.split("-");
-
-
-    ano.value = partes[0] || "";
-
-    mes.value = partes[1] || "";
-
-    dia.value = partes[2] || "";
-
-
-}
-
-
-
-
-
-    atualizarNumeroIdade();
-
-
-
-
-
-    const genero = document.querySelector(
-
-        `input[name="genero"][value="${dados.genero}"]`
-
-    );
-
-
-
-    if(genero){
-
-
-        genero.checked = true;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-ATUALIZAR NÚMERO IDADE
-========================================================== */
-
-
-function atualizarNumeroIdade(){
-
-
-    if(!idadeNumero) return;
-
-
-
-    idadeNumero.textContent =
-
-    idade.value;
-
-
-
-}
-
-
-
 
 /* ==========================================================
 MONTAR DATA
@@ -413,15 +291,22 @@ MONTAR DATA
 function montarData(){
 
 
+
     if(
+
         !dia.value ||
+
         !mes.value ||
+
         !ano.value
+
     ){
 
         return "";
 
     }
+
+
 
 
 
@@ -443,28 +328,170 @@ function montarData(){
 }
 
 
+
+
+
+
+
+
 /* ==========================================================
-CALCULAR IDADE PELA DATA
+CARREGAR
+========================================================== */
+
+
+function carregarDados(){
+
+
+    const dados = JSON.parse(
+
+        localStorage.getItem(STORAGE)
+
+    );
+
+
+
+    if(!dados) return;
+
+
+
+
+
+    nome.value =
+    dados.nome_completo || "";
+
+
+
+    nick.value =
+    dados.nick || "";
+
+
+
+    discord.value =
+    dados.discord || "";
+
+
+
+    idade.value =
+    dados.idade || 18;
+
+
+
+    atualizarNumeroIdade();
+
+
+
+
+
+    if(dados.data_nascimento){
+
+
+        const partes =
+        dados.data_nascimento.split("-");
+
+
+
+        ano.value =
+        partes[0] || "";
+
+
+
+        mes.value =
+        partes[1] || "";
+
+
+
+        dia.value =
+        partes[2] || "";
+
+
+    }
+
+
+
+
+
+
+    const genero =
+    document.querySelector(
+
+        `input[name="genero"][value="${dados.genero}"]`
+
+    );
+
+
+
+    if(genero){
+
+        genero.checked = true;
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+IDADE VISUAL
+========================================================== */
+
+
+function atualizarNumeroIdade(){
+
+
+    if(!idadeNumero)
+        return;
+
+
+
+    idadeNumero.textContent =
+    idade.value;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+CALCULAR IDADE
 ========================================================== */
 
 
 function atualizarIdade(){
 
 
-    const dataCompleta = montarData();
+    const data =
+    montarData();
 
 
-    if(!dataCompleta)
+
+    if(!data)
         return;
 
 
 
-    const nascimento = new Date(
-        dataCompleta
-    );
+
+    const nascimento =
+    new Date(data);
 
 
-    const hoje = new Date();
+
+    const hoje =
+    new Date();
+
+
 
 
 
@@ -478,7 +505,9 @@ function atualizarIdade(){
 
 
 
-    const mesAtual =
+
+
+    const diferencaMes =
 
     hoje.getMonth()
 
@@ -489,13 +518,14 @@ function atualizarIdade(){
 
 
 
+
     if(
 
-        mesAtual < 0 ||
+        diferencaMes < 0 ||
 
         (
 
-            mesAtual === 0 &&
+            diferencaMes === 0 &&
 
             hoje.getDate() < nascimento.getDate()
 
@@ -509,9 +539,14 @@ function atualizarIdade(){
 
 
 
+
+
     if(
+
         anos >= 13 &&
+
         anos <= 99
+
     ){
 
 
@@ -527,6 +562,7 @@ function atualizarIdade(){
     }
 
 
+
 }
 
 
@@ -535,8 +571,9 @@ function atualizarIdade(){
 
 
 
+
 /* ==========================================================
-VALIDAR FORMULÁRIO
+VALIDAÇÃO
 ========================================================== */
 
 
@@ -554,9 +591,7 @@ function validarFormulario(){
 
         nome.focus();
 
-
         return false;
-
 
     }
 
@@ -565,11 +600,8 @@ function validarFormulario(){
 
 
     if(
-
         nick.value.trim().length < 3 ||
-
         nick.value.trim().length > 16
-
     ){
 
 
@@ -579,7 +611,6 @@ function validarFormulario(){
 
 
         nick.focus();
-
 
         return false;
 
@@ -595,12 +626,11 @@ function validarFormulario(){
 
 
         alert(
-            "Informe seu usuário do Discord."
+            "Informe seu Discord."
         );
 
 
         discord.focus();
-
 
         return false;
 
@@ -611,12 +641,7 @@ function validarFormulario(){
 
 
 
-
-    if(
-
-        idade.value < 13
-
-    ){
+    if(idade.value < 13){
 
 
         alert(
@@ -624,9 +649,6 @@ function validarFormulario(){
         );
 
 
-        idade.focus();
-
-
         return false;
 
 
@@ -637,7 +659,7 @@ function validarFormulario(){
 
 
 
-    if(!data.value){
+    if(!montarData()){
 
 
         alert(
@@ -645,14 +667,10 @@ function validarFormulario(){
         );
 
 
-        data.focus();
-
-
         return false;
 
 
     }
-
 
 
 
@@ -668,6 +686,7 @@ function validarFormulario(){
 
 
 
+
 /* ==========================================================
 ENVIAR
 ========================================================== */
@@ -676,17 +695,13 @@ ENVIAR
 function enviarFormulario(e){
 
 
-
     e.preventDefault();
 
 
 
 
-
     if(!validarFormulario())
-
-    return;
-
+        return;
 
 
 
@@ -696,9 +711,7 @@ function enviarFormulario(e){
 
 
 
-
     window.location.href =
-
     "candidatura-conta.html";
 
 
