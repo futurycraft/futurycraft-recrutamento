@@ -3,246 +3,874 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Recrutamento • Conta | FuturyCraft</title>
+<title>Recrutamento • Conta | FuturyCraft</title>
 
-    <link rel="stylesheet" href="./css/candidatos.css">
+<link rel="stylesheet" href="./css/candidatos.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 
 </head>
 
+
 <body>
+
 
 <div class="background"></div>
 
+
 <main class="container">
 
-    <div class="progress-card">
 
-        <div class="progress-top">
 
-            <div>
+<div class="progress-card">
 
-                <span class="step">
-                    Etapa 2 de 5
-                </span>
 
-                <h1>Conta e Servidor</h1>
+<div class="progress-top">
 
-                <p>
-                    Conte um pouco sobre sua conta, disponibilidade e experiência no FuturyCraft.
-                </p>
 
-            </div>
+<div>
 
-            <span class="percent">
-                40%
-            </span>
 
-        </div>
+<span class="step">
+Etapa 2 de 5
+</span>
 
-        <div class="progress-bar">
 
-            <div class="progress-fill" style="width:40%"></div>
+<h1>
+Conta e Servidor
+</h1>
 
-        </div>
 
-    </div>
+<p>
+Conte um pouco sobre sua conta, disponibilidade e experiência no FuturyCraft.
+</p>
 
-    <form id="form-conta" class="form-card">
 
-        <!-- Conta -->
+</div>
 
-        <div class="campo">
 
-            <label>Seu Minecraft é:</label>
+<span class="percent">
+40%
+</span>
 
-            <select id="tipo_conta" required>
 
-                <option value="">Selecione</option>
+</div>
 
-                <option value="Original">Original</option>
 
-                <option value="Pirata">Pirata</option>
 
-            </select>
+<div class="progress-bar">
 
-        </div>
+<div 
+class="progress-fill"
+style="width:40%">
+</div>
 
-        <!-- Plataforma -->
+</div>
 
-        <div class="campo">
 
-            <label>Em qual plataforma você joga?</label>
+</div>
 
-            <select id="plataforma" required>
 
-                <option value="">Selecione</option>
 
-                <option value="Java">Java</option>
 
-                <option value="Bedrock">Bedrock</option>
 
-                <option value="Ambas">Ambas</option>
+<form 
+id="form-conta"
+class="form-card">
 
-            </select>
 
-        </div>
 
-        <!-- Acesso -->
 
-        <div class="campo">
 
-            <label>Alguém além de você possui acesso à sua conta?</label>
+<!-- ==================================================
+CONTA
+================================================== -->
 
-            <select id="acesso_conta" required>
 
-                <option value="">Selecione</option>
+<div class="campo">
 
-                <option value="Não">Não</option>
 
-                <option value="Sim">Sim</option>
+<label>
+Seu Minecraft é:
+</label>
 
-            </select>
 
-        </div>
 
-        <!-- Tempo -->
+<div class="opcoes">
 
-        <div class="campo">
 
-            <label>Há quanto tempo você joga no FuturyCraft?</label>
 
-            <input
-                type="text"
-                id="tempo_servidor"
-                maxlength="50"
-                placeholder="Ex: 2 anos"
-                required>
+<label class="opcao">
 
-        </div>
 
-        <!-- Modo -->
+<input
 
-        <div class="campo">
+type="radio"
 
-            <label>Em qual modo você gostaria de ser ajudante?</label>
+name="tipo_conta"
 
-            <select id="modo_interesse" required>
+value="Original"
 
-                <option value="">Selecione</option>
+>
 
-                <option value="Skyblock">Skyblock</option>
 
-                <option value="Rankup">Rankup</option>
+<span>
+Original
+</span>
 
-                <option value="Survival">Survival</option>
 
-            </select>
+</label>
 
-        </div>
 
-        <!-- Horário -->
 
-        <div class="campo">
 
-            <label>Qual horário você costuma jogar?</label>
+<label class="opcao">
 
-            <select id="horario_jogo" required>
 
-                <option value="">Selecione</option>
+<input
 
-                <option value="Manhã">Manhã</option>
+type="radio"
 
-                <option value="Tarde">Tarde</option>
+name="tipo_conta"
 
-                <option value="Noite">Noite</option>
+value="Pirata"
 
-                <option value="Madrugada">Madrugada</option>
+>
 
-            </select>
 
-        </div>
+<span>
+Pirata
+</span>
 
-        <!-- Dias -->
 
-        <div class="campo">
+</label>
 
-            <label>Quais dias da semana você costuma jogar?</label>
 
-            <div class="checkbox-group">
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Segunda">
-                    Segunda-feira
-                </label>
+</div>
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Terça">
-                    Terça-feira
-                </label>
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Quarta">
-                    Quarta-feira
-                </label>
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Quinta">
-                    Quinta-feira
-                </label>
+</div>
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Sexta">
-                    Sexta-feira
-                </label>
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Sábado">
-                    Sábado
-                </label>
 
-                <label class="checkbox-item">
-                    <input type="checkbox" value="Domingo">
-                    Domingo
-                </label>
 
-            </div>
 
-        </div>
+<!-- ==================================================
+PLATAFORMA
+================================================== -->
 
-        <div class="botoes">
 
-            <button
-                type="button"
-                class="btn-secundario"
-                onclick="window.location.href='candidatura.html'">
+<div class="campo">
 
-                ← Voltar
 
-            </button>
+<label>
+Em qual plataforma você joga?
+</label>
 
-            <button
-                type="submit"
-                class="btn-principal">
 
-                Próxima etapa →
 
-            </button>
 
-        </div>
+<div class="opcoes">
 
-    </form>
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="plataforma"
+
+value="Java"
+
+>
+
+
+<span>
+Java
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="plataforma"
+
+value="Bedrock"
+
+>
+
+
+<span>
+Bedrock
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="plataforma"
+
+value="Ambas"
+
+>
+
+
+<span>
+Ambas
+</span>
+
+
+</label>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ==================================================
+ACESSO CONTA
+================================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Alguém além de você possui acesso à sua conta?
+</label>
+
+
+
+
+<div class="opcoes">
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="acesso_conta"
+
+value="Não"
+
+>
+
+
+<span>
+Não
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="acesso_conta"
+
+value="Sim"
+
+>
+
+
+<span>
+Sim
+</span>
+
+
+</label>
+
+
+
+</div>
+
+
+
+</div>
+
+<!-- ==================================================
+TEMPO NO SERVIDOR
+================================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Há quanto tempo você joga no FuturyCraft?
+</label>
+
+
+
+<div class="tempo-box">
+
+
+<input
+
+type="range"
+
+id="tempo_servidor"
+
+min="0"
+
+max="60"
+
+value="12"
+
+>
+
+
+<div class="tempo-valor">
+
+
+<span id="tempo-valor">
+12
+</span>
+
+
+meses
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- ==================================================
+MODO INTERESSE
+================================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Em qual modo você gostaria de ser ajudante?
+</label>
+
+
+
+
+<div class="opcoes">
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="modo_interesse"
+
+value="Skyblock"
+
+>
+
+
+<span>
+Skyblock
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="modo_interesse"
+
+value="Rankup"
+
+>
+
+
+<span>
+Rankup
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="modo_interesse"
+
+value="Survival"
+
+>
+
+
+<span>
+Survival
+</span>
+
+
+</label>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ==================================================
+HORÁRIO
+================================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Qual horário você costuma jogar?
+</label>
+
+
+
+
+<div class="opcoes">
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="horario_jogo"
+
+value="Manhã"
+
+>
+
+
+<span>
+Manhã
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="horario_jogo"
+
+value="Tarde"
+
+>
+
+
+<span>
+Tarde
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="horario_jogo"
+
+value="Noite"
+
+>
+
+
+<span>
+Noite
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="opcao">
+
+
+<input
+
+type="radio"
+
+name="horario_jogo"
+
+value="Madrugada"
+
+>
+
+
+<span>
+Madrugada
+</span>
+
+
+</label>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ==================================================
+DIAS DA SEMANA
+================================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Quais dias da semana você costuma jogar?
+</label>
+
+
+
+
+<div class="dias">
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Segunda"
+
+>
+
+
+<span>
+Seg
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Terça"
+
+>
+
+
+<span>
+Ter
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Quarta"
+
+>
+
+
+<span>
+Qua
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Quinta"
+
+>
+
+
+<span>
+Qui
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Sexta"
+
+>
+
+
+<span>
+Sex
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Sábado"
+
+>
+
+
+<span>
+Sáb
+</span>
+
+
+</label>
+
+
+
+
+
+<label class="dia">
+
+
+<input
+
+type="checkbox"
+
+value="Domingo"
+
+>
+
+
+<span>
+Dom
+</span>
+
+
+</label>
+
+
+
+</div>
+
+
+
+</div>
+
+<!-- ==================================================
+BOTÕES
+================================================== -->
+
+
+<div class="botoes">
+
+
+<button
+
+type="button"
+
+class="btn-secundario"
+
+onclick="window.location.href='candidatura.html'"
+
+>
+
+← Voltar
+
+</button>
+
+
+
+
+
+<button
+
+type="submit"
+
+class="btn-principal"
+
+>
+
+Próxima etapa →
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</form>
+
+
 
 </main>
 
+
+
+
+
 <script src="./js/candidatura-conta.js"></script>
 
+
 </body>
+
 </html>
