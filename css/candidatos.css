@@ -1802,7 +1802,54 @@ GLOW DO BOTÃO
 
 }
 
+/* ==========================================================
+DATA DE NASCIMENTO
+========================================================== */
 
+
+.data-nascimento{
+
+    display:grid;
+
+    grid-template-columns:
+
+    1fr 1fr 2fr;
+
+    gap:15px;
+
+}
+
+
+
+.data-nascimento input{
+
+    text-align:center;
+
+    font-weight:700;
+
+}
+
+
+
+.data-nascimento input::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+
+
+@media(max-width:600px){
+
+    .data-nascimento{
+
+        grid-template-columns:
+
+        1fr;
+
+    }
+
+}
 
 /* ==========================================================
 FIM
