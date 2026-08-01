@@ -8,13 +8,18 @@
 const STORAGE = "futury_candidatura";
 
 
-document.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener("DOMContentLoaded",()=>{
+
 
     carregarDados();
 
     configurarEventos();
 
+
 });
+
+
 
 
 
@@ -23,25 +28,41 @@ ELEMENTOS
 ========================================================== */
 
 
-const form = document.getElementById("form-conta");
-
-
-const tipoConta = document.getElementById("tipo_conta");
-
-const plataforma = document.getElementById("plataforma");
-
-const acessoConta = document.getElementById("acesso_conta");
-
-const tempoServidor = document.getElementById("tempo_servidor");
-
-const modoInteresse = document.getElementById("modo_interesse");
-
-const horarioJogo = document.getElementById("horario_jogo");
-
-
-const checkboxesDias = document.querySelectorAll(
-    ".checkbox-item input"
+const form = document.getElementById(
+    "form-conta"
 );
+
+
+
+const tempoServidor =
+document.getElementById(
+    "tempo_servidor"
+);
+
+
+
+const tempoValor =
+document.getElementById(
+    "tempo-valor"
+);
+
+
+
+
+const radios = document.querySelectorAll(
+    'input[type="radio"]'
+);
+
+
+
+const checkboxesDias =
+document.querySelectorAll(
+    '.dia input[type="checkbox"]'
+);
+
+
+
+
 
 
 
@@ -53,31 +74,11 @@ EVENTOS
 function configurarEventos(){
 
 
-    [
 
-        tipoConta,
-
-        plataforma,
-
-        acessoConta,
-
-        tempoServidor,
-
-        modoInteresse,
-
-        horarioJogo
+    radios.forEach(radio=>{
 
 
-    ].forEach(campo => {
-
-
-        campo.addEventListener(
-            "input",
-            salvarDados
-        );
-
-
-        campo.addEventListener(
+        radio.addEventListener(
             "change",
             salvarDados
         );
@@ -87,7 +88,8 @@ function configurarEventos(){
 
 
 
-    checkboxesDias.forEach(check => {
+
+    checkboxesDias.forEach(check=>{
 
 
         check.addEventListener(
@@ -97,6 +99,33 @@ function configurarEventos(){
 
 
     });
+
+
+
+
+
+    if(tempoServidor){
+
+
+        tempoServidor.addEventListener(
+            "input",
+            ()=>{
+
+
+                atualizarTempo();
+
+
+                salvarDados();
+
+
+            }
+        );
+
+
+    }
+
+
+
 
 
 
@@ -110,12 +139,80 @@ function configurarEventos(){
 
 
 
+
+
+
+
 /* ==========================================================
-SALVAR DADOS
+ATUALIZAR TEXTO TEMPO
+========================================================== */
+
+
+function atualizarTempo(){
+
+
+    if(!tempoServidor)
+        return;
+
+
+
+    let valor =
+    Number(
+        tempoServidor.value
+    );
+
+
+
+    if(tempoValor){
+
+
+        if(valor === 0){
+
+
+            tempoValor.textContent =
+            "Menos de 1 mês";
+
+
+        }
+
+        else if(valor === 60){
+
+
+            tempoValor.textContent =
+            "5 anos ou mais";
+
+
+        }
+
+        else{
+
+
+            tempoValor.textContent =
+            valor + " meses";
+
+
+        }
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+SALVAR
 ========================================================== */
 
 
 function salvarDados(){
+
 
 
     const dados = JSON.parse(
@@ -126,43 +223,107 @@ function salvarDados(){
 
 
 
+
+
+
+    const tipoConta =
+    document.querySelector(
+        'input[name="tipo_conta"]:checked'
+    );
+
+
+
+    const plataforma =
+    document.querySelector(
+        'input[name="plataforma"]:checked'
+    );
+
+
+
+    const acesso =
+    document.querySelector(
+        'input[name="acesso_conta"]:checked'
+    );
+
+
+
+    const modo =
+    document.querySelector(
+        'input[name="modo_interesse"]:checked'
+    );
+
+
+
+    const horario =
+    document.querySelector(
+        'input[name="horario_jogo"]:checked'
+    );
+
+
+
+
+
+
+
     dados.tipo_conta =
-        tipoConta.value;
+    tipoConta ?
+    tipoConta.value :
+    "";
 
 
 
     dados.plataforma =
-        plataforma.value;
+    plataforma ?
+    plataforma.value :
+    "";
 
 
 
     dados.acesso_conta =
-        acessoConta.value;
+    acesso ?
+    acesso.value :
+    "";
 
 
 
     dados.tempo_servidor =
-        tempoServidor.value.trim();
+    tempoServidor.value;
 
 
 
     dados.modo_interesse =
-        modoInteresse.value;
+    modo ?
+    modo.value :
+    "";
 
 
 
     dados.horario_jogo =
-        horarioJogo.value;
+    horario ?
+    horario.value :
+    "";
+
+
+
+
 
 
 
     dados.dias_jogo =
 
-        Array.from(checkboxesDias)
+    Array.from(checkboxesDias)
 
-        .filter(check => check.checked)
+    .filter(
+        dia=>dia.checked
+    )
 
-        .map(check => check.value);
+    .map(
+        dia=>dia.value
+    );
+
+
+
+
 
 
 
@@ -179,12 +340,17 @@ function salvarDados(){
 
 
 
+
+
+
+
 /* ==========================================================
-CARREGAR DADOS
+CARREGAR
 ========================================================== */
 
 
 function carregarDados(){
+
 
 
     const dados = JSON.parse(
@@ -194,58 +360,81 @@ function carregarDados(){
     );
 
 
+
     if(!dados)
         return;
 
 
 
-    tipoConta.value =
-        dados.tipo_conta || "";
 
 
 
-    plataforma.value =
-        dados.plataforma || "";
+    marcarRadio(
+        "tipo_conta",
+        dados.tipo_conta
+    );
 
 
 
-    acessoConta.value =
-        dados.acesso_conta || "";
+    marcarRadio(
+        "plataforma",
+        dados.plataforma
+    );
 
 
 
-    tempoServidor.value =
-        dados.tempo_servidor || "";
+    marcarRadio(
+        "acesso_conta",
+        dados.acesso_conta
+    );
 
 
 
-    modoInteresse.value =
-        dados.modo_interesse || "";
+    marcarRadio(
+        "modo_interesse",
+        dados.modo_interesse
+    );
 
 
 
-    horarioJogo.value =
-        dados.horario_jogo || "";
+    marcarRadio(
+        "horario_jogo",
+        dados.horario_jogo
+    );
+
+
+
+
+
+
+    if(tempoServidor){
+
+
+        tempoServidor.value =
+        dados.tempo_servidor || 12;
+
+
+        atualizarTempo();
+
+
+    }
+
+
+
 
 
 
     if(dados.dias_jogo){
 
 
-        checkboxesDias.forEach(check => {
+        checkboxesDias.forEach(check=>{
 
 
-            if(
+            check.checked =
 
-                dados.dias_jogo.includes(
-                    check.value
-                )
-
-            ){
-
-                check.checked = true;
-
-            }
+            dados.dias_jogo.includes(
+                check.value
+            );
 
 
         });
@@ -258,6 +447,43 @@ function carregarDados(){
 
 
 
+
+
+
+
+function marcarRadio(nome,valor){
+
+
+
+    if(!valor)
+        return;
+
+
+
+    const radio =
+    document.querySelector(
+        `input[name="${nome}"][value="${valor}"]`
+    );
+
+
+
+    if(radio){
+
+
+        radio.checked = true;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
 /* ==========================================================
 VALIDAÇÃO
 ========================================================== */
@@ -267,114 +493,69 @@ function validarFormulario(){
 
 
 
-    if(!tipoConta.value){
+    const grupos = [
 
 
-        alert(
-            "Selecione se sua conta é original ou pirata."
+        "tipo_conta",
+
+        "plataforma",
+
+        "acesso_conta",
+
+        "modo_interesse",
+
+        "horario_jogo"
+
+
+    ];
+
+
+
+
+
+
+    for(const grupo of grupos){
+
+
+
+        const selecionado =
+
+        document.querySelector(
+
+            `input[name="${grupo}"]:checked`
+
         );
 
 
-        tipoConta.focus();
 
-        return false;
-
-    }
+        if(!selecionado){
 
 
-
-    if(!plataforma.value){
-
-
-        alert(
-            "Selecione sua plataforma."
-        );
+            alert(
+                "Preencha todas as opções antes de continuar."
+            );
 
 
-        plataforma.focus();
-
-        return false;
+            return false;
 
 
-    }
-
-
-
-    if(!acessoConta.value){
-
-
-        alert(
-            "Informe se alguém possui acesso à sua conta."
-        );
-
-
-        acessoConta.focus();
-
-        return false;
-
-
-    }
-
-
-
-    if(
-        tempoServidor.value.trim().length < 2
-    ){
-
-
-        alert(
-            "Informe há quanto tempo joga no FuturyCraft."
-        );
-
-
-        tempoServidor.focus();
-
-        return false;
+        }
 
 
     }
 
 
 
-    if(!modoInteresse.value){
-
-
-        alert(
-            "Selecione o modo que deseja atuar."
-        );
-
-
-        modoInteresse.focus();
-
-        return false;
-
-
-    }
-
-
-
-    if(!horarioJogo.value){
-
-
-        alert(
-            "Selecione o horário que costuma jogar."
-        );
-
-
-        horarioJogo.focus();
-
-        return false;
-
-
-    }
 
 
 
     const diasSelecionados =
 
-        Array.from(checkboxesDias)
+    Array.from(checkboxesDias)
 
-        .filter(check => check.checked);
+    .filter(
+        d=>d.checked
+    );
 
 
 
@@ -395,10 +576,16 @@ function validarFormulario(){
 
 
 
+
+
     return true;
 
 
 }
+
+
+
+
 
 
 
@@ -410,7 +597,9 @@ ENVIAR
 function enviarFormulario(event){
 
 
+
     event.preventDefault();
+
 
 
 
@@ -419,13 +608,13 @@ function enviarFormulario(event){
 
 
 
+
     salvarDados();
 
 
 
-    window.location.href =
 
+    window.location.href =
     "candidatura-perfil.html";
 
 }
-
