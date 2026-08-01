@@ -1,503 +1,202 @@
 /* ==========================================================
    FUTURYCRAFT
    CANDIDATURA STAFF
-   ETAPA 5 - TERMO
-   CLOUDFLARE TURNSTILE
+   ETAPA 4 - FEEDBACK
 ========================================================== */
-
 
 const STORAGE = "futury_candidatura";
 
-
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-
-        carregarDados();
-
-        configurarEventos();
-
-
-    }
-);
-
-
-
-
+document.addEventListener("DOMContentLoaded", () => {
+    carregarDados();
+    configurarEventos();
+});
 
 /* ==========================================================
 ELEMENTOS
 ========================================================== */
 
-
-const form = document.getElementById(
-    "form-termo"
-);
-
-
-
-const aceite = document.getElementById(
-    "aceite"
-);
-
-
-
-const botaoEnviar = document.querySelector(
-    ".btn-principal"
-);
-
-
-
-
-
-
+const form = document.getElementById("form-feedback");
+const melhorias = document.getElementById("melhorias");
+const botao = document.querySelector(".btn-principal");
 
 /* ==========================================================
 EVENTOS
 ========================================================== */
 
+function configurarEventos() {
 
-function configurarEventos(){
+    if (!form) return;
 
+    form.addEventListener("submit", continuar);
 
+    document.querySelectorAll("input[type='radio']").forEach(input => {
+        input.addEventListener("change", salvarDados);
+    });
 
-    if(!form)
-        return;
-
-
-
-    if(aceite){
-
-
-        aceite.addEventListener(
-            "change",
-            salvarDados
-        );
-
-
+    if (melhorias) {
+        melhorias.addEventListener("input", salvarDados);
     }
-
-
-
-
-
-    form.addEventListener(
-        "submit",
-        enviarFormulario
-    );
-
-
 
 }
 
-
-
-
-
-
-
 /* ==========================================================
-SALVAR DADOS
+SALVAR
 ========================================================== */
 
+function salvarDados() {
 
-function salvarDados(){
+    const dados = JSON.parse(localStorage.getItem(STORAGE)) || {};
 
+    dados.avaliacao_servidor =
+        document.querySelector("input[name='avaliacao_servidor']:checked")?.value || "";
 
+    dados.avaliacao_equipe =
+        document.querySelector("input[name='avaliacao_equipe']:checked")?.value || "";
 
-    const dados = JSON.parse(
+    dados.avaliacao_organizacao =
+        document.querySelector("input[name='avaliacao_organizacao']:checked")?.value || "";
 
-        localStorage.getItem(STORAGE)
+    dados.avaliacao_eventos =
+        document.querySelector("input[name='avaliacao_eventos']:checked")?.value || "";
 
-    ) || {};
+    dados.avaliacao_atualizacoes =
+        document.querySelector("input[name='avaliacao_atualizacoes']:checked")?.value || "";
 
-
-
-
-
-    if(aceite){
-
-
-        dados.aceite_termo =
-
-        aceite.checked;
-
-
-    }
-
-
-
-
-
+    dados.melhorias =
+        melhorias ? melhorias.value.trim() : "";
 
     localStorage.setItem(
-
         STORAGE,
-
         JSON.stringify(dados)
-
     );
-
-
 
 }
 
-
-
-
-
-
-
-
-
 /* ==========================================================
-CARREGAR DADOS
+CARREGAR
 ========================================================== */
 
-
-function carregarDados(){
-
-
+function carregarDados() {
 
     const dados = JSON.parse(
-
         localStorage.getItem(STORAGE)
-
     );
 
+    if (!dados) return;
 
+    restaurarRadio(
+        "avaliacao_servidor",
+        dados.avaliacao_servidor
+    );
 
-    if(!dados)
-        return;
+    restaurarRadio(
+        "avaliacao_equipe",
+        dados.avaliacao_equipe
+    );
 
+    restaurarRadio(
+        "avaliacao_organizacao",
+        dados.avaliacao_organizacao
+    );
 
+    restaurarRadio(
+        "avaliacao_eventos",
+        dados.avaliacao_eventos
+    );
 
+    restaurarRadio(
+        "avaliacao_atualizacoes",
+        dados.avaliacao_atualizacoes
+    );
 
-
-
-
-    if(
-
-        dados.aceite_termo
-
-        &&
-
-        aceite
-
-    ){
-
-
-        aceite.checked = true;
-
-
+    if (melhorias) {
+        melhorias.value =
+            dados.melhorias || "";
     }
-
-
 
 }
 
+function restaurarRadio(nome, valor) {
 
+    if (!valor) return;
 
+    const radio = document.querySelector(
+        `input[name="${nome}"][value="${valor}"]`
+    );
 
-
-
-
-
-/* ==========================================================
-CLOUDFLARE TURNSTILE
-========================================================== */
-
-
-function validarCaptcha(){
-
-
-
-    try {
-
-
-
-        if(
-            typeof turnstile === "undefined"
-        ){
-
-
-            alert(
-
-                "Sistema de segurança carregando. Aguarde alguns segundos."
-
-            );
-
-
-            return false;
-
-
-        }
-
-
-
-
-
-
-
-        const resposta =
-
-        turnstile.getResponse();
-
-
-
-
-
-
-
-        if(
-
-            !resposta
-
-            ||
-
-            resposta.length === 0
-
-        ){
-
-
-            alert(
-
-                "Complete a verificação de segurança antes de enviar."
-
-            );
-
-
-            return false;
-
-
-        }
-
-
-
-
-
-
-
-        return true;
-
-
-
+    if (radio) {
+        radio.checked = true;
     }
-
-
-    catch(error){
-
-
-
-        console.error(
-            "Erro Turnstile:",
-            error
-        );
-
-
-
-        alert(
-
-            "Não foi possível validar a segurança. Atualize a página e tente novamente."
-
-        );
-
-
-
-        return false;
-
-
-
-    }
-
-
 
 }
-
-
-
-
-
-
-
-
 
 /* ==========================================================
 VALIDAÇÃO
 ========================================================== */
 
+function validarFormulario() {
 
-function validarFormulario(){
+    const obrigatorios = [
 
+        "avaliacao_servidor",
 
+        "avaliacao_equipe",
 
+        "avaliacao_organizacao",
 
+        "avaliacao_eventos",
 
-    if(
+        "avaliacao_atualizacoes"
 
-        !aceite
+    ];
 
-        ||
+    for (const campo of obrigatorios) {
 
-        !aceite.checked
-
-    ){
-
-
-
-        alert(
-
-            "Você precisa aceitar o Termo de Voluntariado."
-
+        const marcado = document.querySelector(
+            `input[name="${campo}"]:checked`
         );
 
+        if (!marcado) {
 
+            alert("Avalie todos os itens antes de continuar.");
 
-        if(aceite)
+            return false;
 
-            aceite.focus();
-
-
-
-        return false;
-
+        }
 
     }
-
-
-
-
-
-
-
-
-
-    if(
-
-        !validarCaptcha()
-
-    ){
-
-
-        return false;
-
-
-    }
-
-
-
-
-
-
 
     return true;
 
-
-
 }
 
-
-
-
-
-
-
-
-
 /* ==========================================================
-ENVIO
+CONTINUAR
 ========================================================== */
 
-
-function enviarFormulario(event){
-
-
+function continuar(event) {
 
     event.preventDefault();
 
-
-
-
-
-
-    if(
-
-        !validarFormulario()
-
-    ){
-
-
+    if (!validarFormulario())
         return;
-
-
-    }
-
-
-
-
-
-
 
     salvarDados();
 
+    if (botao) {
 
+        botao.disabled = true;
 
-
-
-
-
-
-    if(botaoEnviar){
-
-
-
-        botaoEnviar.disabled = true;
-
-
-
-        botaoEnviar.innerHTML =
-
-
-        `
-        <span>
-        Enviando candidatura...
-        </span>
-        `;
-
-
+        botao.innerHTML =
+            "Continuando...";
 
     }
 
+    setTimeout(() => {
 
+        window.location.href =
+            "candidatura-termo.html";
 
-
-
-
-
-
-
-    setTimeout(
-
-        () => {
-
-
-
-            window.location.href =
-
-            "candidatura-enviado.html";
-
-
-
-        },
-
-
-        1000
-
-
-    );
-
-
+    }, 600);
 
 }
