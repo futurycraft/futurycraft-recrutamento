@@ -1,24 +1,25 @@
 /* ==========================================================
    FUTURYCRAFT
    CANDIDATURA STAFF
-   ETAPA 4 - FEEDBACK
-   SISTEMA DE ESTRELAS
+   ETAPA 5 - TERMO
+   COM CLOUDFLARE TURNSTILE
 ========================================================== */
 
 
 const STORAGE = "futury_candidatura";
 
 
-document.addEventListener("DOMContentLoaded", () => {
 
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    carregarDados();
+        carregarDados();
 
+        configurarEventos();
 
-    configurarEventos();
-
-
-});
+    }
+);
 
 
 
@@ -30,37 +31,20 @@ ELEMENTOS
 
 
 const form = document.getElementById(
-    "form-feedback"
+    "form-termo"
 );
 
 
 
-const camposEstrelas = [
-
-
-    "avaliacao_servidor",
-
-
-    "avaliacao_equipe",
-
-
-    "avaliacao_organizacao",
-
-
-    "avaliacao_eventos",
-
-
-    "avaliacao_atualizacoes"
-
-
-];
+const aceite = document.getElementById(
+    "aceite"
+);
 
 
 
-const melhorias =
-document.getElementById("melhorias");
-
-
+const botaoEnviar = document.querySelector(
+    ".btn-principal"
+);
 
 
 
@@ -75,92 +59,25 @@ function configurarEventos(){
 
 
 
-    camposEstrelas.forEach(nome => {
+    if(aceite){
 
 
-
-        const radios = document.querySelectorAll(
-
-            `input[name="${nome}"]`
-
+        aceite.addEventListener(
+            "change",
+            salvarDados
         );
 
 
+    }
 
-        radios.forEach(radio => {
-
-
-
-            radio.addEventListener(
-
-                "change",
-
-                salvarDados
-
-            );
-
-
-
-        });
-
-
-
-    });
-
-
-
-
-    melhorias.addEventListener(
-
-        "input",
-
-        salvarDados
-
-    );
 
 
 
 
     form.addEventListener(
-
         "submit",
-
         enviarFormulario
-
     );
-
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-PEGAR ESTRELA SELECIONADA
-========================================================== */
-
-
-function pegarAvaliacao(nome){
-
-
-
-    const selecionado = document.querySelector(
-
-        `input[name="${nome}"]:checked`
-
-    );
-
-
-
-    return selecionado ?
-
-    selecionado.value :
-
-    "";
 
 
 
@@ -189,25 +106,9 @@ function salvarDados(){
 
 
 
+    dados.aceite_termo =
 
-    camposEstrelas.forEach(nome => {
-
-
-
-        dados[nome] = pegarAvaliacao(nome);
-
-
-
-    });
-
-
-
-
-
-    dados.melhorias =
-
-    melhorias.value.trim();
-
+    aceite.checked;
 
 
 
@@ -221,8 +122,8 @@ function salvarDados(){
     );
 
 
-
 }
+
 
 
 
@@ -248,52 +149,21 @@ function carregarDados(){
 
 
     if(!dados)
-
         return;
 
 
 
 
 
-    camposEstrelas.forEach(nome => {
+    if(
+        dados.aceite_termo
+    ){
 
 
-
-        if(!dados[nome])
-
-            return;
+        aceite.checked = true;
 
 
-
-
-
-        const radio = document.querySelector(
-
-            `input[name="${nome}"][value="${dados[nome]}"]`
-
-        );
-
-
-
-        if(radio){
-
-
-            radio.checked = true;
-
-
-        }
-
-
-
-    });
-
-
-
-
-
-    melhorias.value =
-
-    dados.melhorias || "";
+    }
 
 
 
@@ -307,7 +177,64 @@ function carregarDados(){
 
 
 /* ==========================================================
-VALIDAÇÃO
+VALIDAR TURNSTILE
+========================================================== */
+
+
+function validarCaptcha(){
+
+
+
+    const captcha = document.querySelector(
+
+        "[name='cf-turnstile-response']"
+
+    );
+
+
+
+
+    if(
+
+        !captcha
+
+        ||
+
+        !captcha.value
+
+    ){
+
+
+
+        alert(
+
+            "Complete a verificação de segurança antes de enviar."
+
+        );
+
+
+
+        return false;
+
+
+    }
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+VALIDAÇÃO TERMO
 ========================================================== */
 
 
@@ -315,49 +242,47 @@ function validarFormulario(){
 
 
 
-    for(let campo of camposEstrelas){
 
 
-
-        const valor = pegarAvaliacao(campo);
-
-
-
-        if(!valor){
+    if(
+        !aceite.checked
+    ){
 
 
+        alert(
 
-            alert(
+            "Você precisa aceitar o Termo de Voluntariado."
 
-                "Por favor avalie todas as categorias com estrelas."
-
-            );
-
+        );
 
 
-            const primeiro = document.querySelector(
-
-                `input[name="${campo}"]`
-
-            );
+        aceite.focus();
 
 
-
-            if(primeiro)
-
-                primeiro.focus();
-
-
-
-            return false;
-
-
-
-        }
-
+        return false;
 
 
     }
+
+
+
+
+
+
+
+    if(
+        !validarCaptcha()
+    ){
+
+
+        return false;
+
+
+    }
+
+
+
+
 
 
 
@@ -374,8 +299,9 @@ function validarFormulario(){
 
 
 
+
 /* ==========================================================
-ENVIAR
+ENVIO
 ========================================================== */
 
 
@@ -389,9 +315,15 @@ function enviarFormulario(event){
 
 
 
-    if(!validarFormulario())
+    if(
+        !validarFormulario()
+    ){
 
         return;
+
+    }
+
+
 
 
 
@@ -403,9 +335,38 @@ function enviarFormulario(event){
 
 
 
-    window.location.href =
 
-    "candidatura-termo.html";
+
+    botaoEnviar.disabled = true;
+
+
+
+    botaoEnviar.innerHTML =
+
+    "Enviando candidatura...";
+
+
+
+
+
+
+
+    setTimeout(
+        () => {
+
+
+
+            window.location.href =
+
+            "candidatura-enviado.html";
+
+
+
+        },
+
+        700
+
+    );
 
 
 
