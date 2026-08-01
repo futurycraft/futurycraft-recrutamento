@@ -2,141 +2,531 @@
    FUTURYCRAFT
    CANDIDATURA STAFF
    ETAPA 4 - FEEDBACK
+   SISTEMA DE ESTRELAS NOVO
 ========================================================== */
+
 
 const STORAGE = "futury_candidatura";
 
-document.addEventListener("DOMContentLoaded", () => {
-    carregarDados();
-    configurarEventos();
-});
+
 
 /* ==========================================================
-ELEMENTOS
+   INICIAR
 ========================================================== */
 
-const form = document.getElementById("form-feedback");
-const melhorias = document.getElementById("melhorias");
-const botao = document.querySelector(".btn-principal");
 
-/* ==========================================================
-EVENTOS
-========================================================== */
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-function configurarEventos() {
+        carregarDados();
 
-    if (!form) return;
+        configurarEstrelas();
 
-    form.addEventListener("submit", continuar);
+        configurarEventos();
 
-    document.querySelectorAll("input[type='radio']").forEach(input => {
-        input.addEventListener("change", salvarDados);
-    });
+        atualizarContador();
 
-    if (melhorias) {
-        melhorias.addEventListener("input", salvarDados);
     }
+);
+
+
+
+
+
+/* ==========================================================
+   ELEMENTOS
+========================================================== */
+
+
+const form =
+document.getElementById(
+    "form-feedback"
+);
+
+
+const melhorias =
+document.getElementById(
+    "melhorias"
+);
+
+
+const contador =
+document.getElementById(
+    "contador"
+);
+
+
+const botao =
+document.querySelector(
+    ".btn-principal"
+);
+
+
+
+
+
+
+/* ==========================================================
+   CONFIGURAR EVENTOS
+========================================================== */
+
+
+function configurarEventos(){
+
+
+    if(form){
+
+        form.addEventListener(
+            "submit",
+            continuar
+        );
+
+    }
+
+
+
+    if(melhorias){
+
+        melhorias.addEventListener(
+            "input",
+            () => {
+
+                salvarDados();
+
+                atualizarContador();
+
+            }
+        );
+
+    }
+
 
 }
 
+
+
+
+
+
+
 /* ==========================================================
-SALVAR
+   SISTEMA DE ESTRELAS
 ========================================================== */
 
-function salvarDados() {
 
-    const dados = JSON.parse(localStorage.getItem(STORAGE)) || {};
+function configurarEstrelas(){
 
-    dados.avaliacao_servidor =
-        document.querySelector("input[name='avaliacao_servidor']:checked")?.value || "";
 
-    dados.avaliacao_equipe =
-        document.querySelector("input[name='avaliacao_equipe']:checked")?.value || "";
+    document
+    .querySelectorAll(".rating")
+    .forEach(rating=>{
 
-    dados.avaliacao_organizacao =
-        document.querySelector("input[name='avaliacao_organizacao']:checked")?.value || "";
 
-    dados.avaliacao_eventos =
-        document.querySelector("input[name='avaliacao_eventos']:checked")?.value || "";
+        const estrelas =
+        rating.querySelectorAll(".star");
 
-    dados.avaliacao_atualizacoes =
-        document.querySelector("input[name='avaliacao_atualizacoes']:checked")?.value || "";
+
+        const input =
+        rating.querySelector(
+            "input[type='hidden']"
+        );
+
+
+
+        estrelas.forEach(estrela=>{
+
+
+            estrela.addEventListener(
+                "mouseenter",
+                ()=>{
+
+
+                    const valor =
+                    Number(
+                        estrela.dataset.value
+                    );
+
+
+                    pintarHover(
+                        estrelas,
+                        valor
+                    );
+
+
+                }
+            );
+
+
+
+
+            estrela.addEventListener(
+                "mouseleave",
+                ()=>{
+
+
+                    limparHover(
+                        estrelas
+                    );
+
+
+                    atualizarVisual(
+                        estrelas,
+                        input.value
+                    );
+
+
+                }
+            );
+
+
+
+
+
+            estrela.addEventListener(
+                "click",
+                ()=>{
+
+
+                    const valor =
+                    Number(
+                        estrela.dataset.value
+                    );
+
+
+
+                    input.value =
+                    valor;
+
+
+
+                    atualizarVisual(
+                        estrelas,
+                        valor
+                    );
+
+
+
+                    salvarDados();
+
+
+                }
+            );
+
+
+
+        });
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+
+function pintarHover(estrelas,valor){
+
+
+    estrelas.forEach(estrela=>{
+
+
+        const estrelaValor =
+        Number(
+            estrela.dataset.value
+        );
+
+
+
+        if(estrelaValor <= valor){
+
+            estrela.classList.add(
+                "hover"
+            );
+
+        }
+        else{
+
+            estrela.classList.remove(
+                "hover"
+            );
+
+        }
+
+
+    });
+
+
+}
+
+
+
+
+function limparHover(estrelas){
+
+
+    estrelas.forEach(estrela=>{
+
+
+        estrela.classList.remove(
+            "hover"
+        );
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   ATUALIZAR VISUAL
+========================================================== */
+
+
+function atualizarVisual(
+    estrelas,
+    valor
+){
+
+
+    estrelas.forEach(estrela=>{
+
+
+        const estrelaValor =
+        Number(
+            estrela.dataset.value
+        );
+
+
+
+        if(
+            estrelaValor <= Number(valor)
+        ){
+
+            estrela.classList.add(
+                "active"
+            );
+
+
+        }
+        else{
+
+
+            estrela.classList.remove(
+                "active"
+            );
+
+
+        }
+
+
+
+    });
+
+
+}
+
+
+
+
+
+
+/* ==========================================================
+   SALVAR DADOS
+========================================================== */
+
+
+function salvarDados(){
+
+
+    const dados =
+    JSON.parse(
+        localStorage.getItem(STORAGE)
+    ) || {};
+
+
+
+    document
+    .querySelectorAll(".rating")
+    .forEach(rating=>{
+
+
+        const nome =
+        rating.dataset.name;
+
+
+
+        const valor =
+        rating.querySelector(
+            "input[type='hidden']"
+        ).value;
+
+
+
+        dados[nome] =
+        valor || "";
+
+
+
+    });
+
+
+
 
     dados.melhorias =
-        melhorias ? melhorias.value.trim() : "";
+    melhorias
+    ?
+    melhorias.value.trim()
+    :
+    "";
+
+
+
 
     localStorage.setItem(
         STORAGE,
         JSON.stringify(dados)
     );
 
+
 }
 
 /* ==========================================================
-CARREGAR
+   CARREGAR DADOS
 ========================================================== */
 
-function carregarDados() {
 
-    const dados = JSON.parse(
+function carregarDados(){
+
+
+    const dados =
+    JSON.parse(
         localStorage.getItem(STORAGE)
     );
 
-    if (!dados) return;
 
-    restaurarRadio(
-        "avaliacao_servidor",
-        dados.avaliacao_servidor
-    );
+    if(!dados)
+        return;
 
-    restaurarRadio(
-        "avaliacao_equipe",
-        dados.avaliacao_equipe
-    );
 
-    restaurarRadio(
-        "avaliacao_organizacao",
-        dados.avaliacao_organizacao
-    );
 
-    restaurarRadio(
-        "avaliacao_eventos",
-        dados.avaliacao_eventos
-    );
+    document
+    .querySelectorAll(".rating")
+    .forEach(rating=>{
 
-    restaurarRadio(
-        "avaliacao_atualizacoes",
-        dados.avaliacao_atualizacoes
-    );
 
-    if (melhorias) {
+        const nome =
+        rating.dataset.name;
+
+
+
+        const valor =
+        dados[nome];
+
+
+
+        const input =
+        rating.querySelector(
+            "input[type='hidden']"
+        );
+
+
+
+        if(valor){
+
+
+            input.value =
+            valor;
+
+
+
+            atualizarVisual(
+                rating.querySelectorAll(".star"),
+                valor
+            );
+
+
+        }
+
+
+
+    });
+
+
+
+
+    if(melhorias){
+
         melhorias.value =
-            dados.melhorias || "";
+        dados.melhorias || "";
+
     }
+
+
 
 }
 
-function restaurarRadio(nome, valor) {
 
-    if (!valor) return;
 
-    const radio = document.querySelector(
-        `input[name="${nome}"][value="${valor}"]`
-    );
 
-    if (radio) {
-        radio.checked = true;
-    }
 
-}
+
+
 
 /* ==========================================================
-VALIDAÇÃO
+   CONTADOR TEXTO
 ========================================================== */
 
-function validarFormulario() {
 
-    const obrigatorios = [
+function atualizarContador(){
+
+
+    if(!melhorias || !contador)
+        return;
+
+
+
+    contador.innerHTML =
+
+    `${melhorias.value.length} / 800`;
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   VALIDAR FORMULÁRIO
+========================================================== */
+
+
+function validarFormulario(){
+
+
+    const avaliacoes = [
+
 
         "avaliacao_servidor",
 
@@ -148,55 +538,155 @@ function validarFormulario() {
 
         "avaliacao_atualizacoes"
 
+
     ];
 
-    for (const campo of obrigatorios) {
 
-        const marcado = document.querySelector(
-            `input[name="${campo}"]:checked`
+
+
+    for(const campo of avaliacoes){
+
+
+
+        const input =
+        document.querySelector(
+            `input[name="${campo}"]`
         );
 
-        if (!marcado) {
 
-            alert("Avalie todos os itens antes de continuar.");
+
+        if(
+            !input ||
+            !input.value
+        ){
+
+
+            alert(
+                "Avalie todos os itens antes de continuar."
+            );
+
 
             return false;
 
+
         }
 
+
     }
+
+
 
     return true;
 
+
+
 }
 
+
+
+
+
+
+
+
 /* ==========================================================
-CONTINUAR
+   CONTINUAR
 ========================================================== */
 
-function continuar(event) {
+
+function continuar(event){
+
 
     event.preventDefault();
 
-    if (!validarFormulario())
-        return;
+
+
+    if(
+        !validarFormulario()
+    )
+    return;
+
+
+
 
     salvarDados();
 
-    if (botao) {
 
-        botao.disabled = true;
+
+
+
+    if(botao){
+
+
+        botao.disabled =
+        true;
+
+
 
         botao.innerHTML =
-            "Continuando...";
+        "Salvando...";
+
 
     }
 
-    setTimeout(() => {
+
+
+
+
+    setTimeout(()=>{
+
 
         window.location.href =
-            "candidatura-termo.html";
+        "candidatura-termo.html";
 
-    }, 600);
+
+
+    },600);
+
+
 
 }
+
+
+
+
+
+
+
+/* ==========================================================
+   GARANTIR RESTAURAÇÃO
+========================================================== */
+
+
+window.addEventListener(
+    "pageshow",
+    ()=>{
+
+
+        carregarDados();
+
+
+        document
+        .querySelectorAll(".rating")
+        .forEach(rating=>{
+
+
+            const valor =
+            rating.querySelector(
+                "input[type='hidden']"
+            ).value;
+
+
+
+            atualizarVisual(
+                rating.querySelectorAll(".star"),
+                valor
+            );
+
+
+        });
+
+
+
+    }
+);
