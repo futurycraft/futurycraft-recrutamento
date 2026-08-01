@@ -53,7 +53,9 @@ const campos = {
     document.getElementById("novo_jogador"),
 
     experiencia_staff:
-    document.getElementById("experiencia_staff"),
+    document.querySelector(
+      'input[name="experiencia_staff"]:checked'
+      )?.value || "";
 
     servidor_anterior:
     document.getElementById("servidor_anterior"),
