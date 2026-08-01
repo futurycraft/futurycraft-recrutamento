@@ -696,7 +696,153 @@ ANIMAÇÃO
 }
 
 
+/* ==========================================================
+ESCOLHA EXPERIÊNCIA STAFF
+========================================================== */
 
+
+.campo .opcoes{
+
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+
+}
+
+
+
+
+.campo .opcao input{
+
+
+    position:absolute;
+
+    opacity:0;
+
+
+}
+
+
+
+.campo .opcao label{
+
+
+    min-width:230px;
+
+    height:48px;
+
+
+    padding:0 25px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:14px;
+
+
+    cursor:pointer;
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(255,255,255,.08),
+
+        rgba(255,255,255,.03)
+
+    );
+
+
+    border:
+
+    1px solid rgba(255,255,255,.12);
+
+
+    color:#cbd5e1;
+
+
+    font-weight:800;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.campo .opcao label:hover{
+
+
+    color:white;
+
+
+    border-color:#38bdf8;
+
+
+    transform:
+
+    translateY(-3px);
+
+
+}
+
+
+
+
+
+.campo .opcao input:checked + label{
+
+
+    color:white;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #38bdf8,
+
+        #2563eb
+
+    );
+
+
+    border-color:#38bdf8;
+
+
+    box-shadow:
+
+
+    0 10px 30px rgba(37,99,235,.35);
+
+
+    transform:
+
+    translateY(-3px);
+
+
+}
 
 
 /* ==========================================================
