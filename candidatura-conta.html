@@ -16,7 +16,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-
 </head>
 
 
@@ -82,17 +81,15 @@ style="width:40%">
 
 
 
-<form 
-id="form-conta"
-class="form-card">
+<form id="form-conta" class="form-card">
 
 
 
 
 
-<!-- ==================================================
-CONTA
-================================================== -->
+<!-- ==========================================
+TIPO DE CONTA
+========================================== -->
 
 
 <div class="campo">
@@ -108,53 +105,43 @@ Seu Minecraft é:
 
 
 
-<label class="opcao">
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="original"
 name="tipo_conta"
-
 value="Original"
-
 >
 
 
-<span>
+<label for="original">
 Original
-</span>
-
-
 </label>
 
 
+</div>
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="pirata"
 name="tipo_conta"
-
 value="Pirata"
-
 >
 
 
-<span>
+<label for="pirata">
 Pirata
-</span>
-
-
 </label>
 
 
-
 </div>
 
 
@@ -162,12 +149,16 @@ Pirata
 </div>
 
 
+</div>
 
 
 
-<!-- ==================================================
+
+
+
+<!-- ==========================================
 PLATAFORMA
-================================================== -->
+========================================== -->
 
 
 <div class="campo">
@@ -179,83 +170,73 @@ Em qual plataforma você joga?
 
 
 
-
 <div class="opcoes">
 
 
 
-<label class="opcao">
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="java"
 name="plataforma"
-
 value="Java"
-
 >
 
 
-<span>
+<label for="java">
 Java
-</span>
-
-
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="bedrock"
 name="plataforma"
-
 value="Bedrock"
-
 >
 
 
-<span>
+<label for="bedrock">
 Bedrock
-</span>
-
-
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="ambas"
 name="plataforma"
-
 value="Ambas"
-
 >
 
 
-<span>
+<label for="ambas">
 Ambas
-</span>
-
-
 </label>
 
 
+</div>
+
+
 
 </div>
 
@@ -266,9 +247,10 @@ Ambas
 
 
 
-<!-- ==================================================
+
+<!-- ==========================================
 ACESSO CONTA
-================================================== -->
+========================================== -->
 
 
 <div class="campo">
@@ -280,68 +262,59 @@ Alguém além de você possui acesso à sua conta?
 
 
 
-
 <div class="opcoes">
 
 
 
-<label class="opcao">
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="acesso-nao"
 name="acesso_conta"
-
 value="Não"
-
 >
 
 
-<span>
+<label for="acesso-nao">
 Não
-</span>
-
-
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+<div class="opcao">
 
 
 <input
-
 type="radio"
-
+id="acesso-sim"
 name="acesso_conta"
-
 value="Sim"
-
 >
 
 
-<span>
+<label for="acesso-sim">
 Sim
-</span>
-
-
 </label>
 
 
-
 </div>
 
 
 
 </div>
 
-<!-- ==================================================
+
+</div>
+
+<!-- ==========================================
 TEMPO NO SERVIDOR
-================================================== -->
+========================================== -->
 
 
 <div class="campo">
@@ -353,7 +326,7 @@ Há quanto tempo você joga no FuturyCraft?
 
 
 
-<div class="tempo-box">
+<div class="slider-container">
 
 
 <input
@@ -361,6 +334,8 @@ Há quanto tempo você joga no FuturyCraft?
 type="range"
 
 id="tempo_servidor"
+
+name="tempo_servidor"
 
 min="0"
 
@@ -371,7 +346,7 @@ value="12"
 >
 
 
-<div class="tempo-valor">
+<div class="slider-info">
 
 
 <span id="tempo-valor">
@@ -379,7 +354,9 @@ value="12"
 </span>
 
 
+<span>
 meses
+</span>
 
 
 </div>
@@ -389,7 +366,6 @@ meses
 </div>
 
 
-
 </div>
 
 
@@ -397,9 +373,10 @@ meses
 
 
 
-<!-- ==================================================
+
+<!-- ==========================================
 MODO INTERESSE
-================================================== -->
+========================================== -->
 
 
 <div class="campo">
@@ -411,16 +388,18 @@ Em qual modo você gostaria de ser ajudante?
 
 
 
-
 <div class="opcoes">
 
 
-<label class="opcao">
+
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="skyblock"
 
 name="modo_interesse"
 
@@ -429,23 +408,27 @@ value="Skyblock"
 >
 
 
-<span>
-Skyblock
-</span>
+<label for="skyblock">
 
+Skyblock
 
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="rankup"
 
 name="modo_interesse"
 
@@ -454,23 +437,27 @@ value="Rankup"
 >
 
 
-<span>
-Rankup
-</span>
+<label for="rankup">
 
+Rankup
 
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="survival"
 
 name="modo_interesse"
 
@@ -479,14 +466,16 @@ value="Survival"
 >
 
 
-<span>
-Survival
-</span>
+<label for="survival">
 
+Survival
 
 </label>
 
 
+</div>
+
+
 
 </div>
 
@@ -499,9 +488,9 @@ Survival
 
 
 
-<!-- ==================================================
+<!-- ==========================================
 HORÁRIO
-================================================== -->
+========================================== -->
 
 
 <div class="campo">
@@ -513,16 +502,17 @@ Qual horário você costuma jogar?
 
 
 
-
 <div class="opcoes">
 
 
-<label class="opcao">
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="manha"
 
 name="horario_jogo"
 
@@ -531,23 +521,27 @@ value="Manhã"
 >
 
 
-<span>
-Manhã
-</span>
+<label for="manha">
 
+Manhã
 
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="tarde"
 
 name="horario_jogo"
 
@@ -556,23 +550,27 @@ value="Tarde"
 >
 
 
-<span>
-Tarde
-</span>
+<label for="tarde">
 
+Tarde
 
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="noite"
 
 name="horario_jogo"
 
@@ -581,23 +579,27 @@ value="Noite"
 >
 
 
-<span>
-Noite
-</span>
+<label for="noite">
 
+Noite
 
 </label>
 
 
+</div>
 
 
 
-<label class="opcao">
+
+
+<div class="opcao">
 
 
 <input
 
 type="radio"
+
+id="madrugada"
 
 name="horario_jogo"
 
@@ -606,15 +608,13 @@ value="Madrugada"
 >
 
 
-<span>
-Madrugada
-</span>
+<label for="madrugada">
 
+Madrugada
 
 </label>
 
 
-
 </div>
 
 
@@ -622,15 +622,17 @@ Madrugada
 </div>
 
 
+</div>
 
 
 
 
 
 
-<!-- ==================================================
+
+<!-- ==========================================
 DIAS DA SEMANA
-================================================== -->
+========================================== -->
 
 
 <div class="campo">
@@ -642,179 +644,220 @@ Quais dias da semana você costuma jogar?
 
 
 
-
-<div class="dias">
-
+<div class="dias-container">
 
 
-<label class="dia">
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
+
+id="segunda"
+
+name="dias_jogo"
 
 value="Segunda"
 
 >
 
 
-<span>
-Seg
-</span>
+<label for="segunda">
 
+Seg
 
 </label>
 
 
+</div>
 
 
 
-<label class="dia">
+
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
+
+id="terca"
+
+name="dias_jogo"
 
 value="Terça"
 
 >
 
 
-<span>
-Ter
-</span>
+<label for="terca">
 
+Ter
 
 </label>
 
 
+</div>
 
 
 
-<label class="dia">
+
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
+
+id="quarta"
+
+name="dias_jogo"
 
 value="Quarta"
 
 >
 
 
-<span>
-Qua
-</span>
+<label for="quarta">
 
+Qua
 
 </label>
 
 
+</div>
 
 
 
-<label class="dia">
+
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
+
+id="quinta"
+
+name="dias_jogo"
 
 value="Quinta"
 
 >
 
 
-<span>
-Qui
-</span>
+<label for="quinta">
 
+Qui
 
 </label>
 
 
+</div>
 
 
 
-<label class="dia">
+
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
+
+id="sexta"
+
+name="dias_jogo"
 
 value="Sexta"
 
 >
 
 
-<span>
-Sex
-</span>
+<label for="sexta">
 
+Sex
 
 </label>
 
 
+</div>
 
 
 
-<label class="dia">
+
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
+
+id="sabado"
+
+name="dias_jogo"
 
 value="Sábado"
 
 >
 
 
-<span>
-Sáb
-</span>
+<label for="sabado">
 
+Sáb
 
 </label>
 
 
+</div>
 
 
 
-<label class="dia">
+
+
+<div class="dia">
 
 
 <input
 
 type="checkbox"
 
+id="domingo"
+
+name="dias_jogo"
+
 value="Domingo"
 
 >
 
 
-<span>
-Dom
-</span>
+<label for="domingo">
 
+Dom
 
 </label>
 
 
-
 </div>
 
 
 
 </div>
 
-<!-- ==================================================
+
+
+</div>
+
+<!-- ==========================================
 BOTÕES
-================================================== -->
+========================================== -->
 
 
 <div class="botoes">
