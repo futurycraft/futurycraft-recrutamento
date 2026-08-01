@@ -2,7 +2,7 @@
    FUTURYCRAFT
    CANDIDATURA STAFF
    ETAPA 5 - TERMO
-   COM CLOUDFLARE TURNSTILE
+   CLOUDFLARE TURNSTILE
 ========================================================== */
 
 
@@ -14,9 +14,11 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+
         carregarDados();
 
         configurarEventos();
+
 
     }
 );
@@ -50,12 +52,19 @@ const botaoEnviar = document.querySelector(
 
 
 
+
+
 /* ==========================================================
 EVENTOS
 ========================================================== */
 
 
 function configurarEventos(){
+
+
+
+    if(!form)
+        return;
 
 
 
@@ -88,6 +97,7 @@ function configurarEventos(){
 
 
 
+
 /* ==========================================================
 SALVAR DADOS
 ========================================================== */
@@ -106,9 +116,18 @@ function salvarDados(){
 
 
 
-    dados.aceite_termo =
 
-    aceite.checked;
+    if(aceite){
+
+
+        dados.aceite_termo =
+
+        aceite.checked;
+
+
+    }
+
+
 
 
 
@@ -122,7 +141,9 @@ function salvarDados(){
     );
 
 
+
 }
+
 
 
 
@@ -155,8 +176,16 @@ function carregarDados(){
 
 
 
+
+
     if(
+
         dados.aceite_termo
+
+        &&
+
+        aceite
+
     ){
 
 
@@ -177,7 +206,7 @@ function carregarDados(){
 
 
 /* ==========================================================
-VALIDAR TURNSTILE
+CLOUDFLARE TURNSTILE
 ========================================================== */
 
 
@@ -185,30 +214,93 @@ function validarCaptcha(){
 
 
 
-    const captcha = document.querySelector(
-
-        "[name='cf-turnstile-response']"
-
-    );
+    try {
 
 
 
+        if(
+            typeof turnstile === "undefined"
+        ){
 
-    if(
 
-        !captcha
+            alert(
 
-        ||
+                "Sistema de segurança carregando. Aguarde alguns segundos."
 
-        !captcha.value
+            );
 
-    ){
+
+            return false;
+
+
+        }
+
+
+
+
+
+
+
+        const resposta =
+
+        turnstile.getResponse();
+
+
+
+
+
+
+
+        if(
+
+            !resposta
+
+            ||
+
+            resposta.length === 0
+
+        ){
+
+
+            alert(
+
+                "Complete a verificação de segurança antes de enviar."
+
+            );
+
+
+            return false;
+
+
+        }
+
+
+
+
+
+
+
+        return true;
+
+
+
+    }
+
+
+    catch(error){
+
+
+
+        console.error(
+            "Erro Turnstile:",
+            error
+        );
 
 
 
         alert(
 
-            "Complete a verificação de segurança antes de enviar."
+            "Não foi possível validar a segurança. Atualize a página e tente novamente."
 
         );
 
@@ -217,11 +309,9 @@ function validarCaptcha(){
         return false;
 
 
+
     }
 
-
-
-    return true;
 
 
 }
@@ -233,8 +323,9 @@ function validarCaptcha(){
 
 
 
+
 /* ==========================================================
-VALIDAÇÃO TERMO
+VALIDAÇÃO
 ========================================================== */
 
 
@@ -245,8 +336,15 @@ function validarFormulario(){
 
 
     if(
+
+        !aceite
+
+        ||
+
         !aceite.checked
+
     ){
+
 
 
         alert(
@@ -256,7 +354,11 @@ function validarFormulario(){
         );
 
 
-        aceite.focus();
+
+        if(aceite)
+
+            aceite.focus();
+
 
 
         return false;
@@ -270,8 +372,12 @@ function validarFormulario(){
 
 
 
+
+
     if(
+
         !validarCaptcha()
+
     ){
 
 
@@ -315,11 +421,16 @@ function enviarFormulario(event){
 
 
 
+
     if(
+
         !validarFormulario()
+
     ){
 
+
         return;
+
 
     }
 
@@ -337,13 +448,29 @@ function enviarFormulario(event){
 
 
 
-    botaoEnviar.disabled = true;
+
+    if(botaoEnviar){
 
 
 
-    botaoEnviar.innerHTML =
+        botaoEnviar.disabled = true;
 
-    "Enviando candidatura...";
+
+
+        botaoEnviar.innerHTML =
+
+
+        `
+        <span>
+        Enviando candidatura...
+        </span>
+        `;
+
+
+
+    }
+
+
 
 
 
@@ -352,6 +479,7 @@ function enviarFormulario(event){
 
 
     setTimeout(
+
         () => {
 
 
@@ -364,7 +492,9 @@ function enviarFormulario(event){
 
         },
 
-        700
+
+        1000
+
 
     );
 
