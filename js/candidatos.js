@@ -46,7 +46,11 @@ const idade = document.getElementById("idade");
 
 const idadeNumero = document.getElementById("idade-numero");
 
-const data = document.getElementById("data");
+const dia = document.getElementById("dia");
+
+const mes = document.getElementById("mes");
+
+const ano = document.getElementById("ano");
 
 
 
@@ -134,10 +138,27 @@ function configurarEventos(){
 
 
 
-    data.addEventListener(
-        "change",
-        atualizarIdade
-    );
+   [
+    dia,
+    mes,
+    ano
+
+].forEach(campo => {
+
+
+    if(campo){
+
+
+        campo.addEventListener(
+            "input",
+            atualizarIdade
+        );
+
+
+    }
+
+
+});
 
 
 
@@ -207,10 +228,7 @@ function salvarDados(){
 
 
 
-    dados.data_nascimento =
-
-    data.value;
-
+    dados.data_nascimento = montarData();
 
 
 
@@ -313,9 +331,20 @@ function carregarDados(){
 
 
 
-    data.value =
+    if(dados.data_nascimento){
 
-    dados.data_nascimento || "";
+
+    const partes = dados.data_nascimento.split("-");
+
+
+    ano.value = partes[0] || "";
+
+    mes.value = partes[1] || "";
+
+    dia.value = partes[2] || "";
+
+
+}
 
 
 
@@ -376,7 +405,42 @@ function atualizarNumeroIdade(){
 
 
 
+/* ==========================================================
+MONTAR DATA
+========================================================== */
 
+
+function montarData(){
+
+
+    if(
+        !dia.value ||
+        !mes.value ||
+        !ano.value
+    ){
+
+        return "";
+
+    }
+
+
+
+    return (
+
+        ano.value +
+
+        "-" +
+
+        String(mes.value).padStart(2,"0") +
+
+        "-" +
+
+        String(dia.value).padStart(2,"0")
+
+    );
+
+
+}
 
 
 /* ==========================================================
@@ -387,17 +451,20 @@ CALCULAR IDADE PELA DATA
 function atualizarIdade(){
 
 
-    if(!data.value) return;
+    const dataCompleta = montarData();
+
+
+    if(!dataCompleta)
+        return;
 
 
 
     const nascimento = new Date(
-        data.value
+        dataCompleta
     );
 
 
     const hoje = new Date();
-
 
 
 
@@ -411,8 +478,7 @@ function atualizarIdade(){
 
 
 
-
-    const mes =
+    const mesAtual =
 
     hoje.getMonth()
 
@@ -423,14 +489,13 @@ function atualizarIdade(){
 
 
 
-
     if(
 
-        mes < 0 ||
+        mesAtual < 0 ||
 
         (
 
-            mes === 0 &&
+            mesAtual === 0 &&
 
             hoje.getDate() < nascimento.getDate()
 
@@ -438,17 +503,16 @@ function atualizarIdade(){
 
     ){
 
-
         anos--;
-
 
     }
 
 
 
-
-
-    if(anos >= 13 && anos <= 99){
+    if(
+        anos >= 13 &&
+        anos <= 99
+    ){
 
 
         idade.value = anos;
@@ -461,7 +525,6 @@ function atualizarIdade(){
 
 
     }
-
 
 
 }
