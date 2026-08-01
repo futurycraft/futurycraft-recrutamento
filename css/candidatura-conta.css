@@ -486,49 +486,52 @@ DIAS
 
 
 /* ==========================================================
-BOTÕES
+BOTÕES NAVEGAÇÃO CYBER PREMIUM
 ========================================================== */
 
 
 .botoes{
 
-
     width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-top:35px;
+
+}
+
+
+/* BASE */
+
+.btn-voltar,
+.btn-avancar{
+
+
+    height:46px;
+
+
+    padding:0 24px;
+
+
+    border-radius:999px;
 
 
     display:flex;
 
 
-    justify-content:space-between;
-
-
     align-items:center;
 
 
-    gap:20px;
+    justify-content:center;
 
 
-    margin-top:25px;
-
-
-}
-
-
-
-
-.btn-principal,
-.btn-secundario{
-
-
-    height:48px;
-
-
-    padding:
-
-    0 28px;
-
-
-    border-radius:14px;
+    gap:10px;
 
 
     font-family:'Montserrat',sans-serif;
@@ -546,19 +549,73 @@ BOTÕES
     transition:.3s;
 
 
+    letter-spacing:.3px;
+
+
+}
+
+
+/* ==========================================================
+BOTÃO VOLTAR
+========================================================== */
+
+
+.btn-voltar{
+
+
+    color:#cbd5e1;
+
+
+    background:
+
+
+    rgba(255,255,255,.05);
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.12);
+
+
+}
+
+
+
+.btn-voltar:hover{
+
+
+    color:white;
+
+
+    background:
+
+
+    rgba(255,255,255,.12);
+
+
+    border-color:
+
+
+    rgba(255,255,255,.30);
+
+
+    transform:
+
+
+    translateX(-4px);
+
+
 }
 
 
 
 /* ==========================================================
-BOTÃO PRÓXIMO
+BOTÃO PRÓXIMA ETAPA
 ========================================================== */
 
 
-.btn-principal{
-
-
-    border:none;
+.btn-avancar{
 
 
     color:white;
@@ -578,40 +635,43 @@ BOTÃO PRÓXIMO
     );
 
 
+    border:none;
+
+
     box-shadow:
 
 
-    0 10px 25px rgba(37,99,235,.30);
+    0 8px 25px rgba(37,99,235,.35);
 
 
 }
 
 
 
-
-.btn-principal:hover{
+.btn-avancar:hover{
 
 
     transform:
 
-    translateY(-3px);
+
+    translateX(4px);
 
 
     box-shadow:
 
 
-    0 15px 35px rgba(37,99,235,.45);
+    0 12px 35px rgba(37,99,235,.55);
 
 
 }
 
 
 
+.btn-avancar:active,
+.btn-voltar:active{
 
-.btn-principal:active{
 
-
-    transform:scale(.97);
+    transform:scale(.95);
 
 
 }
@@ -619,55 +679,37 @@ BOTÃO PRÓXIMO
 
 
 /* ==========================================================
-BOTÃO VOLTAR
+RESPONSIVO
 ========================================================== */
 
 
-.btn-secundario{
+@media(max-width:700px){
 
 
-    color:white;
+    .botoes{
 
 
-    background:
+        flex-direction:column-reverse;
 
 
-    rgba(255,255,255,.05);
+        gap:14px;
 
 
-    border:
-
-
-    1px solid rgba(255,255,255,.12);
-
-
-}
+    }
 
 
 
-
-.btn-secundario:hover{
-
-
-    background:
+    .btn-voltar,
+    .btn-avancar{
 
 
-    rgba(255,255,255,.10);
+        width:100%;
 
 
-    border-color:
-
-
-    rgba(255,255,255,.25);
-
-
-    transform:
-
-    translateY(-2px);
+    }
 
 
 }
-
 
 
 /* ==========================================================
