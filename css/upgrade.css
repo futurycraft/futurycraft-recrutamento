@@ -1,0 +1,462 @@
+/* ==========================================================
+   FUTURYCRAFT - UPGRADE DE DESIGN
+   Formulário de Recrutamento
+   Camada final: refina todas as páginas sem quebrar funções.
+   Carregado por último em cada página.
+========================================================== */
+
+/* ---------- TOKENS ---------- */
+:root{
+    color-scheme: dark;
+
+    --fc-bg:#04070e;
+    --fc-bg2:#0a1220;
+    --fc-card:rgba(14,22,38,.86);
+    --fc-border:rgba(255,255,255,.09);
+    --fc-border-strong:rgba(76,194,255,.35);
+
+    --fc-primary:#4cc2ff;
+    --fc-primary-2:#38bdf8;
+    --fc-accent:#2563eb;
+    --fc-purple:#7b5cff;
+
+    --fc-text:#f4f8ff;
+    --fc-text-2:#a8bad6;
+
+    --fc-radius:20px;
+    --fc-radius-sm:14px;
+
+    --fc-shadow:0 20px 50px rgba(0,0,0,.45);
+    --fc-motion:.28s cubic-bezier(.25,.8,.25,1);
+}
+
+/* Sobrescreve tokens existentes das páginas de formulário */
+body{
+    --bg:var(--fc-bg);
+    --bg2:var(--fc-bg2);
+    --card:var(--fc-card);
+    --border:var(--fc-border);
+    --primary:var(--fc-primary);
+    --primary-dark:var(--fc-accent);
+    --text:var(--fc-text);
+    --text2:var(--fc-text-2);
+    --radius:var(--fc-radius);
+    --shadow:var(--fc-shadow);
+    --transition:.28s;
+}
+
+/* ---------- BASE ---------- */
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 18% 0%, #0c1626 0%, transparent 45%),
+        radial-gradient(circle at 88% 12%, #151033 0%, transparent 40%),
+        linear-gradient(180deg, #04070e 0%, #050911 60%, #04070e 100%);
+    color:var(--fc-text);
+    font-family:'Montserrat','Segoe UI',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
+}
+
+@media (min-width:768px){
+    body{
+        font-size:16px;
+        line-height:1.7;
+    }
+}
+
+h1,h2,h3,h4,h5,h6{
+    text-wrap:balance;
+    letter-spacing:.2px;
+}
+
+p{
+    text-wrap:pretty;
+}
+
+a,button,input,select,textarea{ font-family:inherit; }
+
+::selection{
+    background:rgba(76,194,255,.35);
+    color:#fff;
+}
+
+/* Firefox scrollbar */
+*{ scrollbar-width:thin; scrollbar-color:#2563eb #08111f; }
+
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background:#070d17; }
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg,#38bdf8,#2563eb);
+    border-radius:999px;
+    border:2px solid #070d17;
+}
+::-webkit-scrollbar-thumb:hover{ background:#38bdf8; }
+
+/* ---------- ACESSIBILIDADE ---------- */
+:is(a,button,input,select,textarea,[role="button"],.star,.opcao,.radio-card,.checkbox-item,.genero-btn,.card-opcao,.dia):focus-visible{
+    outline:2px solid var(--fc-primary);
+    outline-offset:2px;
+    border-radius:var(--fc-radius-sm);
+}
+
+@media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
+    }
+}
+
+/* ---------- CARDS ---------- */
+.progress-card,
+.form-card,
+.main-card,
+.role-card,
+.benefit-card,
+.requirement-card,
+.career-step,
+.info-card,
+.recruit-card,
+.step-card,
+.final-box,
+.card{
+    background:linear-gradient(160deg,rgba(19,29,50,.82),rgba(9,14,27,.9));
+    border:1px solid var(--fc-border);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    position:relative;
+    overflow:hidden;
+    transition:border-color var(--fc-motion), box-shadow var(--fc-motion), transform var(--fc-motion);
+}
+
+.progress-card::before,
+.form-card::before,
+.main-card::before,
+.role-card::before,
+.benefit-card::before,
+.requirement-card::before,
+.career-step::before,
+.info-card::before,
+.recruit-card::before,
+.card::before{
+    content:"";
+    position:absolute;
+    top:0; left:10%;
+    width:80%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(76,194,255,.55),transparent);
+    pointer-events:none;
+    z-index:1;
+}
+
+.role-card:hover,
+.benefit-card:hover,
+.requirement-card:hover,
+.career-step:hover,
+.info-card:hover,
+.recruit-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--fc-border-strong);
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.5),
+        0 0 30px rgba(76,194,255,.08),
+        inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* ---------- TÍTULOS E BADGES ---------- */
+.section-badge,
+.step,
+.recruit-badge,
+.hero-badge,
+.vacancy-badge{
+    background:linear-gradient(90deg,rgba(76,194,255,.16),rgba(37,99,235,.16));
+    border:1px solid rgba(76,194,255,.25);
+    color:var(--fc-primary);
+    letter-spacing:.8px;
+    font-weight:700;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* ---------- BOTÕES ---------- */
+.btn-principal,
+.btn-avancar,
+.btn-secundario,
+.btn-voltar,
+.hero-primary,
+.hero-secondary,
+.final-button,
+.recruit-button,
+.submit-button,
+.botao,
+.staff-button,
+.panel-button{
+    min-height:48px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    letter-spacing:.4px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform var(--fc-motion), box-shadow var(--fc-motion), background var(--fc-motion), filter var(--fc-motion);
+    -webkit-tap-highlight-color:transparent;
+}
+
+.btn-principal,
+.btn-avancar,
+.hero-primary,
+.final-button,
+.submit-button{
+    background:linear-gradient(135deg,#38bdf8 0%,#2563eb 55%,#4f46e5 100%);
+    background-size:160% 160%;
+    background-position:0% 0%;
+    color:#fff;
+    border:none;
+    box-shadow:
+        0 12px 30px rgba(37,99,235,.35),
+        inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.btn-principal:hover,
+.btn-avancar:hover,
+.hero-primary:hover,
+.final-button:hover,
+.submit-button:hover{
+    transform:translateY(-2px);
+    background-position:100% 100%;
+    box-shadow:
+        0 20px 45px rgba(37,99,235,.45),
+        inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.btn-principal:active,
+.btn-avancar:active,
+.hero-primary:active,
+.final-button:active,
+.btn-secundario:active,
+.btn-voltar:active,
+.hero-secondary:active{
+    transform:scale(.97) translateY(0);
+}
+
+.btn-secundario,
+.btn-voltar,
+.hero-secondary{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.12);
+    color:var(--fc-text);
+}
+
+.btn-secundario:hover,
+.btn-voltar:hover,
+.hero-secondary:hover{
+    background:rgba(255,255,255,.09);
+    border-color:rgba(76,194,255,.4);
+    transform:translateY(-2px);
+}
+
+/* ---------- INPUTS ---------- */
+input,select,textarea{
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    color:var(--fc-text);
+    transition:border-color var(--fc-motion), box-shadow var(--fc-motion), background var(--fc-motion);
+}
+
+input:hover,select:hover,textarea:hover{
+    border-color:rgba(76,194,255,.4);
+}
+
+input:focus,select:focus,textarea:focus{
+    border-color:var(--fc-primary);
+    background:rgba(76,194,255,.05);
+    box-shadow:0 0 0 4px rgba(76,194,255,.14), 0 0 22px rgba(76,194,255,.12);
+}
+
+input:disabled,select:disabled,textarea:disabled,button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
+/* autofill dark */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill{
+    -webkit-box-shadow:0 0 0 1000px rgba(14,22,38,.98) inset;
+    -webkit-text-fill-color:#fff;
+    caret-color:#fff;
+}
+
+/* seletores nativos */
+input[type="checkbox"],
+input[type="radio"]{
+    accent-color:var(--fc-primary);
+    cursor:pointer;
+}
+
+/* range slider */
+input[type="range"]{
+    accent-color:var(--fc-primary);
+    height:8px !important;
+}
+
+/* ---------- RADIOS / CHECKBOXES / OPÇÕES ---------- */
+.radio-card,
+.checkbox-item,
+.opcao,
+.card-opcao,
+.genero-btn span,
+.dia{
+    transition:border-color var(--fc-motion), background var(--fc-motion), transform var(--fc-motion), box-shadow var(--fc-motion);
+}
+
+.radio-card:hover,
+.checkbox-item:hover,
+.opcao:hover,
+.card-opcao:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 24px rgba(0,0,0,.25);
+}
+
+:is(.radio-card,.checkbox-item,.opcao,.card-opcao):has(input:checked),
+.genero-btn input:checked + span,
+.dia input:checked + span{
+    background:linear-gradient(135deg,rgba(76,194,255,.22),rgba(37,99,235,.22));
+    border-color:var(--fc-primary);
+    box-shadow:0 0 22px rgba(76,194,255,.25), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* ---------- PROGRESSO ---------- */
+.progress-fill,
+.percent{
+    text-shadow:0 0 20px rgba(76,194,255,.6);
+}
+
+.progress-fill{
+    background:linear-gradient(90deg,#38bdf8,#2563eb,#7b5cff);
+    background-size:200% 100%;
+    animation:progressSheen 3s linear infinite;
+    box-shadow:0 0 18px rgba(76,194,255,.45);
+}
+
+@keyframes progressSheen{
+    0%{ background-position:0% 0%; }
+    100%{ background-position:200% 0%; }
+}
+
+/* ---------- ESTRELAS (feedback) ---------- */
+.star{
+    font-size:1.6rem !important;
+    transition:transform var(--fc-motion), color var(--fc-motion), text-shadow var(--fc-motion);
+}
+
+.star:hover,
+.star.ativa{
+    transform:scale(1.18) translateY(-2px);
+}
+
+/* ---------- DIVISORES / PERGUNTAS ---------- */
+.divisor{
+    background:linear-gradient(90deg,transparent,rgba(76,194,255,.4),transparent);
+    height:1px;
+    border:none;
+}
+
+.pergunta-card,
+.secao-card{
+    border:1px solid rgba(255,255,255,.07);
+    transition:border-color var(--fc-motion), box-shadow var(--fc-motion);
+}
+
+.pergunta-card:hover,
+.secao-card:hover{
+    border-color:rgba(76,194,255,.3);
+}
+
+.experiencia-box{
+    border-left:3px solid var(--fc-primary);
+    background:rgba(76,194,255,.04);
+    padding:24px;
+    border-radius:0 var(--fc-radius-sm) var(--fc-radius-sm) 0;
+}
+
+/* ---------- MODAL (landing) ---------- */
+.modal-overlay{
+    backdrop-filter:blur(8px);
+    background:rgba(3,5,10,.7);
+}
+
+.modal-content{
+    background:linear-gradient(160deg,rgba(19,29,50,.95),rgba(9,14,27,.96));
+    border:1px solid rgba(76,194,255,.25);
+    border-radius:var(--fc-radius);
+    box-shadow:var(--fc-shadow);
+}
+
+.modal-close,
+.close-modal{
+    transition:transform var(--fc-motion), background var(--fc-motion);
+}
+
+.modal-close:hover,
+.close-modal:hover{
+    transform:rotate(90deg) scale(1.1);
+}
+
+/* ---------- SOCIAL / TIMELINE ---------- */
+.timeline-item{
+    transition:transform var(--fc-motion), border-color var(--fc-motion);
+}
+
+.timeline-item:hover{
+    transform:translateX(4px);
+}
+
+.footer-social a{
+    transition:transform var(--fc-motion), background var(--fc-motion), color var(--fc-motion);
+}
+
+.footer-social a:hover{
+    transform:translateY(-3px);
+}
+
+/* ---------- ERRO / SUCESSO (validação) ---------- */
+.erro{
+    animation:shake .4s ease !important;
+}
+
+@keyframes shake{
+    0%,100%{ transform:translateX(0); }
+    25%{ transform:translateX(-6px); }
+    50%{ transform:translateX(6px); }
+    75%{ transform:translateX(-4px); }
+}
+
+/* ---------- RESPONSIVO EXTRA ---------- */
+@media (max-width:640px){
+    .btn-principal,
+    .btn-avancar,
+    .btn-secundario,
+    .btn-voltar,
+    .final-button{
+        width:100%;
+        min-height:52px;
+    }
+
+    .botoes{
+        margin-top:28px;
+    }
+}
+
+@media (min-width:900px){
+    .container{
+        width:min(94%,var(--max-width,900px));
+    }
+}
