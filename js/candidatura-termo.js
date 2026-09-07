@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     body:
-                        JSON.stringify(candidatura)
+                        JSON.stringify({ ...candidatura, turnstile_token: (window.turnstile && typeof window.turnstile.getResponse === "function" ? (window.turnstile.getResponse() || "") : "") })
 
 
                 }
