@@ -68,6 +68,31 @@ body{
     }
 }
 
+/* ---------- GUARDAS DE LAYOUT (centralização / overflow) ---------- */
+html{
+    overflow-x:clip;
+}
+
+img,
+video{
+    max-width:100%;
+    height:auto;
+}
+
+.form-card,
+.progress-card,
+.main-card,
+.card{
+    max-width:100%;
+    box-sizing:border-box;
+}
+
+input,
+select,
+textarea{
+    max-width:100%;
+}
+
 h1,h2,h3,h4,h5,h6{
     text-wrap:balance;
     letter-spacing:.2px;

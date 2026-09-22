@@ -206,7 +206,7 @@ CONTAINER
 .container{
 
 
-    width:min(95%,var(--max-width));
+    width:min(95%,var(--max-width,960px));
 
 
     margin:auto;
@@ -215,8 +215,11 @@ CONTAINER
     padding:
 
     45px
-    0
+    16px
     80px;
+
+
+    box-sizing:border-box;
 
 
 }
