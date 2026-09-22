@@ -1,0 +1,316 @@
+/* ==========================================================
+   FUTURYCRAFT - RECRUTAMENTO STAFF (REDESIGN)
+   Organização visual da página de Staff.
+   Carregado APÓS home-redesign.css (última camada).
+   Reutiliza o design system da Home (sec-badge, cards, home-wrap).
+   Não altera lógica (recrutamento.js, script.js, modal).
+========================================================== */
+
+/* ---------- HERO / FLUXO DE CANDIDATURA ---------- */
+.recruit-flow{
+    padding-top:64px;
+    padding-bottom:16px;
+    text-align:center;
+}
+
+.flow-badge.sec-badge{
+    box-shadow:0 0 26px rgba(76,194,255,.14), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.recruit-flow h1{
+    margin:24px 0 0;
+    font-size:clamp(2rem,5vw,3.1rem);
+    font-weight:800;
+    letter-spacing:1px;
+    line-height:1.1;
+    text-wrap:balance;
+}
+
+.recruit-flow h1 .grad{
+    background:linear-gradient(94deg,#6ee7ff 0%,#4cc2ff 42%,#7b5cff 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.flow-description{
+    max-width:680px;
+    margin:20px auto 0;
+    font-size:clamp(.95rem,1.8vw,1.05rem);
+    line-height:1.7;
+    color:var(--fc-text-2);
+}
+
+.flow-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    max-width:880px;
+    margin:40px auto 0;
+    text-align:left;
+}
+
+.flow-card{
+    padding:26px 26px 22px;
+    border-radius:20px;
+    background:linear-gradient(160deg,rgba(19,29,50,.6),rgba(9,14,27,.66));
+    border:1px solid var(--fc-border);
+    box-shadow:0 20px 44px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
+    transition:transform var(--fc-motion), border-color var(--fc-motion), box-shadow var(--fc-motion);
+}
+
+.flow-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(76,194,255,.3);
+    box-shadow:0 24px 48px rgba(0,0,0,.34), 0 0 22px rgba(76,194,255,.06);
+}
+
+.flow-card-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+    font-size:.76rem;
+    font-weight:800;
+    letter-spacing:1.8px;
+    color:var(--fc-primary);
+}
+
+.flow-card-head i{
+    font-size:.95rem;
+    opacity:.95;
+}
+
+.flow-card ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.flow-card li{
+    position:relative;
+    padding:8px 0 8px 26px;
+    font-size:.85rem;
+    line-height:1.55;
+    color:var(--fc-text);
+    border-bottom:1px dashed rgba(255,255,255,.06);
+}
+
+.flow-card li:last-child{
+    border-bottom:none;
+}
+
+.flow-card li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:8px;
+    font-weight:800;
+    font-size:.85rem;
+    color:#34d399;
+}
+
+.flow-cta{
+    display:flex;
+    justify-content:center;
+    margin-top:36px;
+}
+
+/* ---------- ETAPAS (recrutamento.js) ---------- */
+.hidden-step{
+    display:none;
+}
+
+#segunda-etapa{
+    transform:none;
+    margin:0 auto;
+}
+
+#primeira-etapa{
+    transform:none;
+}
+
+.fade-out{
+    opacity:0;
+    transform:translateY(-12px);
+    transition:opacity .4s ease, transform .4s ease;
+}
+
+.fade-in{
+    animation:recruitStepIn .5s ease;
+}
+
+@keyframes recruitStepIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* ---------- INFORMAÇÕES DOS CARGOS (role card) ---------- */
+.role-card{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:0;
+    align-items:stretch;
+    padding:0;
+    max-width:920px;
+    margin-inline:auto;
+    border-radius:22px;
+    overflow:hidden;
+}
+
+.role-card-image{
+    width:100%;
+    height:auto;
+    padding:38px 26px;
+    border-right:1px solid rgba(255,255,255,.07);
+    background:radial-gradient(circle at 50% 42%,rgba(76,194,255,.14),transparent 70%);
+}
+
+.role-card-image img{
+    width:100%;
+    max-height:230px;
+    object-fit:contain;
+}
+
+.role-card-content{
+    padding:38px 34px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:12px;
+}
+
+.role-card-content h3{
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    margin:0;
+    letter-spacing:.4px;
+}
+
+.role-tag{
+    align-self:flex-start;
+    margin:0;
+    padding:.45rem 1.05rem;
+    border-radius:999px;
+    background:linear-gradient(90deg,rgba(76,194,255,.18),rgba(123,92,255,.16));
+    border:1px solid rgba(76,194,255,.3);
+    color:var(--fc-primary);
+    font-size:.7rem;
+    font-weight:800;
+    letter-spacing:1.6px;
+}
+
+.role-card-content p{
+    margin:0;
+    font-size:.95rem;
+    line-height:1.7;
+    color:var(--fc-text-2);
+}
+
+.role-permissions{
+    margin-top:10px;
+}
+
+.role-permissions h4{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 6px;
+    font-size:.92rem;
+    font-weight:800;
+    letter-spacing:.4px;
+    color:var(--fc-text);
+}
+
+.role-permissions h4 i{
+    color:var(--fc-primary);
+}
+
+.role-permissions ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.role-permissions li{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+    font-size:.88rem;
+    line-height:1.5;
+    color:var(--fc-text);
+    border-bottom:1px dashed rgba(255,255,255,.06);
+}
+
+.role-permissions li:last-child{
+    border-bottom:none;
+}
+
+.role-permissions li::before{
+    content:"\2713";
+    flex:0 0 20px;
+    width:20px;
+    height:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.62rem;
+    font-weight:800;
+    color:#34d399;
+    border-radius:50%;
+    background:rgba(52,211,153,.14);
+    border:1px solid rgba(52,211,153,.3);
+}
+
+/* ---------- TONS DOS CARDS (requisitos vs benefícios) ---------- */
+.reason-card--benefit .reason-icon{
+    color:#a78bfa;
+    border-color:rgba(123,92,255,.4);
+    background:linear-gradient(135deg,rgba(123,92,255,.2),rgba(76,194,255,.14));
+}
+
+.reason-card--benefit:hover{
+    border-color:rgba(123,92,255,.38);
+    box-shadow:0 26px 52px rgba(0,0,0,.36), 0 0 26px rgba(123,92,255,.09);
+}
+
+/* ---------- FOOTER da página de staff ---------- */
+.home-footer{
+    margin-top:96px;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width:860px){
+    .role-card{
+        grid-template-columns:1fr;
+    }
+
+    .role-card-image{
+        border-right:none;
+        border-bottom:1px solid rgba(255,255,255,.07);
+        padding:28px 20px;
+    }
+
+    .role-card-image img{
+        max-height:170px;
+    }
+
+    .role-card-content{
+        padding:28px 24px;
+    }
+}
+
+@media (max-width:640px){
+    .recruit-flow{
+        padding-top:54px;
+    }
+
+    .flow-grid{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .flow-card{
+        padding:22px 20px 18px;
+    }
+}
