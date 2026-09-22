@@ -66,6 +66,8 @@
 
 <main class="container landing-container home-shell">
 
+<div class="etapa-apresentacao ativa" id="etapa-apresentacao">
+
 <div class="creators-hero reveal">
 
 <img class="hero-logo" src="./assets/logo.png" alt="FuturyCraft">
@@ -194,11 +196,10 @@ O Programa de Criadores FuturyCraft foi criado para aproximar streamers da nossa
 Agora queremos conhecer você e suas transmissões. Preencha sua candidatura e conte para nós sobre seu canal, sua comunidade e seu conteúdo.
 </p>
 
-<a href="#candidatura" class="btn-staff btn-staff-lg"
-onclick="document.getElementById('candidatura').scrollIntoView({behavior:'smooth'});">
+<button type="button" class="btn-staff btn-staff-lg" onclick="iniciarCandidatura()">
 <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
 INICIAR CANDIDATURA
-</a>
+</button>
 
 <p class="cta-note"><i class="fa-solid fa-clock" aria-hidden="true"></i> Leva apenas alguns minutos.</p>
 
@@ -207,6 +208,10 @@ INICIAR CANDIDATURA
 </div>
 
 </section>
+
+</div>
+
+<div class="area-candidatura" id="area-candidatura">
 
 <div class="aviso-pre-form">
 
@@ -230,7 +235,7 @@ INICIAR CANDIDATURA
 
 <span class="step">
 
-Etapa <b id="etapa-num">1</b> de 6
+Etapa <b id="etapa-num">1</b> de 7
 
 </span>
 
@@ -248,7 +253,7 @@ Preencha sua candidatura e nossa equipe irá analisar seu perfil.
 
 <span class="percent" id="etapa-percent">
 
-17%
+14%
 
 </span>
 
@@ -256,23 +261,25 @@ Preencha sua candidatura e nossa equipe irá analisar seu perfil.
 
 <div class="progress-bar">
 
-<div class="progress-fill" id="progresso-fill" style="width:17%"></div>
+<div class="progress-fill" id="progresso-fill" style="width:14%"></div>
 
 </div>
 
 <div class="wizard-steps">
 
-<span class="wizard-step ativo" data-wstep="1">Seus dados</span>
+<span class="wizard-step ativo" data-wstep="1">Apresentação</span>
 
-<span class="wizard-step" data-wstep="2">Seu canal</span>
+<span class="wizard-step" data-wstep="2">Seus dados</span>
 
-<span class="wizard-step" data-wstep="3">Seu conteúdo</span>
+<span class="wizard-step" data-wstep="3">Seu canal</span>
 
-<span class="wizard-step" data-wstep="4">FuturyCraft</span>
+<span class="wizard-step" data-wstep="4">Seu conteúdo</span>
 
-<span class="wizard-step" data-wstep="5">Redes sociais</span>
+<span class="wizard-step" data-wstep="5">FuturyCraft</span>
 
-<span class="wizard-step" data-wstep="6">Finalização</span>
+<span class="wizard-step" data-wstep="6">Redes sociais</span>
+
+<span class="wizard-step" data-wstep="7">Finalização</span>
 
 </div>
 
@@ -337,7 +344,7 @@ Preencha sua candidatura e nossa equipe irá analisar seu perfil.
 
 <div class="botoes">
 
-<button type="button" class="btn-secundario" onclick="location.href='index.html'">← Início</button>
+<button type="button" class="btn-secundario" onclick="voltarEtapa()">← Apresentação</button>
 
 <button type="button" class="btn-principal" onclick="irEtapa(2)">Próxima etapa →</button>
 
@@ -869,6 +876,8 @@ Você precisa aceitar os dois termos para enviar.
 </div>
 
 </form>
+
+</div>
 
 </main>
 

@@ -85,6 +85,10 @@ function CriadorForm(tipo) {
     var form = document.getElementById("form-" + tipo);
     var etapaAtual = 1;
     var TOTAL = 6;
+    var TOTAL_PASSOS = 7;
+    var modoApresentacao = true;
+    var apresEl = document.getElementById("etapa-apresentacao");
+    var areaEl = document.getElementById("area-candidatura");
 
     // ==========================================================
     // COLETA DE CAMPOS
@@ -226,28 +230,32 @@ function CriadorForm(tipo) {
     // ==========================================================
 
     function atualizarInterface() {
+        var passo = modoApresentacao ? 1 : (etapaAtual + 1);
         var num = document.getElementById("etapa-num");
         var titulo = document.getElementById("etapa-titulo");
         var percent = document.getElementById("etapa-percent");
         var fill = document.getElementById("progresso-fill");
 
-        if (num) num.textContent = etapaAtual;
-        if (titulo) titulo.textContent = TITULOS_POR_ETAPA[etapaAtual];
-        if (percent) percent.textContent = Math.round((etapaAtual / TOTAL) * 100) + "%";
-        if (fill) fill.style.width = Math.round((etapaAtual / TOTAL) * 100) + "%";
+        if (num) num.textContent = passo;
+        if (titulo) titulo.textContent = modoApresentacao ? "Apresentação" : TITULOS_POR_ETAPA[etapaAtual];
+        if (percent) percent.textContent = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
+        if (fill) fill.style.width = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
+
+        if (apresEl) apresEl.classList.toggle("ativa", modoApresentacao);
+        if (areaEl) areaEl.classList.toggle("ativa", !modoApresentacao);
 
         form.querySelectorAll(".etapa-wizard").forEach(function (div) {
             var n = Number(div.getAttribute("data-etapa"));
-            div.classList.toggle("ativa", n === etapaAtual);
+            div.classList.toggle("ativa", !modoApresentacao && n === etapaAtual);
         });
 
         document.querySelectorAll(".wizard-step").forEach(function (s) {
             var n = Number(s.getAttribute("data-wstep"));
-            s.classList.toggle("ativo", n === etapaAtual);
-            s.classList.toggle("concluido", n < etapaAtual);
+            s.classList.toggle("ativo", n === passo);
+            s.classList.toggle("concluido", n < passo);
         });
 
-        if (etapaAtual === TOTAL) {
+        if (!modoApresentacao && etapaAtual === TOTAL) {
             var turnstileWidget = form.querySelector(".cf-turnstile");
             if (turnstileWidget && window.turnstile && typeof window.turnstile.reset === "function") {
                 try { window.turnstile.reset(); } catch (e) { /* ignore */ }
@@ -266,8 +274,30 @@ function CriadorForm(tipo) {
 
     function voltarEtapa() {
         salvar();
-        if (etapaAtual > 1) etapaAtual -= 1;
+        if (modoApresentacao) return;
+        if (etapaAtual <= 1) {
+            modoApresentacao = true;
+            etapaAtual = 1;
+            atualizarInterface();
+            try { window.scrollTo({ top: 0, behavior: "smooth" }); }
+            catch (e) { window.scrollTo(0, 0); }
+            return;
+        }
+        etapaAtual -= 1;
         atualizarInterface();
+    }
+
+    function iniciarCandidatura() {
+        if (!modoApresentacao) return;
+        modoApresentacao = false;
+        etapaAtual = 1;
+        salvar();
+        atualizarInterface();
+        var alvo = document.getElementById("candidatura");
+        if (alvo) {
+            try { alvo.scrollIntoView({ behavior: "smooth", block: "start" }); }
+            catch (e) { alvo.scrollIntoView(); }
+        }
     }
 
     // ==========================================================
@@ -404,4 +434,5 @@ function CriadorForm(tipo) {
     // expõe para o HTML (onclick)
     window.irEtapa = irEtapa;
     window.voltarEtapa = voltarEtapa;
+    window.iniciarCandidatura = iniciarCandidatura;
 }

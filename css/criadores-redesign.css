@@ -88,3 +88,31 @@
 .aviso-pre-form{
     margin-top:1.6rem;
 }
+
+/* ---------- WIZARD DE PÁGINA (Apresentação → Formulário) ---------- */
+.etapa-apresentacao{
+    display:none;
+}
+
+.etapa-apresentacao.ativa{
+    display:block;
+}
+
+.area-candidatura{
+    display:none;
+}
+
+.area-candidatura.ativa{
+    display:block;
+}
+
+@media (max-width:640px){
+    .wizard-steps{
+        flex-wrap:wrap;
+        row-gap:.9rem;
+    }
+
+    .wizard-step{
+        flex:1 1 30%;
+    }
+}
