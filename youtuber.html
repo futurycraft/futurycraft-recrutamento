@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="./css/upgrade.css">
 
 <link rel="stylesheet" href="./css/criadores.css">
+<link rel="stylesheet" href="./css/home-redesign.css">
+<link rel="stylesheet" href="./css/criadores-redesign.css">
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
@@ -62,28 +64,149 @@
 
 </nav>
 
-<main class="container">
+<main class="container landing-container home-shell">
 
-<div class="programa-intro">
+<div class="creators-hero reveal">
 
-<span class="programa-badge">
+<img class="hero-logo" src="./assets/logo.png" alt="FuturyCraft">
 
-<i class="fa-solid fa-video"></i>
+<span class="sec-badge">✦ PROGRAMA DE CRIADORES</span>
 
-PROGRAMA DE YOUTUBERS
+<h1 class="hero-title">SEU CONTEÚDO. <span class="grad">NOSSA COMUNIDADE.</span></h1>
 
-</span>
-
-<h2>Faça parte do programa de criadores de conteúdo</h2>
-
-<p>
-
-Crie conteúdo da FuturyCraft no seu canal, mostre suas aventuras
-e cresça junto com a comunidade futurista.
-
+<p class="hero-sub">
+Transforme sua audiência em parte do futuro da FuturyCraft.
 </p>
 
+<p class="creators-note">
+Crie, compartilhe e cresça junto com uma comunidade que está construindo algo novo no Minecraft.
+</p>
+
+<div class="creators-prog">
+O Programa de Criadores FuturyCraft é para YouTubers que produzem conteúdo de Minecraft e querem ter uma parceria mais próxima com o servidor.
 </div>
+
+</div>
+
+<!-- =====================================
+     POR QUE FAZER PARTE?
+===================================== -->
+<section class="home-sec" id="porque">
+
+<div class="home-wrap">
+
+<div class="sec-head reveal">
+<span class="sec-badge"><i class="fa-solid fa-star"></i> O Programa</span>
+<h2 class="sec-title">POR QUE FAZER PARTE?</h2>
+<p class="sec-sub">Motivos para ser um criador parceiro da FuturyCraft.</p>
+</div>
+
+<div class="reasons-grid reveal">
+
+<div class="reason-card">
+<div class="reason-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+<h3>RECONHECIMENTO</h3>
+<p>Tenha seu trabalho reconhecido dentro da comunidade FuturyCraft.</p>
+</div>
+
+<div class="reason-card">
+<div class="reason-icon"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i></div>
+<h3>DIVULGAÇÃO</h3>
+<p>Seu conteúdo pode ganhar mais visibilidade através dos canais oficiais da FuturyCraft.</p>
+</div>
+
+<div class="reason-card">
+<div class="reason-icon"><i class="fa-solid fa-video" aria-hidden="true"></i></div>
+<h3>PROGRAMA DE CRIADORES</h3>
+<p>Faça parte de um grupo de criadores parceiros da FuturyCraft.</p>
+</div>
+
+<div class="reason-card">
+<div class="reason-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
+<h3>COMUNIDADE</h3>
+<p>Produza conteúdo, participe da comunidade e ajude a construir novas experiências.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     COMO FUNCIONA?
+===================================== -->
+<section class="home-sec" id="processo">
+
+<div class="home-wrap">
+
+<div class="sec-head reveal">
+<span class="sec-badge"><i class="fa-solid fa-route"></i> Processo</span>
+<h2 class="sec-title">COMO FUNCIONA?</h2>
+<p class="sec-sub">O caminho da sua candidatura ao Programa de Criadores.</p>
+</div>
+
+<div class="steps-timeline steps-3 reveal">
+
+<div class="step-node">
+<span class="step-num">01</span>
+<div class="step-icon"><i class="fa-solid fa-file-lines"></i></div>
+<h3>CANDIDATURA</h3>
+<p>Preencha suas informações e apresente seu conteúdo.</p>
+</div>
+
+<div class="step-link"><i class="fa-solid fa-chevron-right"></i></div>
+
+<div class="step-node">
+<span class="step-num">02</span>
+<div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+<h3>ANÁLISE</h3>
+<p>Nossa equipe irá analisar sua candidatura e seu conteúdo.</p>
+</div>
+
+<div class="step-link"><i class="fa-solid fa-chevron-right"></i></div>
+
+<div class="step-node">
+<span class="step-num">03</span>
+<div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+<h3>CONTATO</h3>
+<p>Caso seu perfil avance, nossa equipe entrará em contato.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     CHAMADA ANTES DO FORMULÁRIO
+===================================== -->
+<section class="home-sec home-sec-slim">
+
+<div class="home-wrap">
+
+<div class="cta-box reveal">
+
+<h2 class="cta-title">PRONTO PARA CRIAR COM A FUTURYCRAFT?</h2>
+
+<p class="cta-sub">
+Agora queremos conhecer você e o seu conteúdo. Preencha sua candidatura e conte para nós sobre seu canal e sua experiência como criador.
+</p>
+
+<a href="#candidatura" class="btn-staff btn-staff-lg"
+onclick="document.getElementById('candidatura').scrollIntoView({behavior:'smooth'});">
+<i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+INICIAR CANDIDATURA
+</a>
+
+<p class="cta-note"><i class="fa-solid fa-clock" aria-hidden="true"></i> Leva apenas alguns minutos.</p>
+
+</div>
+
+</div>
+
+</section>
 
 <div class="aviso-pre-form">
 
@@ -99,7 +222,7 @@ e cresça junto com a comunidade futurista.
 
 </div>
 
-<div class="progress-card">
+<div class="progress-card" id="candidatura">
 
 <div class="progress-top">
 
@@ -730,6 +853,8 @@ Você precisa aceitar os dois termos para enviar.
 </form>
 
 </main>
+
+<script src="./js/home.js"></script>
 
 <script src="./js/criador-form.js"></script>
 

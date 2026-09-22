@@ -1,0 +1,90 @@
+/* ==========================================================
+   FUTURYCRAFT - REDESIGN CRIADORES (YouTuber / Streamer)
+   Landing premium antes do formulário de candidatura.
+   Carregado DEPOIS de criadores.css e home-redesign.css.
+   Reutiliza o design system da Home/Staff (sec-badge, cards,
+   steps-timeline, cta-box, btn-staff) e os tokens do upgrade.css.
+   Não altera formulário, lógica, validações, API ou banco.
+========================================================== */
+
+/* ---------- CONTAINER (landing mais amplo, formulário compacto) ---------- */
+.container.landing-container{
+    width:min(95%,1080px);
+    --max-width:1080px;
+}
+
+.container.landing-container .progress-card,
+.container.landing-container .form-card{
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* ---------- HERO ---------- */
+.creators-hero{
+    padding:54px 0 10px;
+    text-align:center;
+}
+
+.creators-hero .hero-title{
+    font-size:clamp(1.9rem,5.4vw,3.2rem);
+    margin-top:24px;
+}
+
+.creators-hero .hero-sub{
+    margin-top:20px;
+}
+
+.creators-note{
+    margin:18px auto 0;
+    max-width:640px;
+    font-size:clamp(.92rem,2vw,1.02rem);
+    line-height:1.7;
+    color:var(--fc-text-2);
+}
+
+.creators-prog{
+    margin:30px auto 0;
+    max-width:660px;
+    padding:20px 24px;
+    border-radius:18px;
+    background:linear-gradient(160deg,rgba(19,29,50,.6),rgba(9,14,27,.66));
+    border:1px solid var(--fc-border);
+    border-left:3px solid rgba(76,194,255,.55);
+    box-shadow:0 20px 44px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
+    text-align:left;
+    font-size:.92rem;
+    line-height:1.7;
+    color:var(--fc-text-2);
+}
+
+/* ---------- COMO FUNCIONA (3 etapas) ---------- */
+.steps-timeline.steps-3{
+    grid-template-columns:1fr 44px 1fr 44px 1fr;
+}
+
+/* ---------- CTA PRÉ-FORMULÁRIO ---------- */
+.cta-note{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:22px;
+    font-size:.78rem;
+    letter-spacing:.4px;
+    color:var(--fc-text-2);
+    opacity:.92;
+}
+
+.cta-note i{
+    color:var(--fc-primary);
+}
+
+/* ---------- FORMULÁRIO (ancoragem do CTA) ---------- */
+#candidatura{
+    scroll-margin-top:110px;
+}
+
+.aviso-pre-form{
+    margin-top:1.6rem;
+}
