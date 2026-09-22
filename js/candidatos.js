@@ -265,6 +265,9 @@ function salvarDados(){
 
 
 
+    dados.salvo_em = Date.now();
+
+
     localStorage.setItem(
 
         STORAGE,
@@ -352,6 +355,14 @@ function carregarDados(){
 
     if(!dados) return;
 
+
+    if (!dados.salvo_em || (Date.now() - dados.salvo_em) > 7 * 24 * 60 * 60 * 1000) {
+
+        localStorage.removeItem(STORAGE);
+
+        return;
+
+    }
 
 
 

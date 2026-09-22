@@ -17,7 +17,7 @@ Formulário público de candidatura para entrar na equipe de staff do servidor d
 | `SUPABASE_URL` | `api/candidatura.js` |
 | `SUPABASE_SERVICE_ROLE_KEY` | `api/candidatura.js` (nunca versionar) |
 
-Não há `vercel.json` nem `.env.example`. `package.json` só tem `@supabase/supabase-js ^2.57.4`, engine Node >=20, sem scripts.
+Existem `vercel.json` (headers de segurança globais: CSP/`X-Frame-Options`/`nosniff`) e `.env.example`. `package.json` tem `@supabase/supabase-js 2.57.4` (pinned), engine Node >=20, sem scripts.
 
 ## Fluxo do formulário
 
@@ -40,19 +40,21 @@ Progresso visível via `.progress-fill` com larguras fixas inline (20/40/60/80/1
 
 ## Estado entre etapas
 
-Toda etapa acumula os campos no `localStorage` na chave **`futury_candidatura`** (objeto JSON compartilhado). A chave só é removida após resposta `200` do POST. Validação client-side via `alert()` + `event.preventDefault()`.
+Toda etapa acumula os campos no `localStorage` na chave **`futury_candidatura`** (objeto JSON compartilhado). A chave é removida após resposta `200` do POST, e expira automaticamente após 7 dias (dados parciais abandonados são descartados). Validação client-side via `alert()` + `event.preventDefault()`.
 
 ## API (`api/candidatura.js`)
 
 - Handler Vercel, só aceita `POST` (`GET` → 405).
-- Cria cliente Supabase com `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` de env.
-- Valida no servidor apenas `nome_completo`, `nick`, `discord`.
-- Insere payload em `candidatos` com `.insert([dados]).select().single()`.
-- Sucesso → `200 {sucesso, mensagem, candidatura}`; erro → `500` com mensagem do Supabase.
+- Cria cliente Supabase com `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` de env (secret, nunca no frontend).
+- **Allow-list** de 32 campos — nunca insere o body inteiro; `status` é sempre forçado a `Pendente` no servidor.
+- Valida server-side: obrigatórios (`nome_completo`, `nick`, `discord`), idade ≥ 13, limites de tamanho.
+- **Turnstile verificado no servidor** (`challenges.cloudflare.com/siteverify`) quando `TURNSTILE_SECRET_KEY` existe; sem a env o captcha fica desabilitado.
+- Rate limit: 3 envios / 10 min por IP (mapa em memória — por instância serverless; mover p/ KV se escalar).
+- Origem defensiva (403 se `Origin` fora de `*.futurycraft`). Erros genéricos (detalhes do Supabase só em `console`).
 
 ## Schema implícito — tabela `candidatos`
 
-Não existe arquivo `.sql` no repositório; colunas inferidas do payload montado em `js/candidatura-termo.js` (33 campos):
+Não existe arquivo `.sql` neste repositório; o schema (tabela `candidatos` + RLS) está versionado nas migrations do **painel staff** (`futurycraft-painel-main/supabase/migrations/`). Colunas inferidas do payload montado em `js/candidatura-termo.js` (33 campos):
 
 - Pessoal: `nome_completo`, `nick`, `discord`, `idade`, `data_nascimento` (YYYY-MM-DD), `genero`
 - Conta: `tipo_conta`, `plataforma`, `acesso_conta`, `tempo_servidor`, `modo_interesse`, `horario_jogo`, `dias_jogo` (array)

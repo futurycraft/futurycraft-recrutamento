@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Seja um Streamer FuturyCraft</title>
+
+<link rel="stylesheet" href="./css/candidatos.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./css/upgrade.css">
+
+<link rel="stylesheet" href="./css/criadores.css">
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+</head>
+
+<body data-nav="streamer">
+
+<div class="background"></div>
+
+<!-- =====================================
+     MENU SUPERIOR
+===================================== -->
+<nav class="site-nav" aria-label="Menu principal">
+
+<div class="site-nav-inner">
+
+<a class="site-nav-brand" href="./index.html">
+
+<img src="./assets/logo.png" alt="FuturyCraft">
+
+<b>FUTURY<span>CRAFT</span></b>
+
+</a>
+
+<button class="site-nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+
+<span aria-hidden="true">☰</span>
+
+</button>
+
+<ul class="site-nav-links">
+
+<li><a href="./index.html" data-nav-item="inicio">Início</a></li>
+
+<li><a href="./recrutamento.html" data-nav-item="staff">Staff</a></li>
+
+<li><a href="./youtuber.html" data-nav-item="youtuber">YouTuber</a></li>
+
+<li><a href="./streamer.html" data-nav-item="streamer">Streamer</a></li>
+
+</ul>
+
+</div>
+
+</nav>
+
+<main class="container">
+
+<div class="progress-card">
+
+<div class="progress-top">
+
+<div>
+
+<span class="step">
+
+Etapa <b id="etapa-num">1</b> de 6
+
+</span>
+
+<h1 id="etapa-titulo">Seus dados</h1>
+
+<p>
+
+Você faz lives e quer transmitir suas aventuras na FuturyCraft?
+
+Preencha sua candidatura e nossa equipe irá analisar seu perfil.
+
+</p>
+
+</div>
+
+<span class="percent" id="etapa-percent">
+
+17%
+
+</span>
+
+</div>
+
+<div class="progress-bar">
+
+<div class="progress-fill" id="progresso-fill" style="width:17%"></div>
+
+</div>
+
+<div class="wizard-steps">
+
+<span class="wizard-step ativo" data-wstep="1">Seus dados</span>
+
+<span class="wizard-step" data-wstep="2">Seu canal</span>
+
+<span class="wizard-step" data-wstep="3">Seu conteúdo</span>
+
+<span class="wizard-step" data-wstep="4">FuturyCraft</span>
+
+<span class="wizard-step" data-wstep="5">Redes sociais</span>
+
+<span class="wizard-step" data-wstep="6">Finalização</span>
+
+</div>
+
+</div>
+
+<form id="form-streamer" class="form-card" novalidate>
+
+<!-- =====================================
+     ETAPA 1 - SEUS DADOS
+===================================== -->
+<div class="etapa-wizard ativa" data-etapa="1">
+
+<div class="campo">
+
+<label for="nome_completo">Nome completo *</label>
+
+<input type="text" id="nome_completo" name="nome_completo" maxlength="100" placeholder="Digite seu nome completo">
+
+<p class="msg-erro">Informe seu nome completo.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="nick">Nick no Minecraft *</label>
+
+<input type="text" id="nick" name="nick" maxlength="16" placeholder="Ex: FuturyPlayer">
+
+<p class="msg-erro">Informe seu nick no Minecraft.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="discord">Discord *</label>
+
+<input type="text" id="discord" name="discord" maxlength="60" placeholder="Ex: usuario">
+
+<p class="msg-erro">Informe seu usuário do Discord.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="email">E-mail *</label>
+
+<input type="email" id="email" name="email" maxlength="120" placeholder="voce@email.com">
+
+<p class="msg-erro">Informe um e-mail válido.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="idade">Idade *</label>
+
+<input type="number" id="idade" name="idade" min="13" max="99" placeholder="Ex: 18">
+
+<p class="msg-erro">A idade mínima é 13 anos.</p>
+
+</div>
+
+<div class="botoes">
+
+<button type="button" class="btn-secundario" onclick="location.href='index.html'">← Início</button>
+
+<button type="button" class="btn-principal" onclick="irEtapa(2)">Próxima etapa →</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+     ETAPA 2 - SEU CANAL
+===================================== -->
+<div class="etapa-wizard" data-etapa="2">
+
+<div class="campo">
+
+<label for="nome_canal">Nome do canal/perfil *</label>
+
+<input type="text" id="nome_canal" name="nome_canal" maxlength="100" placeholder="Nome do seu canal/perfil">
+
+<p class="msg-erro">Informe o nome do seu canal/perfil.</p>
+
+</div>
+
+<div class="campo">
+
+<label>Plataforma principal *</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="plat_twitch" name="plataforma_principal" value="Twitch"><label for="plat_twitch">Twitch</label></div>
+
+<div class="opcao"><input type="radio" id="plat_youtube" name="plataforma_principal" value="YouTube"><label for="plat_youtube">YouTube</label></div>
+
+<div class="opcao"><input type="radio" id="plat_kick" name="plataforma_principal" value="Kick"><label for="plat_kick">Kick</label></div>
+
+<div class="opcao"><input type="radio" id="plat_tiktok" name="plataforma_principal" value="TikTok"><label for="plat_tiktok">TikTok</label></div>
+
+<div class="opcao"><input type="radio" id="plat_outra" name="plataforma_principal" value="Outra"><label for="plat_outra">Outra</label></div>
+
+</div>
+
+<p class="msg-erro">Selecione a plataforma principal.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="link_canal">Link do canal/perfil *</label>
+
+<input type="url" id="link_canal" name="link_canal" maxlength="250" placeholder="https://...">
+
+<p class="msg-erro">Informe um link válido do canal/perfil.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="seguidores">Quantos seguidores possui atualmente? *</label>
+
+<input type="number" id="seguidores" name="seguidores" min="0" max="999999999" placeholder="Ex: 5000">
+
+<p class="msg-erro">Informe a quantidade de seguidores.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="espectadores_simultaneos">Média de espectadores simultâneos</label>
+
+<input type="number" id="espectadores_simultaneos" name="espectadores_simultaneos" min="0" max="9999999" placeholder="Ex: 200">
+
+</div>
+
+<div class="campo">
+
+<label for="visualizacoes_por_live">Média de visualizações por live</label>
+
+<input type="number" id="visualizacoes_por_live" name="visualizacoes_por_live" min="0" max="99999999" placeholder="Ex: 1000">
+
+</div>
+
+<div class="campo">
+
+<label>Frequência de lives *</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="freq1" name="frequencia_lives" value="Todos os dias"><label for="freq1">Todos os dias</label></div>
+
+<div class="opcao"><input type="radio" id="freq2" name="frequencia_lives" value="4 a 6 vezes por semana"><label for="freq2">4 a 6 vezes por semana</label></div>
+
+<div class="opcao"><input type="radio" id="freq3" name="frequencia_lives" value="2 a 3 vezes por semana"><label for="freq3">2 a 3 vezes por semana</label></div>
+
+<div class="opcao"><input type="radio" id="freq4" name="frequencia_lives" value="1 vez por semana"><label for="freq4">1 vez por semana</label></div>
+
+<div class="opcao"><input type="radio" id="freq5" name="frequencia_lives" value="Eventualmente"><label for="freq5">Eventualmente</label></div>
+
+</div>
+
+<p class="msg-erro">Selecione a frequência de lives.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="duracao_lives">Duração média das lives</label>
+
+<input type="text" id="duracao_lives" name="duracao_lives" maxlength="60" placeholder="Ex: 3 horas">
+
+</div>
+
+<div class="botoes">
+
+<button type="button" class="btn-secundario" onclick="voltarEtapa()">← Voltar</button>
+
+<button type="button" class="btn-principal" onclick="irEtapa(3)">Próxima etapa →</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+     ETAPA 3 - SEU CONTEÚDO
+===================================== -->
+<div class="etapa-wizard" data-etapa="3">
+
+<div class="campo">
+
+<label>Que tipo de conteúdo você transmite? *</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="checkbox" id="tipo_minecraft" name="tipo_conteudo" value="Minecraft"><label for="tipo_minecraft">Minecraft</label></div>
+
+<div class="opcao"><input type="checkbox" id="tipo_games" name="tipo_conteudo" value="Games"><label for="tipo_games">Games</label></div>
+
+<div class="opcao"><input type="checkbox" id="tipo_justchatting" name="tipo_conteudo" value="Just Chatting"><label for="tipo_justchatting">Just Chatting</label></div>
+
+<div class="opcao"><input type="checkbox" id="tipo_entretenimento" name="tipo_conteudo" value="Entretenimento"><label for="tipo_entretenimento">Entretenimento</label></div>
+
+<div class="opcao"><input type="checkbox" id="tipo_eventos" name="tipo_conteudo" value="Eventos"><label for="tipo_eventos">Eventos</label></div>
+
+<div class="opcao"><input type="checkbox" id="tipo_competitivo" name="tipo_conteudo" value="Competitivo"><label for="tipo_competitivo">Competitivo</label></div>
+
+<div class="opcao"><input type="checkbox" id="tipo_outro" name="tipo_conteudo" value="Outro"><label for="tipo_outro">Outro</label></div>
+
+</div>
+
+<p class="msg-erro">Selecione ao menos um tipo de conteúdo.</p>
+
+</div>
+
+<div class="campo">
+
+<label>Você já transmite Minecraft?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="mc_sim" name="transmite_minecraft" value="Sim"><label for="mc_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="mc_nao" name="transmite_minecraft" value="Não"><label for="mc_nao">Não</label></div>
+
+</div>
+
+</div>
+
+<div class="campo">
+
+<label for="link_live">Link de uma live/gravação que represente seu conteúdo.</label>
+
+<input type="url" id="link_live" name="link_live" maxlength="250" placeholder="https://...">
+
+</div>
+
+<div class="campo">
+
+<label for="sobre_lives">Conte um pouco sobre suas lives.</label>
+
+<textarea id="sobre_lives" name="sobre_lives" maxlength="1200" placeholder="Fale sobre seu estilo, interação com chat, temas..."></textarea>
+
+</div>
+
+<div class="botoes">
+
+<button type="button" class="btn-secundario" onclick="voltarEtapa()">← Voltar</button>
+
+<button type="button" class="btn-principal" onclick="irEtapa(4)">Próxima etapa →</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+     ETAPA 4 - FUTURYCRAFT
+===================================== -->
+<div class="etapa-wizard" data-etapa="4">
+
+<div class="campo">
+
+<label>Você já joga na FuturyCraft? *</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="joga_sim" name="ja_joga" value="Sim"><label for="joga_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="joga_nao" name="ja_joga" value="Não"><label for="joga_nao">Não</label></div>
+
+</div>
+
+<p class="msg-erro">Selecione uma opção.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="modalidade">Qual modalidade você mais joga?</label>
+
+<select id="modalidade" name="modalidade">
+
+<option value="">Selecione...</option>
+
+<option value="SkyBlock">SkyBlock</option>
+
+<option value="RankUP">RankUP</option>
+
+<option value="Survival">Survival</option>
+
+<option value="BedWars">BedWars</option>
+
+<option value="Outra">Outra</option>
+
+</select>
+
+</div>
+
+<div class="campo">
+
+<label for="motivo">Por que gostaria de fazer parte do programa de Streamers da FuturyCraft? *</label>
+
+<textarea id="motivo" name="motivo" maxlength="1200" placeholder="Conte-nos sua motivação..."></textarea>
+
+<p class="msg-erro">Responda esta pergunta.</p>
+
+</div>
+
+<div class="campo">
+
+<label>Com que frequência pretende fazer lives na FuturyCraft?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="ff1" name="frequencia_futury" value="Diariamente"><label for="ff1">Diariamente</label></div>
+
+<div class="opcao"><input type="radio" id="ff2" name="frequencia_futury" value="Algumas vezes por semana"><label for="ff2">Algumas vezes por semana</label></div>
+
+<div class="opcao"><input type="radio" id="ff3" name="frequencia_futury" value="Semanalmente"><label for="ff3">Semanalmente</label></div>
+
+<div class="opcao"><input type="radio" id="ff4" name="frequencia_futury" value="Eventualmente"><label for="ff4">Eventualmente</label></div>
+
+</div>
+
+</div>
+
+<div class="campo">
+
+<label>Você teria interesse em participar de eventos oficiais da FuturyCraft?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="ev_sim" name="eventos_oficiais" value="Sim"><label for="ev_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="ev_nao" name="eventos_oficiais" value="Não"><label for="ev_nao">Não</label></div>
+
+<div class="opcao"><input type="radio" id="ev_talvez" name="eventos_oficiais" value="Talvez"><label for="ev_talvez">Talvez</label></div>
+
+</div>
+
+</div>
+
+<div class="botoes">
+
+<button type="button" class="btn-secundario" onclick="voltarEtapa()">← Voltar</button>
+
+<button type="button" class="btn-principal" onclick="irEtapa(5)">Próxima etapa →</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+     ETAPA 5 - REDES SOCIAIS
+===================================== -->
+<div class="etapa-wizard" data-etapa="5">
+
+<div class="campo">
+
+<label for="instagram">Instagram</label>
+
+<input type="text" id="instagram" name="instagram" maxlength="120" placeholder="@seuperfil">
+
+</div>
+
+<div class="campo">
+
+<label for="tiktok">TikTok</label>
+
+<input type="text" id="tiktok" name="tiktok" maxlength="120" placeholder="@seuperfil">
+
+</div>
+
+<div class="campo">
+
+<label for="youtube">YouTube</label>
+
+<input type="text" id="youtube" name="youtube" maxlength="120" placeholder="Link do canal">
+
+</div>
+
+<div class="campo">
+
+<label for="twitter">X/Twitter</label>
+
+<input type="text" id="twitter" name="twitter" maxlength="120" placeholder="@seuperfil">
+
+</div>
+
+<div class="campo">
+
+<label for="outra_rede">Outra rede social</label>
+
+<input type="text" id="outra_rede" name="outra_rede" maxlength="120" placeholder="Link ou @ do perfil">
+
+</div>
+
+<div class="botoes">
+
+<button type="button" class="btn-secundario" onclick="voltarEtapa()">← Voltar</button>
+
+<button type="button" class="btn-principal" onclick="irEtapa(6)">Próxima etapa →</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+     ETAPA 6 - FINALIZAÇÃO
+===================================== -->
+<div class="etapa-wizard" data-etapa="6">
+
+<div class="termos-criador">
+
+<label class="termo-item" for="termo1">
+
+<input type="checkbox" id="termo1" name="termo_informacoes">
+
+<span>Confirmo que as informações fornecidas são verdadeiras e autorizo a equipe da FuturyCraft a analisar minha candidatura.</span>
+
+</label>
+
+<label class="termo-item" for="termo2">
+
+<input type="checkbox" id="termo2" name="termo_ciente">
+
+<span>Estou ciente de que o envio da candidatura não garante aprovação no programa de criadores.</span>
+
+</label>
+
+</div>
+
+<p class="msg-erro" id="erro-termos" style="display:none;color:#ff6b87;font-size:.82rem;text-align:center;">
+
+Você precisa aceitar os dois termos para enviar.
+
+</p>
+
+<div class="turnstile-wrap">
+
+<div class="cf-turnstile" data-sitekey="0x4AAAAAAEDRSGXn1YoKmbFH"></div>
+
+</div>
+
+<div class="botoes">
+
+<button type="button" class="btn-secundario" onclick="voltarEtapa()">← Voltar</button>
+
+<button type="submit" class="btn-principal" id="btn-enviar">Enviar candidatura</button>
+
+</div>
+
+</div>
+
+</form>
+
+</main>
+
+<script src="./js/criador-form.js"></script>
+
+<script src="./js/site-nav.js"></script>
+
+<script src="./js/streamer.js"></script>
+
+</body>
+
+</html>
