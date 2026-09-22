@@ -14,7 +14,7 @@ var CRIADOR_CONFIG = {
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
             2: ["nome_canal", "link_canal", "link_melhor_video", "inscritos", "frequencia_publicacao"],
-            3: ["tipo_conteudo"],
+            3: ["tipo_conteudo", "video1"],
             4: ["ja_joga", "motivo", "divulgacao"]
         },
         validadores: {
@@ -24,7 +24,17 @@ var CRIADOR_CONFIG = {
             link_melhor_video: "url",
             inscritos: ["numero", 0, 999999999],
             link_conteudo_minecraft: "url",
-            visualizacoes_mensais: ["numero", 0, 9999999999]
+            visualizacoes_mensais: ["numero", 0, 9999999999],
+            media_visualizacoes_10: ["numero", 0, 9999999999],
+            media_visualizacoes_shorts: ["numero", 0, 9999999999],
+            maior_visualizacoes: ["numero", 0, 9999999999],
+            video1: "url",
+            video2: "url",
+            video3: "url",
+            publico_principal: ["opcao", ["Brasil", "Portugal", "América Latina", "Internacional", "Outro"]],
+            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
+            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
+            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
         }
     },
     streamer: {
@@ -33,7 +43,7 @@ var CRIADOR_CONFIG = {
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
             2: ["nome_canal", "plataforma_principal", "link_canal", "seguidores", "frequencia_lives"],
-            3: ["tipo_conteudo"],
+            3: ["tipo_conteudo", "live1"],
             4: ["ja_joga", "motivo"]
         },
         validadores: {
@@ -43,7 +53,16 @@ var CRIADOR_CONFIG = {
             link_live: "url",
             seguidores: ["numero", 0, 999999999],
             espectadores_simultaneos: ["numero", 0, 9999999],
-            visualizacoes_por_live: ["numero", 0, 99999999]
+            visualizacoes_por_live: ["numero", 0, 99999999],
+            media_espectadores_10: ["numero", 0, 9999999],
+            maior_espectadores_simultaneos: ["numero", 0, 9999999],
+            media_lives_mes: ["numero", 0, 999],
+            live1: "url",
+            live2: "url",
+            live3: "url",
+            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
+            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
+            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
         }
     }
 };
@@ -136,6 +155,10 @@ function CriadorForm(tipo) {
             if (regra[1] !== undefined && n < regra[1]) return false;
             if (regra[2] !== undefined && n > regra[2]) return false;
             return true;
+        }
+
+        if (Array.isArray(regra) && regra[0] === "opcao") {
+            return regra[1].indexOf(String(valor)) !== -1;
         }
 
         return true;
@@ -248,6 +271,33 @@ function CriadorForm(tipo) {
     }
 
     // ==========================================================
+    // CAMPOS CONDICIONAIS (data-show-field / data-show-when)
+    // Mostra/oculta um campo-alvo conforme o controle marcado.
+    // ==========================================================
+
+    function sincronizarCondicionais() {
+        form.querySelectorAll("[data-show-field]").forEach(function (sw) {
+            var nomeAlvo = sw.getAttribute("data-show-field");
+            var quando   = sw.getAttribute("data-show-when");
+            var alvo     = document.getElementById("campo-" + nomeAlvo);
+            if (!alvo) return;
+            var visivel = false;
+            if (sw.type === "radio") {
+                visivel = sw.checked && String(sw.value) === String(quando);
+            } else {
+                visivel = sw.checked;
+            }
+            alvo.hidden = !visivel;
+        });
+    }
+
+    function configurarCondicionais() {
+        form.querySelectorAll("[data-show-field]").forEach(function (sw) {
+            sw.addEventListener("change", sincronizarCondicionais);
+        });
+    }
+
+    // ==========================================================
     // PERSISTÊNCIA
     // ==========================================================
 
@@ -329,8 +379,11 @@ function CriadorForm(tipo) {
                 if (!r.ok || !r.j.sucesso) {
                     throw new Error(r.j && r.j.erro ? r.j.erro : "Falha no envio.");
                 }
+                var codigo = r.j.candidatura && r.j.candidatura.codigo ? r.j.candidatura.codigo : "";
                 try { localStorage.removeItem(cfg.storage); } catch (e) { /* ignore */ }
-                window.location.href = "sucesso-criador.html?form=" + encodeURIComponent(tipo);
+                var destino = "sucesso-criador.html?form=" + encodeURIComponent(tipo);
+                if (codigo) destino += "&id=" + encodeURIComponent(codigo);
+                window.location.href = destino;
             })
             .catch(function (erro) {
                 console.error(erro);
@@ -344,6 +397,8 @@ function CriadorForm(tipo) {
     // ==========================================================
 
     carregar();
+    sincronizarCondicionais();
+    configurarCondicionais();
     atualizarInterface();
 
     // expõe para o HTML (onclick)

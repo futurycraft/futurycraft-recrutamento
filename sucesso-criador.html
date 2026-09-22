@@ -71,12 +71,22 @@
 </div>
 
 <h1>
-Candidatura enviada!
+CANDIDATURA ENVIADA!
 </h1>
 
 <p>
-Recebemos sua candidatura para fazer parte dos criadores da FuturyCraft.
+Recebemos sua candidatura para fazer parte da FuturyCraft.
 </p>
+
+<div class="resumo-candidatura">
+
+<div class="resumo-linha"><span>Tipo da candidatura</span><b id="resumo-tipo">—</b></div>
+
+<div class="resumo-linha"><span>Status</span><b class="badge-status">Pendente</b></div>
+
+<div class="resumo-linha" id="resumo-id-linha"><span>ID da candidatura</span><b id="resumo-id">—</b></div>
+
+</div>
 
 <p>
 Nossa equipe irá analisar suas informações e, caso seu perfil seja selecionado para a próxima etapa, entraremos em contato pelos dados informados.
@@ -93,6 +103,26 @@ Voltar para o início
 </main>
 
 <script src="./js/site-nav.js"></script>
+
+<script>
+(function () {
+    function get(p) {
+        return new URLSearchParams(window.location.search).get(p) || "";
+    }
+    var rotulos = { youtuber: "🎥 YouTuber", streamer: "🔴 Streamer", staff: "🛡️ Staff" };
+    var tipo = get("form");
+    var id = get("id");
+    var t = document.getElementById("resumo-tipo");
+    var linha = document.getElementById("resumo-id-linha");
+    var cod = document.getElementById("resumo-id");
+    if (t) t.textContent = rotulos[tipo] || (tipo ? tipo : "—");
+    if (id) {
+        if (cod) cod.textContent = "#" + id;
+    } else if (linha) {
+        linha.hidden = true;
+    }
+})();
+</script>
 
 </body>
 

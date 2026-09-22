@@ -64,6 +64,41 @@
 
 <main class="container">
 
+<div class="programa-intro">
+
+<span class="programa-badge">
+
+<i class="fa-solid fa-video"></i>
+
+PROGRAMA DE YOUTUBERS
+
+</span>
+
+<h2>Faça parte do programa de criadores de conteúdo</h2>
+
+<p>
+
+Crie conteúdo da FuturyCraft no seu canal, mostre suas aventuras
+e cresça junto com a comunidade futurista.
+
+</p>
+
+</div>
+
+<div class="aviso-pre-form">
+
+<p class="aviso-titulo">Antes de começar</p>
+
+<ul>
+
+<li>Para se candidatar, você precisa ter <strong>13 anos ou mais</strong>.</li>
+
+<li>O envio da candidatura <strong>não garante aprovação</strong> no programa. Nossa equipe analisará seu canal e seu conteúdo antes de entrar em contato.</li>
+
+</ul>
+
+</div>
+
 <div class="progress-card">
 
 <div class="progress-top">
@@ -242,6 +277,52 @@ Preencha sua candidatura. Nossa equipe irá analisar seu canal e entrar em conta
 
 <div class="campo">
 
+<label for="media_visualizacoes_10">Média de visualizações dos seus últimos 10 vídeos</label>
+
+<input type="number" id="media_visualizacoes_10" name="media_visualizacoes_10" min="0" max="9999999999" placeholder="Ex: 3000">
+
+</div>
+
+<div class="campo">
+
+<label for="media_visualizacoes_shorts">Média de visualizações dos seus Shorts</label>
+
+<input type="number" id="media_visualizacoes_shorts" name="media_visualizacoes_shorts" min="0" max="9999999999" placeholder="Ex: 1500">
+
+</div>
+
+<div class="campo">
+
+<label for="maior_visualizacoes">Qual foi a maior quantidade de visualizações que um vídeo seu já alcançou?</label>
+
+<input type="number" id="maior_visualizacoes" name="maior_visualizacoes" min="0" max="9999999999" placeholder="Ex: 50000">
+
+</div>
+
+<div class="campo">
+
+<label for="publico_principal">Qual é o seu público principal?</label>
+
+<select id="publico_principal" name="publico_principal">
+
+<option value="">Selecione...</option>
+
+<option value="Brasil">Brasil</option>
+
+<option value="Portugal">Portugal</option>
+
+<option value="América Latina">América Latina</option>
+
+<option value="Internacional">Internacional</option>
+
+<option value="Outro">Outro</option>
+
+</select>
+
+</div>
+
+<div class="campo">
+
 <label>Frequência de publicação *</label>
 
 <div class="opcoes">
@@ -349,6 +430,32 @@ Preencha sua candidatura. Nossa equipe irá analisar seu canal e entrar em conta
 
 <div class="campo">
 
+<label for="video1">Link do seu vídeo recente 1 *</label>
+
+<input type="url" id="video1" name="video1" maxlength="250" placeholder="https://youtube.com/watch?v=...">
+
+<p class="msg-erro">Informe um link válido de um vídeo recente.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="video2">Link do seu vídeo recente 2</label>
+
+<input type="url" id="video2" name="video2" maxlength="250" placeholder="https://youtube.com/watch?v=...">
+
+</div>
+
+<div class="campo">
+
+<label for="video3">Link do seu vídeo recente 3</label>
+
+<input type="url" id="video3" name="video3" maxlength="250" placeholder="https://youtube.com/watch?v=...">
+
+</div>
+
+<div class="campo">
+
 <label for="sobre_canal">Conte um pouco sobre seu canal e seu conteúdo.</label>
 
 <textarea id="sobre_canal" name="sobre_canal" maxlength="1200" placeholder="Fale sobre seu estilo, temas, público..."></textarea>
@@ -441,6 +548,78 @@ Preencha sua candidatura. Nossa equipe irá analisar seu canal e entrar em conta
 <div class="opcao"><input type="radio" id="eventos_talvez" name="eventos_interesse" value="Talvez"><label for="eventos_talvez">Talvez</label></div>
 
 </div>
+
+</div>
+
+<div class="campo">
+
+<label>Você possui parceria com outro servidor de Minecraft?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="parc_sim" name="parceria_outro_servidor" value="Sim" data-show-field="qual_parceria" data-show-when="Sim"><label for="parc_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="parc_nao" name="parceria_outro_servidor" value="Não"><label for="parc_nao">Não</label></div>
+
+</div>
+
+</div>
+
+<div class="campo" id="campo-qual_parceria" hidden>
+
+<label for="qual_parceria">Qual servidor?</label>
+
+<input type="text" id="qual_parceria" name="qual_parceria" maxlength="150" placeholder="Nome do servidor">
+
+</div>
+
+<div class="campo">
+
+<label>Você possui algum contrato ou exclusividade atualmente?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="excl_sim" name="contrato_exclusividade" value="Sim" data-show-field="explique_contrato" data-show-when="Sim"><label for="excl_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="excl_nao" name="contrato_exclusividade" value="Não"><label for="excl_nao">Não</label></div>
+
+</div>
+
+</div>
+
+<div class="campo" id="campo-explique_contrato" hidden>
+
+<label for="explique_contrato">Explique.</label>
+
+<textarea id="explique_contrato" name="explique_contrato" maxlength="1200" placeholder="Detalhe o contrato ou exclusividade..."></textarea>
+
+</div>
+
+<div class="campo">
+
+<label for="como_conheceu">Como você conheceu a FuturyCraft?</label>
+
+<select id="como_conheceu" name="como_conheceu">
+
+<option value="">Selecione...</option>
+
+<option value="Discord">Discord</option>
+
+<option value="TikTok">TikTok</option>
+
+<option value="YouTube">YouTube</option>
+
+<option value="Instagram">Instagram</option>
+
+<option value="Google">Google</option>
+
+<option value="Indicação de amigo">Indicação de amigo</option>
+
+<option value="Jogando no servidor">Jogando no servidor</option>
+
+<option value="Outro">Outro</option>
+
+</select>
 
 </div>
 

@@ -64,6 +64,41 @@
 
 <main class="container">
 
+<div class="programa-intro">
+
+<span class="programa-badge">
+
+<i class="fa-solid fa-tower-broadcast"></i>
+
+PROGRAMA DE STREAMERS
+
+</span>
+
+<h2>Faça parte do programa de streamers</h2>
+
+<p>
+
+Faça lives na FuturyCraft, interaja com nossa comunidade
+e leve o futuro do Minecraft para a sua transmissão.
+
+</p>
+
+</div>
+
+<div class="aviso-pre-form">
+
+<p class="aviso-titulo">Antes de começar</p>
+
+<ul>
+
+<li>Para se candidatar, você precisa ter <strong>13 anos ou mais</strong>.</li>
+
+<li>O envio da candidatura <strong>não garante aprovação</strong> no programa. Nossa equipe analisará seu perfil e suas lives antes de entrar em contato.</li>
+
+</ul>
+
+</div>
+
 <div class="progress-card">
 
 <div class="progress-top">
@@ -254,6 +289,48 @@ Preencha sua candidatura e nossa equipe irá analisar seu perfil.
 
 <div class="campo">
 
+<label for="media_espectadores_10">Média de espectadores nas suas últimas 10 lives</label>
+
+<input type="number" id="media_espectadores_10" name="media_espectadores_10" min="0" max="9999999" placeholder="Ex: 150">
+
+</div>
+
+<div class="campo">
+
+<label for="maior_espectadores_simultaneos">Qual foi o maior pico de espectadores simultâneos que você já alcançou?</label>
+
+<input type="number" id="maior_espectadores_simultaneos" name="maior_espectadores_simultaneos" min="0" max="9999999" placeholder="Ex: 800">
+
+</div>
+
+<div class="campo">
+
+<label for="media_lives_mes">Em média, quantas lives você faz por mês?</label>
+
+<input type="number" id="media_lives_mes" name="media_lives_mes" min="0" max="999" placeholder="Ex: 12">
+
+</div>
+
+<div class="campo">
+
+<label>Em quais horários você costuma fazer live?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="checkbox" id="h_manha" name="horarios_live" value="Manhã"><label for="h_manha">Manhã</label></div>
+
+<div class="opcao"><input type="checkbox" id="h_tarde" name="horarios_live" value="Tarde"><label for="h_tarde">Tarde</label></div>
+
+<div class="opcao"><input type="checkbox" id="h_noite" name="horarios_live" value="Noite"><label for="h_noite">Noite</label></div>
+
+<div class="opcao"><input type="checkbox" id="h_madrugada" name="horarios_live" value="Madrugada"><label for="h_madrugada">Madrugada</label></div>
+
+</div>
+
+</div>
+
+<div class="campo">
+
 <label for="visualizacoes_por_live">Média de visualizações por live</label>
 
 <input type="number" id="visualizacoes_por_live" name="visualizacoes_por_live" min="0" max="99999999" placeholder="Ex: 1000">
@@ -350,6 +427,32 @@ Preencha sua candidatura e nossa equipe irá analisar seu perfil.
 <label for="link_live">Link de uma live/gravação que represente seu conteúdo.</label>
 
 <input type="url" id="link_live" name="link_live" maxlength="250" placeholder="https://...">
+
+</div>
+
+<div class="campo">
+
+<label for="live1">Link da sua live recente 1 *</label>
+
+<input type="url" id="live1" name="live1" maxlength="250" placeholder="https://...">
+
+<p class="msg-erro">Informe um link válido de uma live recente.</p>
+
+</div>
+
+<div class="campo">
+
+<label for="live2">Link da sua live recente 2</label>
+
+<input type="url" id="live2" name="live2" maxlength="250" placeholder="https://...">
+
+</div>
+
+<div class="campo">
+
+<label for="live3">Link da sua live recente 3</label>
+
+<input type="url" id="live3" name="live3" maxlength="250" placeholder="https://...">
 
 </div>
 
@@ -455,6 +558,78 @@ Preencha sua candidatura e nossa equipe irá analisar seu perfil.
 <div class="opcao"><input type="radio" id="ev_talvez" name="eventos_oficiais" value="Talvez"><label for="ev_talvez">Talvez</label></div>
 
 </div>
+
+</div>
+
+<div class="campo">
+
+<label>Você possui parceria com outro servidor de Minecraft?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="parc_sim" name="parceria_outro_servidor" value="Sim" data-show-field="qual_parceria" data-show-when="Sim"><label for="parc_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="parc_nao" name="parceria_outro_servidor" value="Não"><label for="parc_nao">Não</label></div>
+
+</div>
+
+</div>
+
+<div class="campo" id="campo-qual_parceria" hidden>
+
+<label for="qual_parceria">Qual servidor?</label>
+
+<input type="text" id="qual_parceria" name="qual_parceria" maxlength="150" placeholder="Nome do servidor">
+
+</div>
+
+<div class="campo">
+
+<label>Você possui algum contrato ou exclusividade atualmente?</label>
+
+<div class="opcoes">
+
+<div class="opcao"><input type="radio" id="excl_sim" name="contrato_exclusividade" value="Sim" data-show-field="explique_contrato" data-show-when="Sim"><label for="excl_sim">Sim</label></div>
+
+<div class="opcao"><input type="radio" id="excl_nao" name="contrato_exclusividade" value="Não"><label for="excl_nao">Não</label></div>
+
+</div>
+
+</div>
+
+<div class="campo" id="campo-explique_contrato" hidden>
+
+<label for="explique_contrato">Explique.</label>
+
+<textarea id="explique_contrato" name="explique_contrato" maxlength="1200" placeholder="Detalhe o contrato ou exclusividade..."></textarea>
+
+</div>
+
+<div class="campo">
+
+<label for="como_conheceu">Como você conheceu a FuturyCraft?</label>
+
+<select id="como_conheceu" name="como_conheceu">
+
+<option value="">Selecione...</option>
+
+<option value="Discord">Discord</option>
+
+<option value="TikTok">TikTok</option>
+
+<option value="YouTube">YouTube</option>
+
+<option value="Instagram">Instagram</option>
+
+<option value="Google">Google</option>
+
+<option value="Indicação de amigo">Indicação de amigo</option>
+
+<option value="Jogando no servidor">Jogando no servidor</option>
+
+<option value="Outro">Outro</option>
+
+</select>
 
 </div>
 

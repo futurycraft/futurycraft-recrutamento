@@ -29,6 +29,15 @@ const MAX_CAMPO_TAMANHO = 2000;
 const MAX_ARRAY_ITENS = 20;
 const MAX_TOTAL_RESPOSTAS = 40000;
 
+// Opções fechadas (allow-list) usadas nos validadores.
+const OPCOES_SIM_NAO = ["Sim", "Não"];
+const OPCOES_PUBLICO = ["Brasil", "Portugal", "América Latina", "Internacional", "Outro"];
+const OPCOES_HORARIOS = ["Manhã", "Tarde", "Noite", "Madrugada"];
+const OPCOES_COMO_CONHECEU = [
+    "Discord", "TikTok", "YouTube", "Instagram", "Google",
+    "Indicação de amigo", "Jogando no servidor", "Outro"
+];
+
 // ----------------------------------------------------------
 // ESQUEMAS POR TIPO (rotulos exibidos no painel)
 // ----------------------------------------------------------
@@ -53,6 +62,10 @@ const ESQUEMAS = {
                     ["link_melhor_video", "Link do melhor vídeo"],
                     ["inscritos", "Inscritos"],
                     ["visualizacoes_mensais", "Visualizações por mês"],
+                    ["media_visualizacoes_10", "Média de visualizações (últimos 10 vídeos)"],
+                    ["media_visualizacoes_shorts", "Média de visualizações (Shorts)"],
+                    ["maior_visualizacoes", "Maior número de views de um vídeo"],
+                    ["publico_principal", "Público principal"],
                     ["frequencia_publicacao", "Frequência de publicação"],
                     ["tempo_criando_conteudo", "Tempo criando conteúdo"]
                 ]
@@ -63,6 +76,9 @@ const ESQUEMAS = {
                     ["tipo_conteudo", "Tipos de conteúdo"],
                     ["produz_minecraft", "Produz conteúdo de Minecraft"],
                     ["link_conteudo_minecraft", "Link de conteúdo de Minecraft"],
+                    ["video1", "Vídeo recente 1 (link)"],
+                    ["video2", "Vídeo recente 2 (link)"],
+                    ["video3", "Vídeo recente 3 (link)"],
                     ["sobre_canal", "Sobre o canal e o conteúdo"]
                 ]
             },
@@ -73,7 +89,12 @@ const ESQUEMAS = {
                     ["modalidade", "Modalidade preferida"],
                     ["motivo", "Por que fazer parte do programa"],
                     ["divulgacao", "Como pretende divulgar a FuturyCraft"],
-                    ["eventos_interesse", "Interesse em eventos"]
+                    ["eventos_interesse", "Interesse em eventos"],
+                    ["parceria_outro_servidor", "Tem parceria com outro servidor"],
+                    ["qual_parceria", "Qual servidor"],
+                    ["contrato_exclusividade", "Tem contrato ou exclusividade atualmente"],
+                    ["explique_contrato", "Explique o contrato/exclusividade"],
+                    ["como_conheceu", "Como conheceu a FuturyCraft"]
                 ]
             },
             {
@@ -89,24 +110,38 @@ const ESQUEMAS = {
         nomes: new Set([
             "nome_completo", "nick", "discord", "email", "idade",
             "nome_canal", "link_canal", "link_melhor_video", "inscritos",
-            "visualizacoes_mensais", "frequencia_publicacao", "tempo_criando_conteudo",
-            "tipo_conteudo", "produz_minecraft", "link_conteudo_minecraft", "sobre_canal",
+            "visualizacoes_mensais", "media_visualizacoes_10", "media_visualizacoes_shorts",
+            "maior_visualizacoes", "publico_principal", "frequencia_publicacao",
+            "tempo_criando_conteudo", "tipo_conteudo", "produz_minecraft",
+            "link_conteudo_minecraft", "video1", "video2", "video3", "sobre_canal",
             "ja_joga", "modalidade", "motivo", "divulgacao", "eventos_interesse",
+            "parceria_outro_servidor", "qual_parceria", "contrato_exclusividade",
+            "explique_contrato", "como_conheceu",
             "instagram", "tiktok", "twitter", "outra_rede"
         ]),
         obrigatorios: [
             "nome_completo", "nick", "discord", "email", "idade",
             "nome_canal", "link_canal", "link_melhor_video", "inscritos",
-            "frequencia_publicacao", "ja_joga", "motivo", "divulgacao"
+            "frequencia_publicacao", "video1", "ja_joga", "motivo", "divulgacao"
         ],
         validadores: {
             email: "email",
             link_canal: "url",
             link_melhor_video: "url",
             link_conteudo_minecraft: "url",
+            video1: "url",
+            video2: "url",
+            video3: "url",
             idade: { tipo: "numero", min: 13, max: 99 },
             inscritos: { tipo: "numero", min: 0 },
-            visualizacoes_mensais: { tipo: "numero", min: 0 }
+            visualizacoes_mensais: { tipo: "numero", min: 0 },
+            media_visualizacoes_10: { tipo: "numero", min: 0 },
+            media_visualizacoes_shorts: { tipo: "numero", min: 0 },
+            maior_visualizacoes: { tipo: "numero", min: 0 },
+            publico_principal: { tipo: "opcao", opcoes: OPCOES_PUBLICO },
+            parceria_outro_servidor: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
+            contrato_exclusividade: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
+            como_conheceu: { tipo: "opcao", opcoes: OPCOES_COMO_CONHECEU }
         }
     },
     streamer: {
@@ -129,6 +164,10 @@ const ESQUEMAS = {
                     ["link_canal", "Link do canal/perfil"],
                     ["seguidores", "Seguidores"],
                     ["espectadores_simultaneos", "Média de espectadores simultâneos"],
+                    ["media_espectadores_10", "Média de espectadores (últimas 10 lives)"],
+                    ["maior_espectadores_simultaneos", "Maior pico de espectadores simultâneos"],
+                    ["media_lives_mes", "Média de lives por mês"],
+                    ["horarios_live", "Horários preferidos para live"],
                     ["visualizacoes_por_live", "Média de visualizações por live"],
                     ["frequencia_lives", "Frequência de lives"],
                     ["duracao_lives", "Duração média das lives"]
@@ -140,6 +179,9 @@ const ESQUEMAS = {
                     ["tipo_conteudo", "Tipos de conteúdo"],
                     ["transmite_minecraft", "Transmite Minecraft"],
                     ["link_live", "Link de live/gravação"],
+                    ["live1", "Live recente 1 (link)"],
+                    ["live2", "Live recente 2 (link)"],
+                    ["live3", "Live recente 3 (link)"],
                     ["sobre_lives", "Sobre as lives"]
                 ]
             },
@@ -150,7 +192,12 @@ const ESQUEMAS = {
                     ["modalidade", "Modalidade preferida"],
                     ["motivo", "Por que fazer parte do programa"],
                     ["frequencia_futury", "Frequência pretendida de lives"],
-                    ["eventos_oficiais", "Interesse em eventos oficiais"]
+                    ["eventos_oficiais", "Interesse em eventos oficiais"],
+                    ["parceria_outro_servidor", "Tem parceria com outro servidor"],
+                    ["qual_parceria", "Qual servidor"],
+                    ["contrato_exclusividade", "Tem contrato ou exclusividade atualmente"],
+                    ["explique_contrato", "Explique o contrato/exclusividade"],
+                    ["como_conheceu", "Como conheceu a FuturyCraft"]
                 ]
             },
             {
@@ -167,25 +214,38 @@ const ESQUEMAS = {
         nomes: new Set([
             "nome_completo", "nick", "discord", "email", "idade",
             "nome_canal", "plataforma_principal", "link_canal", "seguidores",
-            "espectadores_simultaneos", "visualizacoes_por_live", "frequencia_lives",
+            "espectadores_simultaneos", "media_espectadores_10",
+            "maior_espectadores_simultaneos", "media_lives_mes", "horarios_live",
+            "visualizacoes_por_live", "frequencia_lives",
             "duracao_lives", "tipo_conteudo", "transmite_minecraft", "link_live",
-            "sobre_lives", "ja_joga", "modalidade", "motivo", "frequencia_futury",
-            "eventos_oficiais", "instagram", "tiktok", "youtube", "twitter",
-            "outra_rede"
+            "live1", "live2", "live3", "sobre_lives", "ja_joga", "modalidade",
+            "motivo", "frequencia_futury", "eventos_oficiais",
+            "parceria_outro_servidor", "qual_parceria", "contrato_exclusividade",
+            "explique_contrato", "como_conheceu",
+            "instagram", "tiktok", "youtube", "twitter", "outra_rede"
         ]),
         obrigatorios: [
             "nome_completo", "nick", "discord", "email", "idade",
             "nome_canal", "plataforma_principal", "link_canal", "seguidores",
-            "frequencia_lives", "ja_joga", "motivo"
+            "frequencia_lives", "live1", "ja_joga", "motivo"
         ],
         validadores: {
             email: "email",
             link_canal: "url",
             link_live: "url",
+            live1: "url",
+            live2: "url",
+            live3: "url",
             idade: { tipo: "numero", min: 13, max: 99 },
             seguidores: { tipo: "numero", min: 0 },
             espectadores_simultaneos: { tipo: "numero", min: 0 },
-            visualizacoes_por_live: { tipo: "numero", min: 0 }
+            media_espectadores_10: { tipo: "numero", min: 0 },
+            maior_espectadores_simultaneos: { tipo: "numero", min: 0 },
+            media_lives_mes: { tipo: "numero", min: 0 },
+            visualizacoes_por_live: { tipo: "numero", min: 0 },
+            parceria_outro_servidor: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
+            contrato_exclusividade: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
+            como_conheceu: { tipo: "opcao", opcoes: OPCOES_COMO_CONHECEU }
         }
     }
 };
@@ -200,6 +260,22 @@ const hitsPorIp = new Map();
 // Guard de duplicidade acidental: mesmo tipo+discord+nick em 60s.
 const DEDUP_JANELA_MS = 60 * 1000;
 const ultimosEnvios = new Map();
+
+const ALFABETO_CODIGO = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function gerarCodigo() {
+    let saida = "";
+    if (globalThis.crypto && typeof globalThis.crypto.getRandomValues === "function") {
+        const arr = new Uint32Array(5);
+        globalThis.crypto.getRandomValues(arr);
+        for (const v of arr) saida += ALFABETO_CODIGO[v % ALFABETO_CODIGO.length];
+    } else {
+        for (let i = 0; i < 5; i++) {
+            saida += ALFABETO_CODIGO[Math.floor(Math.random() * ALFABETO_CODIGO.length)];
+        }
+    }
+    return "FC-" + saida;
+}
 
 function pegarIp(req) {
     const xf = (req.headers["x-forwarded-for"] || "").split(",")[0].trim();
@@ -249,6 +325,18 @@ function limparArray(valor) {
     return [...new Set(out)];
 }
 
+function limparArrayOpcoes(valor, opcoes) {
+    if (!Array.isArray(valor)) return [];
+    const set = new Set(opcoes);
+    const out = [];
+    for (const item of valor) {
+        if (typeof item === "string" && set.has(item.trim()) && out.length < MAX_ARRAY_ITENS) {
+            out.push(item.trim());
+        }
+    }
+    return [...new Set(out)];
+}
+
 function validarNome(regra, valor) {
     if (regra === "email") {
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor);
@@ -262,6 +350,9 @@ function validarNome(regra, valor) {
         if (regra.min !== undefined && n < regra.min) return false;
         if (regra.max !== undefined && n > regra.max) return false;
         return true;
+    }
+    if (regra && regra.tipo === "opcao") {
+        return Array.isArray(regra.opcoes) && regra.opcoes.includes(valor);
     }
     return true;
 }
@@ -290,6 +381,7 @@ async function notificarWebhook(tipo, dados) {
     const rotulo = tipo === "youtuber" ? "YOUTUBER" : "STREAMER";
     const texto =
         `**NOVA CANDIDATURA DE ${rotulo}**\n` +
+        `🎫 ID: ${dados.codigo}\n` +
         `👤 Nome: ${dados.nome}\n` +
         `🎮 Nick: ${dados.nick}\n` +
         `💬 Discord: ${dados.discord}\n` +
@@ -360,6 +452,10 @@ export default async function handler(req, res) {
         for (const nome of esquema.nomes) {
             if (nome === "tipo_conteudo") {
                 limpos[nome] = limparArray(raw.campos[nome]);
+                continue;
+            }
+            if (nome === "horarios_live") {
+                limpos[nome] = limparArrayOpcoes(raw.campos[nome], OPCOES_HORARIOS);
                 continue;
             }
             const val = campoString(raw.campos[nome]);
@@ -443,6 +539,7 @@ export default async function handler(req, res) {
 
         const registro = {
             form_type: tipo,
+            codigo: gerarCodigo(),
             nome: limpos.nome_completo,
             nick: limpos.nick,
             discord: limpos.discord,
@@ -460,7 +557,7 @@ export default async function handler(req, res) {
         const { data, error } = await supabase
             .from("candidaturas_criadores")
             .insert([registro])
-            .select("id, nick, nome, created_at, form_type")
+            .select("id, codigo, nick, nome, created_at, form_type")
             .single();
 
         if (error) {
@@ -473,6 +570,7 @@ export default async function handler(req, res) {
 
         // webhook opcional (ambiental; falha não bloqueia)
         await notificarWebhook(tipo, {
+            codigo: registro.codigo,
             nome: registro.nome,
             nick: registro.nick,
             discord: registro.discord,

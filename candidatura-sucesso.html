@@ -69,13 +69,24 @@
 
 
 <h1>
-Candidatura enviada!
+CANDIDATURA ENVIADA!
 </h1>
 
 
 <p>
-Obrigado pelo seu interesse em fazer parte da equipe FuturyCraft.
+Recebemos sua candidatura para fazer parte da FuturyCraft.
 </p>
+
+
+<div class="resumo-candidatura">
+
+<div class="resumo-linha"><span>Tipo da candidatura</span><b id="resumo-tipo">🛡️ Staff</b></div>
+
+<div class="resumo-linha"><span>Status</span><b class="badge-status">Pendente</b></div>
+
+<div class="resumo-linha" id="resumo-id-linha"><span>ID da candidatura</span><b id="resumo-id">—</b></div>
+
+</div>
 
 
 <p>
@@ -101,6 +112,19 @@ Voltar ao início
 
 
 <script src="./js/site-nav.js"></script>
+
+<script>
+(function () {
+    var id = new URLSearchParams(window.location.search).get("id") || "";
+    var linha = document.getElementById("resumo-id-linha");
+    var cod = document.getElementById("resumo-id");
+    if (id) {
+        if (cod) cod.textContent = "#" + id;
+    } else if (linha) {
+        linha.hidden = true;
+    }
+})();
+</script>
 </body>
 
 </html>

@@ -40,6 +40,22 @@ const CAMPOS_PERMITIDOS = [
 const CAMPOS_OBRIGATORIOS = ["nome_completo", "nick", "discord"];
 const MAX_CAMPO_TAMANHO = 2000;
 
+const ALFABETO_CODIGO = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function gerarCodigo() {
+    let saida = "";
+    if (globalThis.crypto && typeof globalThis.crypto.getRandomValues === "function") {
+        const arr = new Uint32Array(5);
+        globalThis.crypto.getRandomValues(arr);
+        for (const v of arr) saida += ALFABETO_CODIGO[v % ALFABETO_CODIGO.length];
+    } else {
+        for (let i = 0; i < 5; i++) {
+            saida += ALFABETO_CODIGO[Math.floor(Math.random() * ALFABETO_CODIGO.length)];
+        }
+    }
+    return "FC-" + saida;
+}
+
 // Limite simples por IP: janela de 10 min, max 3 envios.
 const TAXA_JANELA_MS = 10 * 60 * 1000;
 const TAXA_MAX = 3;
@@ -185,11 +201,12 @@ export default async function handler(req, res) {
         // campos internos jamais inseridos: status, id, aprovado,
         // cargo, usuario_id, created_at, avaliador, data_analise...
         dados.status = "Pendente"; // valor controlado no servidor, nunca do cliente
+        dados.codigo = gerarCodigo();
 
         const { data, error } = await supabase
             .from("candidatos")
             .insert([dados])
-            .select("id, nick, nome_completo, created_at")
+            .select("id, codigo, nick, nome_completo, created_at")
             .single();
 
         if (error) {

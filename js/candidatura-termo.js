@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             window.location.href =
-                "candidatura.html";
+                "candidatos.html";
 
 
             return;
@@ -340,14 +340,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-            alert(
-                "Sua candidatura foi enviada com sucesso!"
-            );
+            var codigo =
+                resultado.candidatura &&
+                resultado.candidatura.codigo
+                    ? resultado.candidatura.codigo
+                    : "";
+
+
+
+            var destino =
+                "candidatura-sucesso.html";
+
+
+            if (codigo) {
+                destino +=
+                    "?id=" +
+                    encodeURIComponent(codigo);
+            }
 
 
 
             window.location.href =
-                "candidatura-sucesso.html";
+                destino;
 
 
 
