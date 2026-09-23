@@ -13,6 +13,37 @@
     --max-width:1080px;
 }
 
+/* ---------- PARTÍCULAS (padrão da Staff) ---------- */
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#00d9ff;
+    border-radius:50%;
+    opacity:.5;
+    animation:particleMove 12s infinite linear;
+}
+
+.particle:nth-child(1){ left:10%; top:90%; animation-delay:0s; }
+.particle:nth-child(2){ left:35%; top:80%; animation-delay:3s; }
+.particle:nth-child(3){ left:60%; top:95%; animation-delay:6s; }
+.particle:nth-child(4){ left:80%; top:75%; animation-delay:2s; }
+.particle:nth-child(5){ left:90%; top:90%; animation-delay:5s; }
+
+@keyframes particleMove{
+    0%{ transform:translateY(0); opacity:0; }
+    30%{ opacity:1; }
+    100%{ transform:translateY(-120vh); opacity:0; }
+}
+
 .container.landing-container .progress-card,
 .container.landing-container .form-card{
     max-width:900px;
@@ -22,13 +53,35 @@
 
 /* ---------- HERO ---------- */
 .creators-hero{
+    position:relative;
     padding:54px 0 10px;
     text-align:center;
 }
 
+.creators-hero > .hero-glow,
+.creators-hero > .hero-grid{
+    inset:auto;
+    left:0;
+    right:0;
+    top:-40px;
+    bottom:-40px;
+}
+
+.creators-hero > *{
+    position:relative;
+    z-index:1;
+}
+
+.creators-hero .hero-logo{
+    display:block;
+    margin:0 auto 12px;
+    width:88px;
+    filter:drop-shadow(0 0 26px rgba(0,217,255,.45));
+}
+
 .creators-hero .hero-title{
     font-size:clamp(1.9rem,5.4vw,3.2rem);
-    margin-top:24px;
+    margin-top:14px;
 }
 
 .creators-hero .hero-sub{
