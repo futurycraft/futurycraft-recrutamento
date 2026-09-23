@@ -6,10 +6,24 @@
    Não altera lógica (recrutamento.js, script.js, modal).
 ========================================================== */
 
+/* ---------- PÁGINA ÚNICA (sem rolagem) ---------- */
+html,
+body{
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    min-height:100vh;
+}
+
 /* ---------- HERO / FLUXO DE CANDIDATURA ---------- */
 .recruit-flow{
-    padding-top:64px;
-    padding-bottom:16px;
+    min-height:calc(100vh - 60px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:56px 20px 40px;
     text-align:center;
 }
 
