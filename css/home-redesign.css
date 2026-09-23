@@ -78,11 +78,12 @@ section[id]{
 .hero-staff{
     position:relative;
     overflow:hidden;
-    min-height:calc(100vh - 61px);
+    min-height:calc(100vh - 60px);
     display:flex;
     align-items:center;
+    justify-content:center;
     text-align:center;
-    padding:96px 20px 120px;
+    padding:56px 20px 64px;
 }
 
 .hero-grid{
@@ -115,9 +116,9 @@ section[id]{
 }
 
 .hero-logo{
-    width:104px;
+    width:88px;
     height:auto;
-    margin-bottom:22px;
+    margin-bottom:12px;
     filter:drop-shadow(0 0 26px rgba(0,217,255,.45));
 }
 
@@ -142,8 +143,8 @@ section[id]{
 }
 
 .hero-title{
-    margin:26px 0 0;
-    font-size:clamp(2.2rem,6.4vw,4.1rem);
+    margin:14px 0 0;
+    font-size:clamp(2rem,6vw,3.7rem);
     font-weight:800;
     letter-spacing:1px;
     line-height:1.06;
@@ -158,15 +159,15 @@ section[id]{
 }
 
 .hero-sub{
-    margin:24px auto 0;
+    margin:14px auto 0;
     max-width:640px;
-    font-size:clamp(.98rem,2vw,1.14rem);
-    line-height:1.7;
+    font-size:clamp(.92rem,1.9vw,1.08rem);
+    line-height:1.65;
     color:var(--fc-text-2);
 }
 
 .hero-actions{
-    margin-top:36px;
+    margin-top:22px;
     display:flex;
     flex-wrap:wrap;
     gap:14px;
@@ -212,7 +213,7 @@ section[id]{
 }
 
 .hero-note{
-    margin-top:22px;
+    margin-top:16px;
     font-size:.78rem;
     color:var(--fc-text-2);
     opacity:.85;
@@ -229,7 +230,7 @@ section[id]{
 }
 
 .hero-scroll{
-    margin-top:66px;
+    margin-top:28px;
     display:inline-flex;
     flex-direction:column;
     align-items:center;
@@ -1005,5 +1006,65 @@ html.js-reveal .reveal.revealed{
 
     .foot-links{
         justify-content:center;
+    }
+}
+
+/* ==========================================================
+   FULL SCREEN SNAP (uma seção por scroll)
+   Aplicado só na Home (html.snap-home).
+========================================================== */
+html.snap-home{
+    scroll-snap-type:y mandatory;
+    scroll-behavior:smooth;
+}
+
+html.snap-home main{
+    overflow-x:hidden;
+}
+
+html.snap-home .hero-staff,
+html.snap-home .home-sec{
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+}
+
+html.snap-home .hero-staff{
+    min-height:calc(100vh - 60px);
+}
+
+html.snap-home .home-sec{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:70px 0 60px;
+}
+
+html.snap-home .home-sec .home-wrap{
+    width:100%;
+}
+
+html.snap-home .home-sec-slim{
+    padding:60px 0 50px;
+}
+
+@media (max-width:900px){
+    html.snap-home .hero-staff{
+        min-height:calc(100vh - 60px);
+    }
+
+    html.snap-home .home-sec{
+        min-height:100vh;
+        padding:64px 0 56px;
+    }
+
+    html.snap-home .steps-timeline{
+        margin:0 auto;
+    }
+}
+
+@media (max-width:640px){
+    html.snap-home .home-sec{
+        padding:70px 0 60px;
     }
 }
