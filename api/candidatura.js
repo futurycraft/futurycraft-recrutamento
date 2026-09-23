@@ -213,7 +213,10 @@ export default async function handler(req, res) {
             console.error("Erro Supabase ao inserir candidatura:", error);
             return res.status(500).json({
                 sucesso: false,
-                erro: "Erro interno do servidor. Tente novamente."
+                erro: "Erro interno do servidor. Tente novamente.",
+                // TEMP-DEBUG: expõe motivo real p/ diagnóstico; remover depois
+                detalhe: error.message,
+                detalhe_codigo: error.code
             });
         }
 
@@ -227,7 +230,10 @@ export default async function handler(req, res) {
         console.error("Erro inesperado na candidatura:", erro);
         return res.status(500).json({
             sucesso: false,
-            erro: "Erro interno do servidor."
+            erro: "Erro interno do servidor.",
+            // TEMP-DEBUG: expõe motivo real p/ diagnóstico; remover depois
+            detalhe: erro && erro.message,
+            detalhe_codigo: erro && erro.code
         });
     }
 }
