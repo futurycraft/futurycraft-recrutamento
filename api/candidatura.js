@@ -182,6 +182,44 @@ export default async function handler(req, res) {
             });
         }
 
+        // ---- data de nascimento: exige data real em formato YYYY-MM-DD ----
+        const dataNasc = typeof raw.data_nascimento === "string"
+            ? raw.data_nascimento.trim()
+            : "";
+        if (dataNasc && !/^\d{4}-\d{2}-\d{2}$/.test(dataNasc)) {
+            return res.status(400).json({
+                sucesso: false,
+                erro: "Data de nascimento inválida."
+            });
+        }
+        if (dataNasc) {
+            const [aa, mm, dd] = dataNasc.split("-").map(Number);
+            const d = new Date(Date.UTC(aa, mm - 1, dd));
+            const valida =
+                d.getUTCFullYear() === aa &&
+                d.getUTCMonth() === mm - 1 &&
+                d.getUTCDate() === dd;
+            if (!valida) {
+                return res.status(400).json({
+                    sucesso: false,
+                    erro: "Data de nascimento inválida."
+                });
+            }
+            const nasc = new Date(dataNasc + "T00:00:00Z");
+            const hoje = new Date();
+            const idadeCalc = hoje.getUTCFullYear() - nasc.getUTCFullYear() - (
+                hoje.getUTCMonth() < nasc.getUTCMonth() ||
+                (hoje.getUTCMonth() === nasc.getUTCMonth() && hoje.getUTCDate() < nasc.getUTCDate())
+                    ? 1 : 0
+            );
+            if (idadeCalc < 13) {
+                return res.status(400).json({
+                    sucesso: false,
+                    erro: "Você precisa ter pelo menos 13 anos."
+                });
+            }
+        }
+
         // ---- allow-list: monta objeto novo com campos permitidos ----
         const dados = {};
         for (const campo of CAMPOS_PERMITIDOS) {

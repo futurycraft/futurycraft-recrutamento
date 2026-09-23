@@ -311,6 +311,21 @@ function montarData(){
 
 
 
+    const dd = parseInt(dia.value, 10);
+    const mm = parseInt(mes.value, 10);
+    const aa = parseInt(ano.value, 10);
+    if(dd < 1 || dd > 31 || mm < 1 || mm > 12 || aa < 1900 || aa > 2026){
+        return "";
+    }
+    const dt = new Date(Date.UTC(aa, mm - 1, dd));
+    if(
+        dt.getUTCFullYear() !== aa ||
+        dt.getUTCMonth() !== mm - 1 ||
+        dt.getUTCDate() !== dd
+    ){
+        return "";
+    }
+
 
 
     return (
@@ -673,9 +688,15 @@ function validarFormulario(){
     if(!montarData()){
 
 
-        alert(
-            "Informe sua data de nascimento."
-        );
+        if(!dia.value || !mes.value || !ano.value){
+            alert(
+                "Informe sua data de nascimento."
+            );
+        } else {
+            alert(
+                "Data de nascimento inválida."
+            );
+        }
 
 
         return false;
