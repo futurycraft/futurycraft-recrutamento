@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { verificarEligibilidade } from "./_eligibilidade.js";
 
 // ==========================================================
 // FUTURYCRAFT - CANDIDATURA (seguro)
@@ -264,6 +265,25 @@ export default async function handler(req, res) {
             }
             if (typeof val !== "string") continue;
             dados[campo] = val.slice(0, MAX_CAMPO_TAMANHO).trim();
+        }
+
+        // ---- promoções: Moderador/Admin exigem 30 dias no cargo anterior ----
+        if (dados.vaga === "Moderador" || dados.vaga === "Admin") {
+            const elig = await verificarEligibilidade(supabase, dados.nick, dados.vaga);
+
+            if (!elig.liberado) {
+                const mensagens = {
+                    nick_invalido: "Informe um nick válido para essa vaga.",
+                    staff_nao_encontrado: "Seu nick não foi reconhecido como staff do servidor.",
+                    cargo_incorreto: "Essa vaga é uma promoção e exige o cargo anterior correspondente."
+                };
+                return res.status(403).json({
+                    sucesso: false,
+                    erro: mensagens[elig.motivo] ||
+                        "Você ainda não acumulou " + elig.exigido +
+                        " dias no cargo anterior para essa promoção."
+                });
+            }
         }
 
         // campos internos jamais inseridos: status, id, aprovado,

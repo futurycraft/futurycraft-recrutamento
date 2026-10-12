@@ -72,25 +72,51 @@ Novo time ou promoção? Escolha o cargo desejado. Cada vaga possui perguntas pr
 <span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
 </button>
 
-<button type="button" class="server-card vaga-card moderador" data-vaga="Moderador">
+<button type="button" class="server-card vaga-card moderador bloqueada" data-vaga="Moderador">
 <span class="server-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+<span class="vaga-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
 <b class="server-name">MODERADOR</b>
 <small class="server-desc">Promoção para quem já é Ajudante e quer mais responsabilidades.</small>
-<span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+<span class="server-btn">Bloqueado <i class="fa-solid fa-lock" aria-hidden="true"></i></span>
 </button>
 
-<button type="button" class="server-card vaga-card admin" data-vaga="Admin">
+<button type="button" class="server-card vaga-card admin bloqueada" data-vaga="Admin">
 <span class="server-icon"><i class="fa-solid fa-crown" aria-hidden="true"></i></span>
+<span class="vaga-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
 <b class="server-name">ADMIN</b>
 <small class="server-desc">Promoção para quem já é Moderador e quer liderar a equipe.</small>
-<span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+<span class="server-btn">Bloqueado <i class="fa-solid fa-lock" aria-hidden="true"></i></span>
 </button>
+
+</div>
+
+<div class="painel-desbloqueio escondido" id="painel-desbloqueio" aria-live="polite">
+
+<div class="painel-desbloqueio-top">
+<span class="painel-icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+<div>
+<b id="painel-titulo">Liberar vaga</b>
+<small id="painel-sub">Essa vaga é uma promoção. Informe seu nick de staff para validar os requisitos.</small>
+</div>
+<button type="button" class="painel-fechar" id="painel-fechar" aria-label="Fechar">
+<i class="fa-solid fa-xmark" aria-hidden="true"></i>
+</button>
+</div>
+
+<div class="painel-form">
+<input type="text" id="nick-verificacao" maxlength="24" autocomplete="off" placeholder="Seu nick no servidor" spellcheck="false">
+<button type="button" id="btn-verificar">
+Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+</button>
+</div>
+
+<p class="msg-desbloqueio" id="msg-desbloqueio"></p>
 
 </div>
 
 <p class="flow-note" id="aviso-vaga">
 <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-Formulários de Moderador e Admin são para quem já faz parte do time — a equipe valida seu cargo atual.
+Moderador e Admin são promoções bloqueadas — são liberadas para staff ativo há 30 dias no cargo anterior (Ajudante para Moderador; Moderador para Admin).
 </p>
 
 </div>

@@ -109,6 +109,178 @@
 .vaga-card.moderador{ --server-accent:#fbbf24; }
 .vaga-card.admin{ --server-accent:#f472b6; }
 
+/* ==========================================================
+   VAGAS BLOQUEADAS (promoções com exigência de tempo)
+========================================================= */
+
+.vaga-card.bloqueada{
+    opacity:.62;
+}
+
+.vaga-card.bloqueada .server-icon{
+    opacity:.5;
+}
+
+.vaga-card.bloqueada .server-btn{
+    color:#94a3b8;
+}
+
+.vaga-lock{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.82rem;
+    color:#fbbf24;
+    background:rgba(251,191,36,.1);
+    border:1px solid rgba(251,191,36,.3);
+    border-radius:10px;
+}
+
+/* ==========================================================
+   PAINEL DE DESBLOQUEIO
+========================================================= */
+
+.painel-desbloqueio{
+    max-width:900px;
+    margin:18px auto 0;
+    padding:18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    border-radius:16px;
+    background:linear-gradient(160deg,rgba(251,191,36,.07),rgba(251,191,36,.02));
+    border:1px solid rgba(251,191,36,.28);
+    box-shadow:0 14px 32px rgba(0,0,0,.25);
+}
+
+.painel-desbloqueio.escondido{
+    display:none;
+}
+
+.painel-desbloqueio-top{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.painel-icon{
+    width:40px;
+    height:40px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    border-radius:12px;
+    color:#fbbf24;
+    background:rgba(251,191,36,.12);
+    border:1px solid rgba(251,191,36,.25);
+}
+
+.painel-desbloqueio-top b{
+    font-size:.95rem;
+    letter-spacing:.3px;
+}
+
+.painel-desbloqueio-top small{
+    display:block;
+    margin-top:3px;
+    font-size:.8rem;
+    line-height:1.55;
+    color:var(--fc-text-2);
+}
+
+.painel-fechar{
+    margin-left:auto;
+    width:30px;
+    height:30px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9rem;
+    color:var(--fc-text-2);
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.painel-fechar:hover{
+    color:var(--fc-text);
+    background:rgba(255,255,255,.1);
+}
+
+.painel-form{
+    display:flex;
+    gap:10px;
+}
+
+.painel-form input[type="text"]{
+    flex:1;
+    padding:12px 14px;
+    font:inherit;
+    font-size:.9rem;
+    color:var(--fc-text);
+    background:rgba(9,14,27,.6);
+    border:1px solid rgba(251,191,36,.35);
+    border-radius:12px;
+    outline:none;
+}
+
+.painel-form input[type="text"]:focus{
+    border-color:#fbbf24;
+    box-shadow:0 0 0 3px rgba(251,191,36,.14);
+}
+
+#btn-verificar{
+    padding:0 18px;
+    font-family:inherit;
+    font-size:.85rem;
+    font-weight:800;
+    letter-spacing:.5px;
+    color:#06121f;
+    background:#fbbf24;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    transition:opacity var(--fc-motion), transform var(--fc-motion);
+}
+
+#btn-verificar i{
+    margin-left:6px;
+}
+
+#btn-verificar:hover:not(:disabled){
+    transform:translateY(-1px);
+}
+
+#btn-verificar:disabled{
+    opacity:.6;
+    cursor:wait;
+}
+
+.msg-desbloqueio{
+    min-height:1.15em;
+    font-size:.82rem;
+    line-height:1.5;
+    color:var(--fc-text-2);
+    text-align:center;
+}
+
+.msg-desbloqueio.ok{
+    color:#34d399;
+}
+
+.msg-desbloqueio.erro{
+    color:#f87171;
+}
+
 .server-card.selecionado{
     border-color:var(--server-accent,#4cc2ff);
     box-shadow:0 26px 52px rgba(0,0,0,.38), 0 0 26px var(--server-accent,#4cc2ff);
