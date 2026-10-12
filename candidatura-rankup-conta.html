@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recrutamento Rankup • Conta | FuturyCraft</title>
+
+<link rel="stylesheet" href="./css/candidatos.css">  
+
+<link rel="stylesheet" href="./css/candidatura-conta.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="./css/upgrade.css">
+<link rel="stylesheet" href="./css/criadores.css">
+</head>
+
+
+<body data-nav="staff">
+<nav class="site-nav" aria-label="Menu principal">
+
+<div class="site-nav-inner">
+
+<a class="site-nav-brand" href="./index.html">
+
+<img src="./assets/logo.png" alt="FuturyCraft">
+
+<b>FUTURY<span>CRAFT</span></b>
+
+</a>
+
+<button class="site-nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+
+<span aria-hidden="true">☰</span>
+
+</button>
+
+<ul class="site-nav-links">
+
+<li><a href="./index.html" data-nav-item="inicio">Staff</a></li>
+
+
+<li><a href="./youtuber.html" data-nav-item="youtuber">YouTuber</a></li>
+
+<li><a href="./streamer.html" data-nav-item="streamer">Streamer</a></li>
+
+</ul>
+
+</div>
+
+</nav>
+
+
+<div class="background"></div>
+
+
+<main class="container">
+
+
+
+<div class="progress-card">
+
+
+<div class="progress-top">
+
+
+<div>
+
+
+<span class="step">
+Rankup • Etapa 2 de 5
+</span>
+
+
+<h1>
+Conta e Servidor
+</h1>
+
+
+<p>
+Conte um pouco sobre sua conta, disponibilidade e experiência no FuturyCraft.
+</p>
+
+
+</div>
+
+
+<span class="percent">
+40%
+</span>
+
+
+</div>
+
+
+
+<div class="progress-bar">
+
+<div 
+class="progress-fill"
+style="width:40%">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<form id="form-conta" class="form-card">
+
+
+
+
+
+<!-- ==========================================
+TIPO DE CONTA
+========================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Seu Minecraft é:
+</label>
+
+
+
+<div class="opcoes">
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="original"
+name="tipo_conta"
+value="Original"
+>
+
+
+<label for="original">
+Original
+</label>
+
+
+</div>
+
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="pirata"
+name="tipo_conta"
+value="Pirata"
+>
+
+
+<label for="pirata">
+Pirata
+</label>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- ==========================================
+PLATAFORMA
+========================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Em qual plataforma você joga?
+</label>
+
+
+
+<div class="opcoes">
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="java"
+name="plataforma"
+value="Java"
+>
+
+
+<label for="java">
+Java
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="bedrock"
+name="plataforma"
+value="Bedrock"
+>
+
+
+<label for="bedrock">
+Bedrock
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="ambas"
+name="plataforma"
+value="Ambas"
+>
+
+
+<label for="ambas">
+Ambas
+</label>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- ==========================================
+ACESSO CONTA
+========================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Alguém além de você possui acesso à sua conta?
+</label>
+
+
+
+<div class="opcoes">
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="acesso-nao"
+name="acesso_conta"
+value="Não"
+>
+
+
+<label for="acesso-nao">
+Não
+</label>
+
+
+</div>
+
+
+
+
+<div class="opcao">
+
+
+<input
+type="radio"
+id="acesso-sim"
+name="acesso_conta"
+value="Sim"
+>
+
+
+<label for="acesso-sim">
+Sim
+</label>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+<!-- ==========================================
+TEMPO NO SERVIDOR
+========================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Há quanto tempo você joga no FuturyCraft?
+</label>
+
+
+
+<div class="slider-container">
+
+
+<input
+
+type="range"
+
+id="tempo_servidor"
+
+name="tempo_servidor"
+
+min="0"
+
+max="60"
+
+value="12"
+
+>
+
+
+<div class="slider-info">
+
+
+<span id="tempo-valor">
+12
+</span>
+
+
+<span>
+meses
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- A pergunta "Em qual modo voce gostaria de ser ajudante?" foi removida.
+     O servidor/modo agora e escolhido na pagina inicial (candidatura.html)
+     e enviado automaticamente conforme o formulario escolhido. -->
+
+
+<!-- ==========================================
+HORÁRIO
+========================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Qual horário você costuma jogar?
+</label>
+
+
+
+<div class="opcoes">
+
+
+<div class="opcao">
+
+
+<input
+
+type="radio"
+
+id="manha"
+
+name="horario_jogo"
+
+value="Manhã"
+
+>
+
+
+<label for="manha">
+
+Manhã
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="opcao">
+
+
+<input
+
+type="radio"
+
+id="tarde"
+
+name="horario_jogo"
+
+value="Tarde"
+
+>
+
+
+<label for="tarde">
+
+Tarde
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="opcao">
+
+
+<input
+
+type="radio"
+
+id="noite"
+
+name="horario_jogo"
+
+value="Noite"
+
+>
+
+
+<label for="noite">
+
+Noite
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="opcao">
+
+
+<input
+
+type="radio"
+
+id="madrugada"
+
+name="horario_jogo"
+
+value="Madrugada"
+
+>
+
+
+<label for="madrugada">
+
+Madrugada
+
+</label>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ==========================================
+DIAS DA SEMANA
+========================================== -->
+
+
+<div class="campo">
+
+
+<label>
+Quais dias da semana você costuma jogar?
+</label>
+
+
+
+<div class="dias-container">
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="segunda"
+
+name="dias_jogo"
+
+value="Segunda"
+
+>
+
+
+<label for="segunda">
+
+Seg
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="terca"
+
+name="dias_jogo"
+
+value="Terça"
+
+>
+
+
+<label for="terca">
+
+Ter
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="quarta"
+
+name="dias_jogo"
+
+value="Quarta"
+
+>
+
+
+<label for="quarta">
+
+Qua
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="quinta"
+
+name="dias_jogo"
+
+value="Quinta"
+
+>
+
+
+<label for="quinta">
+
+Qui
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="sexta"
+
+name="dias_jogo"
+
+value="Sexta"
+
+>
+
+
+<label for="sexta">
+
+Sex
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="sabado"
+
+name="dias_jogo"
+
+value="Sábado"
+
+>
+
+
+<label for="sabado">
+
+Sáb
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="dia">
+
+
+<input
+
+type="checkbox"
+
+id="domingo"
+
+name="dias_jogo"
+
+value="Domingo"
+
+>
+
+
+<label for="domingo">
+
+Dom
+
+</label>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+<!-- ==========================================
+BOTÕES NAVEGAÇÃO
+========================================== -->
+
+
+<div class="botoes">
+
+
+<button
+
+type="button"
+
+class="btn-voltar"
+
+onclick="window.location.href='candidatura-rankup.html'"
+
+>
+
+<span>
+←
+</span>
+
+Voltar
+
+</button>
+
+
+
+
+
+<button
+
+type="submit"
+
+class="btn-avancar"
+
+>
+
+Próxima etapa
+
+<span>
+→
+</span>
+
+</button>
+
+
+
+</div>
+
+
+
+
+</form>
+
+
+
+</main>
+
+
+
+
+
+<script src="./js/candidatura-rankup-conta.js"></script>
+
+
+
+<script src="./js/site-nav.js"></script>
+</body>
+
+</html>

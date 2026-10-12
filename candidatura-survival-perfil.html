@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recrutamento Survival • Perfil | FuturyCraft</title>
+
+
+<link rel="stylesheet" href="./css/candidatos.css">
+<link rel="stylesheet" href="./css/candidatura-perfil.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="./css/upgrade.css">
+<link rel="stylesheet" href="./css/criadores.css">
+</head>
+
+
+<body data-nav="staff">
+<nav class="site-nav" aria-label="Menu principal">
+
+<div class="site-nav-inner">
+
+<a class="site-nav-brand" href="./index.html">
+
+<img src="./assets/logo.png" alt="FuturyCraft">
+
+<b>FUTURY<span>CRAFT</span></b>
+
+</a>
+
+<button class="site-nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+
+<span aria-hidden="true">☰</span>
+
+</button>
+
+<ul class="site-nav-links">
+
+<li><a href="./index.html" data-nav-item="inicio">Staff</a></li>
+
+
+<li><a href="./youtuber.html" data-nav-item="youtuber">YouTuber</a></li>
+
+<li><a href="./streamer.html" data-nav-item="streamer">Streamer</a></li>
+
+</ul>
+
+</div>
+
+</nav>
+
+
+<div class="background"></div>
+
+
+<main class="container">
+
+
+
+<div class="progress-card">
+
+
+<div class="progress-top">
+
+
+<div>
+
+
+<span class="step">
+Survival • Etapa 3 de 5
+</span>
+
+
+<h1>
+Perfil e Experiência
+</h1>
+
+
+<p>
+Agora queremos conhecer sua personalidade, experiência e como você lidaria como parte da equipe.
+</p>
+
+
+</div>
+
+
+<span class="percent">
+60%
+</span>
+
+
+</div>
+
+
+
+<div class="progress-bar">
+
+<div 
+class="progress-fill"
+style="width:60%">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<form id="form-perfil" class="form-card">
+
+
+
+<div class="secao-card">
+
+
+<div class="secao-header">
+
+<span>
+👤
+</span>
+
+<h2>
+Sobre você
+</h2>
+
+</div>
+
+
+
+
+<div class="campo">
+
+
+<label>
+Conte um pouco sobre você
+</label>
+
+
+<textarea
+
+id="sobre_voce"
+
+maxlength="800"
+
+placeholder="Fale sobre sua idade, interesses, experiência no Minecraft e o que gosta de fazer no servidor..."
+
+required>
+
+</textarea>
+
+
+<small>
+Máximo recomendado: 800 caracteres
+</small>
+
+
+</div>
+
+
+
+<div class="campo">
+
+
+<label>
+O que faz você acreditar que seria um bom ajudante?
+</label>
+
+
+<textarea
+
+id="bom_ajudante"
+
+maxlength="800"
+
+placeholder="Explique suas qualidades, sua forma de ajudar jogadores e como você contribuiria para a equipe..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+<div class="campo">
+
+
+<label>
+Em que você se destaca?
+</label>
+
+
+<textarea
+
+id="destaque"
+
+maxlength="600"
+
+placeholder="Ex: comunicação, paciência, organização, resolver conflitos..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="secao-card">
+
+
+<div class="secao-header">
+
+
+<span>
+🛡️
+</span>
+
+
+<h2>
+Situações de Staff
+</h2>
+
+
+</div>
+
+<!-- ==================================================
+SITUAÇÕES STAFF
+================================================== -->
+
+
+<div class="pergunta-card">
+
+
+<label>
+Um jogador está sendo muito tóxico no chat. O que você faria?
+</label>
+
+
+<textarea
+
+id="jogador_toxico"
+
+maxlength="700"
+
+placeholder="Explique como você conversaria com o jogador, quais medidas tomaria e como evitaria conflitos..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+<div class="pergunta-card">
+
+
+<label>
+Você suspeita que um jogador esteja utilizando hack, mas ainda não possui provas. Como agiria?
+</label>
+
+
+<textarea
+
+id="suspeita_hack"
+
+maxlength="700"
+
+placeholder="Explique como você investigaria a situação sem acusar injustamente o jogador..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+<div class="pergunta-card">
+
+
+<label>
+Um amigo seu está quebrando as regras. O que faria?
+</label>
+
+
+<textarea
+
+id="amigo_regra"
+
+maxlength="700"
+
+placeholder="Explique como manteria a imparcialidade mesmo sendo seu amigo..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+<div class="pergunta-card">
+
+
+<label>
+Um jogador insiste que foi punido injustamente. Como responderia?
+</label>
+
+
+<textarea
+
+id="punicao_injusta"
+
+maxlength="700"
+
+placeholder="Explique como atenderia o jogador e verificaria a situação..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+<div class="pergunta-card">
+
+
+<label>
+Um jogador novo pede ajuda enquanto você está ocupado verificando outra situação. Como organizaria seu atendimento?
+</label>
+
+
+<textarea
+
+id="novo_jogador"
+
+maxlength="700"
+
+placeholder="Explique como priorizaria os atendimentos e manteria uma boa experiência para todos..."
+
+required>
+
+</textarea>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ==================================================
+EXPERIÊNCIA STAFF
+================================================== -->
+
+
+<div class="secao-card">
+
+
+<div class="secao-header">
+
+
+<span>
+⭐
+</span>
+
+
+<h2>
+Experiência anterior
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+
+<label>
+Você já fez parte da equipe de algum servidor?
+</label>
+
+
+<div class="opcoes">
+
+
+<div class="opcao">
+
+
+<input
+
+type="radio"
+
+id="staff-sim"
+
+name="experiencia_staff"
+
+value="Sim"
+
+>
+
+
+<label for="staff-sim">
+
+Sim, já fui staff
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="opcao">
+
+
+<input
+
+type="radio"
+
+id="staff-nao"
+
+name="experiencia_staff"
+
+value="Não"
+
+>
+
+
+<label for="staff-nao">
+
+Não, primeira experiência
+
+</label>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div 
+
+id="experiencia-box"
+
+class="experiencia-box escondido">
+
+
+
+
+
+<div class="campo">
+
+
+<label>
+Nome do servidor
+</label>
+
+
+<input
+
+id="servidor_anterior"
+
+type="text"
+
+placeholder="Digite o nome do servidor">
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+
+<label>
+Cargo ocupado
+</label>
+
+
+<input
+
+id="cargo_anterior"
+
+type="text"
+
+placeholder="Ex: Moderador, Ajudante, Admin">
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+
+<label>
+Quanto tempo permaneceu na equipe?
+</label>
+
+
+<input
+
+id="tempo_staff"
+
+type="text"
+
+placeholder="Ex: 6 meses">
+
+</div>
+
+
+
+
+
+<div class="campo">
+
+
+<label>
+Por que saiu da equipe?
+</label>
+
+
+<textarea
+
+id="motivo_saida"
+
+placeholder="Explique o motivo da saída...">
+
+</textarea>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+<!-- ==================================================
+NAVEGAÇÃO
+================================================== -->
+
+
+<div class="botoes">
+
+
+<button
+
+type="button"
+
+class="btn-secundario"
+
+onclick="window.location.href='candidatura-survival-conta.html'"
+
+>
+
+
+← Voltar
+
+
+</button>
+
+
+
+
+
+<button
+
+type="submit"
+
+class="btn-principal"
+
+>
+
+
+Próxima etapa →
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+</form>
+
+
+</main>
+
+
+
+
+
+<script src="./js/candidatura-survival-perfil.js"></script>
+
+
+
+<script src="./js/site-nav.js"></script>
+</body>
+
+</html>

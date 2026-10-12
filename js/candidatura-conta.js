@@ -247,13 +247,6 @@ function salvarDados(){
 
 
 
-    const modo =
-    document.querySelector(
-        'input[name="modo_interesse"]:checked'
-    );
-
-
-
     const horario =
     document.querySelector(
         'input[name="horario_jogo"]:checked'
@@ -292,9 +285,7 @@ function salvarDados(){
 
 
     dados.modo_interesse =
-    modo ?
-    modo.value :
-    "";
+    "Skyblock";
 
 
 
@@ -386,13 +377,6 @@ function carregarDados(){
     marcarRadio(
         "acesso_conta",
         dados.acesso_conta
-    );
-
-
-
-    marcarRadio(
-        "modo_interesse",
-        dados.modo_interesse
     );
 
 
@@ -501,8 +485,6 @@ function validarFormulario(){
         "plataforma",
 
         "acesso_conta",
-
-        "modo_interesse",
 
         "horario_jogo"
 
