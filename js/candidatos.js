@@ -17,6 +17,9 @@ INICIAR
 document.addEventListener("DOMContentLoaded",()=>{
 
 
+    window.FurtyCandidatura.preencherEtapa(1);
+
+
     carregarDados();
 
 

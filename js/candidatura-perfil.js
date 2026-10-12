@@ -10,6 +10,18 @@
 
 
 function detectarModo(){
+    try {
+        const dados = JSON.parse(
+            localStorage.getItem("futury_candidatura") || "null"
+        );
+
+        const modo = dados && dados.modo_interesse;
+
+        if (modo === "Rankup" || modo === "Survival" || modo === "Skyblock") {
+            return modo;
+        }
+    } catch (ignorar) {}
+
     const caminho = (
         location.pathname
     ).toLowerCase();
@@ -24,19 +36,8 @@ function detectarModo(){
 }
 
 
-function chaveStorage(modo){
-    if (modo === "Rankup")
-        return "futury_candidatura_rankup";
-
-    if (modo === "Survival")
-        return "futury_candidatura_survival";
-
-    return "futury_candidatura";
-}
-
-
 const MODO = detectarModo();
-const STORAGE = chaveStorage(MODO);
+const STORAGE = "futury_candidatura";
 
 const COLUNAS_LEGADAS = [
     "sobre_vc",
@@ -416,11 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
         salvarDados();
 
         const destino =
-            MODO === "Rankup"
-                ? "candidatura-rankup-feedback.html"
-                : MODO === "Survival"
-                    ? "candidatura-survival-feedback.html"
-                    : "candidatura-feedback.html";
+            "candidatura-feedback.html";
 
         window.location.href = destino;
     }

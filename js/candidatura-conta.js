@@ -12,6 +12,9 @@ const STORAGE = "futury_candidatura";
 document.addEventListener("DOMContentLoaded",()=>{
 
 
+    window.FurtyCandidatura.preencherEtapa(2);
+
+
     carregarDados();
 
     configurarEventos();
@@ -285,7 +288,7 @@ function salvarDados(){
 
 
     dados.modo_interesse =
-    "Skyblock";
+    window.FurtyCandidatura.modoAtual();
 
 
 

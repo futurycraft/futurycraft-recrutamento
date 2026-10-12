@@ -16,13 +16,13 @@
         },
         rankup: {
             rotulo: "Rankup",
-            chave: "futury_candidatura_rankup",
-            href: "candidatura-rankup.html"
+            chave: "futury_candidatura",
+            href: "candidatos.html"
         },
         survival: {
             rotulo: "Survival",
-            chave: "futury_candidatura_survival",
-            href: "candidatura-survival.html"
+            chave: "futury_candidatura",
+            href: "candidatos.html"
         }
     };
 

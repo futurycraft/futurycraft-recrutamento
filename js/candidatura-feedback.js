@@ -19,6 +19,8 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        window.FurtyCandidatura.preencherEtapa(4);
+
         carregarDados();
 
         configurarEstrelas();

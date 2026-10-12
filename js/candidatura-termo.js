@@ -10,6 +10,9 @@ const STORAGE = "futury_candidatura";
 document.addEventListener("DOMContentLoaded", () => {
 
 
+    window.FurtyCandidatura.preencherEtapa(5);
+
+
     const form = document.getElementById("form-termo");
     const aceite = document.getElementById("aceite");
 
