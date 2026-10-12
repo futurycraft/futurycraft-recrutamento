@@ -28,11 +28,11 @@ const TURNSTILE_REQUIRED = !!process.env.TURNSTILE_SECRET_KEY;
 const CAMPOS_PERMITIDOS = [
     "nome_completo", "nick", "discord", "idade", "data_nascimento",
     "genero", "tipo_conta", "plataforma", "acesso_conta",
-    "tempo_servidor", "modo_interesse", "horario_jogo", "dias_jogo",
+    "tempo_servidor", "modo_interesse", "vaga", "horario_jogo", "dias_jogo",
     "sobre_voce", "bom_ajudante", "destaque", "jogador_toxico",
     "suspeita_hack", "amigo_regra", "punicao_injusta", "novo_jogador",
     "experiencia_staff", "servidor_anterior", "cargo_anterior",
-    "tempo_staff", "motivo_saida",
+    "tempo_staff", "motivo_saida", "respostas",
     "avaliacao_servidor", "avaliacao_equipe", "avaliacao_organizacao",
     "avaliacao_eventos", "avaliacao_atualizacoes", "melhorias"
 ];
@@ -103,6 +103,27 @@ function limparDiasJogo(valor) {
         }
     }
     return out;
+}
+
+// Questionário dinâmico (etapa perfil): aceita apenas lista de
+// pares {pergunta, resposta} com campos string. Valores fora do
+// formato são descartados; máximo de 30 itens.
+function limparRespostas(valor) {
+    if (!Array.isArray(valor)) return null;
+    const out = [];
+    for (const item of valor) {
+        if (!item || typeof item !== "object" || Array.isArray(item)) continue;
+        const pergunta = typeof item.pergunta === "string"
+            ? item.pergunta.trim().slice(0, 300)
+            : "";
+        const resposta = typeof item.resposta === "string"
+            ? item.resposta.trim().slice(0, MAX_CAMPO_TAMANHO)
+            : "";
+        if (!pergunta || !resposta) continue;
+        out.push({ pergunta, resposta });
+        if (out.length >= 30) break;
+    }
+    return out.length ? out : null;
 }
 
 async function validarTurnstile(token) {
@@ -225,6 +246,15 @@ export default async function handler(req, res) {
         for (const campo of CAMPOS_PERMITIDOS) {
             if (campo === "dias_jogo") {
                 dados.dias_jogo = limparDiasJogo(raw.dias_jogo);
+                continue;
+            }
+            if (campo === "respostas") {
+                dados.respostas = limparRespostas(raw.respostas);
+                continue;
+            }
+            if (campo === "vaga") {
+                const v = campoString(raw.vaga);
+                dados.vaga = ["Ajudante", "Moderador", "Admin"].includes(v) ? v : null;
                 continue;
             }
             const val = raw[campo];

@@ -139,6 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     null,
 
 
+                vaga:
+                    dados.vaga ||
+                    null,
+
+
+                respostas:
+                    Array.isArray(dados.respostas)
+                        ? dados.respostas
+                        : null,
+
+
                 horario_jogo:
                     dados.horario_jogo ||
                     null,

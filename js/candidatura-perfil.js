@@ -1,712 +1,465 @@
 /* ==========================================================
    FUTURYCRAFT
    CANDIDATURA STAFF
-   ETAPA 3 - PERFIL
+   ETAPA 3 - PERFIL (render dinamico por vaga x minigame)
+   As perguntas vêm de js/questionario.js:
+   QUESTIONARIO[modo][vaga]. Respostas salvas em `respostas`
+   (lista {pergunta, resposta}) e, quando o id corresponder a
+   uma coluna legada, também na coluna individual.
 ========================================================== */
 
 
-const STORAGE = "futury_candidatura";
+function detectarModo(){
+    const caminho = (
+        location.pathname
+    ).toLowerCase();
 
+    if (caminho.includes("rankup"))
+        return "Rankup";
 
+    if (caminho.includes("survival"))
+        return "Survival";
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-
-    carregarDados();
-
-
-    configurarEventos();
-
-
-    controlarExperiencia();
-
-
-});
-
-
-
-
-
-/* ==========================================================
-ELEMENTOS
-========================================================== */
-
-
-const form =
-document.getElementById(
-    "form-perfil"
-);
-
-
-
-
-const campos = {
-
-
-    sobre_voce:
-    document.getElementById(
-        "sobre_voce"
-    ),
-
-
-    bom_ajudante:
-    document.getElementById(
-        "bom_ajudante"
-    ),
-
-
-    destaque:
-    document.getElementById(
-        "destaque"
-    ),
-
-
-    jogador_toxico:
-    document.getElementById(
-        "jogador_toxico"
-    ),
-
-
-    suspeita_hack:
-    document.getElementById(
-        "suspeita_hack"
-    ),
-
-
-    amigo_regra:
-    document.getElementById(
-        "amigo_regra"
-    ),
-
-
-    punicao_injusta:
-    document.getElementById(
-        "punicao_injusta"
-    ),
-
-
-    novo_jogador:
-    document.getElementById(
-        "novo_jogador"
-    ),
-
-
-    servidor_anterior:
-    document.getElementById(
-        "servidor_anterior"
-    ),
-
-
-    cargo_anterior:
-    document.getElementById(
-        "cargo_anterior"
-    ),
-
-
-    tempo_staff:
-    document.getElementById(
-        "tempo_staff"
-    ),
-
-
-    motivo_saida:
-    document.getElementById(
-        "motivo_saida"
-    )
-
-
-};
-
-
-
-
-
-const experienciaRadios =
-document.querySelectorAll(
-    'input[name="experiencia_staff"]'
-);
-
-
-
-
-const experienciaBox =
-document.getElementById(
-    "experiencia-box"
-);
-
-
-
-
-
-/* ==========================================================
-EVENTOS
-========================================================== */
-
-
-function configurarEventos(){
-
-
-
-    Object.values(campos)
-
-    .forEach(campo=>{
-
-
-        if(!campo)
-            return;
-
-
-
-        campo.addEventListener(
-            "input",
-            salvarDados
-        );
-
-
-
-        campo.addEventListener(
-            "change",
-            salvarDados
-        );
-
-
-    });
-
-
-
-
-
-
-    experienciaRadios.forEach(radio=>{
-
-
-        radio.addEventListener(
-            "change",
-            ()=>{
-                
-                controlarExperiencia();
-
-            }
-        );
-
-
-    });
-
-
-
-
-
-
-    form.addEventListener(
-        "submit",
-        enviarFormulario
-    );
-
-
+    return "Skyblock";
 }
 
 
+function chaveStorage(modo){
+    if (modo === "Rankup")
+        return "futury_candidatura_rankup";
 
+    if (modo === "Survival")
+        return "futury_candidatura_survival";
 
-
-
-
-/* ==========================================================
-CONTROLAR EXPERIÊNCIA STAFF
-========================================================== */
-
-
-function controlarExperiencia(){
-
-
-
-    const selecionado =
-
-    document.querySelector(
-
-        'input[name="experiencia_staff"]:checked'
-
-    );
-
-
-
-
-    if(
-
-        selecionado
-
-        &&
-
-        selecionado.value === "Sim"
-
-    ){
-
-
-
-        experienciaBox.classList.remove(
-            "escondido"
-        );
-
-
-
-        experienciaBox.classList.add(
-            "mostrar"
-        );
-
-
-
-    }
-
-    else{
-
-
-
-        experienciaBox.classList.add(
-            "escondido"
-        );
-
-
-
-        experienciaBox.classList.remove(
-            "mostrar"
-        );
-
-
-
-    }
-
-
-
+    return "futury_candidatura";
 }
 
 
+const MODO = detectarModo();
+const STORAGE = chaveStorage(MODO);
 
-
-
+const COLUNAS_LEGADAS = [
+    "sobre_vc",
+    "bom_ajudante",
+    "destaque",
+    "jogador_toxico",
+    "suspeita_hack",
+    "amigo_regra",
+    "punicao_injusta",
+    "novo_jogador"
+];
 
 
 /* ==========================================================
-SALVAR DADOS
+ESTADO DA VAGA
 ========================================================== */
 
 
-function salvarDados(){
-
-
-
+function vagaAtual(){
     const dados = JSON.parse(
-
-        localStorage.getItem(
-            STORAGE
-        )
-
+        localStorage.getItem(STORAGE)
     ) || {};
 
+    const vaga = dados.vaga || "Ajudante";
+    const key = String(vaga).toLowerCase();
 
+    const set =
+        window.QUESTIONARIO &&
+        window.QUESTIONARIO[MODO] &&
+        window.QUESTIONARIO[MODO][key]
+            ? window.QUESTIONARIO[MODO][key]
+            : window.QUESTIONARIO[MODO].ajudante;
 
-
-
-    Object.keys(campos)
-
-    .forEach(chave=>{
-
-
-        if(campos[chave]){
-
-
-            dados[chave] =
-
-            campos[chave].value;
-
-
-        }
-
-
-    });
-
-
-
-
-
-
-    const experiencia =
-
-    document.querySelector(
-
-        'input[name="experiencia_staff"]:checked'
-
-    );
-
-
-
-
-
-    dados.experiencia_staff =
-
-    experiencia
-
-    ?
-
-    experiencia.value
-
-    :
-
-    "";
-
-
-
-
-
-
-    localStorage.setItem(
-
-        STORAGE,
-
-        JSON.stringify(
-            dados
-        )
-
-    );
-
-
+    return { vaga, set };
 }
 
 
+function contextualizarPagina(data){
+    const etapa = document.getElementById("step-etapa");
 
+    if (etapa) {
+        etapa.textContent =
+            data.vaga +
+            " • " +
+            MODO +
+            " • Etapa 3 de 5";
+    }
 
-
+    document.title =
+        "Recrutamento " +
+        data.vaga +
+        " " +
+        MODO +
+        " • Perfil | FuturyCraft";
+}
 
 
 /* ==========================================================
-CARREGAR DADOS
+RENDER DAS PERGUNTAS
 ========================================================== */
 
 
-function carregarDados(){
+function campoHtml(q, legado){
+    return `
+<div class="campo">
+
+<label>
+${q.texto}
+</label>
 
 
+<textarea
 
-    const dados = JSON.parse(
+id="${q.id}"
 
-        localStorage.getItem(
-            STORAGE
-        )
+maxlength="${q.max}"
 
-    );
+placeholder="${q.dica}"
+
+required>
+
+${legado || ""}
+
+</textarea>
 
 
+</div>
+`;
+}
 
 
-    if(!dados)
+function situacaoHtml(q, legado){
+    return `
+<div class="pergunta-card">
+
+<label>
+${q.texto}
+</label>
+
+
+<textarea
+
+id="${q.id}"
+
+maxlength="${q.max}"
+
+placeholder="${q.dica}"
+
+required>
+
+${legado || ""}
+
+</textarea>
+
+
+</div>
+`;
+}
+
+
+function renderPerguntas(data){
+    const blocoSobre = document.getElementById("bloco-sobre");
+    const blocoSituacoes = document.getElementById("bloco-situacoes");
+
+    if (!blocoSobre || !blocoSituacoes) {
         return;
-
-
-
-
-
-
-    Object.keys(campos)
-
-    .forEach(chave=>{
-
-
-        if(
-
-            campos[chave]
-
-            &&
-
-            dados[chave]
-
-        ){
-
-
-
-            campos[chave].value =
-
-            dados[chave];
-
-
-
-        }
-
-
-
-    });
-
-
-
-
-
-
-
-    if(dados.experiencia_staff){
-
-
-
-        const radio =
-
-        document.querySelector(
-
-        `input[name="experiencia_staff"][value="${dados.experiencia_staff}"]`
-
-        );
-
-
-
-        if(radio){
-
-            radio.checked = true;
-
-        }
-
-
     }
 
+    const sobre = data.set.filter(p => p.secao === "sobre");
+    const situacoes = data.set.filter(p => p.secao === "situacoes");
+
+    blocoSobre.innerHTML = `
+
+<div class="secao-card">
+
+<div class="secao-header">
+
+<span>
+👤
+</span>
+
+<h2>
+Sobre você
+</h2>
+
+</div>
 
 
+${sobre.map(p => campoHtml(
+    p,
+    data.dados[p.id] || ""
+)).join("")}
 
+
+</div>
+`;
+
+    blocoSituacoes.innerHTML = `
+
+<div class="secao-card">
+
+<div class="secao-header">
+
+<span>
+🛡️
+</span>
+
+<h2>
+Situações de Staff
+</h2>
+
+</div>
+
+
+${situacoes.map(p => situacaoHtml(
+    p,
+    data.dados[p.id] || ""
+)).join("")}
+
+
+</div>
+`;
 }
 
 
-
-
-
-
-
 /* ==========================================================
-VALIDAÇÃO
+ELEMENTOS ESTATICOS (experiência anterior)
 ========================================================== */
 
 
-function validarFormulario(){
+document.addEventListener("DOMContentLoaded", () => {
 
+    const dadosArquivo = JSON.parse(
+        localStorage.getItem(STORAGE)
+    ) || {};
 
+    const contexto = vagaAtual();
 
-    const obrigatorios = [
+    contextualizarPagina(contexto);
 
+    renderPerguntas({
+        set: contexto.set,
+        dados: dadosArquivo
+    });
 
-        "sobre_voce",
+    const form = document.getElementById("form-perfil");
 
-        "bom_ajudante",
+    const experienciaRadios = document.querySelectorAll(
+        'input[name="experiencia_staff"]'
+    );
 
-        "destaque",
-
-        "jogador_toxico",
-
-        "suspeita_hack",
-
-        "amigo_regra",
-
-        "punicao_injusta",
-
-        "novo_jogador"
-
-
-    ];
-
-
-
-
-
-
-    for(
-        let campo of obrigatorios
-    ){
-
-
-
-        if(
-
-            campos[campo].value.trim().length < 10
-
-        ){
-
-
-
-            alert(
-                "Responda todas as perguntas com mais detalhes."
-            );
-
-
-
-            campos[campo].focus();
-
-
-
-            return false;
-
-
-
-        }
-
-
-    }
-
-
-
-
-
-
-
-
-    const experiencia =
-
-    document.querySelector(
-
-        'input[name="experiencia_staff"]:checked'
-
+    const experienciaBox = document.getElementById(
+        "experiencia-box"
     );
 
 
+    /* ---------- salvar ao digitar ---------- */
 
+    function salvarDados(){
+        const dados = JSON.parse(
+            localStorage.getItem(STORAGE)
+        ) || {};
 
-
-    if(!experiencia){
-
-
-
-        alert(
-
-            "Informe se já fez parte de uma equipe."
-
-        );
-
-
-
-        return false;
-
-
-
-    }
-
-
-
-
-
-
-
-    if(
-
-        experiencia.value === "Sim"
-
-    ){
-
-
-
-        const camposExperiencia = [
-
-
-            campos.servidor_anterior,
-
-            campos.cargo_anterior,
-
-            campos.tempo_staff,
-
-            campos.motivo_saida
-
-
-        ];
-
-
-
-
-
-
-        for(
-            let campo of camposExperiencia
-        ){
-
-
-
-            if(
-
-                campo.value.trim() === ""
-
-            ){
-
-
-
-                alert(
-
-                "Preencha todas as informações da experiência anterior."
-
-                );
-
-
-
-                campo.focus();
-
-
-
-                return false;
-
-
-
+        contexto.set.forEach(p => {
+            const campo = document.getElementById(p.id);
+            if (campo) {
+                dados[p.id] = campo.value;
             }
+        });
 
+        const camposExperiencia = {
+            servidor_anterior: document.getElementById("servidor_anterior"),
+            cargo_anterior: document.getElementById("cargo_anterior"),
+            tempo_staff: document.getElementById("tempo_staff"),
+            motivo_saida: document.getElementById("motivo_saida")
+        };
 
-        }
+        Object.keys(camposExperiencia).forEach(chave => {
+            if (camposExperiencia[chave]) {
+                dados[chave] = camposExperiencia[chave].value;
+            }
+        });
 
+        const experiencia = document.querySelector(
+            'input[name="experiencia_staff"]:checked'
+        );
 
+        dados.experiencia_staff = experiencia
+            ? experiencia.value
+            : "";
+
+        dados.vaga = contexto.vaga;
+        dados.modo_interesse = MODO;
+
+        dados.respostas = [];
+        contexto.set.forEach(p => {
+            const campo = document.getElementById(p.id);
+            dados.respostas.push({
+                pergunta: p.texto,
+                resposta: campo
+                    ? campo.value
+                    : ""
+            });
+        });
+
+        localStorage.setItem(
+            STORAGE,
+            JSON.stringify(dados)
+        );
     }
 
 
+    /* ---------- controlar box de experiência ---------- */
+
+    function controlarExperiencia(){
+        const selecionado = document.querySelector(
+            'input[name="experiencia_staff"]:checked'
+        );
+
+        if (!experienciaBox)
+            return;
+
+        if (selecionado && selecionado.value === "Sim") {
+            experienciaBox.classList.remove("escondido");
+            experienciaBox.classList.add("mostrar");
+        } else {
+            experienciaBox.classList.add("escondido");
+            experienciaBox.classList.remove("mostrar");
+        }
+    }
 
 
+    /* ---------- carregar experiência do storage ---------- */
+
+    function carregarExperiencia(){
+        const dados = dadosArquivo;
+
+        [
+            "servidor_anterior",
+            "cargo_anterior",
+            "tempo_staff",
+            "motivo_saida"
+        ].forEach(chave => {
+            const campo = document.getElementById(chave);
+            if (campo && dados[chave]) {
+                campo.value = dados[chave];
+            }
+        });
+
+        if (dados.experiencia_staff) {
+            const radio = document.querySelector(
+                'input[name="experiencia_staff"][value="' + dados.experiencia_staff + '"]'
+            );
+            if (radio) {
+                radio.checked = true;
+            }
+        }
+
+        controlarExperiencia();
+    }
 
 
-    return true;
+    /* ---------- validação ---------- */
+
+    function validarFormulario(){
+        for (const p of contexto.set) {
+            const campo = document.getElementById(p.id);
+            if (!campo || campo.value.trim().length < 10) {
+                alert(
+                    "Responda todas as perguntas com mais detalhes."
+                );
+                if (campo) campo.focus();
+                return false;
+            }
+        }
+
+        const experiencia = document.querySelector(
+            'input[name="experiencia_staff"]:checked'
+        );
+
+        if (!experiencia) {
+            alert("Informe se já fez parte de uma equipe.");
+            return false;
+        }
+
+        if (experiencia.value === "Sim") {
+            const camposExperiencia = [
+                document.getElementById("servidor_anterior"),
+                document.getElementById("cargo_anterior"),
+                document.getElementById("tempo_staff"),
+                document.getElementById("motivo_saida")
+            ];
+
+            for (const campo of camposExperiencia) {
+                if (!campo || campo.value.trim() === "") {
+                    alert(
+                        "Preencha todas as informações da experiência anterior."
+                    );
+                    if (campo) campo.focus();
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 
 
+    /* ---------- submit ---------- */
 
-}
+    function enviarFormulario(event){
+        event.preventDefault();
 
+        if (!validarFormulario())
+            return;
 
+        salvarDados();
 
+        const destino =
+            MODO === "Rankup"
+                ? "candidatura-rankup-feedback.html"
+                : MODO === "Survival"
+                    ? "candidatura-survival-feedback.html"
+                    : "candidatura-feedback.html";
 
-
-
-
-/* ==========================================================
-ENVIAR FORMULÁRIO
-========================================================== */
-
-
-function enviarFormulario(event){
-
-
-
-    event.preventDefault();
-
-
+        window.location.href = destino;
+    }
 
 
+    /* ---------- eventos ---------- */
 
-    if(
-        !validarFormulario()
-    )
+    contexto.set.forEach(p => {
+        const campo = document.getElementById(p.id);
+        if (!campo)
+            return;
 
-        return;
+        campo.addEventListener("input", salvarDados);
+        campo.addEventListener("change", salvarDados);
+    });
 
+    experienciaRadios.forEach(radio => {
+        radio.addEventListener("change", () => {
+            controlarExperiencia();
+        });
+        radio.addEventListener("change", salvarDados);
+    });
 
+    [
+        "servidor_anterior",
+        "cargo_anterior",
+        "tempo_staff",
+        "motivo_saida"
+    ].forEach(chave => {
+        const campo = document.getElementById(chave);
+        if (campo) {
+            campo.addEventListener("input", salvarDados);
+            campo.addEventListener("change", salvarDados);
+        }
+    });
 
+    if (form) {
+        form.addEventListener("submit", enviarFormulario);
+    }
 
-
-
-    salvarDados();
-
-
-
-
-
-
-    window.location.href =
-
-    "candidatura-feedback.html";
-
-
-
-}
+    carregarExperiencia();
+});

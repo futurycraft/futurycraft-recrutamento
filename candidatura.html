@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FuturyCraft | Escolha o Formulario</title>
-<meta name="description" content="Escolha para qual formulario de recrutamento da FuturyCraft voce deseja se candidatar.">
+<title>FuturyCraft | Escolha a Vaga</title>
+<meta name="description" content="Escolha a vaga e o servidor para se candidatar ao recrutamento de staff da FuturyCraft.">
 
 <link rel="stylesheet" href="./css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
 <main class="home-shell">
 
 <!-- =====================================
-     ESCOLHA DO SERVIDOR
+     ESCOLHA DA VAGA
 ===================================== -->
 <section class="recruit-flow">
 
@@ -56,36 +56,95 @@
 <span class="sec-badge flow-badge"><i class="fa-solid fa-shield-halved"></i> Recrutamento Staff</span>
 
 <h1>
-ESCOLHA O <span class="grad">FORMULARIO</span>
+ESCOLHA A SUA <span class="grad">VAGA</span>
 </h1>
 
 <p class="flow-description">
-Selecione para qual servidor voce deseja se candidatar. Cada servidor possui o seu proprio formulario de recrutamento.
+Novo time ou promoção? Escolha o cargo desejado. Cada vaga possui perguntas próprias.
 </p>
 
-<div class="server-grid">
+<div class="server-grid vaga-grid">
 
-<a class="server-card skyblock" href="./candidatos.html">
+<button type="button" class="server-card vaga-card ajudante" data-vaga="Ajudante">
+<span class="server-icon"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>
+<b class="server-name">AJUDANTE</b>
+<small class="server-desc">Formulário inicial para quem quer entrar para a equipe de staff.</small>
+<span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+</button>
+
+<button type="button" class="server-card vaga-card moderador" data-vaga="Moderador">
+<span class="server-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+<b class="server-name">MODERADOR</b>
+<small class="server-desc">Promoção para quem já é Ajudante e quer mais responsabilidades.</small>
+<span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+</button>
+
+<button type="button" class="server-card vaga-card admin" data-vaga="Admin">
+<span class="server-icon"><i class="fa-solid fa-crown" aria-hidden="true"></i></span>
+<b class="server-name">ADMIN</b>
+<small class="server-desc">Promoção para quem já é Moderador e quer liderar a equipe.</small>
+<span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+</button>
+
+</div>
+
+<p class="flow-note" id="aviso-vaga">
+<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+Formulários de Moderador e Admin são para quem já faz parte do time — a equipe valida seu cargo atual.
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     ESCOLHA DO SERVIDOR
+===================================== -->
+<section class="recruit-flow recruit-flow-alt">
+
+<div class="home-wrap">
+
+<span class="sec-badge flow-badge"><i class="fa-solid fa-server"></i> Servidor</span>
+
+<h1>
+ESCOLHA O <span class="grad">SERVIDOR</span>
+</h1>
+
+<p class="flow-description">
+Cada servidor possui formulário e perguntas próprios para a vaga escolhida.
+</p>
+
+<div class="server-grid modo-grid">
+
+<button type="button" class="server-card modo-card skyblock" data-modo="skyblock">
 <span class="server-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></span>
 <b class="server-name">SKYBLOCK</b>
-<small class="server-desc">Candidate-se a equipe de staff do servidor Skyblock.</small>
-<span class="server-btn">Iniciar formulario <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-</a>
+<small class="server-desc">Formulário e perguntas próprias para a equipe do Skyblock.</small>
+<span class="server-btn">Selecionar servidor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+</button>
 
-<a class="server-card rankup" href="./candidatura-rankup.html">
+<button type="button" class="server-card modo-card rankup" data-modo="rankup">
 <span class="server-icon"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i></span>
 <b class="server-name">RANKUP</b>
-<small class="server-desc">Candidate-se a equipe de staff do servidor Rankup.</small>
-<span class="server-btn">Iniciar formulario <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-</a>
+<small class="server-desc">Formulário e perguntas próprias para a equipe do Rankup.</small>
+<span class="server-btn">Selecionar servidor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+</button>
 
-<a class="server-card survival" href="./candidatura-survival.html">
+<button type="button" class="server-card modo-card survival" data-modo="survival">
 <span class="server-icon"><i class="fa-solid fa-tree" aria-hidden="true"></i></span>
 <b class="server-name">SURVIVAL</b>
-<small class="server-desc">Candidate-se a equipe de staff do servidor Survival.</small>
-<span class="server-btn">Iniciar formulario <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-</a>
+<small class="server-desc">Formulário e perguntas próprias para a equipe do Survival.</small>
+<span class="server-btn">Selecionar servidor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+</button>
 
+</div>
+
+<p class="cta-hint" id="cta-hint" aria-live="polite"></p>
+
+<div class="cta-row">
+<button type="button" class="cta-iniciar" id="cta-iniciar" disabled>
+Iniciar formulário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+</button>
 </div>
 
 </div>
@@ -174,6 +233,7 @@ Programas especificos para YouTubers e Streamers que divulgam a FuturyCraft.
 
 <script src="./js/site-nav.js"></script>
 <script src="./js/script.js"></script>
+<script src="./js/candidatura-gateway.js"></script>
 
 </body>
 
