@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    { "source": "/candidatura-rankup.html", "destination": "/candidatura.html?modo=rankup", "permanent": true },
+    { "source": "/candidatura-rankup-conta.html", "destination": "/candidatura.html?modo=rankup", "permanent": true },
+    { "source": "/candidatura-rankup-perfil.html", "destination": "/candidatura.html?modo=rankup", "permanent": true },
+    { "source": "/candidatura-rankup-feedback.html", "destination": "/candidatura.html?modo=rankup", "permanent": true },
+    { "source": "/candidatura-rankup-termo.html", "destination": "/candidatura.html?modo=rankup", "permanent": true },
+    { "source": "/candidatura-survival.html", "destination": "/candidatura.html?modo=survival", "permanent": true },
+    { "source": "/candidatura-survival-conta.html", "destination": "/candidatura.html?modo=survival", "permanent": true },
+    { "source": "/candidatura-survival-perfil.html", "destination": "/candidatura.html?modo=survival", "permanent": true },
+    { "source": "/candidatura-survival-feedback.html", "destination": "/candidatura.html?modo=survival", "permanent": true },
+    { "source": "/candidatura-survival-termo.html", "destination": "/candidatura.html?modo=survival", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

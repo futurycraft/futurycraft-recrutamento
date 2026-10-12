@@ -43,6 +43,29 @@
     }
 
 
+    function preselecionarModo(){
+        const parametros = new URLSearchParams(
+            window.location.search
+        );
+
+        const modoInicial = parametros.get("modo");
+
+        const card = modoInicial && MODOS[modoInicial]
+            ? document.querySelector(
+                '.modo-card[data-modo="' + modoInicial + '"]'
+            )
+            : null;
+
+        if (card) {
+            card.classList.add("selecionado");
+            modo = card.dataset.modo;
+        }
+    }
+
+
+    preselecionarModo();
+
+
     cardsVaga.forEach(card => {
         card.addEventListener("click", () => {
             cardsVaga.forEach(x => x.classList.remove("selecionado"));
