@@ -370,4 +370,8 @@
     carregarSessao();
     preselecionarModo();
 
+    if (!vaga) {
+        selecionarVaga("Ajudante");
+    }
+
 })();
