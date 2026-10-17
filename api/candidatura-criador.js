@@ -100,93 +100,34 @@ const ESQUEMAS = {
             {
                 titulo: "Seu canal de stream",
                 campos: [
-                    ["nome_canal", "Nome do canal/perfil"],
                     ["plataforma_principal", "Plataforma principal"],
                     ["link_canal", "Link do canal/perfil"],
-                    ["seguidores", "Seguidores"],
-                    ["espectadores_simultaneos", "Média de espectadores simultâneos"],
-                    ["media_espectadores_10", "Média de espectadores (últimas 10 lives)"],
-                    ["maior_espectadores_simultaneos", "Maior pico de espectadores simultâneos"],
-                    ["media_lives_mes", "Média de lives por mês"],
-                    ["horarios_live", "Horários preferidos para live"],
-                    ["visualizacoes_por_live", "Média de visualizações por live"],
-                    ["frequencia_lives", "Frequência de lives"],
-                    ["duracao_lives", "Duração média das lives"]
+                    ["link_live", "Link de live/gravação"]
                 ]
             },
             {
-                titulo: "Seu conteúdo",
-                campos: [
-                    ["tipo_conteudo", "Tipos de conteúdo"],
-                    ["transmite_minecraft", "Transmite Minecraft"],
-                    ["link_live", "Link de live/gravação"],
-                    ["live1", "Live recente 1 (link)"],
-                    ["live2", "Live recente 2 (link)"],
-                    ["live3", "Live recente 3 (link)"],
-                    ["sobre_lives", "Sobre as lives"]
-                ]
-            },
-            {
-                titulo: "FuturyCraft",
+                titulo: "Sobre você",
                 campos: [
                     ["ja_joga", "Já joga na FuturyCraft"],
-                    ["modalidade", "Modalidade preferida"],
-                    ["motivo", "Por que fazer parte do programa"],
-                    ["frequencia_futury", "Frequência pretendida de lives"],
-                    ["eventos_oficiais", "Interesse em eventos oficiais"],
-                    ["parceria_outro_servidor", "Tem parceria com outro servidor"],
-                    ["qual_parceria", "Qual servidor"],
-                    ["contrato_exclusividade", "Tem contrato ou exclusividade atualmente"],
-                    ["explique_contrato", "Explique o contrato/exclusividade"],
-                    ["como_conheceu", "Como conheceu a FuturyCraft"]
-                ]
-            },
-            {
-                titulo: "Redes sociais",
-                campos: [
-                    ["instagram", "Instagram"],
-                    ["tiktok", "TikTok"],
-                    ["youtube", "YouTube"],
-                    ["twitter", "X/Twitter"],
-                    ["outra_rede", "Outra rede social"]
+                    ["motivo", "Por que fazer parte do programa"]
                 ]
             }
         ],
         nomes: new Set([
             "nome_completo", "nick", "discord", "email", "idade",
-            "nome_canal", "plataforma_principal", "link_canal", "seguidores",
-            "espectadores_simultaneos", "media_espectadores_10",
-            "maior_espectadores_simultaneos", "media_lives_mes", "horarios_live",
-            "visualizacoes_por_live", "frequencia_lives",
-            "duracao_lives", "tipo_conteudo", "transmite_minecraft", "link_live",
-            "live1", "live2", "live3", "sobre_lives", "ja_joga", "modalidade",
-            "motivo", "frequencia_futury", "eventos_oficiais",
-            "parceria_outro_servidor", "qual_parceria", "contrato_exclusividade",
-            "explique_contrato", "como_conheceu",
-            "instagram", "tiktok", "youtube", "twitter", "outra_rede"
+            "plataforma_principal", "link_canal", "link_live",
+            "ja_joga", "motivo"
         ]),
         obrigatorios: [
             "nome_completo", "nick", "discord", "email", "idade",
-            "nome_canal", "plataforma_principal", "link_canal", "seguidores",
-            "frequencia_lives", "live1", "ja_joga", "motivo"
+            "plataforma_principal", "link_canal", "link_live",
+            "ja_joga", "motivo"
         ],
         validadores: {
             email: "email",
             link_canal: "url",
             link_live: "url",
-            live1: "url",
-            live2: "url",
-            live3: "url",
-            idade: { tipo: "numero", min: 13, max: 99 },
-            seguidores: { tipo: "numero", min: 0 },
-            espectadores_simultaneos: { tipo: "numero", min: 0 },
-            media_espectadores_10: { tipo: "numero", min: 0 },
-            maior_espectadores_simultaneos: { tipo: "numero", min: 0 },
-            media_lives_mes: { tipo: "numero", min: 0 },
-            visualizacoes_por_live: { tipo: "numero", min: 0 },
-            parceria_outro_servidor: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
-            contrato_exclusividade: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
-            como_conheceu: { tipo: "opcao", opcoes: OPCOES_COMO_CONHECEU }
+            idade: { tipo: "numero", min: 13, max: 99 }
         }
     }
 };

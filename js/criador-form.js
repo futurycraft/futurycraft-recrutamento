@@ -27,32 +27,19 @@ var CRIADOR_CONFIG = {
     },
     streamer: {
         storage: "futury_streamer",
-        total: 6,
-        passos: 7,
-        titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
+        total: 4,
+        passos: 5,
+        titulos: ["Seus dados", "Seu canal", "Sobre você", "Finalização"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
-            2: ["nome_canal", "plataforma_principal", "link_canal", "seguidores", "frequencia_lives"],
-            3: ["tipo_conteudo", "live1"],
-            4: ["ja_joga", "motivo"]
+            2: ["plataforma_principal", "link_canal", "link_live"],
+            3: ["ja_joga", "motivo"]
         },
         validadores: {
             email: "email",
             idade: ["numero", 13, 99],
             link_canal: "url",
-            link_live: "url",
-            seguidores: ["numero", 0, 999999999],
-            espectadores_simultaneos: ["numero", 0, 9999999],
-            visualizacoes_por_live: ["numero", 0, 99999999],
-            media_espectadores_10: ["numero", 0, 9999999],
-            maior_espectadores_simultaneos: ["numero", 0, 9999999],
-            media_lives_mes: ["numero", 0, 999],
-            live1: "url",
-            live2: "url",
-            live3: "url",
-            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
-            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
-            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
+            link_live: "url"
         }
     }
 };
@@ -105,6 +92,15 @@ function CriadorForm(tipo) {
         return Number(n).toLocaleString('pt-BR');
     }
 
+    function plataformaVerificacao() {
+        if (tipo !== 'streamer') return 'youtube';
+        var el = form.querySelector('input[name="plataforma_principal"]:checked');
+        var v = el ? el.value : '';
+        if (v === 'Twitch') return 'twitch';
+        if (v === 'YouTube') return 'youtube';
+        return '';
+    }
+
     async function verificarCanal() {
         var link = document.getElementById('link_canal');
         var url = link ? link.value.trim() : '';
@@ -116,7 +112,7 @@ function CriadorForm(tipo) {
         if (verifyStatus) verifyStatus.textContent = 'Identificando canal...';
         if (verifyDetails) verifyDetails.innerHTML = '';
         try {
-            var res = await ChannelVerify.verify(url, tipo === 'streamer' ? 'twitch' : 'youtube', tipo);
+            var res = await ChannelVerify.verify(url, plataformaVerificacao(), tipo);
             if (!res.success) throw new Error(res.error || 'FAIL');
             window.__channelVerification = res;
 
@@ -164,7 +160,7 @@ function CriadorForm(tipo) {
             } else if (code === 'INVALID_URL') {
                 msg = 'Link inválido. Ex.: https://youtube.com/@seucanal';
             } else if (code === 'PLATFORM_MISMATCH') {
-                msg = 'A plataforma do link não confere com este formulário.';
+                msg = 'A plataforma do link não confere com a plataforma selecionada.';
             } else if (code === 'YOUTUBE_CHANNEL_NOT_FOUND' || code === 'TWITCH_NOT_FOUND') {
                 msg = 'Canal não encontrado. Confira o link informado.';
             } else if (code === 'YOUTUBE_MISSING_KEY' || code === 'TWITCH_MISSING_CREDS') {
