@@ -157,7 +157,30 @@ function CriadorForm(tipo) {
             if (verifyStatus) verifyStatus.textContent = 'Canal identificado.';
         } catch (e) {
             window.__channelVerification = null;
-            if (verifyStatus) verifyStatus.textContent = 'Não foi possível identificar o canal. Confira o link e tente novamente.';
+            var code = (e && e.code) || (e && e.message) || '';
+            var msg;
+            if (code === 'NETWORK') {
+                msg = 'Falha de conexão com o serviço de verificação.';
+            } else if (code === 'INVALID_URL') {
+                msg = 'Link inválido. Ex.: https://youtube.com/@seucanal';
+            } else if (code === 'PLATFORM_MISMATCH') {
+                msg = 'A plataforma do link não confere com este formulário.';
+            } else if (code === 'YOUTUBE_CHANNEL_NOT_FOUND' || code === 'TWITCH_NOT_FOUND') {
+                msg = 'Canal não encontrado. Confira o link informado.';
+            } else if (code === 'YOUTUBE_MISSING_KEY' || code === 'TWITCH_MISSING_CREDS') {
+                msg = 'Verificação indisponível: chave da API não configurada no servidor.';
+            } else if (code === 'RATE_LIMIT') {
+                msg = 'Muitas verificações. Aguarde um minuto e tente novamente.';
+            } else if (code === 'USD_ENDPOINT_AUSENTE' || code === 'HTTP_404') {
+                msg = 'Serviço de verificação indisponível no momento (endpoint não encontrado).';
+            } else if (/^YOUTUBE_HTTP_4/.test(code)) {
+                msg = 'A API do YouTube recusou a consulta (verifique a chave/cota da API).';
+            } else if (/^TWITCH_HTTP_4/.test(code)) {
+                msg = 'A API da Twitch recusou a consulta (verifique as credenciais).';
+            } else {
+                msg = 'Não foi possível identificar o canal. Confira o link e tente novamente.';
+            }
+            if (verifyStatus) verifyStatus.textContent = msg;
         } finally {
             verifyBtn.disabled = false;
         }
