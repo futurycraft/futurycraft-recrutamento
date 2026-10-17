@@ -100,6 +100,7 @@ function CriadorForm(tipo) {
         if (m === 'no_recent_video_found') return 'nenhum vídeo recente';
         if (m.indexOf('last_video_over_') === 0) return 'último vídeo há mais de ' + m.slice(15).replace(/d$/, '') + ' dias';
         if (m.indexOf('stream_days_lt_') === 0) return 'menos de ' + m.slice(14) + ' dias com live nos últimos 7';
+        if (m.indexOf('live_days_lt_') === 0) return 'menos de ' + m.slice(13) + ' dias com live no mês';
         if (m === 'no_stream_data') return 'sem dados de lives recentes';
         if (m === 'no_auto_rule') return 'verificação automática apenas para Twitch';
         return m;
@@ -152,14 +153,19 @@ function CriadorForm(tipo) {
             }
             if (res.is_live) linhas.push('<span style="color:#7CFC9B;">● Ao vivo agora</span>');
             if (res.platform === 'twitch' && res.stream_days != null) {
-                linhas.push('Dias com live (últimos 7): <strong>' + res.stream_days + '</strong>');
+                linhas.push('Dias com live (últimos 30): <strong>' + res.stream_days + '</strong>');
             }
 
             if (res.eligibility) {
+                var st = res.eligibility.status;
                 var motivoTxt = (res.eligibility.reasons || []).map(traduzirMotivo).filter(Boolean).join('; ');
-                if (res.eligibility.status === 'eligible') {
+                if (st === 'streamer') {
+                    linhas.push('<span style="color:#7CFC9B;">✔ Apto — Streamer</span>');
+                } else if (st === 'mini_streamer') {
+                    linhas.push('<span style="color:#7CFC9B;">✔ Apto — Mini-Streamer</span>');
+                } else if (st === 'eligible') {
                     linhas.push('<span style="color:#7CFC9B;">✔ Apto para o programa</span>');
-                } else if (res.eligibility.status === 'manual_review') {
+                } else if (st === 'manual_review') {
                     linhas.push('<span style="color:#ffd479;">⚠ Verificação inconclusiva — será analisada manualmente</span>' + (motivoTxt ? ' — ' + motivoTxt : ''));
                 } else {
                     linhas.push('<span style="color:#ff9f9f;">✖ Não apto</span>' + (motivoTxt ? ' — ' + motivoTxt : ''));

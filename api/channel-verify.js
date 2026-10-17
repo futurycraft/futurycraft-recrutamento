@@ -20,9 +20,11 @@ const CACHE_SECONDS = parseInt(process.env.CHANNEL_VERIFY_CACHE_SECONDS || "600"
 const MINI_SUBS_MIN = parseInt(process.env.MINI_SUBS_MIN || "500", 10);
 const MINI_LASTVIDEO_DAYS = parseInt(process.env.MINI_LASTVIDEO_DAYS || "30", 10);
 
-const STREAMER_MIN_FOLLOWERS = parseInt(process.env.STREAMER_MIN_FOLLOWERS || "250", 10);
-const STREAMER_DAYS_WINDOW = parseInt(process.env.STREAMER_DAYS_WINDOW || "7", 10);
-const STREAMER_MIN_STREAM_DAYS = parseInt(process.env.STREAMER_MIN_STREAM_DAYS || "5", 10);
+const STREAMER_DAYS_WINDOW = parseInt(process.env.STREAMER_DAYS_WINDOW || "30", 10);
+const MINI_STREAMER_MIN_FOLLOWERS = parseInt(process.env.MINI_STREAMER_MIN_FOLLOWERS || "100", 10);
+const MINI_STREAMER_MIN_LIVE_DAYS = parseInt(process.env.MINI_STREAMER_MIN_LIVE_DAYS || "7", 10);
+const STREAMER_MIN_FOLLOWERS = parseInt(process.env.STREAMER_MIN_FOLLOWERS || "500", 10);
+const STREAMER_MIN_LIVE_DAYS = parseInt(process.env.STREAMER_MIN_LIVE_DAYS || "15", 10);
 
 const cache = new Map();
 
@@ -294,7 +296,7 @@ async function resolveTwitch(ex) {
   let vodData = false;
   try {
     const vj = await twitchGet(
-      "https://api.twitch.tv/helix/videos?first=30&type=archive&sort=time&user_id=" +
+      "https://api.twitch.tv/helix/videos?first=100&type=archive&sort=time&user_id=" +
         encodeURIComponent(user.id),
       token
     );
@@ -374,12 +376,13 @@ function checkMiniYoutube(res) {
 }
 
 // ----------------------------------------------------------
-// ELEGIBILIDADE STREAMER (Twitch: >= 250 seguidores +
-// >= 5 dias com live nos ultimos 7 dias).
-// Outras plataformas -> revisao manual (sem regra automática).
+// ELEGIBILIDADE STREAMER (Twitch, janela = mes/30 dias)
+//  - Streamer      : >= 500 seguidores e >= 15 dias com live
+//  - Mini-Streamer : >= 100 seguidores e >= 7 dias com live
+// Outras plataformas -> revisao manual (sem regra automatica).
 // ----------------------------------------------------------
 function checkStreamer(res) {
-  const out = { eligible: false, status: "ineligible", reasons: [] };
+  const out = { eligible: false, status: "ineligible", tier: null, reasons: [] };
 
   if (res.platform !== "twitch") {
     out.status = "manual_review";
@@ -399,22 +402,34 @@ function checkStreamer(res) {
   if ((res.vod_count || 0) === 0 && !res.is_live) {
     out.status = "manual_review";
     out.reasons.push("no_stream_data");
-    if (res.followers < STREAMER_MIN_FOLLOWERS) {
-      out.reasons.push("followers_lt_" + STREAMER_MIN_FOLLOWERS);
-    }
     return out;
   }
 
-  const followersOk = res.followers >= STREAMER_MIN_FOLLOWERS;
-  if (!followersOk) out.reasons.push("followers_lt_" + STREAMER_MIN_FOLLOWERS);
+  const followers = res.followers;
 
-  const daysOk = days >= STREAMER_MIN_STREAM_DAYS;
-  if (!daysOk) out.reasons.push("stream_days_lt_" + STREAMER_MIN_STREAM_DAYS);
-
-  if (followersOk && daysOk) {
+  const streamerOk = followers >= STREAMER_MIN_FOLLOWERS && days >= STREAMER_MIN_LIVE_DAYS;
+  if (streamerOk) {
     out.eligible = true;
-    out.status = "eligible";
+    out.status = "streamer";
+    out.tier = "streamer";
     out.reasons = [];
+    return out;
+  }
+
+  const miniOk = followers >= MINI_STREAMER_MIN_FOLLOWERS && days >= MINI_STREAMER_MIN_LIVE_DAYS;
+  if (miniOk) {
+    out.eligible = true;
+    out.status = "mini_streamer";
+    out.tier = "mini_streamer";
+    out.reasons = [];
+    return out;
+  }
+
+  if (followers < MINI_STREAMER_MIN_FOLLOWERS) {
+    out.reasons.push("followers_lt_" + MINI_STREAMER_MIN_FOLLOWERS);
+  }
+  if (days < MINI_STREAMER_MIN_LIVE_DAYS) {
+    out.reasons.push("live_days_lt_" + MINI_STREAMER_MIN_LIVE_DAYS);
   }
   return out;
 }
