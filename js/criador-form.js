@@ -1,16 +1,16 @@
 ﻿/* ==========================================================
-   FUTURYCRAFT - FORMULÃRIOS DE CRIADORES
+   FUTURYCRAFT - FORMULÁRIOS DE CRIADORES
    Motor de wizard compartilhado (YouTuber / Streamer).
-   ConfiguraÃ§Ã£o por formulÃ¡rio em CRIADOR_CONFIG.
-   - ValidaÃ§Ã£o por etapa antes de avanÃ§ar
-   - PersistÃªncia em localStorage (expira em 7 dias)
+   Configuração por formulário em CRIADOR_CONFIG.
+   - Validação por etapa antes de avançar
+   - Persistência em localStorage (expira em 7 dias)
    - Envio via API serverless /api/candidatura-criador
 ========================================================== */
 
 var CRIADOR_CONFIG = {
     youtuber: {
         storage: "futury_youtuber",
-        titulos: ["Seus dados", "Seu canal", "Seu conteÃºdo", "FuturyCraft", "Redes sociais", "FinalizaÃ§Ã£o"],
+        titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
             2: ["nome_canal", "link_canal", "link_melhor_video", "inscritos", "frequencia_publicacao"],
@@ -31,15 +31,15 @@ var CRIADOR_CONFIG = {
             video1: "url",
             video2: "url",
             video3: "url",
-            publico_principal: ["opcao", ["Brasil", "Portugal", "AmÃ©rica Latina", "Internacional", "Outro"]],
-            parceria_outro_servidor: ["opcao", ["Sim", "NÃ£o"]],
-            contrato_exclusividade: ["opcao", ["Sim", "NÃ£o"]],
-            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "IndicaÃ§Ã£o de amigo", "Jogando no servidor", "Outro"]]
+            publico_principal: ["opcao", ["Brasil", "Portugal", "América Latina", "Internacional", "Outro"]],
+            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
+            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
+            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
         }
     },
     streamer: {
         storage: "futury_streamer",
-        titulos: ["Seus dados", "Seu canal", "Seu conteÃºdo", "FuturyCraft", "Redes sociais", "FinalizaÃ§Ã£o"],
+        titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
             2: ["nome_canal", "plataforma_principal", "link_canal", "seguidores", "frequencia_lives"],
@@ -60,9 +60,9 @@ var CRIADOR_CONFIG = {
             live1: "url",
             live2: "url",
             live3: "url",
-            parceria_outro_servidor: ["opcao", ["Sim", "NÃ£o"]],
-            contrato_exclusividade: ["opcao", ["Sim", "NÃ£o"]],
-            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "IndicaÃ§Ã£o de amigo", "Jogando no servidor", "Outro"]]
+            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
+            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
+            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
         }
     }
 };
@@ -70,17 +70,17 @@ var CRIADOR_CONFIG = {
 var TITULOS_POR_ETAPA = {
     1: "Seus dados",
     2: "Seu canal",
-    3: "Seu conteÃºdo",
+    3: "Seu conteúdo",
     4: "FuturyCraft",
     5: "Redes sociais",
-    6: "FinalizaÃ§Ã£o"
+    6: "Finalização"
 };
 
 function CriadorForm(tipo) {
 
     var cfg = CRIADOR_CONFIG[tipo];
 
-    if (!cfg) throw new Error("Tipo invÃ¡lido: " + tipo);
+    if (!cfg) throw new Error("Tipo inválido: " + tipo);
 
     var form = document.getElementById("form-" + tipo);
     var etapaAtual = 1;
@@ -167,7 +167,7 @@ function CriadorForm(tipo) {
     }
 
     // ==========================================================
-    // VALIDAÃ‡ÃƒO
+    // VALIDAÇÃO
     // ==========================================================
 
     function validarValor(nome, valor) {
@@ -234,7 +234,7 @@ function CriadorForm(tipo) {
             }
         });
 
-        // Campos obrigatÃ³rios com rotulo prÃ³prio (msg-erro automatica)
+        // Campos obrigatórios com rotulo próprio (msg-erro automatica)
         form.querySelectorAll(".campo").forEach(function (grupo) {
             var marcado = false;
             var radio = grupo.querySelector('input[type="radio"]');
@@ -274,7 +274,7 @@ function CriadorForm(tipo) {
         var fill = document.getElementById("progresso-fill");
 
         if (num) num.textContent = passo;
-        if (titulo) titulo.textContent = modoApresentacao ? "ApresentaÃ§Ã£o" : TITULOS_POR_ETAPA[etapaAtual];
+        if (titulo) titulo.textContent = modoApresentacao ? "Apresentação" : TITULOS_POR_ETAPA[etapaAtual];
         if (percent) percent.textContent = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
         if (fill) fill.style.width = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
 
@@ -365,7 +365,7 @@ function CriadorForm(tipo) {
     }
 
     // ==========================================================
-    // PERSISTÃŠNCIA
+    // PERSISTÊNCIA
     // ==========================================================
 
     function salvar() {
@@ -460,7 +460,7 @@ function CriadorForm(tipo) {
     });
 
     // ==========================================================
-    // INICIALIZAÃ‡ÃƒO
+    // INICIALIZAÇÃO
     // ==========================================================
 
     carregar();
@@ -468,7 +468,7 @@ function CriadorForm(tipo) {
     configurarCondicionais();
     atualizarInterface();
 
-    // expÃµe para o HTML (onclick)
+    // expõe para o HTML (onclick)
     window.irEtapa = irEtapa;
     window.voltarEtapa = voltarEtapa;
     window.iniciarCandidatura = iniciarCandidatura;

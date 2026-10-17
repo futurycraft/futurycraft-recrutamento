@@ -4,14 +4,14 @@
 // FUTURYCRAFT - CANDIDATURA CRIADORES (YouTuber / Streamer)
 // ==========================================================
 // - Allow-list por tipo: nunca insere campos livres do body.
-// - Esquema de rÃ³tulos por seÃ§Ã£o Ã© definido AQUI (server);
+// - Esquema de rótulos por seção é definido AQUI (server);
 //   o cliente manda apenas chave->valor ("campos").
-// - status sempre forÃ§ado a "Pendente" no servidor.
+// - status sempre forçado a "Pendente" no servidor.
 // - Turnstile validado quando TURNSTILE_SECRET_KEY existe.
-// - Rate limit por IP + guard de duplicidade (memÃ³ria, ok
-//   p/ escala atual; em serverless por instÃ¢ncia).
+// - Rate limit por IP + guard de duplicidade (memória, ok
+//   p/ escala atual; em serverless por instância).
 // - Webhook Discord OPCIONAL via DISCORD_WEBHOOK_URL (env).
-//   Sem a env, nada Ã© enviado.
+//   Sem a env, nada é enviado.
 // ==========================================================
 
 const supabase = createClient(
@@ -29,13 +29,13 @@ const MAX_CAMPO_TAMANHO = 2000;
 const MAX_ARRAY_ITENS = 20;
 const MAX_TOTAL_RESPOSTAS = 40000;
 
-// OpÃ§Ãµes fechadas (allow-list) usadas nos validadores.
-const OPCOES_SIM_NAO = ["Sim", "NÃ£o"];
-const OPCOES_PUBLICO = ["Brasil", "Portugal", "AmÃ©rica Latina", "Internacional", "Outro"];
-const OPCOES_HORARIOS = ["ManhÃ£", "Tarde", "Noite", "Madrugada"];
+// Opções fechadas (allow-list) usadas nos validadores.
+const OPCOES_SIM_NAO = ["Sim", "Não"];
+const OPCOES_PUBLICO = ["Brasil", "Portugal", "América Latina", "Internacional", "Outro"];
+const OPCOES_HORARIOS = ["Manhã", "Tarde", "Noite", "Madrugada"];
 const OPCOES_COMO_CONHECEU = [
     "Discord", "TikTok", "YouTube", "Instagram", "Google",
-    "IndicaÃ§Ã£o de amigo", "Jogando no servidor", "Outro"
+    "Indicação de amigo", "Jogando no servidor", "Outro"
 ];
 
 // ----------------------------------------------------------
@@ -59,33 +59,33 @@ const ESQUEMAS = {
                 campos: [
                     ["nome_canal", "Nome do canal"],
                     ["link_canal", "Link do canal"],
-                    ["link_melhor_video", "Link do melhor vÃ­deo"],
+                    ["link_melhor_video", "Link do melhor vídeo"],
                     ["inscritos", "Inscritos"],
-                    ["visualizacoes_mensais", "VisualizaÃ§Ãµes por mÃªs"],
-                    ["media_visualizacoes_10", "MÃ©dia de visualizaÃ§Ãµes (Ãºltimos 10 vÃ­deos)"],
-                    ["media_visualizacoes_shorts", "MÃ©dia de visualizaÃ§Ãµes (Shorts)"],
-                    ["maior_visualizacoes", "Maior nÃºmero de views de um vÃ­deo"],
-                    ["publico_principal", "PÃºblico principal"],
-                    ["frequencia_publicacao", "FrequÃªncia de publicaÃ§Ã£o"],
-                    ["tempo_criando_conteudo", "Tempo criando conteÃºdo"]
+                    ["visualizacoes_mensais", "Visualizações por mês"],
+                    ["media_visualizacoes_10", "Média de visualizações (últimos 10 vídeos)"],
+                    ["media_visualizacoes_shorts", "Média de visualizações (Shorts)"],
+                    ["maior_visualizacoes", "Maior número de views de um vídeo"],
+                    ["publico_principal", "Público principal"],
+                    ["frequencia_publicacao", "Frequência de publicação"],
+                    ["tempo_criando_conteudo", "Tempo criando conteúdo"]
                 ]
             },
             {
-                titulo: "Seu conteÃºdo",
+                titulo: "Seu conteúdo",
                 campos: [
-                    ["tipo_conteudo", "Tipos de conteÃºdo"],
-                    ["produz_minecraft", "Produz conteÃºdo de Minecraft"],
-                    ["link_conteudo_minecraft", "Link de conteÃºdo de Minecraft"],
-                    ["video1", "VÃ­deo recente 1 (link)"],
-                    ["video2", "VÃ­deo recente 2 (link)"],
-                    ["video3", "VÃ­deo recente 3 (link)"],
-                    ["sobre_canal", "Sobre o canal e o conteÃºdo"]
+                    ["tipo_conteudo", "Tipos de conteúdo"],
+                    ["produz_minecraft", "Produz conteúdo de Minecraft"],
+                    ["link_conteudo_minecraft", "Link de conteúdo de Minecraft"],
+                    ["video1", "Vídeo recente 1 (link)"],
+                    ["video2", "Vídeo recente 2 (link)"],
+                    ["video3", "Vídeo recente 3 (link)"],
+                    ["sobre_canal", "Sobre o canal e o conteúdo"]
                 ]
             },
             {
                 titulo: "FuturyCraft",
                 campos: [
-                    ["ja_joga", "JÃ¡ joga na FuturyCraft"],
+                    ["ja_joga", "Já joga na FuturyCraft"],
                     ["modalidade", "Modalidade preferida"],
                     ["motivo", "Por que fazer parte do programa"],
                     ["divulgacao", "Como pretende divulgar a FuturyCraft"],
@@ -163,22 +163,22 @@ const ESQUEMAS = {
                     ["plataforma_principal", "Plataforma principal"],
                     ["link_canal", "Link do canal/perfil"],
                     ["seguidores", "Seguidores"],
-                    ["espectadores_simultaneos", "MÃ©dia de espectadores simultÃ¢neos"],
-                    ["media_espectadores_10", "MÃ©dia de espectadores (Ãºltimas 10 lives)"],
-                    ["maior_espectadores_simultaneos", "Maior pico de espectadores simultÃ¢neos"],
-                    ["media_lives_mes", "MÃ©dia de lives por mÃªs"],
-                    ["horarios_live", "HorÃ¡rios preferidos para live"],
-                    ["visualizacoes_por_live", "MÃ©dia de visualizaÃ§Ãµes por live"],
-                    ["frequencia_lives", "FrequÃªncia de lives"],
-                    ["duracao_lives", "DuraÃ§Ã£o mÃ©dia das lives"]
+                    ["espectadores_simultaneos", "Média de espectadores simultâneos"],
+                    ["media_espectadores_10", "Média de espectadores (últimas 10 lives)"],
+                    ["maior_espectadores_simultaneos", "Maior pico de espectadores simultâneos"],
+                    ["media_lives_mes", "Média de lives por mês"],
+                    ["horarios_live", "Horários preferidos para live"],
+                    ["visualizacoes_por_live", "Média de visualizações por live"],
+                    ["frequencia_lives", "Frequência de lives"],
+                    ["duracao_lives", "Duração média das lives"]
                 ]
             },
             {
-                titulo: "Seu conteÃºdo",
+                titulo: "Seu conteúdo",
                 campos: [
-                    ["tipo_conteudo", "Tipos de conteÃºdo"],
+                    ["tipo_conteudo", "Tipos de conteúdo"],
                     ["transmite_minecraft", "Transmite Minecraft"],
-                    ["link_live", "Link de live/gravaÃ§Ã£o"],
+                    ["link_live", "Link de live/gravação"],
                     ["live1", "Live recente 1 (link)"],
                     ["live2", "Live recente 2 (link)"],
                     ["live3", "Live recente 3 (link)"],
@@ -188,10 +188,10 @@ const ESQUEMAS = {
             {
                 titulo: "FuturyCraft",
                 campos: [
-                    ["ja_joga", "JÃ¡ joga na FuturyCraft"],
+                    ["ja_joga", "Já joga na FuturyCraft"],
                     ["modalidade", "Modalidade preferida"],
                     ["motivo", "Por que fazer parte do programa"],
-                    ["frequencia_futury", "FrequÃªncia pretendida de lives"],
+                    ["frequencia_futury", "Frequência pretendida de lives"],
                     ["eventos_oficiais", "Interesse em eventos oficiais"],
                     ["parceria_outro_servidor", "Tem parceria com outro servidor"],
                     ["qual_parceria", "Qual servidor"],
@@ -381,13 +381,13 @@ async function notificarWebhook(tipo, dados) {
     const rotulo = tipo === "youtuber" ? "YOUTUBER" : "STREAMER";
     const texto =
         `**NOVA CANDIDATURA DE ${rotulo}**\n` +
-        `ðŸŽ« ID: ${dados.codigo}\n` +
-        `ðŸ‘¤ Nome: ${dados.nome}\n` +
-        `ðŸŽ® Nick: ${dados.nick}\n` +
-        `ðŸ’¬ Discord: ${dados.discord}\n` +
-        `ðŸ“§ E-mail: ${dados.email}\n` +
-        `ðŸ“º Canal: ${dados.canal}\n` +
-        `ðŸ”— Link: ${dados.link_canal || "-"}`;
+        `🎫 ID: ${dados.codigo}\n` +
+        `👤 Nome: ${dados.nome}\n` +
+        `🎮 Nick: ${dados.nick}\n` +
+        `💬 Discord: ${dados.discord}\n` +
+        `📧 E-mail: ${dados.email}\n` +
+        `📺 Canal: ${dados.canal}\n` +
+        `🔗 Link: ${dados.link_canal || "-"}`;
     try {
         await fetch(DISCORD_WEBHOOK_URL, {
             method: "POST",
@@ -395,13 +395,13 @@ async function notificarWebhook(tipo, dados) {
             body: JSON.stringify({ content: texto })
         });
     } catch (e) {
-        console.error("Webhook Discord falhou (nÃ£o bloqueia envio):", e);
+        console.error("Webhook Discord falhou (não bloqueia envio):", e);
     }
 }
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
-        return res.status(405).json({ sucesso: false, erro: "MÃ©todo nÃ£o permitido." });
+        return res.status(405).json({ sucesso: false, erro: "Método não permitido." });
     }
 
     const ip = pegarIp(req);
@@ -414,25 +414,25 @@ export default async function handler(req, res) {
 
     const origin = req.headers["origin"] || "";
     if (origin && !/^https:\/\/([a-z0-9-]+\.)*futurycraft/i.test(origin)) {
-        return res.status(403).json({ sucesso: false, erro: "Origem nÃ£o permitida." });
+        return res.status(403).json({ sucesso: false, erro: "Origem não permitida." });
     }
 
     try {
         const raw = req.body || {};
 
         if (typeof raw !== "object" || Array.isArray(raw)) {
-            return res.status(400).json({ sucesso: false, erro: "Dados invÃ¡lidos." });
+            return res.status(400).json({ sucesso: false, erro: "Dados inválidos." });
         }
 
         const tipo = typeof raw.form_type === "string" ? raw.form_type.toLowerCase() : "";
         if (!TIPOS_VALIDOS.has(tipo)) {
-            return res.status(400).json({ sucesso: false, erro: "Tipo de candidatura invÃ¡lido." });
+            return res.status(400).json({ sucesso: false, erro: "Tipo de candidatura inválido." });
         }
 
         const esquema = ESQUEMAS[tipo];
 
         if (typeof raw.campos !== "object" || raw.campos === null || Array.isArray(raw.campos)) {
-            return res.status(400).json({ sucesso: false, erro: "Campos invÃ¡lidos." });
+            return res.status(400).json({ sucesso: false, erro: "Campos inválidos." });
         }
 
         // ---- Turnstile ----
@@ -442,7 +442,7 @@ export default async function handler(req, res) {
             if (!ok) {
                 return res.status(400).json({
                     sucesso: false,
-                    erro: "NÃ£o foi possÃ­vel validar o desafio de seguranÃ§a. Tente novamente."
+                    erro: "Não foi possível validar o desafio de segurança. Tente novamente."
                 });
             }
         }
@@ -471,7 +471,7 @@ export default async function handler(req, res) {
             limpos[nome] = val;
         }
 
-        // ---- validaÃ§Ã£o server-side independente ----
+        // ---- validação server-side independente ----
         for (const nome of esquema.obrigatorios) {
             const valor = limpos[nome];
             if (valor === null || valor === "INVALIDO") {
@@ -480,20 +480,20 @@ export default async function handler(req, res) {
                     .find((c) => c[0] === nome);
                 return res.status(400).json({
                     sucesso: false,
-                    erro: "Campo obrigatÃ³rio invÃ¡lido: " + (rotulo ? rotulo[1] : nome) + "."
+                    erro: "Campo obrigatório inválido: " + (rotulo ? rotulo[1] : nome) + "."
                 });
             }
             const regra = esquema.validadores[nome];
             if (regra && !validarNome(regra, valor)) {
                 return res.status(400).json({
                     sucesso: false,
-                    erro: "Campo invÃ¡lido: " + nome + "."
+                    erro: "Campo inválido: " + nome + "."
                 });
             }
         }
 
         if (limpos.tipo_conteudo.length === 0) {
-            return res.status(400).json({ sucesso: false, erro: "Selecione ao menos um tipo de conteÃºdo." });
+            return res.status(400).json({ sucesso: false, erro: "Selecione ao menos um tipo de conteúdo." });
         }
 
         // ---- guard de duplicidade acidental ----
@@ -501,7 +501,7 @@ export default async function handler(req, res) {
         if (!permitirEnvioNovo(ip, chaveDedup)) {
             return res.status(429).json({
                 sucesso: false,
-                erro: "JÃ¡ recebemos sua candidatura. Aguarde um instante antes de tentar novamente."
+                erro: "Já recebemos sua candidatura. Aguarde um instante antes de tentar novamente."
             });
         }
 
@@ -515,7 +515,7 @@ export default async function handler(req, res) {
                 }
             }
         }
-        // ---- monta respostas estruturadas por seÃ§Ã£o (rÃ³tulos do servidor) ----
+        // ---- monta respostas estruturadas por seção (rótulos do servidor) ----
         const respostas = {
             form_type: tipo,
             etapas: []
@@ -545,7 +545,7 @@ export default async function handler(req, res) {
         // ---- colunas resumo p/ listagem no painel ----
         const plataforma = tipo === "youtuber"
             ? "YouTube"
-            : (limpos.plataforma_principal || "NÃ£o informado");
+            : (limpos.plataforma_principal || "Não informado");
 
         const registro = {
             form_type: tipo,
@@ -573,7 +573,7 @@ export default async function handler(req, res) {
             verification_data: raw.channel_verification || {}
         };
 
-        // campos internos (status, id, created_at, avaliador...) nunca vÃªm do cliente
+        // campos internos (status, id, created_at, avaliador...) nunca vêm do cliente
 
         const { data, error } = await supabase
             .from("candidaturas_criadores")
@@ -589,7 +589,7 @@ export default async function handler(req, res) {
             });
         }
 
-        // webhook opcional (ambiental; falha nÃ£o bloqueia)
+        // webhook opcional (ambiental; falha não bloqueia)
         await notificarWebhook(tipo, {
             codigo: registro.codigo,
             nome: registro.nome,
