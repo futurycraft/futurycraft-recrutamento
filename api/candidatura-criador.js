@@ -57,91 +57,32 @@ const ESQUEMAS = {
             {
                 titulo: "Seu canal",
                 campos: [
-                    ["nome_canal", "Nome do canal"],
                     ["link_canal", "Link do canal"],
-                    ["link_melhor_video", "Link do melhor vídeo"],
-                    ["inscritos", "Inscritos"],
-                    ["visualizacoes_mensais", "Visualizações por mês"],
-                    ["media_visualizacoes_10", "Média de visualizações (últimos 10 vídeos)"],
-                    ["media_visualizacoes_shorts", "Média de visualizações (Shorts)"],
-                    ["maior_visualizacoes", "Maior número de views de um vídeo"],
-                    ["publico_principal", "Público principal"],
-                    ["frequencia_publicacao", "Frequência de publicação"],
-                    ["tempo_criando_conteudo", "Tempo criando conteúdo"]
+                    ["link_melhor_video", "Link do melhor vídeo"]
                 ]
             },
             {
-                titulo: "Seu conteúdo",
-                campos: [
-                    ["tipo_conteudo", "Tipos de conteúdo"],
-                    ["produz_minecraft", "Produz conteúdo de Minecraft"],
-                    ["link_conteudo_minecraft", "Link de conteúdo de Minecraft"],
-                    ["video1", "Vídeo recente 1 (link)"],
-                    ["video2", "Vídeo recente 2 (link)"],
-                    ["video3", "Vídeo recente 3 (link)"],
-                    ["sobre_canal", "Sobre o canal e o conteúdo"]
-                ]
-            },
-            {
-                titulo: "FuturyCraft",
+                titulo: "Sobre você",
                 campos: [
                     ["ja_joga", "Já joga na FuturyCraft"],
-                    ["modalidade", "Modalidade preferida"],
-                    ["motivo", "Por que fazer parte do programa"],
-                    ["divulgacao", "Como pretende divulgar a FuturyCraft"],
-                    ["eventos_interesse", "Interesse em eventos"],
-                    ["parceria_outro_servidor", "Tem parceria com outro servidor"],
-                    ["qual_parceria", "Qual servidor"],
-                    ["contrato_exclusividade", "Tem contrato ou exclusividade atualmente"],
-                    ["explique_contrato", "Explique o contrato/exclusividade"],
-                    ["como_conheceu", "Como conheceu a FuturyCraft"]
-                ]
-            },
-            {
-                titulo: "Redes sociais",
-                campos: [
-                    ["instagram", "Instagram"],
-                    ["tiktok", "TikTok"],
-                    ["twitter", "X/Twitter"],
-                    ["outra_rede", "Outra rede social"]
+                    ["motivo", "Por que fazer parte do programa"]
                 ]
             }
         ],
         nomes: new Set([
             "nome_completo", "nick", "discord", "email", "idade",
-            "nome_canal", "link_canal", "link_melhor_video", "inscritos",
-            "visualizacoes_mensais", "media_visualizacoes_10", "media_visualizacoes_shorts",
-            "maior_visualizacoes", "publico_principal", "frequencia_publicacao",
-            "tempo_criando_conteudo", "tipo_conteudo", "produz_minecraft",
-            "link_conteudo_minecraft", "video1", "video2", "video3", "sobre_canal",
-            "ja_joga", "modalidade", "motivo", "divulgacao", "eventos_interesse",
-            "parceria_outro_servidor", "qual_parceria", "contrato_exclusividade",
-            "explique_contrato", "como_conheceu",
-            "instagram", "tiktok", "twitter", "outra_rede"
+            "link_canal", "link_melhor_video",
+            "ja_joga", "motivo"
         ]),
         obrigatorios: [
             "nome_completo", "nick", "discord", "email", "idade",
-            "nome_canal", "link_canal", "link_melhor_video", "inscritos",
-            "frequencia_publicacao", "video1", "ja_joga", "motivo", "divulgacao"
+            "link_canal", "link_melhor_video", "ja_joga", "motivo"
         ],
         validadores: {
             email: "email",
             link_canal: "url",
             link_melhor_video: "url",
-            link_conteudo_minecraft: "url",
-            video1: "url",
-            video2: "url",
-            video3: "url",
-            idade: { tipo: "numero", min: 13, max: 99 },
-            inscritos: { tipo: "numero", min: 0 },
-            visualizacoes_mensais: { tipo: "numero", min: 0 },
-            media_visualizacoes_10: { tipo: "numero", min: 0 },
-            media_visualizacoes_shorts: { tipo: "numero", min: 0 },
-            maior_visualizacoes: { tipo: "numero", min: 0 },
-            publico_principal: { tipo: "opcao", opcoes: OPCOES_PUBLICO },
-            parceria_outro_servidor: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
-            contrato_exclusividade: { tipo: "opcao", opcoes: OPCOES_SIM_NAO },
-            como_conheceu: { tipo: "opcao", opcoes: OPCOES_COMO_CONHECEU }
+            idade: { tipo: "numero", min: 13, max: 99 }
         }
     },
     streamer: {
@@ -492,7 +433,7 @@ export default async function handler(req, res) {
             }
         }
 
-        if (limpos.tipo_conteudo.length === 0) {
+        if (esquema.nomes.has("tipo_conteudo") && (!Array.isArray(limpos.tipo_conteudo) || limpos.tipo_conteudo.length === 0)) {
             return res.status(400).json({ sucesso: false, erro: "Selecione ao menos um tipo de conteúdo." });
         }
 
@@ -556,15 +497,15 @@ export default async function handler(req, res) {
             email: limpos.email,
             idade: limpos.idade ? Number(limpos.idade) : null,
             plataforma: plataforma,
-            canal: limpos.nome_canal,
+            canal: limpos.nome_canal || (raw.channel_verification && raw.channel_verification.title) || null,
             link_canal: limpos.link_canal,
             respostas: respostas,
             status: "Pendente",
             channel_id: (raw.channel_verification && raw.channel_verification.channel_id) || null,
             channel_handle: (raw.channel_verification && raw.channel_verification.channel_handle) || null,
             platform_verified: !!raw.channel_verification,
-            subscribers: (raw.channel_verification && raw.channel_verification.subscribers != null) ? raw.channel_verification.subscribers : (limpos.inscritos ? Number(limpos.inscritos) : null),
-            followers: (raw.channel_verification && raw.channel_verification.followers != null) ? raw.channel_verification.followers : (limpos.seguidores ? Number(limpos.seguidores) : null),
+            subscribers: (raw.channel_verification && raw.channel_verification.subscribers != null) ? raw.channel_verification.subscribers : (limpos.inscritos != null ? Number(limpos.inscritos) : null),
+            followers: (raw.channel_verification && raw.channel_verification.followers != null) ? raw.channel_verification.followers : (limpos.seguidores != null ? Number(limpos.seguidores) : null),
             last_video_at: (raw.channel_verification && raw.channel_verification.last_video_at) || null,
             last_stream_at: (raw.channel_verification && raw.channel_verification.last_stream_at) || null,
             verified_at: (raw.channel_verification && raw.channel_verification.verified_at) || new Date().toISOString(),

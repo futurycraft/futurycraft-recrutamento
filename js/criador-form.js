@@ -10,35 +10,25 @@
 var CRIADOR_CONFIG = {
     youtuber: {
         storage: "futury_youtuber",
-        titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
+        total: 4,
+        passos: 5,
+        titulos: ["Seus dados", "Seu canal", "Sobre você", "Finalização"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
-            2: ["nome_canal", "link_canal", "link_melhor_video", "inscritos", "frequencia_publicacao"],
-            3: ["tipo_conteudo", "video1"],
-            4: ["ja_joga", "motivo", "divulgacao"]
+            2: ["link_canal", "link_melhor_video"],
+            3: ["ja_joga", "motivo"]
         },
         validadores: {
             email: "email",
             idade: ["numero", 13, 99],
             link_canal: "url",
-            link_melhor_video: "url",
-            inscritos: ["numero", 0, 999999999],
-            link_conteudo_minecraft: "url",
-            visualizacoes_mensais: ["numero", 0, 9999999999],
-            media_visualizacoes_10: ["numero", 0, 9999999999],
-            media_visualizacoes_shorts: ["numero", 0, 9999999999],
-            maior_visualizacoes: ["numero", 0, 9999999999],
-            video1: "url",
-            video2: "url",
-            video3: "url",
-            publico_principal: ["opcao", ["Brasil", "Portugal", "América Latina", "Internacional", "Outro"]],
-            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
-            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
-            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
+            link_melhor_video: "url"
         }
     },
     streamer: {
         storage: "futury_streamer",
+        total: 6,
+        passos: 7,
         titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
@@ -84,8 +74,9 @@ function CriadorForm(tipo) {
 
     var form = document.getElementById("form-" + tipo);
     var etapaAtual = 1;
-    var TOTAL = 6;
-    var TOTAL_PASSOS = 7;
+    var TOTAL = cfg.total || 6;
+    var TOTAL_PASSOS = cfg.passos || 7;
+    var titulos = cfg.titulos || Object.values(TITULOS_POR_ETAPA);
     var modoApresentacao = true;
     var apresEl = document.getElementById("etapa-apresentacao");
     var areaEl = document.getElementById("area-candidatura");
@@ -94,38 +85,94 @@ function CriadorForm(tipo) {
     var verifyBtn = document.getElementById('verify-btn');
     var verifyStatus = document.getElementById('verify-status');
     var verifyDetails = document.getElementById('verify-details');
-    if (verifyBtn) {
-      verifyBtn.addEventListener('click', async function() {
+
+    function formatarData(iso) {
+        if (!iso) return '';
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return '';
+        return d.toLocaleDateString('pt-BR');
+    }
+
+    function diasDesde(iso) {
+        if (!iso) return null;
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return null;
+        return Math.floor((Date.now() - d.getTime()) / 86400000);
+    }
+
+    function numerar(n) {
+        if (n === null || n === undefined) return null;
+        return Number(n).toLocaleString('pt-BR');
+    }
+
+    async function verificarCanal() {
         var link = document.getElementById('link_canal');
-        var url = link ? link.value : '';
-        if (!url) { if (verifyStatus) verifyStatus.textContent = 'Informe o link do canal.'; return; }
+        var url = link ? link.value.trim() : '';
+        if (!url) {
+            if (verifyStatus) verifyStatus.textContent = 'Informe o link do canal primeiro.';
+            return;
+        }
         verifyBtn.disabled = true;
-        if (verifyStatus) verifyStatus.textContent = 'Verificando canal...';
+        if (verifyStatus) verifyStatus.textContent = 'Identificando canal...';
         if (verifyDetails) verifyDetails.innerHTML = '';
         try {
-          var res = await ChannelVerify.verify(url, tipo === 'streamer' ? 'twitch' : 'youtube', tipo);
-          if (!res.success) throw new Error(res.error || 'FAIL');
-          window.__channelVerification = res;
-          var parts = [];
-          if (res.title) parts.push('Canal: ' + res.title);
-          if (res.channel_handle) parts.push('Handle/ID: ' + res.channel_handle);
-          if (res.subscribers != null) parts.push('Inscritos: ' + res.subscribers);
-          if (res.followers != null) parts.push('Seguidores: ' + res.followers);
-          if (res.last_video_at) parts.push('Ultimo video: ' + new Date(res.last_video_at).toLocaleDateString('pt-BR'));
-          if (res.last_stream_at) parts.push('Ultima live: ' + new Date(res.last_stream_at).toLocaleDateString('pt-BR'));
-          if (res.eligibility) {
-            if (res.eligibility.status === 'eligible') parts.push('Resultado: Apto para Mini YouTuber (>=500 inscritos + video <= 30d)');
-            else if (res.eligibility.status === 'manual_review') parts.push('Resultado: Verificacao inconclusiva - precisa analise manual');
-            else parts.push('Resultado: Nao apto - ' + (res.eligibility.reasons || []).join(', '));
-          }
-          if (verifyDetails) verifyDetails.innerHTML = parts.map(function(p){return '<div>'+p+'</div>'}).join('');
-          if (verifyStatus) verifyStatus.textContent = 'Verificacao concluida';
+            var res = await ChannelVerify.verify(url, tipo === 'streamer' ? 'twitch' : 'youtube', tipo);
+            if (!res.success) throw new Error(res.error || 'FAIL');
+            window.__channelVerification = res;
+
+            var linhas = [];
+            if (res.title) linhas.push('<strong>' + res.title + '</strong>');
+            if (res.channel_handle) linhas.push('Canal: ' + res.channel_handle);
+            if (res.subscribers != null) {
+                linhas.push('Inscritos: <strong>' + numerar(res.subscribers) + '</strong>');
+            } else if (res.hidden_subs) {
+                linhas.push('Inscritos: <em>ocultos pelo canal</em>');
+            }
+            if (res.followers != null) linhas.push('Seguidores: <strong>' + numerar(res.followers) + '</strong>');
+
+            if (res.last_video_at) {
+                var dV = diasDesde(res.last_video_at);
+                linhas.push('Último vídeo: ' + formatarData(res.last_video_at) + (dV !== null ? ' (há ' + dV + ' dia(s))' : ''));
+            } else if (res.success && res.platform === 'youtube') {
+                linhas.push('Último vídeo: <em>não encontrado</em>');
+            }
+
+            if (res.last_stream_at) {
+                var dL = diasDesde(res.last_stream_at);
+                linhas.push('Última live: ' + formatarData(res.last_stream_at) + (dL !== null ? ' (há ' + dL + ' dia(s))' : ''));
+            }
+
+            if (res.eligibility) {
+                if (res.eligibility.status === 'eligible') {
+                    linhas.push('<span style="color:#7CFC9B;">✔ Apto para Mini YouTuber</span>');
+                } else if (res.eligibility.status === 'manual_review') {
+                    linhas.push('<span style="color:#ffd479;">⚠ Verificação inconclusiva — será analisada manualmente</span>');
+                } else {
+                    var motivos = (res.eligibility.reasons || []).join(', ');
+                    linhas.push('<span style="color:#ff9f9f;">✖ Não apto para Mini YouTuber</span>' + (motivos ? ' — ' + motivos : ''));
+                }
+            }
+
+            if (verifyDetails) verifyDetails.innerHTML = linhas.map(function (l) { return '<div>' + l + '</div>'; }).join('');
+            if (verifyStatus) verifyStatus.textContent = 'Canal identificado.';
         } catch (e) {
-          if (verifyStatus) verifyStatus.textContent = 'Erro ao verificar canal. Tente novamente.';
+            window.__channelVerification = null;
+            if (verifyStatus) verifyStatus.textContent = 'Não foi possível identificar o canal. Confira o link e tente novamente.';
         } finally {
-          verifyBtn.disabled = false;
+            verifyBtn.disabled = false;
         }
-      });
+    }
+
+    if (verifyBtn) {
+        verifyBtn.addEventListener('click', verificarCanal);
+        var linkCanalEl = document.getElementById('link_canal');
+        if (linkCanalEl) {
+            linkCanalEl.addEventListener('change', function () {
+                window.__channelVerification = null;
+                if (verifyStatus) verifyStatus.textContent = '';
+                if (verifyDetails) verifyDetails.innerHTML = '';
+            });
+        }
     }
     // ==========================================================
     // COLETA DE CAMPOS
@@ -274,7 +321,7 @@ function CriadorForm(tipo) {
         var fill = document.getElementById("progresso-fill");
 
         if (num) num.textContent = passo;
-        if (titulo) titulo.textContent = modoApresentacao ? "Apresentação" : TITULOS_POR_ETAPA[etapaAtual];
+        if (titulo) titulo.textContent = modoApresentacao ? "Apresentação" : titulos[etapaAtual - 1];
         if (percent) percent.textContent = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
         if (fill) fill.style.width = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
 
