@@ -101,8 +101,7 @@ const ESQUEMAS = {
                 titulo: "Seu canal de stream",
                 campos: [
                     ["plataforma_principal", "Plataforma principal"],
-                    ["link_canal", "Link do canal/perfil"],
-                    ["link_live", "Link de live/gravação"]
+                    ["link_canal", "Link do canal/perfil"]
                 ]
             },
             {
@@ -115,18 +114,17 @@ const ESQUEMAS = {
         ],
         nomes: new Set([
             "nome_completo", "nick", "discord", "email", "idade",
-            "plataforma_principal", "link_canal", "link_live",
+            "plataforma_principal", "link_canal",
             "ja_joga", "motivo"
         ]),
         obrigatorios: [
             "nome_completo", "nick", "discord", "email", "idade",
-            "plataforma_principal", "link_canal", "link_live",
+            "plataforma_principal", "link_canal",
             "ja_joga", "motivo"
         ],
         validadores: {
             email: "email",
             link_canal: "url",
-            link_live: "url",
             idade: { tipo: "numero", min: 13, max: 99 }
         }
     }

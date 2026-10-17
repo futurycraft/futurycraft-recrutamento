@@ -32,14 +32,13 @@ var CRIADOR_CONFIG = {
         titulos: ["Seus dados", "Seu canal", "Sobre você", "Finalização"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
-            2: ["plataforma_principal", "link_canal", "link_live"],
+            2: ["plataforma_principal", "link_canal"],
             3: ["ja_joga", "motivo"]
         },
         validadores: {
             email: "email",
             idade: ["numero", 13, 99],
-            link_canal: "url",
-            link_live: "url"
+            link_canal: "url"
         }
     }
 };
@@ -92,6 +91,20 @@ function CriadorForm(tipo) {
         return Number(n).toLocaleString('pt-BR');
     }
 
+    function traduzirMotivo(m) {
+        if (!m) return '';
+        if (m === 'subscribers_unavailable') return 'inscritos não disponíveis';
+        if (m === 'followers_unavailable') return 'seguidores não disponíveis';
+        if (m.indexOf('subs_lt_') === 0) return 'menos de ' + m.slice(8) + ' inscritos';
+        if (m.indexOf('followers_lt_') === 0) return 'menos de ' + m.slice(13) + ' seguidores';
+        if (m === 'no_recent_video_found') return 'nenhum vídeo recente';
+        if (m.indexOf('last_video_over_') === 0) return 'último vídeo há mais de ' + m.slice(15).replace(/d$/, '') + ' dias';
+        if (m.indexOf('stream_days_lt_') === 0) return 'menos de ' + m.slice(14) + ' dias com live nos últimos 7';
+        if (m === 'no_stream_data') return 'sem dados de lives recentes';
+        if (m === 'no_auto_rule') return 'verificação automática apenas para Twitch';
+        return m;
+    }
+
     function plataformaVerificacao() {
         if (tipo !== 'streamer') return 'youtube';
         var el = form.querySelector('input[name="plataforma_principal"]:checked');
@@ -137,15 +150,19 @@ function CriadorForm(tipo) {
                 var dL = diasDesde(res.last_stream_at);
                 linhas.push('Última live: ' + formatarData(res.last_stream_at) + (dL !== null ? ' (há ' + dL + ' dia(s))' : ''));
             }
+            if (res.is_live) linhas.push('<span style="color:#7CFC9B;">● Ao vivo agora</span>');
+            if (res.platform === 'twitch' && res.stream_days != null) {
+                linhas.push('Dias com live (últimos 7): <strong>' + res.stream_days + '</strong>');
+            }
 
             if (res.eligibility) {
+                var motivoTxt = (res.eligibility.reasons || []).map(traduzirMotivo).filter(Boolean).join('; ');
                 if (res.eligibility.status === 'eligible') {
-                    linhas.push('<span style="color:#7CFC9B;">✔ Apto para Mini YouTuber</span>');
+                    linhas.push('<span style="color:#7CFC9B;">✔ Apto para o programa</span>');
                 } else if (res.eligibility.status === 'manual_review') {
-                    linhas.push('<span style="color:#ffd479;">⚠ Verificação inconclusiva — será analisada manualmente</span>');
+                    linhas.push('<span style="color:#ffd479;">⚠ Verificação inconclusiva — será analisada manualmente</span>' + (motivoTxt ? ' — ' + motivoTxt : ''));
                 } else {
-                    var motivos = (res.eligibility.reasons || []).join(', ');
-                    linhas.push('<span style="color:#ff9f9f;">✖ Não apto para Mini YouTuber</span>' + (motivos ? ' — ' + motivos : ''));
+                    linhas.push('<span style="color:#ff9f9f;">✖ Não apto</span>' + (motivoTxt ? ' — ' + motivoTxt : ''));
                 }
             }
 
