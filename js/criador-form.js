@@ -1,16 +1,16 @@
-/* ==========================================================
-   FUTURYCRAFT - FORMULÁRIOS DE CRIADORES
+﻿/* ==========================================================
+   FUTURYCRAFT - FORMULÃRIOS DE CRIADORES
    Motor de wizard compartilhado (YouTuber / Streamer).
-   Configuração por formulário em CRIADOR_CONFIG.
-   - Validação por etapa antes de avançar
-   - Persistência em localStorage (expira em 7 dias)
+   ConfiguraÃ§Ã£o por formulÃ¡rio em CRIADOR_CONFIG.
+   - ValidaÃ§Ã£o por etapa antes de avanÃ§ar
+   - PersistÃªncia em localStorage (expira em 7 dias)
    - Envio via API serverless /api/candidatura-criador
 ========================================================== */
 
 var CRIADOR_CONFIG = {
     youtuber: {
         storage: "futury_youtuber",
-        titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
+        titulos: ["Seus dados", "Seu canal", "Seu conteÃºdo", "FuturyCraft", "Redes sociais", "FinalizaÃ§Ã£o"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
             2: ["nome_canal", "link_canal", "link_melhor_video", "inscritos", "frequencia_publicacao"],
@@ -31,15 +31,15 @@ var CRIADOR_CONFIG = {
             video1: "url",
             video2: "url",
             video3: "url",
-            publico_principal: ["opcao", ["Brasil", "Portugal", "América Latina", "Internacional", "Outro"]],
-            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
-            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
-            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
+            publico_principal: ["opcao", ["Brasil", "Portugal", "AmÃ©rica Latina", "Internacional", "Outro"]],
+            parceria_outro_servidor: ["opcao", ["Sim", "NÃ£o"]],
+            contrato_exclusividade: ["opcao", ["Sim", "NÃ£o"]],
+            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "IndicaÃ§Ã£o de amigo", "Jogando no servidor", "Outro"]]
         }
     },
     streamer: {
         storage: "futury_streamer",
-        titulos: ["Seus dados", "Seu canal", "Seu conteúdo", "FuturyCraft", "Redes sociais", "Finalização"],
+        titulos: ["Seus dados", "Seu canal", "Seu conteÃºdo", "FuturyCraft", "Redes sociais", "FinalizaÃ§Ã£o"],
         requisitos: {
             1: ["nome_completo", "nick", "discord", "email", "idade"],
             2: ["nome_canal", "plataforma_principal", "link_canal", "seguidores", "frequencia_lives"],
@@ -60,9 +60,9 @@ var CRIADOR_CONFIG = {
             live1: "url",
             live2: "url",
             live3: "url",
-            parceria_outro_servidor: ["opcao", ["Sim", "Não"]],
-            contrato_exclusividade: ["opcao", ["Sim", "Não"]],
-            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "Indicação de amigo", "Jogando no servidor", "Outro"]]
+            parceria_outro_servidor: ["opcao", ["Sim", "NÃ£o"]],
+            contrato_exclusividade: ["opcao", ["Sim", "NÃ£o"]],
+            como_conheceu: ["opcao", ["Discord", "TikTok", "YouTube", "Instagram", "Google", "IndicaÃ§Ã£o de amigo", "Jogando no servidor", "Outro"]]
         }
     }
 };
@@ -70,17 +70,17 @@ var CRIADOR_CONFIG = {
 var TITULOS_POR_ETAPA = {
     1: "Seus dados",
     2: "Seu canal",
-    3: "Seu conteúdo",
+    3: "Seu conteÃºdo",
     4: "FuturyCraft",
     5: "Redes sociais",
-    6: "Finalização"
+    6: "FinalizaÃ§Ã£o"
 };
 
 function CriadorForm(tipo) {
 
     var cfg = CRIADOR_CONFIG[tipo];
 
-    if (!cfg) throw new Error("Tipo inválido: " + tipo);
+    if (!cfg) throw new Error("Tipo invÃ¡lido: " + tipo);
 
     var form = document.getElementById("form-" + tipo);
     var etapaAtual = 1;
@@ -90,6 +90,43 @@ function CriadorForm(tipo) {
     var apresEl = document.getElementById("etapa-apresentacao");
     var areaEl = document.getElementById("area-candidatura");
 
+    // CHANNEL VERIFY
+    var verifyBtn = document.getElementById('verify-btn');
+    var verifyStatus = document.getElementById('verify-status');
+    var verifyDetails = document.getElementById('verify-details');
+    if (verifyBtn) {
+      verifyBtn.addEventListener('click', async function() {
+        var link = document.getElementById('link_canal');
+        var url = link ? link.value : '';
+        if (!url) { if (verifyStatus) verifyStatus.textContent = 'Informe o link do canal.'; return; }
+        verifyBtn.disabled = true;
+        if (verifyStatus) verifyStatus.textContent = 'Verificando canal...';
+        if (verifyDetails) verifyDetails.innerHTML = '';
+        try {
+          var res = await ChannelVerify.verify(url, tipo === 'streamer' ? 'twitch' : 'youtube', tipo);
+          if (!res.success) throw new Error(res.error || 'FAIL');
+          window.__channelVerification = res;
+          var parts = [];
+          if (res.title) parts.push('Canal: ' + res.title);
+          if (res.channel_handle) parts.push('Handle/ID: ' + res.channel_handle);
+          if (res.subscribers != null) parts.push('Inscritos: ' + res.subscribers);
+          if (res.followers != null) parts.push('Seguidores: ' + res.followers);
+          if (res.last_video_at) parts.push('Ultimo video: ' + new Date(res.last_video_at).toLocaleDateString('pt-BR'));
+          if (res.last_stream_at) parts.push('Ultima live: ' + new Date(res.last_stream_at).toLocaleDateString('pt-BR'));
+          if (res.eligibility) {
+            if (res.eligibility.status === 'eligible') parts.push('Resultado: Apto para Mini YouTuber (>=500 inscritos + video <= 30d)');
+            else if (res.eligibility.status === 'manual_review') parts.push('Resultado: Verificacao inconclusiva - precisa analise manual');
+            else parts.push('Resultado: Nao apto - ' + (res.eligibility.reasons || []).join(', '));
+          }
+          if (verifyDetails) verifyDetails.innerHTML = parts.map(function(p){return '<div>'+p+'</div>'}).join('');
+          if (verifyStatus) verifyStatus.textContent = 'Verificacao concluida';
+        } catch (e) {
+          if (verifyStatus) verifyStatus.textContent = 'Erro ao verificar canal. Tente novamente.';
+        } finally {
+          verifyBtn.disabled = false;
+        }
+      });
+    }
     // ==========================================================
     // COLETA DE CAMPOS
     // ==========================================================
@@ -130,7 +167,7 @@ function CriadorForm(tipo) {
     }
 
     // ==========================================================
-    // VALIDAÇÃO
+    // VALIDAÃ‡ÃƒO
     // ==========================================================
 
     function validarValor(nome, valor) {
@@ -197,7 +234,7 @@ function CriadorForm(tipo) {
             }
         });
 
-        // Campos obrigatórios com rotulo próprio (msg-erro automatica)
+        // Campos obrigatÃ³rios com rotulo prÃ³prio (msg-erro automatica)
         form.querySelectorAll(".campo").forEach(function (grupo) {
             var marcado = false;
             var radio = grupo.querySelector('input[type="radio"]');
@@ -237,7 +274,7 @@ function CriadorForm(tipo) {
         var fill = document.getElementById("progresso-fill");
 
         if (num) num.textContent = passo;
-        if (titulo) titulo.textContent = modoApresentacao ? "Apresentação" : TITULOS_POR_ETAPA[etapaAtual];
+        if (titulo) titulo.textContent = modoApresentacao ? "ApresentaÃ§Ã£o" : TITULOS_POR_ETAPA[etapaAtual];
         if (percent) percent.textContent = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
         if (fill) fill.style.width = Math.round((passo / TOTAL_PASSOS) * 100) + "%";
 
@@ -328,7 +365,7 @@ function CriadorForm(tipo) {
     }
 
     // ==========================================================
-    // PERSISTÊNCIA
+    // PERSISTÃŠNCIA
     // ==========================================================
 
     function salvar() {
@@ -396,9 +433,10 @@ function CriadorForm(tipo) {
         var corpo = {
             form_type: tipo,
             campos: campos,
-            turnstile_token: turnstileToken
-        };
+            turnstile_token: turnstileToken,
+            channel_verification: window.__channelVerification || null
 
+        };
         fetch("/api/candidatura-criador", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -416,14 +454,13 @@ function CriadorForm(tipo) {
                 window.location.href = destino;
             })
             .catch(function (erro) {
-                console.error(erro);
                 alert("Erro ao enviar candidatura.\n\n" + erro.message);
                 if (btn) btn.disabled = false;
             });
     });
 
     // ==========================================================
-    // INICIALIZAÇÃO
+    // INICIALIZAÃ‡ÃƒO
     // ==========================================================
 
     carregar();
@@ -431,8 +468,12 @@ function CriadorForm(tipo) {
     configurarCondicionais();
     atualizarInterface();
 
-    // expõe para o HTML (onclick)
+    // expÃµe para o HTML (onclick)
     window.irEtapa = irEtapa;
     window.voltarEtapa = voltarEtapa;
     window.iniciarCandidatura = iniciarCandidatura;
 }
+
+
+
+
