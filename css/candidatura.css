@@ -110,53 +110,167 @@
 .vaga-card.admin{ --server-accent:#f472b6; }
 
 /* ==========================================================
-   BLOCOS DE VAGA (Ajudante em cima / Promocao embaixo)
+   FLUXO UNIFICADO (servidor + vaga)
 ========================================================= */
 
-.vaga-bloco{
+.recruit-flow-unificado{
+    min-height:0;
+    display:block;
+    padding:40px 20px 64px;
+}
+
+.recruit-flow-unificado h1{
+    margin-top:18px;
+    font-size:clamp(1.8rem,4.4vw,2.8rem);
+}
+
+.recruit-flow-unificado .flow-description{
+    margin-top:14px;
+}
+
+.etapa{
     max-width:900px;
-    margin:42px auto 0;
+    margin:34px auto 0;
+    text-align:left;
 }
 
-.vaga-bloco .vaga-grid{
-    margin-top:0;
-}
-
-.vaga-grid-unica{
-    grid-template-columns:1fr;
-    max-width:420px;
-}
-
-.vaga-bloco-promocao{
-    margin-top:52px;
-    padding-top:34px;
-    border-top:1px dashed rgba(148,163,184,.22);
-}
-
-.vaga-bloco-promocao .vaga-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-.promocao-aviso{
+.etapa-head{
     display:flex;
     align-items:center;
     gap:12px;
-    max-width:900px;
-    margin:0 auto 18px;
-    padding:14px 18px;
-    border-radius:14px;
-    background:linear-gradient(160deg,rgba(251,191,36,.07),rgba(251,191,36,.02));
-    border:1px dashed rgba(251,191,36,.35);
+    margin-bottom:16px;
 }
 
-.promocao-lock{
-    width:38px;
-    height:38px;
+.etapa-num{
+    width:30px;
+    height:30px;
     flex:0 0 auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:.9rem;
+    font-size:.85rem;
+    font-weight:800;
+    color:#06121f;
+    background:linear-gradient(135deg,#6ee7ff,#4cc2ff);
+    border-radius:10px;
+    box-shadow:0 6px 16px rgba(76,194,255,.28);
+}
+
+.etapa-head b{
+    display:block;
+    font-size:.95rem;
+    letter-spacing:.5px;
+}
+
+.etapa-head small{
+    display:block;
+    margin-top:2px;
+    font-size:.78rem;
+    color:var(--fc-text-2);
+}
+
+.etapa .server-grid{
+    margin-top:0;
+}
+
+.recruit-flow-unificado .server-card{
+    min-height:0;
+    padding:20px 20px 18px;
+    gap:10px;
+}
+
+.recruit-flow-unificado .server-icon{
+    width:44px;
+    height:44px;
+    font-size:1.15rem;
+    border-radius:13px;
+}
+
+.recruit-flow-unificado .server-name{
+    font-size:.92rem;
+    letter-spacing:1.4px;
+}
+
+.recruit-flow-unificado .server-desc{
+    font-size:.78rem;
+    line-height:1.5;
+}
+
+/* Ajudante em linha */
+.vaga-linha{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:18px 20px;
+    border-radius:16px;
+    background:linear-gradient(160deg,rgba(19,29,50,.6),rgba(9,14,27,.66));
+    border:1px solid var(--fc-border);
+    box-shadow:0 14px 30px rgba(0,0,0,.24);
+}
+
+.vaga-linha-icon{
+    width:46px;
+    height:46px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+    color:#4cc2ff;
+    background:rgba(76,194,255,.1);
+    border:1px solid rgba(76,194,255,.25);
+    border-radius:13px;
+}
+
+.vaga-linha-texto{
+    flex:1;
+    min-width:0;
+}
+
+.vaga-linha-texto b{
+    display:block;
+    font-size:.95rem;
+    letter-spacing:1.2px;
+}
+
+.vaga-linha-texto small{
+    display:block;
+    margin-top:2px;
+    font-size:.8rem;
+    line-height:1.5;
+    color:var(--fc-text-2);
+}
+
+.vaga-linha .cta-iniciar{
+    flex:0 0 auto;
+    padding:12px 22px;
+    font-size:.8rem;
+}
+
+/* Promoção */
+.promo-bloco{
+    margin-top:14px;
+    padding:18px 20px;
+    border-radius:16px;
+    background:linear-gradient(160deg,rgba(251,191,36,.06),rgba(9,14,27,.7));
+    border:1px solid rgba(251,191,36,.22);
+    box-shadow:0 14px 30px rgba(0,0,0,.24);
+}
+
+.promo-cabecalho{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.promocao-lock{
+    width:36px;
+    height:36px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.88rem;
     color:#fbbf24;
     background:rgba(251,191,36,.12);
     border:1px solid rgba(251,191,36,.28);
@@ -174,6 +288,110 @@
     font-size:.8rem;
     line-height:1.55;
     color:var(--fc-text-2);
+}
+
+.promo-tag{
+    display:inline-block;
+    margin-left:6px;
+    padding:2px 8px;
+    font-size:.6rem;
+    letter-spacing:.8px;
+    vertical-align:middle;
+    color:#fbbf24;
+    background:rgba(251,191,36,.12);
+    border:1px solid rgba(251,191,36,.3);
+    border-radius:999px;
+}
+
+.promo-vagas{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:14px;
+}
+
+.vaga-mini{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:12px 14px;
+    background:rgba(9,14,27,.5);
+    border:1px solid var(--fc-border);
+    border-radius:12px;
+    transition:border-color var(--fc-motion), transform var(--fc-motion), box-shadow var(--fc-motion);
+}
+
+.vaga-mini.moderador{ --server-accent:#fbbf24; }
+.vaga-mini.admin{ --server-accent:#f472b6; }
+
+.vaga-mini:hover{
+    transform:translateY(-1px);
+    border-color:rgba(251,191,36,.4);
+}
+
+.vaga-mini.selecionado{
+    border-color:#fbbf24;
+    box-shadow:0 0 0 1px rgba(251,191,36,.35), 0 8px 20px rgba(251,191,36,.12);
+}
+
+.vaga-mini.bloqueada{
+    opacity:.62;
+}
+
+.vaga-mini-icon{
+    width:34px;
+    height:34px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9rem;
+    border-radius:10px;
+    color:var(--server-accent,#fbbf24);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.vaga-mini-info{
+    flex:1;
+    min-width:0;
+}
+
+.vaga-mini-info b{
+    display:block;
+    font-size:.82rem;
+    letter-spacing:1px;
+}
+
+.vaga-mini-info small{
+    display:block;
+    margin-top:1px;
+    font-size:.7rem;
+    color:var(--fc-text-2);
+}
+
+.vaga-mini .server-btn{
+    margin-top:3px;
+    font-size:.62rem;
+    letter-spacing:.6px;
+}
+
+.vaga-mini .vaga-lock{
+    position:static;
+    width:26px;
+    height:26px;
+    flex:0 0 auto;
+    font-size:.72rem;
+}
+
+.promo-bloco .cta-row{
+    margin-top:14px;
+}
+
+.promo-bloco .cta-iniciar{
+    width:100%;
+    justify-content:center;
 }
 
 .cta-iniciar:disabled{
@@ -468,7 +686,21 @@
         grid-template-columns:1fr;
         gap:16px;
     }
-    .vaga-bloco-promocao .vaga-grid{
+    .recruit-flow-unificado{
+        padding:28px 16px 48px;
+    }
+    .etapa{
+        margin-top:26px;
+    }
+    .vaga-linha{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .vaga-linha .cta-iniciar{
+        width:100%;
+        justify-content:center;
+    }
+    .promo-vagas{
         grid-template-columns:1fr;
     }
     .server-card{

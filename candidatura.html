@@ -47,117 +47,118 @@
 <main class="home-shell">
 
 <!-- =====================================
-     ESCOLHA DO SERVIDOR
+     FLUXO ÚNICO: SERVIDOR + VAGA
 ===================================== -->
-<section class="recruit-flow">
+<section class="recruit-flow recruit-flow-unificado">
 
 <div class="home-wrap">
 
-<span class="sec-badge flow-badge"><i class="fa-solid fa-server"></i> Servidor</span>
+<span class="sec-badge flow-badge"><i class="fa-solid fa-shield-halved"></i> Recrutamento Oficial</span>
 
 <h1>
-ESCOLHA O <span class="grad">SERVIDOR</span>
+MONTE SUA <span class="grad">CANDIDATURA</span>
 </h1>
 
 <p class="flow-description">
-Cada servidor possui formulário e perguntas próprios para a vaga escolhida.
+Escolha o servidor e a vaga. Cada combinação possui formulário e perguntas próprios.
 </p>
+
+<!-- PASSO 1 - SERVIDOR -->
+<div class="etapa">
+
+<div class="etapa-head">
+<span class="etapa-num">1</span>
+<div>
+<b>Escolha o servidor</b>
+<small>Onde você quer atuar.</small>
+</div>
+</div>
 
 <div class="server-grid modo-grid">
 
 <button type="button" class="server-card modo-card skyblock" data-modo="skyblock">
 <span class="server-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></span>
 <b class="server-name">SKYBLOCK</b>
-<small class="server-desc">Formulário e perguntas próprias para a equipe do Skyblock.</small>
-<span class="server-btn">Selecionar servidor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+<small class="server-desc">Formulário próprio para a equipe do Skyblock.</small>
+<span class="server-btn">Selecionar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
 </button>
 
 <button type="button" class="server-card modo-card rankup" data-modo="rankup">
 <span class="server-icon"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i></span>
 <b class="server-name">RANKUP</b>
-<small class="server-desc">Formulário e perguntas próprias para a equipe do Rankup.</small>
-<span class="server-btn">Selecionar servidor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+<small class="server-desc">Formulário próprio para a equipe do Rankup.</small>
+<span class="server-btn">Selecionar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
 </button>
 
 <button type="button" class="server-card modo-card survival" data-modo="survival">
 <span class="server-icon"><i class="fa-solid fa-tree" aria-hidden="true"></i></span>
 <b class="server-name">SURVIVAL</b>
-<small class="server-desc">Formulário e perguntas próprias para a equipe do Survival.</small>
-<span class="server-btn">Selecionar servidor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+<small class="server-desc">Formulário próprio para a equipe do Survival.</small>
+<span class="server-btn">Selecionar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
 </button>
 
 </div>
 
 </div>
 
-</section>
+<!-- PASSO 2 - VAGA -->
+<div class="etapa">
 
-<!-- =====================================
-     ESCOLHA DA VAGA
-===================================== -->
-<section class="recruit-flow recruit-flow-alt">
-
-<div class="home-wrap">
-
-<span class="sec-badge flow-badge"><i class="fa-solid fa-shield-halved"></i> Recrutamento Staff</span>
-
-<h1>
-ESCOLHA A SUA <span class="grad">VAGA</span>
-</h1>
-
-<p class="flow-description">
-Novo time ou promoção? Escolha o cargo desejado. Cada vaga possui perguntas próprias.
-</p>
-
-<!-- VAGA DE AJUDANTE (entrada) -->
-<div class="vaga-bloco">
-
-<div class="server-grid vaga-grid vaga-grid-unica">
-
-<button type="button" class="server-card vaga-card ajudante selecionado" data-vaga="Ajudante">
-<span class="server-icon"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>
-<b class="server-name">AJUDANTE</b>
-<small class="server-desc">Formulário inicial para quem quer entrar para a equipe de staff.</small>
-<span class="server-btn">Vaga de entrada <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-</button>
-
+<div class="etapa-head">
+<span class="etapa-num">2</span>
+<div>
+<b>Escolha a vaga</b>
+<small>Novo time ou promoção.</small>
+</div>
 </div>
 
-<div class="cta-row">
+<!-- AJUDANTE -->
+<div class="vaga-linha vaga-linha-ajudante">
+
+<span class="vaga-linha-icon"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>
+
+<div class="vaga-linha-texto">
+<b>AJUDANTE</b>
+<small>Formulário inicial para quem quer entrar para a equipe de staff.</small>
+</div>
+
 <button type="button" class="cta-iniciar" id="cta-ajudante" disabled>
-Iniciar formulário de Ajudante <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+Iniciar formulário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 </button>
-</div>
 
 </div>
 
-<!-- PROMOÇÃO: MODERADOR+ (bloqueado até validar o nick) -->
-<div class="vaga-bloco vaga-bloco-promocao" id="bloco-promocao">
+<!-- PROMOÇÃO: MODERADOR+ -->
+<div class="promo-bloco" id="bloco-promocao">
 
-<div class="promocao-aviso">
+<div class="promo-cabecalho">
 <span class="promocao-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
 <div class="promocao-texto">
-<b>Moderador e Admin</b>
-<small>Vagas de promoção. Clique na vaga desejada e informe seu nick de staff para desbloquear o botão.</small>
+<b>MODERADOR+ <span class="promo-tag">Promoção</span></b>
+<small>Clique na vaga e informe seu nick de staff para desbloquear o botão.</small>
 </div>
 </div>
 
-<div class="server-grid vaga-grid">
+<div class="promo-vagas">
 
-<button type="button" class="server-card vaga-card moderador bloqueada" data-vaga="Moderador">
-<span class="server-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+<button type="button" class="vaga-card vaga-mini moderador bloqueada" data-vaga="Moderador">
+<span class="vaga-mini-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+<span class="vaga-mini-info">
+<b>MODERADOR</b>
+<small>Ex-Ajudante</small>
+<span class="server-btn">Bloqueado</span>
+</span>
 <span class="vaga-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
-<b class="server-name">MODERADOR</b>
-<small class="server-desc">Promoção para quem já é Ajudante e quer mais responsabilidades.</small>
-<span class="server-btn">Bloqueado <i class="fa-solid fa-lock" aria-hidden="true"></i></span>
 </button>
 
-<button type="button" class="server-card vaga-card admin bloqueada" data-vaga="Admin">
-<span class="server-icon"><i class="fa-solid fa-crown" aria-hidden="true"></i></span>
+<button type="button" class="vaga-card vaga-mini admin bloqueada" data-vaga="Admin">
+<span class="vaga-mini-icon"><i class="fa-solid fa-crown" aria-hidden="true"></i></span>
+<span class="vaga-mini-info">
+<b>ADMIN</b>
+<small>Ex-Moderador</small>
+<span class="server-btn">Bloqueado</span>
+</span>
 <span class="vaga-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
-<b class="server-name">ADMIN</b>
-<small class="server-desc">Promoção para quem já é Moderador e quer liderar a equipe.</small>
-<span class="server-btn">Bloqueado <i class="fa-solid fa-lock" aria-hidden="true"></i></span>
 </button>
 
 </div>
@@ -194,9 +195,11 @@ Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 
 </div>
 
+</div>
+
 <p class="flow-note" id="aviso-vaga">
 <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-Moderador e Admin são promoções bloqueadas — são liberadas para staff ativo há 30 dias no cargo anterior (Ajudante para Moderador; Moderador para Admin).
+Moderador e Admin são promoções — liberadas para staff ativo há 30 dias no cargo anterior.
 </p>
 
 <p class="cta-hint" id="cta-hint" aria-live="polite"></p>
