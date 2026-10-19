@@ -110,6 +110,84 @@
 .vaga-card.admin{ --server-accent:#f472b6; }
 
 /* ==========================================================
+   BLOCOS DE VAGA (Ajudante em cima / Promocao embaixo)
+========================================================= */
+
+.vaga-bloco{
+    max-width:900px;
+    margin:42px auto 0;
+}
+
+.vaga-bloco .vaga-grid{
+    margin-top:0;
+}
+
+.vaga-grid-unica{
+    grid-template-columns:1fr;
+    max-width:420px;
+}
+
+.vaga-bloco-promocao{
+    margin-top:52px;
+    padding-top:34px;
+    border-top:1px dashed rgba(148,163,184,.22);
+}
+
+.vaga-bloco-promocao .vaga-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.promocao-aviso{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    max-width:900px;
+    margin:0 auto 18px;
+    padding:14px 18px;
+    border-radius:14px;
+    background:linear-gradient(160deg,rgba(251,191,36,.07),rgba(251,191,36,.02));
+    border:1px dashed rgba(251,191,36,.35);
+}
+
+.promocao-lock{
+    width:38px;
+    height:38px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9rem;
+    color:#fbbf24;
+    background:rgba(251,191,36,.12);
+    border:1px solid rgba(251,191,36,.28);
+    border-radius:11px;
+}
+
+.promocao-texto b{
+    font-size:.9rem;
+    letter-spacing:.4px;
+}
+
+.promocao-texto small{
+    display:block;
+    margin-top:2px;
+    font-size:.8rem;
+    line-height:1.55;
+    color:var(--fc-text-2);
+}
+
+.cta-iniciar:disabled{
+    cursor:not-allowed;
+}
+
+.cta-travado{
+    background:linear-gradient(135deg,#334155,#1e293b);
+    color:#94a3b8;
+    box-shadow:none;
+}
+
+
+/* ==========================================================
    VAGAS BLOQUEADAS (promoções com exigência de tempo)
 ========================================================= */
 
@@ -390,7 +468,16 @@
         grid-template-columns:1fr;
         gap:16px;
     }
+    .vaga-bloco-promocao .vaga-grid{
+        grid-template-columns:1fr;
+    }
     .server-card{
         min-height:0;
+    }
+    .painel-form{
+        flex-direction:column;
+    }
+    #btn-verificar{
+        padding:12px 18px;
     }
 }

@@ -109,14 +109,40 @@ ESCOLHA A SUA <span class="grad">VAGA</span>
 Novo time ou promoção? Escolha o cargo desejado. Cada vaga possui perguntas próprias.
 </p>
 
-<div class="server-grid vaga-grid">
+<!-- VAGA DE AJUDANTE (entrada) -->
+<div class="vaga-bloco">
 
-<button type="button" class="server-card vaga-card ajudante" data-vaga="Ajudante">
+<div class="server-grid vaga-grid vaga-grid-unica">
+
+<button type="button" class="server-card vaga-card ajudante selecionado" data-vaga="Ajudante">
 <span class="server-icon"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>
 <b class="server-name">AJUDANTE</b>
 <small class="server-desc">Formulário inicial para quem quer entrar para a equipe de staff.</small>
-<span class="server-btn">Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+<span class="server-btn">Vaga de entrada <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
 </button>
+
+</div>
+
+<div class="cta-row">
+<button type="button" class="cta-iniciar" id="cta-ajudante" disabled>
+Iniciar formulário de Ajudante <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+</button>
+</div>
+
+</div>
+
+<!-- PROMOÇÃO: MODERADOR+ (bloqueado até validar o nick) -->
+<div class="vaga-bloco vaga-bloco-promocao" id="bloco-promocao">
+
+<div class="promocao-aviso">
+<span class="promocao-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
+<div class="promocao-texto">
+<b>Moderador e Admin</b>
+<small>Vagas de promoção. Clique na vaga desejada e informe seu nick de staff para desbloquear o botão.</small>
+</div>
+</div>
+
+<div class="server-grid vaga-grid">
 
 <button type="button" class="server-card vaga-card moderador bloqueada" data-vaga="Moderador">
 <span class="server-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
@@ -160,19 +186,20 @@ Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 
 </div>
 
+<div class="cta-row">
+<button type="button" class="cta-iniciar cta-travado" id="cta-promocao" disabled>
+<i class="fa-solid fa-lock" aria-hidden="true"></i> Iniciar formulário de Moderador+
+</button>
+</div>
+
+</div>
+
 <p class="flow-note" id="aviso-vaga">
 <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 Moderador e Admin são promoções bloqueadas — são liberadas para staff ativo há 30 dias no cargo anterior (Ajudante para Moderador; Moderador para Admin).
 </p>
 
 <p class="cta-hint" id="cta-hint" aria-live="polite"></p>
-
-<div class="cta-row">
-<button type="button" class="cta-iniciar" id="cta-iniciar" disabled>
-Iniciar formulário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-</button>
-</div>
-
 
 </div>
 

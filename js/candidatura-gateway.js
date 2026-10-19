@@ -1,11 +1,13 @@
 /* ==========================================================
    FUTURYCRAFT
    GATEWAY DE CANDIDATURA (candidatura.html)
-   Seleção de vaga (Ajudante/Moderador/Admin) + servidor.
-   Moderador e Admin são promoções bloqueadas: só liberam para
-   staff ativo há 30 dias no cargo anterior (validado via
-   api/desbloqueio.js contra cargo_historico). Grava a escolha
-   no storage do fluxo e inicia o formulário.
+   Escolha do servidor + vaga.
+   - Ajudante: vaga de entrada, botão próprio logo abaixo do servidor.
+   - Moderador/Admin: vagas de promoção bloqueadas. O nick de staff
+     (validado via api/desbloqueio.js contra cargo_historico) libera
+     a vaga e, por consequência, o botão de iniciar. Sem nick
+     confirmado, o botão continua bloqueado.
+   Grava a escolha no storage do fluxo e inicia o formulário.
 ========================================================== */
 
 (function(){
@@ -21,8 +23,9 @@
     const SESSIAO_CHAVE = "futury_desbloqueio";
     const SESSIAO_VALIDADE = 7 * 24 * 60 * 60 * 1000;
 
-    let vaga = null;
     let modo = null;
+    let vagaPromocao = null;
+    let vagaPendente = null;
     let nickAtual = "";
     let verificando = false;
 
@@ -33,7 +36,8 @@
 
     const cardsVaga = document.querySelectorAll(".vaga-card");
     const cardsModo = document.querySelectorAll(".modo-card");
-    const cta = document.getElementById("cta-iniciar");
+    const ctaAjudante = document.getElementById("cta-ajudante");
+    const ctaPromocao = document.getElementById("cta-promocao");
     const hint = document.getElementById("cta-hint");
 
     const painel = document.getElementById("painel-desbloqueio");
@@ -116,19 +120,74 @@
                 }
             }
         });
+
+        atualizarCtas();
     }
 
 
     /* ==========================================================
-       CTA
+       BOTÕES (cada vaga tem o seu)
     ========================================================== */
 
 
-    function atualizarCta(){
-        if (vaga && modo) {
-            cta.disabled = false;
-            cta.classList.add("pronto");
+    function atualizarCtas(){
+        const servidorOk = !!modo;
+
+        // Ajudante: libera assim que o servidor for escolhido.
+        if (ctaAjudante) {
+            ctaAjudante.disabled = !servidorOk;
+            ctaAjudante.classList.toggle("pronto", servidorOk);
         }
+
+        // Promoção: só libera com nick confirmado E servidor escolhido.
+        if (ctaPromocao) {
+            const liberada = !!vagaPromocao && !!desbloqueadas[vagaPromocao];
+            const pronto = servidorOk && liberada;
+
+            ctaPromocao.disabled = !pronto;
+            ctaPromocao.classList.toggle("pronto", pronto);
+            ctaPromocao.classList.toggle("cta-travado", !pronto);
+
+            if (pronto) {
+                ctaPromocao.innerHTML =
+                    'Iniciar formulário de ' + vagaPromocao +
+                    ' <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
+            } else {
+                ctaPromocao.innerHTML =
+                    '<i class="fa-solid fa-lock" aria-hidden="true"></i> Iniciar formulário de ' +
+                    (vagaPromocao || "Moderador+");
+            }
+        }
+    }
+
+
+    function selecionarVaga(rotulo){
+        cardsVaga.forEach(function (card) {
+            card.classList.toggle("selecionado", card.dataset.vaga === rotulo);
+        });
+        vagaPromocao = rotulo === "Ajudante" ? null : rotulo;
+        atualizarCtas();
+    }
+
+
+    function iniciar(vagaEscolhida){
+        if (!modo) {
+            hint.textContent = "Escolha o servidor para continuar.";
+            hint.classList.add("visivel");
+            return;
+        }
+
+        const alvo = MODOS[modo];
+
+        localStorage.setItem(
+            alvo.chave,
+            JSON.stringify({
+                vaga: vagaEscolhida,
+                modo_interesse: alvo.rotulo
+            })
+        );
+
+        window.location.href = "./" + alvo.href;
     }
 
 
@@ -180,6 +239,9 @@
         const rotulo = vagaPendente;
         const nick = nickInput.value.trim();
 
+        if (!rotulo)
+            return;
+
         if (nick.length < 3) {
             mostrarMensagem("Digite seu nick para verificar.", "erro");
             return;
@@ -219,7 +281,9 @@
                 fecharPainel();
 
                 selecionarVaga(rotulo);
-                hint.textContent = "Vaga " + rotulo + " liberada! Agora escolha o servidor.";
+                hint.textContent = modo
+                    ? "Vaga " + rotulo + " liberada! Clique em iniciar formulário."
+                    : "Vaga " + rotulo + " liberada! Agora escolha o servidor.";
                 hint.classList.add("visivel");
             } else {
                 mostrarMensagem(mensagemBloqueio(dados), "erro");
@@ -256,26 +320,13 @@
        SELEÇÃO DE VAGA
     ========================================================== */
 
-    let vagaPendente = null;
 
-    function selecionarVaga(rotulo){
-        cardsVaga.forEach(function (card) {
-            card.classList.toggle("selecionado", card.dataset.vaga === rotulo);
-        });
-        vaga = rotulo;
-        atualizarCta();
-    }
-
-
-    cardsVaga.forEach(card => {
-        card.addEventListener("click", () => {
+    cardsVaga.forEach(function (card) {
+        card.addEventListener("click", function () {
             const rotulo = card.dataset.vaga;
 
             if (VAGAS_BLOQUEADAS.indexOf(rotulo) !== -1 && !desbloqueadas[rotulo]) {
-                if (!vaga) {
-                    hint.textContent = "";
-                    hint.classList.remove("visivel");
-                }
+                hint.classList.remove("visivel");
                 vagaPendente = rotulo;
                 mostrarPainel(rotulo);
                 return;
@@ -293,18 +344,13 @@
     ========================================================== */
 
 
-    cardsModo.forEach(card => {
-        card.addEventListener("click", () => {
-            if (!vaga) {
-                hint.textContent = "Primeiro escolha a vaga acima.";
-                hint.classList.add("visivel");
-                return;
-            }
-            cardsModo.forEach(x => x.classList.remove("selecionado"));
+    cardsModo.forEach(function (card) {
+        card.addEventListener("click", function () {
+            cardsModo.forEach(function (x) { x.classList.remove("selecionado"); });
             card.classList.add("selecionado");
             modo = card.dataset.modo;
             hint.classList.remove("visivel");
-            atualizarCta();
+            atualizarCtas();
         });
     });
 
@@ -339,7 +385,7 @@
     }
 
     if (nickInput) {
-        nickInput.addEventListener("keydown", (event) => {
+        nickInput.addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
                 verificarVaga();
             }
@@ -350,28 +396,22 @@
         painelFechar.addEventListener("click", fecharPainel);
     }
 
-    cta.addEventListener("click", () => {
-        if (!vaga || !modo)
-            return;
-
-        const alvo = MODOS[modo];
-
-        localStorage.setItem(
-            alvo.chave,
-            JSON.stringify({
-                vaga: vaga,
-                modo_interesse: alvo.rotulo
-            })
-        );
-
-        window.location.href = "./" + alvo.href;
-    });
-
-    carregarSessao();
-    preselecionarModo();
-
-    if (!vaga) {
-        selecionarVaga("Ajudante");
+    if (ctaAjudante) {
+        ctaAjudante.addEventListener("click", function () {
+            iniciar("Ajudante");
+        });
     }
+
+    if (ctaPromocao) {
+        ctaPromocao.addEventListener("click", function () {
+            if (!vagaPromocao || !desbloqueadas[vagaPromocao])
+                return;
+            iniciar(vagaPromocao);
+        });
+    }
+
+    preselecionarModo();
+    carregarSessao();
+    selecionarVaga("Ajudante");
 
 })();
