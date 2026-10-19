@@ -100,7 +100,8 @@ function CriadorForm(tipo) {
         if (m === 'no_recent_video_found') return 'nenhum vídeo recente';
         if (m.indexOf('last_video_over_') === 0) return 'último vídeo há mais de ' + m.slice(15).replace(/d$/, '') + ' dias';
         if (m.indexOf('stream_days_lt_') === 0) return 'menos de ' + m.slice(14) + ' dias com live nos últimos 7';
-        if (m.indexOf('live_days_lt_') === 0) return 'menos de ' + m.slice(13) + ' dias com live no mês';
+        if (m.indexOf('live_days_lt_') === 0) return 'menos de ' + m.slice(13) + ' dias com live';
+        if (m === 'live_days_insufficient') return 'não comprova a frequência mínima de lives';
         if (m === 'no_stream_data') return 'sem dados de lives recentes';
         if (m === 'no_auto_rule') return 'verificação automática apenas para Twitch';
         return m;
@@ -153,7 +154,7 @@ function CriadorForm(tipo) {
             }
             if (res.is_live) linhas.push('<span style="color:#7CFC9B;">● Ao vivo agora</span>');
             if (res.platform === 'twitch' && res.stream_days != null) {
-                linhas.push('Dias com live (últimos 30): <strong>' + res.stream_days + '</strong>');
+                linhas.push('Dias com live (últimos ' + (res.stream_days_window || 14) + '): <strong>' + res.stream_days + '</strong>');
             }
 
             if (res.eligibility) {
@@ -166,7 +167,8 @@ function CriadorForm(tipo) {
                 } else if (st === 'eligible') {
                     linhas.push('<span style="color:#7CFC9B;">✔ Apto para o programa</span>');
                 } else if (st === 'manual_review') {
-                    linhas.push('<span style="color:#ffd479;">⚠ Verificação inconclusiva — será analisada manualmente</span>' + (motivoTxt ? ' — ' + motivoTxt : ''));
+                    var sug = res.eligibility.suggested_tier === 'streamer' ? ' (perfil compatível com Streamer)' : (res.eligibility.suggested_tier === 'mini_streamer' ? ' (perfil compatível com Mini-Streamer)' : '');
+                    linhas.push('<span style="color:#ffd479;">⚠ Verificação inconclusiva — será analisada manualmente</span>' + sug + (motivoTxt ? ' — ' + motivoTxt : ''));
                 } else {
                     linhas.push('<span style="color:#ff9f9f;">✖ Não apto</span>' + (motivoTxt ? ' — ' + motivoTxt : ''));
                 }

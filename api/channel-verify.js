@@ -20,11 +20,11 @@ const CACHE_SECONDS = parseInt(process.env.CHANNEL_VERIFY_CACHE_SECONDS || "600"
 const MINI_SUBS_MIN = parseInt(process.env.MINI_SUBS_MIN || "500", 10);
 const MINI_LASTVIDEO_DAYS = parseInt(process.env.MINI_LASTVIDEO_DAYS || "30", 10);
 
-const STREAMER_DAYS_WINDOW = parseInt(process.env.STREAMER_DAYS_WINDOW || "30", 10);
+const STREAMER_DAYS_WINDOW = parseInt(process.env.STREAMER_DAYS_WINDOW || "14", 10);
 const MINI_STREAMER_MIN_FOLLOWERS = parseInt(process.env.MINI_STREAMER_MIN_FOLLOWERS || "100", 10);
-const MINI_STREAMER_MIN_LIVE_DAYS = parseInt(process.env.MINI_STREAMER_MIN_LIVE_DAYS || "7", 10);
+const MINI_STREAMER_MIN_LIVE_DAYS = parseInt(process.env.MINI_STREAMER_MIN_LIVE_DAYS || "4", 10);
 const STREAMER_MIN_FOLLOWERS = parseInt(process.env.STREAMER_MIN_FOLLOWERS || "500", 10);
-const STREAMER_MIN_LIVE_DAYS = parseInt(process.env.STREAMER_MIN_LIVE_DAYS || "15", 10);
+const STREAMER_MIN_LIVE_DAYS = parseInt(process.env.STREAMER_MIN_LIVE_DAYS || "7", 10);
 
 const cache = new Map();
 
@@ -377,8 +377,11 @@ function checkMiniYoutube(res) {
 
 // ----------------------------------------------------------
 // ELEGIBILIDADE STREAMER (Twitch, janela = mes/30 dias)
-//  - Streamer      : >= 500 seguidores e >= 15 dias com live
-//  - Mini-Streamer : >= 100 seguidores e >= 7 dias com live
+//  - Streamer      : >= 500 seguidores e >= 7 dias com live (janela 14d)
+//  - Mini-Streamer : >= 100 seguidores e >= 4 dias com live (janela 14d)
+// Janela de 14 dias = retencao de VOD garantida pela Twitch em qualquer canal.
+// Sem dados de live mas com seguidores suficientes -> revisao manual.
+// Seguidores insuficientes (nem p/ Mini) -> nao apto.
 // Outras plataformas -> revisao manual (sem regra automatica).
 // ----------------------------------------------------------
 function checkStreamer(res) {
@@ -396,19 +399,28 @@ function checkStreamer(res) {
     return out;
   }
 
-  const days = res.stream_days || 0;
+  const followers = res.followers;
 
-  // Sem historico de VOD e sem live agora: nao da para medir frequencia.
-  if ((res.vod_count || 0) === 0 && !res.is_live) {
-    out.status = "manual_review";
-    out.reasons.push("no_stream_data");
+  // Sem seguidores nem para o Mini-Streamer: nao apto.
+  if (followers < MINI_STREAMER_MIN_FOLLOWERS) {
+    out.reasons.push("followers_lt_" + MINI_STREAMER_MIN_FOLLOWERS);
     return out;
   }
 
-  const followers = res.followers;
+  const days = res.stream_days || 0;
+  const suggested =
+    followers >= STREAMER_MIN_FOLLOWERS ? "streamer" : "mini_streamer";
 
-  const streamerOk = followers >= STREAMER_MIN_FOLLOWERS && days >= STREAMER_MIN_LIVE_DAYS;
-  if (streamerOk) {
+  // Sem historico de VOD e sem live agora: seguidores ok, mas sem como medir
+  // a frequencia -> conferencia manual.
+  if ((res.vod_count || 0) === 0 && !res.is_live) {
+    out.status = "manual_review";
+    out.reasons.push("no_stream_data");
+    out.suggested_tier = suggested;
+    return out;
+  }
+
+  if (followers >= STREAMER_MIN_FOLLOWERS && days >= STREAMER_MIN_LIVE_DAYS) {
     out.eligible = true;
     out.status = "streamer";
     out.tier = "streamer";
@@ -416,8 +428,7 @@ function checkStreamer(res) {
     return out;
   }
 
-  const miniOk = followers >= MINI_STREAMER_MIN_FOLLOWERS && days >= MINI_STREAMER_MIN_LIVE_DAYS;
-  if (miniOk) {
+  if (days >= MINI_STREAMER_MIN_LIVE_DAYS) {
     out.eligible = true;
     out.status = "mini_streamer";
     out.tier = "mini_streamer";
@@ -425,12 +436,10 @@ function checkStreamer(res) {
     return out;
   }
 
-  if (followers < MINI_STREAMER_MIN_FOLLOWERS) {
-    out.reasons.push("followers_lt_" + MINI_STREAMER_MIN_FOLLOWERS);
-  }
-  if (days < MINI_STREAMER_MIN_LIVE_DAYS) {
-    out.reasons.push("live_days_lt_" + MINI_STREAMER_MIN_LIVE_DAYS);
-  }
+  // Seguidores suficientes, mas nao comprova os dias minimos de live.
+  out.status = "manual_review";
+  out.reasons.push("live_days_insufficient");
+  out.suggested_tier = suggested;
   return out;
 }
 
@@ -498,6 +507,7 @@ export default async function handler(req, res) {
       last_stream_title: result.last_stream_title || null,
       is_live: !!result.is_live,
       stream_days: result.stream_days != null ? result.stream_days : null,
+      stream_days_window: STREAMER_DAYS_WINDOW,
       verified_at: new Date().toISOString(),
       cache_seconds: CACHE_SECONDS,
       eligibility,
