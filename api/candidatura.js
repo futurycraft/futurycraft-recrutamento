@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { verificarEligibilidade } from "./_eligibilidade.js";
+import { verificarEligibilidade, verificarTempoJogado } from "./_eligibilidade.js";
 
 // ==========================================================
 // FUTURYCRAFT - CANDIDATURA (seguro)
@@ -265,6 +265,43 @@ export default async function handler(req, res) {
             }
             if (typeof val !== "string") continue;
             dados[campo] = val.slice(0, MAX_CAMPO_TAMANHO).trim();
+        }
+
+        // ---- tempo de jogo: TODAS as vagas exigem 30 dias (720h) ----
+        // Fonte: FuturySync (skyblock_tempo/lobby_tempo/rankup_tempo),
+        // consultado pelo nick. Nunca confia no tempo digitado no form.
+        const tempo = await verificarTempoJogado(supabase, dados.nick);
+
+        if (!tempo.sucesso) {
+            if (tempo.motivo === "nick_invalido") {
+                return res.status(400).json({
+                    sucesso: false,
+                    erro: "Nick inválido. Use de 3 a 24 caracteres."
+                });
+            }
+
+            return res.status(503).json({
+                sucesso: false,
+                erro: "Não foi possível verificar seu tempo de jogo agora. Tente novamente em instantes."
+            });
+        }
+
+        if (!tempo.liberado) {
+            const mensagem = tempo.motivo === "nick_nao_encontrado"
+                ? "Nick não encontrado no FuturySync. Use o nick exato do jogo."
+                : "Você precisa de pelo menos " + tempo.exigido_dias +
+                  " dias (" + tempo.exigido_horas + "h) jogados no FuturyCraft. " +
+                  "Seu tempo atual: " + tempo.horas + "h.";
+
+            return res.status(403).json({
+                sucesso: false,
+                erro: mensagem,
+                motivo: tempo.motivo,
+                horas_jogadas: tempo.horas,
+                dias_jogados: tempo.dias,
+                exigido_horas: tempo.exigido_horas,
+                exigido_dias: tempo.exigido_dias
+            });
         }
 
         // ---- promoções: Moderador/Admin exigem 30 dias no cargo anterior ----

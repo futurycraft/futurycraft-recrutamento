@@ -1,13 +1,12 @@
 /* ==========================================================
    FUTURYCRAFT
    GATEWAY DE CANDIDATURA (candidatura.html)
-   Escolha do servidor + vaga.
-   - Ajudante: vaga de entrada, botão próprio logo abaixo do servidor.
-   - Moderador/Admin: vagas de promoção bloqueadas. O nick de staff
-     (validado via api/desbloqueio.js contra cargo_historico) libera
-     a vaga e, por consequência, o botão de iniciar. Sem nick
-     confirmado, o botão continua bloqueado.
-   Grava a escolha no storage do fluxo e inicia o formulário.
+   - Tempo de jogo: o nick e validado no FuturySync e precisa
+     ter 30 dias (720h) jogados para liberar QUALQUER vaga.
+   - Ajudante: libera com o tempo confirmado.
+   - Moderador/Admin: alem do tempo, exigem o cargo anterior
+     por 30 dias (conferido ao clicar na vaga).
+   Grava a escolha no storage do fluxo e inicia o formulario.
 ========================================================== */
 
 (function(){
@@ -19,15 +18,18 @@
     };
 
     const VAGAS_BLOQUEADAS = ["Moderador", "Admin"];
-    const EXIGENCIA = 30;
-    const SESSIAO_CHAVE = "futury_desbloqueio";
-    const SESSIAO_VALIDADE = 7 * 24 * 60 * 60 * 1000;
+    const EXIGENCIA_CARGO = 30;
+    const EXIGENCIA_HORAS = 720;
+    const SESSAO_CHAVE = "futury_desbloqueio";
+    const SESSAO_VALIDADE = 7 * 24 * 60 * 60 * 1000;
 
     let modo = null;
     let vagaPromocao = null;
-    let vagaPendente = null;
     let nickAtual = "";
     let verificando = false;
+    let tempoValidado = false;
+    let horasJogadas = 0;
+    let diasJogados = 0;
 
     const desbloqueadas = {
         Moderador: false,
@@ -40,31 +42,32 @@
     const ctaPromocao = document.getElementById("cta-promocao");
     const hint = document.getElementById("cta-hint");
 
-    const painel = document.getElementById("painel-desbloqueio");
-    const painelTitulo = document.getElementById("painel-titulo");
-    const painelSub = document.getElementById("painel-sub");
+    const barra = document.getElementById("painel-desbloqueio");
+    const selo = document.getElementById("verificacao-selo");
+    const progresso = document.getElementById("verificacao-progresso");
+    const barraFill = document.getElementById("verificacao-fill");
+    const detalhe = document.getElementById("verificacao-detalhe");
     const nickInput = document.getElementById("nick-verificacao");
     const btnVerificar = document.getElementById("btn-verificar");
-    const msgDesbloqueio = document.getElementById("msg-desbloqueio");
-    const painelFechar = document.getElementById("painel-fechar");
+    const msg = document.getElementById("msg-desbloqueio");
 
 
     /* ==========================================================
-       ESTADO SALVO (desbloqueio permanece 7 dias)
+       ESTADO SALVO (validacao permanece 7 dias)
     ========================================================== */
 
 
     function carregarSessao(){
         try {
             const salvo = JSON.parse(
-                localStorage.getItem(SESSIAO_CHAVE) || "null"
+                localStorage.getItem(SESSAO_CHAVE) || "null"
             );
 
             if (!salvo || !salvo.salvo_em)
                 return;
 
-            if (Date.now() - salvo.salvo_em > SESSIAO_VALIDADE) {
-                localStorage.removeItem(SESSIAO_CHAVE);
+            if (Date.now() - salvo.salvo_em > SESSAO_VALIDADE) {
+                localStorage.removeItem(SESSAO_CHAVE);
                 return;
             }
 
@@ -72,13 +75,29 @@
                 nickAtual = salvo.nick;
             }
 
+            tempoValidado = !!salvo.tempo_validado;
+            horasJogadas = Number(salvo.horas_jogadas) || 0;
+            diasJogados = Number(salvo.dias_jogados) || 0;
+
             (salvo.liberadas || []).forEach(function (rotulo) {
                 if (desbloqueadas.hasOwnProperty(rotulo)) {
                     desbloqueadas[rotulo] = true;
                 }
             });
 
+            if (nickInput && nickAtual) {
+                nickInput.value = nickAtual;
+            }
+
+            atualizarBarra();
             aplicarDesbloqueios();
+
+            if (tempoValidado && nickConfirmado()) {
+                mostrarMensagem(
+                    "Nick confirmado: " + horasJogadas + "h jogadas. Vagas liberadas.",
+                    "ok"
+                );
+            }
         } catch (ignorar) {}
     }
 
@@ -93,55 +112,358 @@
         });
 
         localStorage.setItem(
-            SESSIAO_CHAVE,
+            SESSAO_CHAVE,
             JSON.stringify({
                 nick: nickAtual,
                 salvo_em: Date.now(),
+                tempo_validado: tempoValidado,
+                horas_jogadas: horasJogadas,
+                dias_jogados: diasJogados,
                 liberadas: liberadas
             })
         );
     }
 
 
+    function limparPromocoes(){
+        desbloqueadas.Moderador = false;
+        desbloqueadas.Admin = false;
+        vagaPromocao = null;
+        cardsVaga.forEach(function (card) {
+            card.classList.remove("selecionado");
+        });
+    }
+
+
+    /* ==========================================================
+       BARRA DE VERIFICACAO
+    ========================================================== */
+
+
+    function nickConfirmado(){
+        if (!tempoValidado || !nickAtual) return false;
+        const atual = nickInput ? nickInput.value.trim() : "";
+        return atual.toLowerCase() === nickAtual.toLowerCase();
+    }
+
+
+    function atualizarBarra(){
+        const confirmado = nickConfirmado();
+
+        if (barra) {
+            barra.classList.toggle("liberada", confirmado);
+        }
+
+        if (selo) {
+            selo.textContent = confirmado ? "Liberado" : "Pendente";
+            selo.classList.toggle("ok", confirmado);
+        }
+
+        const consultado = tempoValidado || horasJogadas > 0;
+
+        if (progresso) {
+            progresso.hidden = !consultado;
+        }
+
+        if (barraFill) {
+            const pct = Math.min(
+                100,
+                Math.round((horasJogadas / EXIGENCIA_HORAS) * 100)
+            );
+            barraFill.style.width = pct + "%";
+        }
+
+        if (detalhe && consultado) {
+            detalhe.textContent =
+                horasJogadas + "h de " + EXIGENCIA_HORAS + "h (" +
+                Math.min(30, diasJogados) + "/30 dias)" +
+                (confirmado ? "" : " — confirme o nick");
+        }
+    }
+
+
+    function mostrarMensagem(texto, tipo){
+        if (!msg) return;
+        msg.textContent = texto;
+        msg.classList.remove("ok", "erro");
+
+        if (tipo) {
+            msg.classList.add(tipo);
+        }
+    }
+
+
+    function mensagemTempo(dados){
+        if (dados.motivo === "nick_invalido") {
+            return "Digite um nick válido (3 a 24 caracteres).";
+        }
+
+        if (dados.motivo === "nick_nao_encontrado") {
+            return "Nick não encontrado no FuturySync. Use o nick exato do jogo.";
+        }
+
+        if (dados.motivo === "tempo_indisponivel") {
+            return "Não foi possível ler seu tempo de jogo agora. Tente novamente em instantes.";
+        }
+
+        if (dados.motivo === "tempo_insuficiente") {
+            const horas = Number(dados.horas_jogadas) || 0;
+            const falta = Math.max(0, EXIGENCIA_HORAS - horas);
+            return "Faltam " + falta + "h de jogo. Você tem " +
+                horas + "h de " + EXIGENCIA_HORAS + "h (30 dias).";
+        }
+
+        return "Não foi possível validar seu nick. Tente novamente.";
+    }
+
+
+    function mensagemCargo(dados){
+        if (
+            dados.motivo === "nick_invalido" ||
+            dados.motivo === "nick_nao_encontrado" ||
+            dados.motivo === "tempo_indisponivel" ||
+            dados.motivo === "tempo_insuficiente"
+        ) {
+            return mensagemTempo(dados);
+        }
+
+        const cargo = dados.cargo ? dados.cargo : "o cargo anterior";
+
+        if (dados.motivo === "staff_nao_encontrado") {
+            return "Nick validado no jogo, mas não encontrado como staff para essa promoção.";
+        }
+
+        if (dados.motivo === "cargo_incorreto") {
+            return "Bloqueado: essa promoção exige estar ativo como " + cargo + ".";
+        }
+
+        const falta = Math.max(
+            0,
+            (dados.exigido_cargo_dias || EXIGENCIA_CARGO) -
+            (dados.dias_cargo || 0)
+        );
+
+        return "Bloqueado: faltam " + falta +
+            " dia(s) ativo como " + cargo + " para liberar essa vaga.";
+    }
+
+
+    function travarBotoes(texto){
+        if (btnVerificar) {
+            btnVerificar.disabled = true;
+            btnVerificar.innerHTML =
+                texto + ' <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+        }
+    }
+
+
+    function liberarBotao(){
+        if (btnVerificar) {
+            btnVerificar.disabled = false;
+            btnVerificar.innerHTML =
+                'Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
+        }
+    }
+
+
+    async function verificarNick(){
+        const nick = nickInput ? nickInput.value.trim() : "";
+
+        if (nick.length < 3) {
+            mostrarMensagem("Digite seu nick do servidor para verificar.", "erro");
+            return;
+        }
+
+        if (verificando)
+            return;
+
+        verificando = true;
+        travarBotoes("Verificando");
+        mostrarMensagem("", "");
+
+        try {
+            const resp = await fetch("./api/desbloqueio.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nick: nick, vaga: "Ajudante" })
+            });
+
+            const dados = await resp.json();
+
+            if (!dados || dados.sucesso === false) {
+                mostrarMensagem(
+                    (dados && dados.erro) || "Não foi possível validar. Tente de novo.",
+                    "erro"
+                );
+                return;
+            }
+
+            horasJogadas = Number(dados.horas_jogadas) || 0;
+            diasJogados = Number(dados.dias_jogados) || 0;
+
+            if (dados.liberado) {
+                const mesmoNick =
+                    nickAtual &&
+                    nickAtual.toLowerCase() === nick.toLowerCase();
+
+                if (!mesmoNick) {
+                    limparPromocoes();
+                }
+
+                nickAtual = nick;
+                tempoValidado = true;
+                salvarSessao();
+                atualizarBarra();
+                aplicarDesbloqueios();
+
+                mostrarMensagem(
+                    "Nick confirmado: " + horasJogadas +
+                    "h jogadas (" + diasJogados + " dias). Vagas liberadas.",
+                    "ok"
+                );
+            } else {
+                tempoValidado = false;
+                limparPromocoes();
+                atualizarBarra();
+                aplicarDesbloqueios();
+                mostrarMensagem(mensagemTempo(dados), "erro");
+            }
+        } catch (erro) {
+            mostrarMensagem(
+                "Falha de conexão. Verifique sua internet e tente de novo.",
+                "erro"
+            );
+        } finally {
+            verificando = false;
+            liberarBotao();
+        }
+    }
+
+
+    async function verificarPromocao(rotulo){
+        if (!nickConfirmado()) {
+            mostrarMensagem(
+                "Valide seu nick na barra acima para desbloquear as vagas.",
+                "erro"
+            );
+            if (nickInput) nickInput.focus();
+            return;
+        }
+
+        if (verificando)
+            return;
+
+        verificando = true;
+        travarBotoes("Verificando cargo");
+        mostrarMensagem("", "");
+
+        try {
+            const resp = await fetch("./api/desbloqueio.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nick: nickAtual, vaga: rotulo })
+            });
+
+            const dados = await resp.json();
+
+            if (!dados || dados.sucesso === false) {
+                mostrarMensagem(
+                    (dados && dados.erro) || "Não foi possível validar. Tente de novo.",
+                    "erro"
+                );
+                return;
+            }
+
+            if (dados.liberado) {
+                desbloqueadas[rotulo] = true;
+                salvarSessao();
+                aplicarDesbloqueios();
+                selecionarVaga(rotulo);
+
+                hint.textContent = modo
+                    ? "Vaga " + rotulo + " liberada! Clique em iniciar formulário."
+                    : "Vaga " + rotulo + " liberada! Agora escolha o servidor.";
+                hint.classList.add("visivel");
+
+                mostrarMensagem("Vaga " + rotulo + " liberada.", "ok");
+            } else {
+                mostrarMensagem(mensagemCargo(dados), "erro");
+            }
+        } catch (erro) {
+            mostrarMensagem(
+                "Falha de conexão. Verifique sua internet e tente de novo.",
+                "erro"
+            );
+        } finally {
+            verificando = false;
+            liberarBotao();
+        }
+    }
+
+
+    /* ==========================================================
+       CARDS E BOTOES
+    ========================================================== */
+
+
+    function aplicarCard(card, liberada){
+        card.classList.toggle("bloqueada", !liberada);
+
+        const btn = card.querySelector(".server-btn");
+        if (btn) {
+            btn.innerHTML = liberada
+                ? 'Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>'
+                : 'Bloqueado';
+        }
+
+        let cadeado = card.querySelector(".vaga-lock");
+
+        if (liberada) {
+            if (cadeado) cadeado.remove();
+            return;
+        }
+
+        if (!cadeado) {
+            cadeado = document.createElement("span");
+            cadeado.className = "vaga-lock";
+            cadeado.setAttribute("aria-hidden", "true");
+            cadeado.innerHTML = '<i class="fa-solid fa-lock"></i>';
+            card.appendChild(cadeado);
+        }
+    }
+
+
     function aplicarDesbloqueios(){
+        const confirmado = nickConfirmado();
+
         cardsVaga.forEach(function (card) {
             const rotulo = card.dataset.vaga;
-
-            if (desbloqueadas[rotulo]) {
-                card.classList.remove("bloqueada");
-                const btn = card.querySelector(".server-btn");
-                if (btn) {
-                    btn.innerHTML =
-                        'Selecionar vaga <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
-                }
-                const cadeado = card.querySelector(".vaga-lock");
-                if (cadeado) {
-                    cadeado.remove();
-                }
-            }
+            const liberada = confirmado && !!desbloqueadas[rotulo];
+            aplicarCard(card, liberada);
         });
 
         atualizarCtas();
     }
 
 
-    /* ==========================================================
-       BOTÕES (cada vaga tem o seu)
-    ========================================================== */
-
-
     function atualizarCtas(){
         const servidorOk = !!modo;
+        const confirmado = nickConfirmado();
 
-        // Ajudante: libera assim que o servidor for escolhido.
         if (ctaAjudante) {
+            const pronto = servidorOk && confirmado;
+
             ctaAjudante.disabled = !servidorOk;
-            ctaAjudante.classList.toggle("pronto", servidorOk);
+            ctaAjudante.classList.toggle("pronto", pronto);
+            ctaAjudante.classList.toggle("cta-travado", !pronto);
+            ctaAjudante.innerHTML = pronto
+                ? 'Iniciar formulário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>'
+                : '<i class="fa-solid fa-lock" aria-hidden="true"></i> Iniciar formulário';
         }
 
-        // Promoção: só libera com nick confirmado E servidor escolhido.
         if (ctaPromocao) {
-            const liberada = !!vagaPromocao && !!desbloqueadas[vagaPromocao];
+            const liberada =
+                confirmado && !!vagaPromocao && !!desbloqueadas[vagaPromocao];
             const pronto = servidorOk && liberada;
 
             ctaPromocao.disabled = !pronto;
@@ -177,13 +499,37 @@
             return;
         }
 
+        if (!nickConfirmado()) {
+            mostrarMensagem(
+                "Valide seu nick na barra acima antes de iniciar o formulário.",
+                "erro"
+            );
+            if (nickInput) nickInput.focus();
+            return;
+        }
+
+        if (
+            vagaEscolhida !== "Ajudante" &&
+            !desbloqueadas[vagaEscolhida]
+        ) {
+            mostrarMensagem(
+                "Confira o cargo anterior antes de iniciar essa promoção.",
+                "erro"
+            );
+            return;
+        }
+
         const alvo = MODOS[modo];
 
         localStorage.setItem(
             alvo.chave,
             JSON.stringify({
                 vaga: vagaEscolhida,
-                modo_interesse: alvo.rotulo
+                modo_interesse: alvo.rotulo,
+                nick: nickAtual,
+                nick_verificado: nickAtual,
+                horas_jogadas: horasJogadas,
+                salvo_em: Date.now()
             })
         );
 
@@ -192,132 +538,7 @@
 
 
     /* ==========================================================
-       PAINEL DE DESBLOQUEIO
-    ========================================================== */
-
-
-    function mostrarPainel(rotulo){
-        if (!painel)
-            return;
-
-        const cargoExigido =
-            rotulo === "Moderador" ? "Ajudante" : "Moderador";
-
-        painelTitulo.textContent = "Liberar vaga de " + rotulo;
-        painelSub.textContent =
-            "Promoção: exige " + EXIGENCIA +
-            " dias ativo como " + cargoExigido +
-            ". Informe seu nick de staff para validar.";
-
-        msgDesbloqueio.textContent = "";
-        msgDesbloqueio.classList.remove("ok", "erro");
-        nickInput.value = nickAtual;
-
-        painel.classList.remove("escondido");
-        nickInput.focus();
-    }
-
-
-    function fecharPainel(){
-        if (painel) {
-            painel.classList.add("escondido");
-        }
-    }
-
-
-    function mostrarMensagem(texto, tipo){
-        msgDesbloqueio.textContent = texto;
-        msgDesbloqueio.classList.remove("ok", "erro");
-
-        if (tipo) {
-            msgDesbloqueio.classList.add(tipo);
-        }
-    }
-
-
-    async function verificarVaga(){
-        const rotulo = vagaPendente;
-        const nick = nickInput.value.trim();
-
-        if (!rotulo)
-            return;
-
-        if (nick.length < 3) {
-            mostrarMensagem("Digite seu nick para verificar.", "erro");
-            return;
-        }
-
-        if (verificando)
-            return;
-
-        verificando = true;
-        btnVerificar.disabled = true;
-        btnVerificar.innerHTML =
-            'Verificando... <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
-        mostrarMensagem("", "");
-
-        try {
-            const resp = await fetch("./api/desbloqueio.js", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nick: nick, vaga: rotulo })
-            });
-
-            const dados = await resp.json();
-
-            if (!dados || dados.sucesso === false) {
-                mostrarMensagem(
-                    (dados && dados.erro) || "Não foi possível validar. Tente de novo.",
-                    "erro"
-                );
-                return;
-            }
-
-            if (dados.liberado) {
-                nickAtual = nick;
-                desbloqueadas[rotulo] = true;
-                salvarSessao();
-                aplicarDesbloqueios();
-                fecharPainel();
-
-                selecionarVaga(rotulo);
-                hint.textContent = modo
-                    ? "Vaga " + rotulo + " liberada! Clique em iniciar formulário."
-                    : "Vaga " + rotulo + " liberada! Agora escolha o servidor.";
-                hint.classList.add("visivel");
-            } else {
-                mostrarMensagem(mensagemBloqueio(dados), "erro");
-            }
-        } catch (erro) {
-            mostrarMensagem("Falha de conexão. Verifique sua internet e tente de novo.", "erro");
-        } finally {
-            verificando = false;
-            btnVerificar.disabled = false;
-            btnVerificar.innerHTML =
-                'Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
-        }
-    }
-
-
-    function mensagemBloqueio(dados){
-        const cargo = dados.cargo ? dados.cargo : "o cargo anterior";
-
-        if (dados.motivo === "staff_nao_encontrado") {
-            return "Seu nick não foi reconhecido como staff do servidor. Confira e tente de novo.";
-        }
-
-        if (dados.motivo === "cargo_incorreto") {
-            return "Bloqueado: essa promoção exige estar ativo como " + cargo + ".";
-        }
-
-        const falta = Math.max(0, (dados.exigido || EXIGENCIA) - (dados.dias || 0));
-        return "Bloqueado: faltam " + falta +
-            " dia(s) ativo como " + cargo + " para liberar essa vaga.";
-    }
-
-
-    /* ==========================================================
-       SELEÇÃO DE VAGA
+       EVENTOS
     ========================================================== */
 
 
@@ -325,23 +546,29 @@
         card.addEventListener("click", function () {
             const rotulo = card.dataset.vaga;
 
-            if (VAGAS_BLOQUEADAS.indexOf(rotulo) !== -1 && !desbloqueadas[rotulo]) {
+            if (!nickConfirmado()) {
                 hint.classList.remove("visivel");
-                vagaPendente = rotulo;
-                mostrarPainel(rotulo);
+                mostrarMensagem(
+                    "Valide seu nick na barra acima para desbloquear as vagas.",
+                    "erro"
+                );
+                if (nickInput) nickInput.focus();
                 return;
             }
 
-            vagaPendente = null;
+            if (
+                VAGAS_BLOQUEADAS.indexOf(rotulo) !== -1 &&
+                !desbloqueadas[rotulo]
+            ) {
+                hint.classList.remove("visivel");
+                verificarPromocao(rotulo);
+                return;
+            }
+
             hint.classList.remove("visivel");
             selecionarVaga(rotulo);
         });
     });
-
-
-    /* ==========================================================
-       SELEÇÃO DE SERVIDOR
-    ========================================================== */
 
 
     cardsModo.forEach(function (card) {
@@ -355,8 +582,41 @@
     });
 
 
+    if (btnVerificar) {
+        btnVerificar.addEventListener("click", verificarNick);
+    }
+
+    if (nickInput) {
+        nickInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                verificarNick();
+            }
+        });
+
+        nickInput.addEventListener("input", function () {
+            mostrarMensagem("", "");
+            atualizarBarra();
+            aplicarDesbloqueios();
+        });
+    }
+
+    if (ctaAjudante) {
+        ctaAjudante.addEventListener("click", function () {
+            iniciar("Ajudante");
+        });
+    }
+
+    if (ctaPromocao) {
+        ctaPromocao.addEventListener("click", function () {
+            if (!vagaPromocao || !desbloqueadas[vagaPromocao])
+                return;
+            iniciar(vagaPromocao);
+        });
+    }
+
+
     /* ==========================================================
-       PRESELEÇÃO POR URL (?modo=rankup|survival)
+       PRESELECAO POR URL (?modo=rankup|survival)
     ========================================================== */
 
 
@@ -375,43 +635,15 @@
     }
 
 
-    /* ==========================================================
-       INICIAR
-    ========================================================== */
-
-
-    if (btnVerificar) {
-        btnVerificar.addEventListener("click", verificarVaga);
-    }
-
-    if (nickInput) {
-        nickInput.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                verificarVaga();
-            }
-        });
-    }
-
-    if (painelFechar) {
-        painelFechar.addEventListener("click", fecharPainel);
-    }
-
-    if (ctaAjudante) {
-        ctaAjudante.addEventListener("click", function () {
-            iniciar("Ajudante");
-        });
-    }
-
-    if (ctaPromocao) {
-        ctaPromocao.addEventListener("click", function () {
-            if (!vagaPromocao || !desbloqueadas[vagaPromocao])
-                return;
-            iniciar(vagaPromocao);
-        });
-    }
-
     preselecionarModo();
     carregarSessao();
     selecionarVaga("Ajudante");
+
+    if (!msg || !msg.textContent) {
+        mostrarMensagem(
+            "Digite seu nick para conferir o tempo de jogo no FuturySync.",
+            ""
+        );
+    }
 
 })();

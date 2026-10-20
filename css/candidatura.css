@@ -441,27 +441,52 @@
    PAINEL DE DESBLOQUEIO
 ========================================================= */
 
-.painel-desbloqueio{
+.verificacao-barra{
     max-width:900px;
-    margin:18px auto 0;
-    padding:18px 20px;
+    margin:0 auto 18px;
+    padding:16px 18px;
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
     border-radius:16px;
-    background:linear-gradient(160deg,rgba(251,191,36,.07),rgba(251,191,36,.02));
-    border:1px solid rgba(251,191,36,.28);
-    box-shadow:0 14px 32px rgba(0,0,0,.25);
+    background:linear-gradient(160deg,rgba(76,194,255,.08),rgba(76,194,255,.02));
+    border:1px solid rgba(76,194,255,.28);
+    box-shadow:0 14px 32px rgba(0,0,0,.22);
+    text-align:left;
 }
 
-.painel-desbloqueio.escondido{
-    display:none;
+.verificacao-barra.liberada{
+    border-color:rgba(52,211,153,.45);
+    background:linear-gradient(160deg,rgba(52,211,153,.1),rgba(52,211,153,.02));
 }
 
-.painel-desbloqueio-top{
+.verificacao-topo{
     display:flex;
     align-items:flex-start;
     gap:12px;
+}
+
+.verificacao-texto{
+    flex:1;
+    min-width:0;
+}
+
+.verificacao-texto b{
+    font-size:.95rem;
+    letter-spacing:.3px;
+}
+
+.verificacao-texto small{
+    display:block;
+    margin-top:3px;
+    font-size:.8rem;
+    line-height:1.55;
+    color:var(--fc-text-2);
+}
+
+.verificacao-texto small b{
+    font-size:inherit;
+    color:#4cc2ff;
 }
 
 .painel-icon{
@@ -473,43 +498,59 @@
     justify-content:center;
     font-size:1rem;
     border-radius:12px;
-    color:#fbbf24;
-    background:rgba(251,191,36,.12);
-    border:1px solid rgba(251,191,36,.25);
+    color:#4cc2ff;
+    background:rgba(76,194,255,.12);
+    border:1px solid rgba(76,194,255,.25);
 }
 
-.painel-desbloqueio-top b{
-    font-size:.95rem;
-    letter-spacing:.3px;
-}
-
-.painel-desbloqueio-top small{
-    display:block;
-    margin-top:3px;
-    font-size:.8rem;
-    line-height:1.55;
-    color:var(--fc-text-2);
-}
-
-.painel-fechar{
-    margin-left:auto;
-    width:30px;
-    height:30px;
+.verificacao-selo{
     flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:.9rem;
+    padding:5px 10px;
+    font-size:.66rem;
+    font-weight:800;
+    letter-spacing:.8px;
+    text-transform:uppercase;
     color:var(--fc-text-2);
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:9px;
-    cursor:pointer;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
 }
 
-.painel-fechar:hover{
-    color:var(--fc-text);
-    background:rgba(255,255,255,.1);
+.verificacao-selo.ok{
+    color:#06121f;
+    background:#34d399;
+    border-color:#34d399;
+}
+
+.verificacao-progresso{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.verificacao-progresso[hidden]{
+    display:none;
+}
+
+.verificacao-track{
+    height:8px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    overflow:hidden;
+}
+
+.verificacao-fill{
+    display:block;
+    height:100%;
+    width:0;
+    border-radius:999px;
+    background:linear-gradient(90deg,#4cc2ff,#34d399);
+    transition:width .45s ease;
+}
+
+#verificacao-detalhe{
+    font-size:.76rem;
+    color:var(--fc-text-2);
 }
 
 .painel-form{
@@ -708,6 +749,12 @@
     }
     .painel-form{
         flex-direction:column;
+    }
+    .verificacao-topo{
+        flex-wrap:wrap;
+    }
+    .verificacao-selo{
+        margin-left:52px;
     }
     #btn-verificar{
         padding:12px 18px;

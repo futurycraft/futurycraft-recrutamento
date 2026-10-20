@@ -112,6 +112,34 @@ Escolha o servidor e a vaga. Cada combinação possui formulário e perguntas pr
 </div>
 </div>
 
+<!-- VERIFICAÇÃO DE NICK -->
+<div class="verificacao-barra" id="painel-desbloqueio" aria-live="polite">
+
+<div class="verificacao-topo">
+<span class="painel-icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+<div class="verificacao-texto">
+<b id="painel-titulo">Verifique seu nick</b>
+<small id="painel-sub">Precisamos confirmar <b>30 dias (720h)</b> jogados no FuturyCraft. O tempo vem do FuturySync.</small>
+</div>
+<span class="verificacao-selo" id="verificacao-selo">Pendente</span>
+</div>
+
+<div class="painel-form">
+<input type="text" id="nick-verificacao" maxlength="24" autocomplete="off" placeholder="Seu nick no servidor" spellcheck="false">
+<button type="button" id="btn-verificar">
+Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+</button>
+</div>
+
+<div class="verificacao-progresso" id="verificacao-progresso" hidden>
+<div class="verificacao-track"><span class="verificacao-fill" id="verificacao-fill"></span></div>
+<small id="verificacao-detalhe"></small>
+</div>
+
+<p class="msg-desbloqueio" id="msg-desbloqueio"></p>
+
+</div>
+
 <!-- AJUDANTE -->
 <div class="vaga-linha vaga-linha-ajudante">
 
@@ -119,7 +147,7 @@ Escolha o servidor e a vaga. Cada combinação possui formulário e perguntas pr
 
 <div class="vaga-linha-texto">
 <b>AJUDANTE</b>
-<small>Formulário inicial para quem quer entrar para a equipe de staff.</small>
+<small>Formulário inicial. Requer os 30 dias de jogo confirmados acima.</small>
 </div>
 
 <button type="button" class="cta-iniciar" id="cta-ajudante" disabled>
@@ -135,7 +163,7 @@ Iniciar formulário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 <span class="promocao-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
 <div class="promocao-texto">
 <b>MODERADOR+ <span class="promo-tag">Promoção</span></b>
-<small>Clique na vaga e informe seu nick de staff para desbloquear o botão.</small>
+<small>Depois de validar o nick, clique na vaga para conferir o cargo anterior.</small>
 </div>
 </div>
 
@@ -163,30 +191,6 @@ Iniciar formulário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 
 </div>
 
-<div class="painel-desbloqueio escondido" id="painel-desbloqueio" aria-live="polite">
-
-<div class="painel-desbloqueio-top">
-<span class="painel-icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
-<div>
-<b id="painel-titulo">Liberar vaga</b>
-<small id="painel-sub">Essa vaga é uma promoção. Informe seu nick de staff para validar os requisitos.</small>
-</div>
-<button type="button" class="painel-fechar" id="painel-fechar" aria-label="Fechar">
-<i class="fa-solid fa-xmark" aria-hidden="true"></i>
-</button>
-</div>
-
-<div class="painel-form">
-<input type="text" id="nick-verificacao" maxlength="24" autocomplete="off" placeholder="Seu nick no servidor" spellcheck="false">
-<button type="button" id="btn-verificar">
-Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-</button>
-</div>
-
-<p class="msg-desbloqueio" id="msg-desbloqueio"></p>
-
-</div>
-
 <div class="cta-row">
 <button type="button" class="cta-iniciar cta-travado" id="cta-promocao" disabled>
 <i class="fa-solid fa-lock" aria-hidden="true"></i> Iniciar formulário de Moderador+
@@ -199,7 +203,7 @@ Verificar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 
 <p class="flow-note" id="aviso-vaga">
 <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-Moderador e Admin são promoções — liberadas para staff ativo há 30 dias no cargo anterior.
+Todas as vagas exigem 30 dias (720h) jogados no FuturyCraft. Moderador e Admin também exigem 30 dias no cargo anterior.
 </p>
 
 <p class="cta-hint" id="cta-hint" aria-live="polite"></p>

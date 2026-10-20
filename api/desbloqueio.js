@@ -1,12 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
-import { verificarEligibilidade } from "./_eligibilidade.js";
+import { verificarEligibilidade, verificarTempoJogado } from "./_eligibilidade.js";
 
 // ==========================================================
-// FUTURYCRAFT - DESBLOQUEIO DE VAGA (gateway candidatura.html)
-// Verifica se o nick do staff ja tem 30 dias no cargo anterior
-// para liberar as vagas de Moderador (exige Ajudante) e Admin
-// (exige Moderador). Usa a service role: o cliente/anon nao
-// tem acesso direto a usuarios_staff nem a cargo_historico.
+// FUTURYCRAFT - VERIFICACAO DE NICK (gateway candidatura.html)
+// 1) Tempo de jogo: puxa do FuturySync (skyblock_tempo /
+//    lobby_tempo / rankup_tempo) e exige 30 dias (720h).
+// 2) Promocao: Moderador exige 30 dias como Ajudante; Admin
+//    exige 30 dias como Moderador.
+// Usa a service role: o cliente/anon nao tem acesso direto a
+// essas tabelas.
 // ==========================================================
 
 const supabase = createClient(
@@ -14,8 +16,10 @@ const supabase = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+const VAGAS = ["Ajudante", "Moderador", "Admin"];
+
 const TAXA_JANELA_MS = 10 * 60 * 1000;
-const TAXA_MAX = 10;
+const TAXA_MAX = 12;
 const hitsPorIp = new Map();
 
 function pegarIp(req) {
@@ -67,33 +71,72 @@ export default async function handler(req, res) {
         return res.status(400).json({ sucesso: false, erro: "Dados inválidos." });
     }
 
-    const vaga = raw.vaga;
-    const nick = typeof raw.nick === "string" ? raw.nick : "";
+    const vaga = VAGAS.includes(raw.vaga) ? raw.vaga : "Ajudante";
+    const nick = typeof raw.nick === "string" ? raw.nick.trim() : "";
 
-    if (vaga !== "Moderador" && vaga !== "Admin") {
-        return res.status(200).json({
-            sucesso: true,
-            vaga: vaga || "Ajudante",
-            liberado: true,
-            dias: 0,
-            exigido: 30,
-            motivo: "entrada"
+    if (!nick) {
+        return res.status(400).json({
+            sucesso: false,
+            erro: "Informe seu nick do servidor."
         });
     }
 
     try {
-        const resultado = await verificarEligibilidade(supabase, nick, vaga);
+        const tempo = await verificarTempoJogado(supabase, nick);
 
-        return res.status(200).json({
+        if (!tempo.sucesso) {
+            return res.status(200).json({
+                sucesso: true,
+                vaga: vaga,
+                nick: nick,
+                liberado: false,
+                tempo_liberado: false,
+                motivo: tempo.motivo,
+                horas_jogadas: 0,
+                dias_jogados: 0,
+                exigido_horas: tempo.exigido_horas,
+                exigido_dias: tempo.exigido_dias
+            });
+        }
+
+        const base = {
             sucesso: true,
             vaga: vaga,
-            nick: typeof nick === "string" ? nick.trim() : "",
-            liberado: resultado.liberado,
-            dias: resultado.dias,
-            exigido: resultado.exigido,
-            motivo: resultado.motivo,
-            cargo: resultado.cargo
-        });
+            nick: nick,
+            horas_jogadas: tempo.horas,
+            dias_jogados: tempo.dias,
+            segundos_jogados: tempo.segundos,
+            exigido_horas: tempo.exigido_horas,
+            exigido_dias: tempo.exigido_dias,
+            tempo_liberado: tempo.liberado
+        };
+
+        if (!tempo.liberado) {
+            return res.status(200).json(Object.assign({}, base, {
+                liberado: false,
+                motivo: tempo.motivo
+            }));
+        }
+
+        if (vaga === "Ajudante") {
+            return res.status(200).json(Object.assign({}, base, {
+                liberado: true,
+                motivo: "ok",
+                cargo: null,
+                dias_cargo: 0,
+                exigido_cargo_dias: 0
+            }));
+        }
+
+        const elig = await verificarEligibilidade(supabase, nick, vaga);
+
+        return res.status(200).json(Object.assign({}, base, {
+            liberado: !!elig.liberado,
+            motivo: elig.motivo,
+            cargo: elig.cargo,
+            dias_cargo: elig.dias,
+            exigido_cargo_dias: elig.exigido
+        }));
     } catch (erro) {
         console.error("Erro ao verificar elegibilidade:", erro);
         return res.status(500).json({
