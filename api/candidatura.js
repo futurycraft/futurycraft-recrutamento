@@ -268,8 +268,8 @@ export default async function handler(req, res) {
         }
 
         // ---- tempo de jogo: TODAS as vagas exigem 30 dias (720h) ----
-        // Fonte: FuturySync (skyblock_tempo/lobby_tempo/rankup_tempo),
-        // consultado pelo nick. Nunca confia no tempo digitado no form.
+        // Fonte: skyblock_tempo/lobby_tempo/rankup_tempo, consultado
+        // pelo nick. Nunca confia no tempo digitado no form.
         const tempo = await verificarTempoJogado(supabase, dados.nick);
 
         if (!tempo.sucesso) {
@@ -288,7 +288,7 @@ export default async function handler(req, res) {
 
         if (!tempo.liberado) {
             const mensagem = tempo.motivo === "nick_nao_encontrado"
-                ? "Nick não encontrado no FuturySync. Use o nick exato do jogo."
+                ? "Nick não encontrado. Use o nick exato do jogo."
                 : "Você precisa de pelo menos " + tempo.exigido_dias +
                   " dias (" + tempo.exigido_horas + "h) jogados no FuturyCraft. " +
                   "Seu tempo atual: " + tempo.horas + "h.";

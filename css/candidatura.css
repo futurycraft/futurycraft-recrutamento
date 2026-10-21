@@ -97,7 +97,6 @@
    BOTOES (vaga e servidor viram botões selecionáveis)
 ========================================================= */
 
-.vaga-card,
 .modo-card{
     cursor:pointer;
     text-align:left;
@@ -303,88 +302,6 @@
     border-radius:999px;
 }
 
-.promo-vagas{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-    margin-top:14px;
-}
-
-.vaga-mini{
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:11px;
-    padding:12px 14px;
-    background:rgba(9,14,27,.5);
-    border:1px solid var(--fc-border);
-    border-radius:12px;
-    transition:border-color var(--fc-motion), transform var(--fc-motion), box-shadow var(--fc-motion);
-}
-
-.vaga-mini.moderador{ --server-accent:#fbbf24; }
-.vaga-mini.admin{ --server-accent:#f472b6; }
-
-.vaga-mini:hover{
-    transform:translateY(-1px);
-    border-color:rgba(251,191,36,.4);
-}
-
-.vaga-mini.selecionado{
-    border-color:#fbbf24;
-    box-shadow:0 0 0 1px rgba(251,191,36,.35), 0 8px 20px rgba(251,191,36,.12);
-}
-
-.vaga-mini.bloqueada{
-    opacity:.62;
-}
-
-.vaga-mini-icon{
-    width:34px;
-    height:34px;
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:.9rem;
-    border-radius:10px;
-    color:var(--server-accent,#fbbf24);
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.1);
-}
-
-.vaga-mini-info{
-    flex:1;
-    min-width:0;
-}
-
-.vaga-mini-info b{
-    display:block;
-    font-size:.82rem;
-    letter-spacing:1px;
-}
-
-.vaga-mini-info small{
-    display:block;
-    margin-top:1px;
-    font-size:.7rem;
-    color:var(--fc-text-2);
-}
-
-.vaga-mini .server-btn{
-    margin-top:3px;
-    font-size:.62rem;
-    letter-spacing:.6px;
-}
-
-.vaga-mini .vaga-lock{
-    position:static;
-    width:26px;
-    height:26px;
-    flex:0 0 auto;
-    font-size:.72rem;
-}
-
 .promo-bloco .cta-row{
     margin-top:14px;
 }
@@ -404,22 +321,6 @@
     box-shadow:none;
 }
 
-
-/* ==========================================================
-   VAGAS BLOQUEADAS (promoções com exigência de tempo)
-========================================================= */
-
-.vaga-card.bloqueada{
-    opacity:.62;
-}
-
-.vaga-card.bloqueada .server-icon{
-    opacity:.5;
-}
-
-.vaga-card.bloqueada .server-btn{
-    color:#94a3b8;
-}
 
 .vaga-lock{
     position:absolute;
@@ -740,9 +641,6 @@
     .vaga-linha .cta-iniciar{
         width:100%;
         justify-content:center;
-    }
-    .promo-vagas{
-        grid-template-columns:1fr;
     }
     .server-card{
         min-height:0;

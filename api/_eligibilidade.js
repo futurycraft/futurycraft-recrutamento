@@ -11,12 +11,15 @@
 const EXIGENCIA_DIAS = 30;
 
 // Tempo de jogo exigido para QUALQUER candidatura.
-// 30 dias x 24h = 720h. O FuturySync grava o tempo acumulado em
-// segundos em skyblock_tempo / lobby_tempo / rankup_tempo.
+// 30 dias x 24h = 720h. O tempo acumulado fica em segundos em
+// skyblock_tempo / lobby_tempo / rankup_tempo.
 const EXIGENCIA_TEMPO_HORAS = 720;
 const EXIGENCIA_TEMPO_SEGUNDOS = EXIGENCIA_TEMPO_HORAS * 3600;
 const EXIGENCIA_TEMPO_DIAS = 30;
 
+// A partir da atualizacao "sync.all-players" TODOS os jogadores
+// (nao so staff) passam a ser gravados em skyblock_tempo, entao
+// jogadores comuns aparecem aqui tambem.
 const TABELAS_TEMPO = [
     { nome: "skyblock_tempo", temServidor: true },
     { nome: "lobby_tempo", temServidor: false },

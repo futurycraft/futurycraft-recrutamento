@@ -3,8 +3,8 @@ import { verificarEligibilidade, verificarTempoJogado } from "./_eligibilidade.j
 
 // ==========================================================
 // FUTURYCRAFT - VERIFICACAO DE NICK (gateway candidatura.html)
-// 1) Tempo de jogo: puxa do FuturySync (skyblock_tempo /
-//    lobby_tempo / rankup_tempo) e exige 30 dias (720h).
+// 1) Tempo de jogo: puxa de skyblock_tempo / lobby_tempo /
+//    rankup_tempo e exige 30 dias (720h).
 // 2) Promocao: Moderador exige 30 dias como Ajudante; Admin
 //    exige 30 dias como Moderador.
 // Usa a service role: o cliente/anon nao tem acesso direto a
